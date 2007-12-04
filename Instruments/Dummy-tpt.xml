@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPL
+-->
+<PropertyList>
+
+    <path>Models/dummy-tpt.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+
+
+</PropertyList>

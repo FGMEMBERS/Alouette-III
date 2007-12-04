@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPL
+-->
+<PropertyList>
+
+	<path>Models/hi-s51.ac</path>
+	<texture-path>Models/Textures</texture-path>
+
+	<animation>
+		<type>noshadow</type>
+		<object-name>HI</object-name>
+	</animation>
+
+	<model>
+		<name>BoutonG</name>
+		<path>Aircraft/S-51-Dragonfly/Instruments/Bouton_pt-Nord.xml</path>
+		<offsets>
+                    <x-m>0.016</x-m>
+                    <y-m>-0.030431</y-m>
+                    <z-m>-0.030431</z-m>
+                    <pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+
+
+
+
+	<animation include="Instrument-Light1.xml">
+		<object-name>Rose-I</object-name>
+	</animation>
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille1</object-name>
+		<object-name>Aiguille2</object-name>
+	</animation>
+
+	<animation include="Instrument-Light1.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+	<!--******************** Hotspots ******************************-->
+	<!--<panel>
+		<name>Cmd-HI</name>
+		<path>Aircraft/F4U7/Instruments/HI-Nord-hotspots.xml</path>
+		<bottom-left>
+			<x-m>0.014</x-m>
+			<y-m>-0.0361132</y-m>
+			<z-m>-0.0376666</z-m>
+		</bottom-left>
+		<bottom-right>
+			<x-m>0.014</x-m>
+			<y-m>0.0361132</y-m>
+			<z-m>-0.0376666</z-m>
+		</bottom-right>
+		<top-left>
+			<x-m>0.014</x-m>
+			<y-m>-0.0361132</y-m>
+			<z-m>0.0376666</z-m>
+		</top-left>
+	</panel>-->
+<!--*************************************************-->
+
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Cadran</object-name>
+		<property>/orientation/heading-magnetic-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+
+
+
+<!--*******************************************************Heading***********************************************************-->
+
+
+
+	<!--<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1</object-name>
+		<property>/orientation/heading-magnetic-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1</object-name>
+		<property>/instrumentation/heading-indicator/course-pointer</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>-->
+
+
+
+<!--*******************************************************Tacan Heading***********************************************************	-->
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1</object-name>
+		<property>/orientation/heading-magnetic-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1</object-name>
+		<!--<property>/instrumentation/heading-indicator/course-pointer</property>-->
+		<property>/instrumentation/tacan/indicated-bearing-true-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+<!--*******************************************************Nav Heading***********************************************************-->
+
+	<!--<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1-Nav</object-name>
+		<property>/orientation/heading-magnetic-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille1-Nav</object-name>
+		<property>/instrumentation/nav[0]/heading-deg</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>-->
+
+
+
+
+
+<!--*******************************************************Heading-Bug***********************************************************	-->
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille2</object-name>
+		<property>/orientation/heading-magnetic-deg</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille2</object-name>
+		<property>/instrumentation/heading-indicator/heading-marker</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+
+
+
+</PropertyList>
+
+

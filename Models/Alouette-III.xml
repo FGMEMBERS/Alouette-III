@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPL
+-->
+<PropertyList>
+
+	<path>alouetteIII.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>0</pitch-deg>
+            <z-m>0.11</z-m>
+            <x-m>0</x-m>
+        </offsets>
+
+	<animation>
+            <type>select</type>
+            <object-name>Pilote-In</object-name>
+            <condition>
+                <and>
+                    <not>
+                        <equals>
+                            <property>sim/current-view/view-number</property>
+                            <value>0</value>
+                        </equals>
+                    </not>
+                    <equals>
+                            <property>surface-positions/blade-fold-pos-norm</property>
+                            <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+        </animation>
+
+	<!--<animation>
+            <type>select</type>
+            <object-name>Panel-Dummy</object-name>
+            <condition>
+                <not>
+                    <equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </equals>
+                </not>
+            </condition>
+        </animation>-->
+
+        <!--<animation>
+            <type>select</type>
+            <object-name>Panel-Sup</object-name>
+            <condition>
+                    <equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </equals>
+            </condition>
+        </animation>-->
+
+	 <model>
+            <name>Rotor-Tete</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Tete.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59136</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale0</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale0.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59136</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale1</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale1.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59136</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale2</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale2.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59136</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <animation>
+            <type>select</type>
+            <object-name>Queue-Disc_M</object-name>
+            <condition>
+                <not>
+                    <equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </equals>
+                </not>
+            </condition>
+        </animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Rotor-Pales-Queue</object-name>
+            <condition>
+                <not>
+                    <equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </equals>
+                </not>
+            </condition>
+        </animation>
+
+
+
+
+
+
+	<animation>
+  		<type>select</type>
+  		<object-name>Rotor-Pales-Queue</object-name>
+  			<condition>
+   				<less-than>
+    			<property>/rotors/tail/rpm</property>
+    			<value>1600</value>
+   				</less-than>
+  			</condition>
+ 	</animation>
+
+
+
+
+
+
+	<animation>
+		<condition>
+			<greater-than>
+				<property>rotors/tail/rpm</property>
+				<value>1100</value>
+			</greater-than>
+		</condition>
+		<type>noshadow</type>
+		<object-name>Rotor-Pales-Queue</object-name>
+		<object-name>Rotor-Queue-Tete</object-name>
+ 	</animation>
+
+
+	<animation>
+		<type>blend</type>
+		<object-name>Rotor-Pales-Queue</object-name>
+		<object-name>Rotor-Queue-Tete</object-name>
+		<property>rotors/tail/rpm</property>
+		<offset>-0.2</offset>
+		<factor>0.0009</factor>
+		<min>0.20</min>
+	</animation>
+
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Rotor-Pales-Queue</object-name>
+                <object-name>Rotor-Queue-Tete</object-name>
+		<property>rotors/tail/blade[1]/position-deg</property>
+		<center>
+			<x-m>6.2582</x-m>
+			<y-m>0</y-m>
+			<z-m>0.437969</z-m>
+		</center>
+		<axis>
+			<x>0.08748866352592399637</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+	<animation>
+		<type>blend</type>
+		<object-name>Queue-Disc_M</object-name>
+		<property>rotors/tail/rpm</property>
+		<offset>1.2</offset>
+		<factor>-0.0005</factor>
+		<!--<max>0.15</max>-->
+	</animation>
+
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Queue-Disc_M</object-name>
+		<property>/sim/time/elapsed-sec</property>
+
+		<factor>100</factor>
+		<center>
+			<x-m>6.2582</x-m>
+			<y-m>0</y-m>
+			<z-m>0.437969</z-m>
+		</center>
+		<axis>
+			<x>0.08748866352592399637</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!--       ======   Doors Open/Close ======x-1.51308=z-0.46776====x1-0.50380==z1-0.518162==========-->
+
+
+
+
+	<animation>
+        <type>rotate</type>
+	<object-name>AR-GPorte</object-name>
+        <object-name>AR-GPorte-Doublage</object-name>
+        <object-name>AR-GPorte-Vitrage</object-name>
+        <property>surface-positions/left-door-position</property>
+        <factor>13</factor>
+        	<center>
+			<x-m>-0.8845</x-m>
+			<y-m>3.49689</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.05</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+
+
+	<animation>
+        <type>rotate</type>
+	<object-name>AR-DPorte</object-name>
+        <object-name>AR-DPorte-Doublage</object-name>
+        <object-name>AR-DPorte-Vitrage</object-name>
+        <property>surface-positions/left-door-position</property>
+        <factor>13</factor>
+        	<center>
+			<x-m>-0.8845</x-m>
+			<y-m>-3.49689</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.05</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+ 	</animation>
+
+
+
+
+
+
+
+
+</PropertyList>

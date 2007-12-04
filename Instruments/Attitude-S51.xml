@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+
+
+  <PropertyList>
+    <path>Models/attitude-s51.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+
+        <!--<animation include="Instrument-Light1.xml">
+                <object-name></object-name>
+        </animation>
+
+        <animation include="Instrument-Light4.xml">
+                <object-name>Index</object-name>
+                <object-name>Horizon</object-name>
+        </animation>
+
+        <animation include="Instrument-Light1.xml">
+                <object-name>Cadran</object-name>
+        </animation>-->
+
+
+    <animation>
+      <type>rotate</type>
+      <object-name>Fleche</object-name>
+      <object-name>Fleche-Fond</object-name>
+      <object-name>Horizon</object-name>
+      <!--<property>/instrumentation/attitude-indicator/indicated-roll-deg</property>-->
+      <property>orientation/roll-deg</property>
+       <center>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+        </center>
+      <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <type>rotate</type>
+      <object-name>Horizon</object-name>
+      <!--<property>/instrumentation/attitude-indicator/indicated-pitch-deg</property>-->
+      <property>orientation/roll-deg</property>
+      <interpolation>
+        <entry>
+            <ind>-180</ind>
+            <dep>-15</dep>
+        </entry>
+        <entry>
+            <ind>-90</ind>
+            <dep>-15</dep>
+        </entry>
+        <entry>
+            <ind>0</ind>
+            <dep>0</dep>
+        </entry>
+        <entry>
+            <ind>90</ind>
+            <dep>15</dep>
+        </entry>
+        <entry>
+            <ind>180</ind>
+            <dep>15</dep>
+        </entry>
+      </interpolation>
+       <center>
+                <x-m>-0.10734</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+        </center>
+      <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+  </PropertyList>
