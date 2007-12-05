@@ -222,6 +222,23 @@
 		</axis>
 	</animation>
 
+	<animation>
+        <type>rotate</type>
+        <object-name>HGouv</object-name>
+        <property>surface-positions/elevator-pos-norm</property>
+        <factor>6</factor>
+        <center>
+            <x-m>4.94566</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.276419</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
 	<!--       ======   Doors Open/Close ======x-1.51308=z-0.46776====x1-0.50380==z1-0.518162==========-->
 
 

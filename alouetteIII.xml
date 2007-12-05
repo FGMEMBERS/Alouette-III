@@ -151,6 +151,10 @@
 
 <hstab x="-5.0" y="0" z="0.27" taper="0.5" length="2.35" chord="0.40" sweep="0" incidence="0">
 		<stall aoa="16" width="4" peak="1.5"/>
+		<flap0 start="-2" end="+2" lift="1.5" drag="1"/>
+		<control-input axis="/controls/flight/elevator" control="FLAP0"/>
+		<control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+		<control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
 </hstab>
 
 <!-- left -->
