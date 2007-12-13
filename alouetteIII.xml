@@ -35,8 +35,8 @@
 
 
 
-<!--Maik Justus -->
-<airplane mass="4850">
+
+<airplane mass="3196">
 
 <approach speed="47" aoa="16">
   <control-setting axis="/controls/engines/engine[0]/throttle" value="0.3"/>
@@ -48,19 +48,19 @@
 
 <!--tilt: according to drawwings and photo i guess 1.5 degrees  may be 2  toward the front -->
 
-<rotor name="main" x="0" y="0.0" z="1.6" nx="0.03" ny="0" nz="1." fx="1" fy="0" fz="0" ccw="0"
+<rotor name="main" x="0" y="0.0" z="1.6" nx="0.03" ny="0" nz="1." fx="1" fy="0" fz="0"
     maxcollective="13.0" mincollective="3.5"
     mincyclicele="-6" maxcyclicele="6"
     mincyclicail="-5" maxcyclicail="5"
     diameter="11.02" numblades="3" weightperblade="70" relbladecenter="0.62"
-    dynamic="1" rpm="353" rellenflaphinge="0.125" delta3="0"
+    dynamic="1" rpm="353" rellenflaphinge="0.125" delta3="0.35"
     phi0 = "0"
     delta=".20"
     pitch-a="10"
     pitch-b="15"
     flapmin="-15"
     flapmax="15"
-    flap0="-5"
+    flap0="-7.5"
     flap0factor="0"
     notorque="0"
     dragfactor="0.30"
@@ -93,7 +93,7 @@
 </rotor>
 
 <!--tilt: according to drawwings and photo i guess 5 degrees toward the rear-->
-<rotor name="tail" x="-6.26" y="-0.31" z="0.44" nx="-0.087" ny="1" nz="0.0" fx="1" fy="0" fz="0" ccw="0"
+<rotor name="tail" x="-6.26" y="-0.31" z="0.44" nx="-0.087" ny="1" nz="0.0" fx="1" fy="0" fz="0"
     maxcollective="15" mincollective="-5"
     phi0="110"
     diameter="1.92" numblades="3" weightperblade="5" relbladecenter="0.7"
@@ -118,7 +118,7 @@
              dst0="-1.0" dst1="1.0"/>
 <control-input axis="/controls/engines/engine[0]/throttle" control="COLLECTIVE"
              src0="0.1" src1="1.0"
-             dst0="-0.00035" dst1="-0.0045"/>
+             dst0="0.00035" dst1="0.0045"/>
 </rotor>
 
 
@@ -151,10 +151,7 @@
 
 <hstab x="-5.0" y="0" z="0.27" taper="0.5" length="2.35" chord="0.40" sweep="0" incidence="0">
 		<stall aoa="16" width="4" peak="1.5"/>
-		<flap0 start="-2" end="+2" lift="1.5" drag="1"/>
-		<control-input axis="/controls/flight/elevator" control="FLAP0"/>
-		<control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
-		<control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+
 </hstab>
 
 <!-- left -->
@@ -170,10 +167,10 @@
 </gear>
 
 <!-- nose -->
-<gear x="2.207" y="+0.00" z="-1.31905" compression="0.22" spring="3" sfric="1" dfric="0.4"/>
+<gear x="2.207" y="+0.00" z="-1.31905" compression="0.22" spring="5.5" sfric="1" dfric="0.4"/>
 
 
-<gear x="-8.58" y="+0.00" z="+0.38" skid="1" compression="0.01" spring="0.1" sfric="1" dfric="1"/>
+<gear x="-8.58" y="+0.00" z="-0.50" skid="1" compression="0.01" spring="0.1" sfric="1" dfric="1"/>
 
 <!-- Right Door -->
 <gear x="0" y="0" z="0" retract-time="4" compression="0">
@@ -208,12 +205,12 @@
 
 <ballast x="-1.00" y="+0.0" z="0.60" mass="600"/> <!--engine-->
 
-<ballast x="-0.45" y="+0.0" z="0.0" mass="200"/> <!--fuselage-->
+
 <ballast x="0.90" y="+0.0" z="0.0" mass="200"/>
-<ballast x="0.50" y="+0.80" z="0.0" mass="200"/>
-<ballast x="0.50" y="-0.80" z="0.0" mass="200"/>
-<ballast x="0.50" y="-0.80" z="0.7" mass="200"/>
-<ballast x="0.50" y="0.80" z="-0.7" mass="200"/>
+<ballast x="0.70" y="+0.80" z="0.0" mass="900"/>
+<ballast x="0.70" y="-0.80" z="0.0" mass="900"/>
+<ballast x="-0.10" y="-0.80" z="0.7" mass="200"/>
+<ballast x="-0.10" y="0.80" z="-0.7" mass="200"/>
 
 
 <ballast x="-3.5" y="+0.0" z="0.11" mass="300"/> <!--tail-->
