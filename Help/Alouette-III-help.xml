@@ -6,7 +6,7 @@
 -->
 <PropertyList>
 
-        <title>Helicoptere Sikorsky S-51 Dragonfly</title>
+        <title>Helicoptere Alouette III</title>
             <key>
             <name>}</name>
             <desc>Electric power ON and Start Engines and Rotor Gear ON</desc>
@@ -20,13 +20,6 @@
             <desc>Toggle  Passengers Door ( left door )</desc>
             </key>
             <key>
-            <name>F</name>
-            <desc>Blades  folding</desc>
-            </key>
-            <key>
-            <name>f</name>
-            <desc>Blades deploying</desc>
-            </key>
             <key>
             <name>N</name>
             <desc>Toggle rotor brake</desc>
@@ -47,7 +40,6 @@
             START and STOP ROUTINE
             To start:
                 1  Electric Power ON , Rotor Brake OFF, start the engine and rotorgear ON => key "}"
-                2  Deploy the blades => key "f"
             To stop:
                 Electric Power,  Engine and Rotorgear OFF  => key  "{"
         </text>
