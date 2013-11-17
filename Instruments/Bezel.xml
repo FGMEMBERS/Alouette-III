@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    property Gerard Robin
+    Copyright License:  GPLv2 
+-->
+<PropertyList>
+
+	<path>Models/bezel.ac</path>
+	<texture-path>Models/Textures</texture-path>
+
+	<!--<animation>
+		<type>noshadow</type>
+		<object-name>Bezel-pt</object-name>
+	</animation>-->
+
+	
+	
+	<effect>
+            <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>
+	    <!--<object-name>Couronne</object-name>-->
+	    <!--<object-name>Casquette</object-name>-->
+	    <object-name>Corps</object-name>
+	 </effect>   
+	    
+	<animation include="Instrument-Light5.xml">
+		<object-name>Couronne</object-name>
+	</animation>
+	    
+
+        <model>
+            <name>Light</name>
+            <path>Aircraft/Alouette-III/Instruments/Light-Bezel-Nord.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+
+        <animation>
+            <type>select</type>
+            <object-name>Light</object-name>
+            <condition>
+                <or><property>sim/rendering/rembrandt</property> <property>sim/rendering/rembrandt/enabled</property> </or>
+            </condition>
+        </animation>
+
+
+
+</PropertyList>

@@ -1,0 +1,146 @@
+<PropertyList>
+
+
+    <!--
+    Usable with FlightGear
+    Property of Gerard Robin (C) 2008-2010
+    Copyright 
+    -->
+    
+    <path>rescue-op.ac</path>
+        <texture-path>Aircraft/Alouette-III/Models/Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>0</pitch-deg>
+            <z-m>10</z-m>
+            <x-m>0.0</x-m>
+            <heading-deg>180</heading-deg>
+        </offsets>
+
+
+
+        <animation>
+		<type>select</type>
+		<object-name>Rope</object-name>
+		<object-name>Rescued-Person</object-name>
+		<object-name>Crown</object-name>
+		<condition>
+			<equals>
+				<property>/sim/model/rescue</property>
+				<value>1</value>
+			</equals>
+		</condition>
+        </animation>
+
+
+
+
+
+
+
+	<animation>
+        <type>rotate</type>
+        <object-name>Rope</object-name>
+	<object-name>Rescued-Person</object-name>
+	<object-name>Crown</object-name>
+        <property>orientation/pitch-deg</property>
+       <factor>-1</factor>
+        <center>
+            <x-m>0.016548</x-m>
+            <y-m>0.00567126</y-m>
+            <z-m>-4.05133</z-m>
+        </center>
+        <axis>
+              <x>0</x>
+              <y>-1</y>
+              <z>0</z>
+        </axis>
+ 	</animation>
+
+	<animation>
+        <type>rotate</type>
+        <object-name>Rope</object-name>
+	<object-name>Rescued-Person</object-name>
+	<object-name>Crown</object-name>
+        <property>orientation/roll-deg</property>
+       <factor>-1</factor>
+        <center>
+            <x-m>0.016548</x-m>
+            <y-m>0.00567126</y-m>
+            <z-m>-4.05133</z-m>
+        </center>
+        <axis>
+              <x>1</x>
+              <y>0</y>
+              <z>0</z>
+        </axis>
+ 	</animation>
+
+	<animation>
+	<type>translate</type>
+	<object-name>Rescued-Person</object-name>
+	<object-name>Crown</object-name>
+	<property>sim/model/rescue-lift</property>
+	<factor>-10</factor>
+	<axis>
+              <x>0</x>
+              <y>0</y>
+              <z>1</z>
+        </axis>
+	</animation>
+
+
+	<animation>
+            <type>select</type>
+            <object-name>Rescued-Person</object-name>
+	    <object-name>Crown</object-name>
+            <condition>
+                    <not-equals>
+                        <property>/sim/model/rescue-lift</property>
+                        <value>0</value>
+                    </not-equals>
+            </condition>
+        </animation>
+
+
+
+	<animation>
+	<type>translate</type>
+	<object-name>Rope</object-name>
+	<property>sim/model/rescue-lift</property>
+	<interpolation>
+                    <entry>
+                    <ind>0</ind>
+                    <dep>-4</dep>
+                    </entry>
+                    <entry>
+                    <ind>1</ind>
+                    <dep>-10</dep>
+                    </entry>
+                    </interpolation>
+	<axis>
+              <x>0</x>
+              <y>0</y>
+              <z>1</z>
+        </axis>
+	</animation>
+
+	<animation>
+		<type>scale</type>
+		<object-name>Rope</object-name>
+		<property>sim/model/rescue-lift</property>
+		<x-max>1</x-max>
+		<x-min>1</x-min>
+                <y-max>1</y-max>
+		<y-min>1</y-min>
+		<z-max>1</z-max>
+		<z-min>0.01</z-min>
+		<x-factor>1</x-factor>
+		<y-factor>1</y-factor>
+		<z-factor>1</z-factor>
+	</animation>
+
+
+
+
+</PropertyList>

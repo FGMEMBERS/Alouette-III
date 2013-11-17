@@ -4,9 +4,9 @@
     <!--
     Usable with FlightGear
     Property of Gerard Robin
-    Copyright License:  GPL
+    Copyright 
     -->
-    <!--                   Auteur :      Gerard ROBIN            GPL  COPYRIGHT-->
+    <!--                   Auteur :      Gerard ROBIN         COPYRIGHT-->
 	<path>Models/al3-rotor-tete.ac</path>
 
 	<texture-path>Models/Textures</texture-path>
@@ -29,7 +29,8 @@
         <animation>
 		<type>rotate</type>
                 <object-name>Rotor-Tete</object-name>
-                <property>rotors/main/blade[0]/position-deg</property>
+                <!--<property>fdm/jsbsim/systems/rotor/pale0pos-deg</property>-->
+		<property>sim/multiplay/generic/float[5]</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0</x-m>
@@ -43,7 +44,7 @@
 		</axis>
 	</animation>
 
-        <animation>
+        <!--<animation>
                 <condition>
 			<equals>
 				<property>controls/flight/wing-fold</property>
@@ -64,7 +65,7 @@
 			<y>0</y>
 			<z>1</z>
 		</axis>
-	</animation>
+	</animation>-->
 
 
 

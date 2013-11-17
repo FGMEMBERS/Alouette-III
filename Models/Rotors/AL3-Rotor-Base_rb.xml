@@ -1,0 +1,135 @@
+<PropertyList>
+
+
+    <!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright 
+    -->
+    <!--                   Auteur :      Gerard ROBIN      (C] 2010   COPYRIGHT-->
+	<path>Models/al3-rotor-pale-base.ac</path>
+
+	<texture-path>Models/Textures</texture-path>
+        <offsets>
+            <heading-deg>180</heading-deg>
+        </offsets>
+
+       <!--<animation>
+                <condition>
+                    <equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>999</value>
+                    </equals>
+            </condition>
+		<type>select</type>
+                <object-name>Gabarit-Pose</object-name>
+ 	</animation>-->
+
+       
+
+        <!--ALPHA HIERARCHY=================-->
+        <animation>
+                <name>Alpha</name>
+                <object-name>Rotor-Pale</object-name>
+                <object-name>Rotor-PaleD</object-name>
+                <object-name>Rotor-Pale-Base</object-name>
+                <object-name>Rotor-Pale-Fix</object-name>
+                <object-name>Rotor-Pale-Rot</object-name>
+                <object-name>Rotor-Disc_M-Pale</object-name>
+        </animation>
+	
+	 <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>Rotor-PaleD</object-name>
+            <object-name>Rotor-Disc_M-Pale</object-name>
+        </effect>
+
+        <!--BLEND===================-->
+
+        <animation>
+		<type>blend</type>
+		<object-name>Rotor-Pale</object-name>
+                <property>fdm/jsbsim/animation/rotor0-rotation</property>
+		<factor>0.0035</factor>
+	</animation>
+
+         <animation>
+		<type>blend</type>
+                <object-name>Rotor-PaleD</object-name>
+		<property>fdm/jsbsim/animation/rotor0-rotation</property>
+		<factor>0.0026</factor>
+	</animation>
+	
+
+        <animation>
+		<type>noshadow</type>
+                <object-name>Rotor-Disc_M-Pale</object-name>
+ 	</animation>
+	
+	
+	 <animation>
+		<type>blend</type>
+                <object-name>Rotor-Pale-Base</object-name>
+                <object-name>Rotor-Pale-Fix</object-name>
+		<property>fdm/jsbsim/animation/rotor0-rotation</property>
+		<factor>0.0022</factor>
+	</animation>
+	
+	
+	<!--SELECT========================-->
+        
+	
+	 <animation>
+		<condition>
+                    <or>
+			<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+			<less-than>
+				<property>fdm/jsbsim/animation/rotor0-rotation</property>
+				<value>200</value>
+			</less-than>			
+                    </or>
+		</condition>
+		<type>select</type>
+                <object-name>Rotor-Pale</object-name>
+ 	</animation>
+	
+
+        <animation>
+		<condition>
+                    <or>
+                            <and>
+				<property>fdm/jsbsim/systems/crash-detect/aero-on</property>
+                                <less-than>
+                                    <property>fdm/jsbsim/animation/rotor0-rotation</property>
+                                    <value>260</value>
+                                 </less-than>
+                                 <greater-than>
+                                        <property>fdm/jsbsim/animation/rotor0-rotation</property>
+                                        <value>199</value>
+                                 </greater-than>
+                             </and>
+                     </or>
+		</condition>
+		<type>select</type>
+                <object-name>Rotor-PaleD</object-name>
+ 	</animation>
+
+        <animation>
+		<condition>
+		     <and>
+			<property>fdm/jsbsim/systems/crash-detect/aero-on</property>
+			<greater-than>
+				<property>fdm/jsbsim/animation/rotor0-rotation</property>
+				<value>200</value>
+			</greater-than>
+		    </and>
+		</condition>
+		<type>select</type>
+                <object-name>Rotor-Disc_M-Pale</object-name>
+ 	</animation>
+
+
+	
+
+
+</PropertyList>

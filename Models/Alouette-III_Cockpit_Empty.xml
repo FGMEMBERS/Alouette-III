@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin (C) 2008-2010
+    Copyright 
+-->
+<PropertyList>
+
+	<path>alouetteIII-cockpit_nude.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>0</pitch-deg>
+            <z-m>0.0</z-m>
+            <x-m>0</x-m>
+        </offsets>
+    
+
+</PropertyList>

@@ -1,0 +1,23 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "sphere"
+loc -2.295 -0.203786 -0.200287
+texture "btextu99.png"
+crease 45.000000
+numvert 4
+2.29519 0.10823 0.305761
+2.29481 0.299342 0.305761
+2.29481 0.299342 0.0950695
+2.29519 0.108231 0.0948125
+numsurf 1
+SURF 0x10
+mat 0
+refs 4
+2 0.23747 0.06514
+1 0.260833 0.06514
+0 0.260833 0.0405045
+3 0.237442 0.0405046
+kids 0

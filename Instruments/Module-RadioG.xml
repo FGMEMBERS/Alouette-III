@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Copyright Gerard Robin  12-12-2005
+
+-->
+<PropertyList>
+
+	
+	
+
+	<path>Models/module-radioG.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+
+
+</PropertyList>

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin (C)  2007
+    Copyright License:  GPLv2 
+-->
+
+<PropertyList>
+
+ <path>Models/rotor-torque-al.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<!--<animation>
+		<type>noshadow</type>
+		<object-name></object-name>
+	</animation>-->
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Light-ClutchOn</object-name>
+            <condition>
+                <equals>
+                    <property>fdm/jsbsim/propulsion/engine/clutch-ctrl-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille</object-name>
+		<property>fdm/jsbsim/systems/rotor/main/torque</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>12</dep>
+			</entry>
+			<entry>
+				<ind>6000</ind>
+				<dep>96</dep>
+			</entry>
+			<entry>
+				<ind>12000</ind>
+				<dep>168</dep>
+			</entry>
+			<entry>
+				<ind>18000</ind>
+				<dep>240</dep>
+			</entry>
+			<entry>
+				<ind>24000</ind>
+				<dep>312</dep>
+			</entry>
+                        <entry>
+				<ind>26000</ind>
+				<dep>336</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.00</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+
+</PropertyList>

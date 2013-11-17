@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin (C) 2008-2010
+    Copyright 
+-->
+<PropertyList>
+
+	<path>alouetteIII-cockpit_console.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>0</pitch-deg>
+            <z-m>0.0</z-m>
+            <x-m>0</x-m>
+        </offsets>
+
+
+
+        
+
+
+        <model>
+            <name>VPanel</name>
+            <path>Aircraft/Alouette-III/Panels/Al3_VPanel.xml</path>
+            <offsets>
+                <x-m>-2.12641</x-m>
+                <y-m>0.200287</y-m>
+                <z-m>0.184616</z-m>
+                <pitch-deg>-5</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>VDPanel</name>
+            <path>Aircraft/Alouette-III/Panels/Al3_VPanel_D.xml</path>
+            <offsets>
+                <x-m>-2.11861</x-m>
+                <y-m>0.473062</y-m>
+                <z-m>0.148414</z-m>
+                <pitch-deg>-5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>B1Panel</name>
+            <path>Aircraft/Alouette-III/Panels/Al3_B1Panel.xml</path>
+            <offsets>
+                <x-m>-2.0749</x-m>
+                <y-m>0.200121</y-m>
+                <z-m>-0.0605685</z-m>
+                <pitch-deg>-17</pitch-deg>
+            </offsets>
+        </model>
+	
+	 <model>
+            <name>B2Panel</name>
+            <path>Aircraft/Alouette-III/Panels/Al3_B2Panel.xml</path>
+            <offsets>
+                <x-m>-2.01349</x-m>
+                <y-m>0.200197</y-m>
+                <z-m>-0.232576</z-m>
+                <pitch-deg>-22.5</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>TPanel</name>
+            <path>Aircraft/Alouette-III/Panels/Al3_TopPanel.xml</path>
+            <offsets>
+                <x-m>-1.56353</x-m>
+                <y-m>0.0928792</y-m>
+                <z-m>0.820504</z-m>
+                <pitch-deg>3</pitch-deg>
+            </offsets>
+        </model>
+	
+	
+	<!--==== Wheel Brake===========-->
+	
+	 <animation>
+            <type>translate</type>
+            <object-name>ParkFreins-Cde</object-name>
+            <property>fdm/jsbsim/fcs/brake-parking-pos-norm</property>
+            <factor>0.12</factor>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>ParkFreins-Cde</object-name>
+            <property>fdm/jsbsim/fcs/brake-parking-pos-norm</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>-90</dep>
+                </entry>
+                <entry>
+                    <ind>0.4</ind>
+                    <dep>-90</dep>
+                </entry>
+                <entry>
+                    <ind>0.6</ind>
+                    <dep>-90</dep>
+                </entry>
+                <entry>
+                    <ind>1.0</ind>
+                    <dep>0</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>-1.59501</x-m>
+                <y-m>0.187302</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>pick</type>
+            <object-name>ParkFreins-Cde</object-name>
+            <action>
+                <button>0</button>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/gear/brake-parking</property>
+                </binding>
+            </action>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+            <object-name>LG-Light</object-name>            
+            <condition>
+                <equals>
+                    <property>fdm/jsbsim/fcs/brake-parking-pos-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+	</animation>
+	
+	
+	<animation>
+            <type>pick</type>
+            <object-name>Debit-Cde</object-name>
+            <action>
+                <button>0</button>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>fdm/jsbsim/fcs/nominal-flow-cmd</property>
+                    <step>0.25</step>
+                    <min>0</min>
+                    <max>1</max>
+                </binding>
+            </action>
+        </animation>
+	
+	<animation>
+            <type>pick</type>
+            <object-name>Debit-Cde</object-name>
+            <action>
+                <button>1</button>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>fdm/jsbsim/fcs/nominal-flow-cmd</property>
+                    <step>-0.25</step>
+                    <min>0</min>
+                    <max>1</max>
+                </binding>
+            </action>
+        </animation>
+	
+	
+	
+ <animation>
+            <type>rotate</type>
+            <object-name>Debit-Cde</object-name>
+            <property>fdm/jsbsim/fcs/fuel-flow-control</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>-0</dep>
+                </entry>
+                <entry>
+                    <ind>0.25</ind>
+                    <dep>-10</dep>
+                </entry>
+                <entry>
+                    <ind>0.5</ind>
+                    <dep>-20</dep>
+                </entry>
+                <entry>
+                    <ind>0.75</ind>
+                    <dep>-30</dep>
+                </entry>
+		<entry>
+                    <ind>1</ind>
+                    <dep>-40</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>-1.79069</x-m>
+                <y-m>0</y-m>
+                <z-m>-0.451846</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+        
+	
+
+</PropertyList>

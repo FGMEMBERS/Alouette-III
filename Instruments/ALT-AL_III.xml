@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+ <path>Models/alt-al3.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+
+        <model>
+                <name>Bouton</name>
+                <path>Aircraft/Alouette-III/Instruments/Bouton_pt-Nord.xml</path>
+                <offsets>
+                    <x-m>0.016</x-m>
+                    <y-m>-0.037</y-m>
+                    <z-m>-0.037</z-m>
+                    <pitch-deg>0</pitch-deg>
+                </offsets>
+        </model>
+
+        <animation>
+            <type>pick</type>
+            <object-name>Bouton</object-name>
+            <action>
+                <repeatable type="bool">true</repeatable>
+                <button>0</button>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>/instrumentation/altimeter/setting-inhg</property>
+                    <step>0.01</step>
+                    <min>26.0</min>
+                    <max>33.0</max>
+                    <wrap>0</wrap>
+                </binding>
+            </action>
+        </animation>
+
+        <animation>
+            <type>pick</type>
+            <object-name>Bouton</object-name>
+            <action>
+                <repeatable type="bool">true</repeatable>
+                <button>1</button>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>/instrumentation/altimeter/setting-inhg</property>
+                    <step>-0.01</step>
+                    <min>26.0</min>
+                    <max>33.0</max>
+                    <wrap>0</wrap>
+                </binding>
+            </action>
+        </animation>
+
+        <animation include="Instrument-Light4.xml">
+                <object-name>Aiguille</object-name>
+        </animation>
+
+        <animation include="Instrument-Light3.xml">
+                <object-name>Cadran</object-name>
+        </animation>
+
+        <animation include="Instrument-Light3.xml">
+            <object-name>Ft-m-asl</object-name>
+            <object-name>Ft-m-usl</object-name>
+            <object-name>Ft-dm</object-name>
+            <object-name>Ft-minus</object-name>
+        </animation>
+
+        <animation include="Instrument-Light3.xml">
+                <object-name>Tambour</object-name>
+        </animation>
+
+        <animation include="Instrument-Light3.xml">
+                <object-name>PA-cc</object-name>
+                <object-name>PA-dc</object-name>
+                <object-name>PA-un</object-name>
+                <object-name>PA-di</object-name>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Aiguille</object-name>
+            <condition>
+                <greater-than-equals>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </greater-than-equals>
+            </condition>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+            <factor>-0.36</factor>
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Aiguille</object-name>
+            <condition>
+                <less-than>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </less-than>
+            </condition>
+            <type>rotate</type>
+            <object-name>Aiguille</object-name>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+            <factor>0.36</factor>
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+
+        <animation>
+            <condition>
+                <greater-than-equals>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </greater-than-equals>
+            </condition>
+            <type>select</type>
+            <object-name>Ft-m-asl</object-name>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+	</animation>
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>Ft-m-asl</object-name>
+                <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                <factor>0.0001</factor>
+                <step>1000</step>
+                <scroll>1</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+            <condition>
+                <less-than>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </less-than>
+            </condition>
+            <type>select</type>
+            <object-name>Ft-m-usl</object-name>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+        </animation>
+
+        <animation>
+            <type>textranslate</type>
+            <object-name>Ft-m-usl</object-name>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+            <factor>-0.0001</factor>
+            <step>1000</step>
+            <scroll>1</scroll>
+            <axis>
+                <x>0</x>
+                <y>-1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+                <condition>
+                        <not>
+                                <less-than>
+                                        <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                                        <value>0</value>
+                                </less-than>
+                        </not>
+                </condition>
+                <type>select</type>
+                <object-name>Ft-dm</object-name>
+                <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+        </animation>
+
+        <animation>
+                <condition>
+                                <less-than>
+                                        <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                                        <value>0</value>
+                                </less-than>
+                </condition>
+                <type>select</type>
+                <object-name>Ft-minus</object-name>
+                <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+        </animation>
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>Ft-dm</object-name>
+                <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                <factor>0.00001</factor>
+                <step>10000</step>
+                <scroll>1</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+                <type>rotate</type>
+                <object-name>Bouton</object-name>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>1000</factor>
+                <center>
+                        <x-m>0</x-m>
+                        <y-m>-0.036</y-m>
+                        <z-m>-0.036</z-m>
+                </center>
+                <axis>
+                        <x>-1</x>
+                        <y>0</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>PA-cc</object-name>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>10</factor>
+                <step>0.01</step>
+                <scroll>0.000001</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>PA-dc</object-name>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>1</factor>
+                <step>0.1</step>
+                <scroll>0.00001</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>PA-un</object-name>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>0.1</factor>
+                <step>1</step>
+                <scroll>0.0001</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+                <type>textranslate</type>
+                <object-name>PA-di</object-name>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>0.01</factor>
+                <step>10</step>
+                <scroll>0.001</scroll>
+                <axis>
+                        <x>0</x>
+                        <y>-1</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Tambour</object-name>
+            <condition>
+                <greater-than-equals>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </greater-than-equals>
+            </condition>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+            <factor>0.36</factor>
+            <center>
+                <x-m>-0.0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <condition>
+                <less-than>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>0</value>
+                </less-than>
+            </condition>
+            <type>rotate</type>
+            <object-name>Tambour</object-name>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+            <factor>-0.36</factor>
+            <center>
+                <x-m>-0.0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+
+
+
+</PropertyList>

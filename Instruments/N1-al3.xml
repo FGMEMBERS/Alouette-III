@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin  12-12-2005
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+ <path>Models/n1-al3.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<animation>
+		<type>noshadow</type>
+		<object-name>N1</object-name>
+	</animation>
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille</object-name>
+		<property>fdm/jsbsim/propulsion/engine[0]/n1</property>
+		<factor>2.64706</factor>
+		<axis>
+                    <x>-1</x>
+                    <y>0</y>
+                    <z>0</z>
+		</axis>
+	</animation>
+
+</PropertyList>

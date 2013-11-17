@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+
+
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin  (C) 2010
+    Copyright License:  GPLv2 
+-->
+<PropertyList>
+
+ <path>Models/gdsi-al.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+	<animation>
+		<type>noshadow</type>
+		<object-name>PAR</object-name>
+	</animation>
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>IndicV</object-name>
+		<object-name>IndicU</object-name>
+                <object-name>Pointeur</object-name>
+	</animation>
+
+	<animation include="Instrument-Light2.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+
+        <animation>
+            <type>rotate</type>
+            <object-name>IndicU</object-name>
+            <property>instrumentation/gsdi/drift-u-kt</property>
+            <interpolation>
+                <entry>
+                    <ind>-50</ind>
+                    <dep>19</dep>
+                </entry>
+                <entry>
+                    <ind>-20</ind> <!--10/7.5-->
+                    <dep>15</dep>
+                </entry>
+                <entry>
+                    <ind>0</ind>
+                    <dep>0</dep>
+                </entry>
+                <entry>
+                    <ind>20</ind>
+                    <dep>-15</dep>
+                </entry>
+                <entry>
+                    <ind>50</ind>
+                    <dep>-19</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>-0.083084</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>IndicV</object-name>
+            <property>instrumentation/gsdi/drift-v-kt</property>
+            <interpolation>
+                <entry>
+                    <ind>-50</ind>
+                    <dep>-19</dep>
+                </entry>
+                <entry>
+                    <ind>-20</ind>
+                    <dep>-15</dep>
+                </entry>
+                <entry>
+                    <ind>0</ind>
+                    <dep>0</dep>
+                </entry>
+                <entry>
+                    <ind>20</ind>
+                    <dep>15</dep>
+                </entry>
+                <entry>
+                    <ind>50</ind>
+                    <dep>19</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>-0.083084</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </axis>
+	</animation>
+
+	<!--<animation>
+		<type>translate</type>
+		<object-name>IndicU</object-name>
+                <property>instrumentation/gsdi/drift-u-kt</property>
+		<interpolation>
+			<entry>
+				<ind>-10</ind>
+				<dep>-0.02</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>10</ind>
+				<dep>0.02</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>IndicV</object-name>
+                <property>instrumentation/gsdi/drift-v-kt</property>
+		<interpolation>
+			<entry>
+				<ind>-10</ind>
+				<dep>-0.02</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>10</ind>
+				<dep>0.02</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>-->
+
+
+
+
+
+
+</PropertyList>
+
+

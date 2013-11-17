@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<!--
+    Usable with FlightGear
+    
+-->
+        <!--     Auteur :      Gerard ROBIN                   COPYRIGHT             -->
+
+
+
+
+<!--<paramsx></paramsx>-->
+
+ <path>poussiere.osgx</path>
+
+
+ <offsets>
+    <x-m> 0 </x-m>
+   <!-- <y-m> 00 </y-m>
+    <z-m> 00 </z-m>-->
+    <pitch-deg>105.46</pitch-deg>
+    <roll-deg>0</roll-deg>
+ </offsets>
+
+
+ <animation>
+     <type>select</type>
+     <object-name>poussiere</object-name>
+     <condition>
+         <and>
+             <property>sim/rendering/particles</property>
+             <property>environment/terrain-solid</property>
+             <less-than>
+                 <property>sim/multiplay/generic/float[0]</property>
+                 <value>70</value>
+             </less-than>
+             <greater-than>
+                 <property>sim/multiplay/generic/float[1]</property>
+                 <value>100</value>
+             </greater-than>
+             <greater-than>
+                <property>sim/current-view/view-number</property>
+                <value>0</value>
+              </greater-than>
+            <less-than>
+                <property>sim/current-view/view-number</property>
+                <value>9</value>
+            </less-than>
+             <not-equals>
+                 <property>/fdm/jsbsim/systems/crash-detect/crashed</property>
+                 <value>1</value>
+             </not-equals>
+         </and>
+     </condition>
+ </animation>
+
+
+
+
+
+
+
+
+
+</PropertyList>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    copyright 12-09-2011 grthteam (eekpo )
+    Copyright License:  GPLv2
+-->
+<PropertyList>
+
+    <path>Models/display.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<!--<animation>
+		<type>noshadow</type>
+		<object-name>Temoin</object-name>
+	</animation>-->
+
+        <!--<animation include="Instrument-Light1b.xml">
+            <object-name>Temoin-Marquage</object-name>
+        </animation>-->
+	
+	
+	
+
+        
+
+</PropertyList>

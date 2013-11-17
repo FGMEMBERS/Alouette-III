@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of grthteam
+    Copyright License:  GPLv2
+-->
+<PropertyList>
+
+ <path>light_flash-eff.ac</path>
+ <texture-path>Textures</texture-path>
+
+        <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>phare-eff</object-name>
+        </effect>
+
+<!--reminder: the children object must be drawn at he right place,  main parent  model related-->
+        <animation>
+            <type>flash</type>
+            <object-name>phare-eff</object-name>
+            <center>
+                <x-m>-4.74191</x-m>
+                <y-m>0</y-m>
+                <z-m>-1.07944</z-m>
+            </center>
+            <axis>
+                <x>-1</x>
+                <y>0</y>
+                <z>-0.15</z>
+            </axis>
+            <power>1</power>
+            <factor>1</factor>
+            <offset>0</offset>
+            <two-sides type="bool">false</two-sides>
+            <min>0.1</min>
+            <max>1</max>
+        </animation>
+
+
+</PropertyList>

@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+<system name="rotor">
+
+  <!-- Clutch ********************************************** -->
+
+  <channel name="clutch">
+      
+      <!--SOLVED  by with  turbine row 18000 RPM   n1  at a very low value -->
+       <!--  WAS temporary giving some clutch effinciency  at LE 18500 RPM 
+  just to simulate   idle  rpm since we are  missing within the source code   the lost of hp due to gear  and other transmission  -->
+      
+      <scheduled_gain name="fcs/clutch-control">
+            <input>propulsion/engine[0]/set-running</input>
+            <table>
+                <independentVar lookup="row"> propulsion/engine[0]/engine-rpm</independentVar>               
+                <tableData>
+		    1000	 0	    
+		    18300  0.00000001
+		    18800  0.001
+		    19500  0.03
+		    20000 0.08
+		    21000 0.4
+		    24000 1
+		    35000 1     
+                </tableData>
+            </table>
+	    <output>propulsion/engine[0]/clutch-ctrl-norm</output>
+	    <output>propulsion/engine[1]/clutch-ctrl-norm</output>            
+        </scheduled_gain>
+    
+  </channel>
+
+  <!-- Brake *********************************************** -->
+
+
+<property value="1">animation/rotor_brake-switch-lock-cmd</property>
+  <property value="1">animation/rotor_brake-switch-cmd</property>
+  <property value="0">fcs/blade-fold-pos-norm</property>
+
+  <channel name="brake">
+      
+       <switch name="animation/rotor_brake-switch-lock">
+          <default value="0"/>
+          <test logic="OR" value="1">
+              animation/rotor_brake-switch-lock-cmd == 1
+	      fcs/blade-fold-pos-norm != 0
+          </test>
+      </switch>
+
+      <switch name="systems/rotor/rotor_brake-switch">
+          <default value="0"/>
+          <test logic="AND" value="1">
+              animation/rotor_brake-switch-lock  == 1
+              animation/rotor_brake-switch-cmd == 1
+          </test>
+          <output>animation/rotor_brake-switch-cmd</output>
+      </switch>
+      
+      <kinematic name="systems/rotor/brake-cmd">
+          <input>systems/rotor/rotor_brake-switch</input>
+          <traverse>
+              <setting>
+                  <position>0</position>
+                  <time>0</time>
+              </setting>
+              <setting>
+                  <position>1</position>
+                  <time>0.5</time>
+              </setting>
+          </traverse>
+              <output>systems/rotor/brake-cmd-norm</output>
+      </kinematic>
+
+      <switch name="systems/rotor/brake-cmd-norm-tr">
+          <default value="systems/rotor/brake-cmd-norm"/>
+          <test logic="AND" value="0.2">
+              propulsion/engine[0]/rotor-rpm  LE 35
+              propulsion/engine[0]/rotor-rpm  GE 3
+              systems/rotor/brake-cmd-norm == 1
+          </test>
+    </switch>
+
+   <kinematic name="brake control">
+     <input>systems/rotor/brake-cmd-norm-tr</input>
+     <traverse>
+       <setting>
+          <position> 0 </position>
+          <time>     0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>     5 </time>
+       </setting>
+     </traverse>
+     <output>propulsion/engine[0]/brake-ctrl-norm</output>
+     <output>propulsion/engine[1]/brake-ctrl-norm</output>
+   </kinematic>
+
+  </channel>
+
+
+  <!-- Collective ******************************************* -->
+
+  <channel name="collective">
+    <!-- map throttle axis to collective -->
+      <fcs_function name="map">
+        <function>
+           <table>
+             <independentVar>fcs/throttle-cmd-norm</independentVar>
+             <tableData>
+                  0   1
+                  1   0
+             </tableData>
+           </table>
+        </function>
+        <output>systems/rotor/collective-cmd-norm</output>
+      </fcs_function>
+      <lag_filter name="fcs/collective-lag">
+        <input> systems/rotor/collective-cmd-norm </input>
+        <c1>    5.0 </c1>
+      </lag_filter>
+      <pure_gain name="fcs/collective-gain">
+        <input>  fcs/collective-lag </input>
+        <gain>   0.31939525</gain>  <!--GP 18.3-->
+        <output> fcs/x-col_raw </output>
+      </pure_gain>
+      
+      <fcs_function name="fcs/x-col-max">
+        <function>
+           <table>
+	     <independentVar>atmosphere/P-psf</independentVar>
+             <tableData>
+		 1200	0.31939525
+		 1500	0.2866
+                 2110	 0.25
+             </tableData>
+           </table>
+        </function>
+      </fcs_function>
+      
+      
+      <summer name="fcs/x-col">
+        <input> fcs/x-col_raw </input>	
+        <clipto>
+          <min> 0.0 </min>
+          <max> fcs/x-col-max </max>
+        </clipto>
+      </summer>
+      
+      <summer name="fcs/collective_root-ctrl-rad">
+        <input>fcs/x-col</input>
+        <input> ap/collective-cmd </input>
+        <clipto>
+          <min> 0.0 </min>
+          <max> 1 </max>
+        </clipto>
+      </summer>
+      
+      
+       <fcs_function name="fcs/collective-ctrl-rad">
+        <function>
+           <table>
+             <independentVar>fcs/collective_root-ctrl-rad</independentVar>
+             <tableData>
+                  0.0		0.0
+		  0.22   0.1980  <!--lost 10%-->
+                  0.32     0.275 <!-- lost 14 %-->
+             </tableData>
+           </table>
+        </function>
+        <output> propulsion/engine/collective-ctrl-rad </output>
+      </fcs_function>
+    </channel>
+
+
+</system>

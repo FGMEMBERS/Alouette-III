@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PropertyList>
+
+            <jsbsim>
+                <systems>
+		    <rotor>
+			<clutch-cmd>0</clutch-cmd>
+			<brake-cmd-norm>1</brake-cmd-norm>
+		    </rotor>
+                </systems>
+                <instruments>
+                    <heading-indicator>
+                        <switch-tacan-dme type="double">0</switch-tacan-dme>
+                        <switch-nav-adf type="double">0</switch-nav-adf>
+                        <nav-switch type="double">0</nav-switch>
+                    </heading-indicator>
+                </instruments>
+		<gear>
+		    <NWS>
+			<engaged type="bool">false</engaged>
+		    </NWS>
+		</gear>
+		<propulsion>
+		    <engine n='0'>
+			<!--<cutoff type="bool">true</cutoff>-->
+			<cutoff alias="/controls/engines/engine[0]/cutoff"/>
+		    </engine>
+		</propulsion>
+		<fcs>
+		    <rpm-governor-active-norm>0</rpm-governor-active-norm>
+		    <brake-parking-cmd-norm alias="/controls/gear/brake-parking"/>
+		    <nominal-flow-pos-idle alias="/sim/gui/dialogs/AL3/turbine_rpm0"/>
+		    <nominal-flow-pos-clutch alias="/sim/gui/dialogs/AL3/turbine_rpm1"/>
+		    <nominal-flow-pos-low alias="/sim/gui/dialogs/AL3/turbine_rpm2"/>
+		    <nominal-flow-pos-nominal alias="/sim/gui/dialogs/AL3/turbine_rpm3"/>
+		    <nominal-flow-pos-fcm alias="/sim/gui/dialogs/AL3/turbine_rpm4"/>
+		</fcs>
+		<electrical>
+		    <switch>
+			<master type="bool" >false</master>
+		    </switch>
+		    <lighting>
+			<instruments-norm type="double">0.7</instruments-norm>
+			<beacon type="bool">true</beacon>
+			<instruments type="bool">true</instruments>
+			<landing-lights type="bool">false</landing-lights>
+			<strobe-lights type="bool">true</strobe-lights>
+			<nav-lights type="bool">true</nav-lights>
+		    </lighting>
+		</electrical>
+		<animation>
+		    <left-door-pos-cmd type="double">1</left-door-pos-cmd>
+		    <right-door-pos-cmd type="double">1</right-door-pos-cmd>
+		    <left-cabin_door-pos-cmd type="double">0</left-cabin_door-pos-cmd>
+		    <right-cabin_door-pos-cmd type="double">0</right-cabin_door-pos-cmd>
+		</animation>
+            </jsbsim>
+
+</PropertyList>

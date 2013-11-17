@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<!--
+    Dedicated only to FlightGear
+    Property of Gerard Robin
+    License: GPLv2
+-->
+
+
+
+<PropertyList>
+
+    <path>Models/al3-dummypanel.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+<!--==COLON VERT CENTRE =========================-->
+
+   <!-- <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0</z-m>
+            </offsets>
+    </model>-->
+
+    
+<!--==COLON HORIZ CENTRE  DROITE===========================-->
+
+    
+
+    <!--==BAS DROITE============================================-->
+
+    
+
+<!--==HAUT DROITE============================================-->
+
+    
+
+
+</PropertyList>

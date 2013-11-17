@@ -1,0 +1,74 @@
+Here is a rescue operation  animation.
+
+=> 1/    You have to include the  model Rescue-Op.xml  at the right place on your model with 
+        <model>
+            <name>Rescue-Op</name>
+            <path>your_path/Rescue-Op.xml</path>
+            <offsets>
+                    <x-m>N</x-m>
+                    <y-m>N</y-m>
+                    <z-m>N</z-m>
+            </offsets>
+        </model>
+        
+    
+=> 2/     You may  include the  model  Rescue-Man.xml at the right place on your model with 
+            <model>
+            <name>Rescue-Man</name>
+            <path>your_path/Rescue-Op.xml</path>
+            <offsets>
+                    <x-m>N</x-m>
+                    <y-m>N</y-m>
+                    <z-m>N</z-m>
+            </offsets>
+        </model>
+        
+        BEWARE: the offset value are the place of the object , with top of the rope under bottom of the winch.
+        the rope has 10 meters lengh
+        
+=> 3/      Don't forget to  give the right initialization value to the property
+                Here in the -set.xml file
+            <sim>
+                <model>
+                    <rescue-lift>1</rescue-lift>
+                    <rescue type="bool">false</rescue>
+                </model>
+            </sim/>       
+        
+        
+        
+=> 4/       The key to activate the process depends on your choice
+                Here my choice (not the best)
+
+<key n="114">
+                                <name>r</name>
+                                <desc>Toggle Rescue</desc>
+                                <binding>
+                                        <command>property-toggle</command>
+                                        <property>/sim/model/rescue</property>
+                                </binding>
+                        </key>
+                        <key n="109">
+                                <name>m</name>
+                                <desc>Lift Winch</desc>
+                                <repeatable type="bool">true</repeatable>
+                                <binding>
+                                        <command>property-adjust</command>
+                                        <property>/sim/model/rescue-lift</property>
+                                        <step type="double">-0.01</step>
+                                        <min>0.0</min>
+                                        <max>1</max>
+                                </binding>
+                        </key>
+                        <key n="77">
+                                <name>M</name>
+                                <desc>Down Winch</desc>
+                                <repeatable type="bool">true</repeatable>
+                                <binding>
+                                        <command>property-adjust</command>
+                                        <property>/sim/model/rescue-lift</property>
+                                        <step type="double">0.01</step>
+                                        <min>0.0</min>
+                                        <max>1</max>
+                                </binding>
+                        </key>

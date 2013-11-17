@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    
+    Copyright License:  GPL   grthteam / David  C 2013
+-->
+<PropertyList>
+
+    <path>Models/afficheur_wrk.ac</path>
+    <texture-path>Models/Textures</texture-path>
+    
+    
+ <!--<model>
+                <name>Bouton</name>
+                <path>Aircraft/Alouette-III/Instruments/Bouton-Nord.xml</path>
+                <offsets>
+                    <x-m>0.016</x-m>
+                    <y-m>-0.0</y-m>
+                    <z-m>-0.0</z-m>
+                    <pitch-deg>0</pitch-deg>
+                </offsets>
+        </model>-->
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>needle-col</object-name>
+		<property>fdm/jsbsim/fcs/x-col</property>
+		<interpolation>
+			<entry>
+				<ind>0.0 </ind>
+				<dep>-5</dep>
+			</entry>
+			<entry>
+				<ind>0.095993109</ind> <!--  PP 10%  5°50 -->
+				<dep>22</dep> <!--10% ???-->
+			</entry>
+			<entry>
+				<ind>0.181863312</ind><!--40%-->
+				<dep>70</dep>
+			</entry>
+			<entry>
+				<ind>0.200887401</ind><!--50%-->
+				<dep>93</dep>
+			</entry>
+			<entry>
+				<ind>0.21991149</ind><!--60% : 12°06' -->
+				<dep>116</dep>
+			</entry>
+			<entry>
+				<ind>0.2295108</ind><!--70% : 13°15' -->
+				<dep>143</dep>
+			</entry>
+			<entry>
+				<ind>0.24853489</ind><!--80% : 14°24'-->
+				<dep>172</dep>
+			</entry>
+			<entry>
+				<ind>0.26755897</ind> <!--90% : 15°33' -->
+				<dep>201</dep>
+			</entry>
+			<entry>
+				<ind>0.28658306</ind> <!--100% : 16°42' -->
+				<dep>234</dep>
+			</entry>
+			<entry>
+				<ind>0.31939525 </ind><!--GP 18°30'- -->
+				<dep>270</dep> 
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+
+
+</PropertyList>

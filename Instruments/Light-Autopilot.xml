@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    David   GRTHTeam
+    Copyright License:  GPLv2 
+-->
+<PropertyList>
+
+	<path>Models/light-master.ac</path>
+	<texture-path>Models/Textures</texture-path>
+
+        <animation>
+            <name>Autopilot_Light</name>
+            <type>light</type>
+            <light-type>point</light-type>
+            <object-name>glass_light</object-name>
+            <position>
+                <x> 0.0</x>
+                <y> 0.00 </y>
+                <z>0.01</z>
+            </position>
+            <ambient>
+                <r>  0.01 </r>
+                <g>  0.01</g>
+                <b>  0.01 </b>
+                <a>  1.0 </a>
+            </ambient>
+            <diffuse>
+                <r>  0.5 </r>
+                <g>  0.3 </g>
+                <b>  0.2 </b>
+                <a>  1.0 </a>
+            </diffuse>
+            <specular>
+                <r>  1.0 </r>
+                <g>  1.0 </g>
+                <b>  1.0 </b>
+                <a>  1.0 </a>
+            </specular>
+            <attenuation>
+                <c>  0.001 </c>
+                <l>  20</l>
+                <q>  3000</q>
+            </attenuation>
+
+            <near-m>    0.0   </near-m>
+            <far-m>     0.025 </far-m>
+
+        </animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Autopilot_Light</object-name>
+            <condition>
+                <and>
+                    <property>fdm/jsbsim/instruments/autopilot-engaged</property>
+                    <property>sim/rendering/rembrandt/enabled</property>
+                </and>
+            </condition>
+        </animation>
+
+
+
+
+</PropertyList>

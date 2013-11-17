@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin (C) 2008-2010
+    Copyright 
+-->
+<PropertyList>
+
+	<path>alouetteIII-crew.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>0</pitch-deg>
+            <z-m>0.0</z-m>
+            <x-m>0</x-m>
+        </offsets>
+
+
+    <!--<name>Cockpit_View</name> => 0
+    <name>Wide-cockpit_View</name>  => 9-->
+	<animation>
+            <type>select</type>
+            <object-name>Pilote-In</object-name>
+            <condition>
+                    <and>
+                        <less-than>
+                            <property>sim/current-view/view-number</property>
+                            <value>9</value>
+                        </less-than>
+                        <greater-than>
+                            <property>sim/current-view/view-number</property>
+                            <value>0</value>
+                        </greater-than>
+			<property>fdm/jsbsim/animation/pilot-copilot</property>
+                    </and>
+            </condition>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+            <object-name>Pilot-Jacket</object-name>
+            <condition>
+                    <and>
+			<equals>
+			<property>sim/model/sea-variant</property>
+                        <value>1</value>
+                    </equals>
+		</and>
+	    </condition>
+	</animation>	
+	
+	<animation>
+            <type>select</type>
+            <object-name>Co-Pilote-In</object-name>
+            <condition>
+                    <property>fdm/jsbsim/animation/pilot-copilot</property>
+            </condition>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+            <object-name>Copi-Jacket</object-name>
+            <condition>
+		<and>
+		    <equals>
+			<property>sim/model/sea-variant</property>
+                        <value>1</value>
+                    </equals>
+		</and>
+	    </condition>
+	</animation>	
+
+
+</PropertyList>        

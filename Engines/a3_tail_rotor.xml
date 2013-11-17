@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+
+
+<!--Hinge Offset =  blade inner position is  0.653    real hinge position is 0.302 -->
+<!--Rotor Name: a3_tail_rotor
+Diameter = 6.2992 ft.
+Number of Blades = 3
+Gear Ratio = 1.4815
+Sense = 1.0000
+Nominal RPM = 1350.0000
+Minimal RPM = 2.0000
+Maximal RPM = 2700.0000
+RPM source set to engine 0
+Blade Chord = 1.8045
+Lift Curve Slope = 6.0000
+Blade Twist = 0.0000
+
+Blade Flapping Moment = 11.5683
+Blade Mass Moment = 4.9585
+Polar Moment = 38.1755
+Inflow Lag = 0.2000
+Tip Loss = 1.0000
+Lock Number = 0.2170 (SL)
+Solidity = 0.5471
+Max Brake Power = 0.3818 HP
+Control Mapping = Tail Rotor
+No FWU present
+X = 246.4567
+Y = 12.2047
+Z = 17.3228
+Pitch = 0.0000 degrees
+Yaw = 91.5000 degrees-->
+
+
+<rotor name="a3_tail_rotor">
+
+    <diameter unit="M">                  1.92 </diameter>
+    <numblades>                             3 </numblades>
+    
+    <gearratio>   24.814814814800 </gearratio> <!--refer to 33500 rpm-->
+    <nominalrpm>                       1350 </nominalrpm>  
+    <minrpm>2</minrpm>
+    <chord unit="M">                     0.55</chord>
+    <flappingmoment unit="SLUG*FT2">  2.314   </flappingmoment> <!--if Lock Number = 0.2170 * 5-->
+    <liftcurveslope>                      6.0 </liftcurveslope>
+    <twist>                               0.0 </twist>
+    <massmoment>   4.96 </massmoment> <!-- SLUG*FT -->
+    <tiplossfactor>                       1.00 </tiplossfactor>
+    <inflowlag>                          0.4 </inflowlag>
+    <hingeoffset unit="FT">  0.015     </hingeoffset>
+
+    <ExternalRPM> 0 </ExternalRPM>
+    <controlmap> TAIL </controlmap>
+
+</rotor>

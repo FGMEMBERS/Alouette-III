@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+
+
+<system name="fcs">
+<property value="1.5"> fcs/adj/center-sensitivity </property>
+
+
+    <channel name="Rotor_Contact_Point">
+	
+	<kinematic name="Rotor_Contact_Point">
+                <input>systems/rotor/blade-deployed</input>
+                <traverse>
+                    <setting>
+                        <position> 0 </position>
+                        <time>     0 </time>
+                    </setting>
+                    <setting>
+                        <position> 1 </position>
+                        <time>     2 </time>
+                    </setting>
+                </traverse>
+                <output>gear/unit[8]/pos-norm</output>
+                <output>gear/unit[9]/pos-norm</output>
+            </kinematic>
+     </channel>
+
+
+    <channel name="longitudinal">
+	
+	<fcs_function name="fcs/elevator-cmd-norm-exmod">
+            <description>
+                Provide higher sensitivity when near center.
+                new_input = sgn(input) * abs(input)**sensitivity,
+                with sensitivity ranging between 1..2 .
+            </description>
+            <function>
+                <product>
+                    <sign> <property> fcs/elevator-cmd-norm </property> </sign>
+                    <pow>
+                        <abs> <property> fcs/elevator-cmd-norm </property> </abs>
+                        <property> fcs/adj/center-sensitivity </property>
+                    </pow>
+                </product>
+            </function>
+    </fcs_function>
+	
+        <summer name="fcs/longitudinal-cmd-trim-sum">
+            <input> fcs/elevator-cmd-norm-exmod </input>
+            <input> fcs/pitch-trim-cmd-norm </input>
+            <clipto>
+                <min> -1.0 </min>
+                <max>  2 </max>
+            </clipto>
+        </summer>
+        <lag_filter name="fcs/longitudinal-lag">
+            <input> fcs/longitudinal-cmd-trim-sum </input>
+            <c1>   20.0 </c1>
+        </lag_filter>
+        <pure_gain name="fcs/longitudinal-gain">
+            <input>  fcs/longitudinal-lag </input>
+            <gain>   0.170 </gain>
+            <output> fcs/x-lon </output>
+        </pure_gain>
+	<pure_gain name="fcs/longitudinal-col-mix">
+            <input>  fcs/x-col </input>
+            <gain> 0.0</gain>
+        </pure_gain>
+	
+        <summer name="fcs/longitudinal-ctrl-rad">
+            <input> fcs/x-lon </input>
+            <input> ap/elevator-cmd </input>
+	    <!--<input>fcs/longitudinal-col-mix</input>-->
+            <bias> -0.0620 </bias>
+            <clipto>
+                <min> -0.7 </min>
+                <max>  0.7 </max>
+            </clipto>
+            <output> propulsion/engine/longitudinal-ctrl-rad </output>
+        </summer>
+    </channel>
+    
+
+    <channel name="lateral">
+        <summer name="fcs/lateral-cmd-trim-sum">
+            <input> fcs/aileron-cmd-norm </input>
+            <input> fcs/roll-trim-cmd-norm </input>
+            <clipto>
+                <min> -1.0 </min>
+                <max>  1.0 </max>
+            </clipto>
+        </summer>
+        <lag_filter name="fcs/lateral-lag">
+            <input> fcs/lateral-cmd-trim-sum </input>
+            <c1>   20.0 </c1>
+        </lag_filter>
+        <pure_gain name="fcs/lateral-gain">
+            <input>  fcs/lateral-lag </input>
+            <gain>   0.068 </gain>
+            <output> fcs/x-lat </output>
+        </pure_gain>
+	<pure_gain name="fcs/lateral-col-mix">
+            <input>  fcs/x-col </input>
+            <gain>  0</gain> <!--slope-->
+        </pure_gain>
+        <summer name="fcs/lateral-ctrl-rad">
+            <input> fcs/x-lat </input>
+            <!--<input> fcs/lateral-col-mix </input>-->
+            <input> ap/aileron-cmd </input>
+	    <bias>  0.0165</bias>  
+            <clipto>
+                <min> -0.7 </min>
+                <max>  0.7 </max>
+            </clipto>
+            <output> propulsion/engine/lateral-ctrl-rad </output>
+        </summer>
+    </channel>
+    
+   
+
+    <channel name="pedal">
+        <summer name="fcs/pedal-cmd-trim-sum">
+            <input> fcs/rudder-cmd-norm </input>
+            <input> fcs/yaw-trim-cmd-norm </input>
+            <clipto>
+                <min> -1.0 </min>
+                <max>  1.0 </max>
+            </clipto>
+        </summer>
+        <lag_filter name="fcs/pedal-lag">
+            <input> fcs/pedal-cmd-trim-sum </input>
+            <c1>    20.0 </c1>
+        </lag_filter>
+        <pure_gain name="fcs/pedal-gain">
+            <input>  fcs/pedal-lag </input>
+            <gain>  0.18 </gain>
+            <output> fcs/x-ped </output>
+        </pure_gain>
+	 <pure_gain name="fcs/pedal-col-mix">
+            <input>  fcs/x-col </input>
+            <gain> 0</gain>  <!--slope-->
+        </pure_gain>
+        <summer name="fcs/pedal-ctrl-rad">
+            <input> fcs/x-ped </input>
+           <!-- <input> fcs/pedal-col-mix </input>-->
+            <input> ap/rudder-cmd </input>
+	    <bias>  -0.131 </bias> 
+            <clipto>
+                <min> -0.7 </min>
+                <max>  0.7 </max>
+            </clipto>
+            <output> propulsion/engine[1]/antitorque-ctrl-rad </output>
+        </summer>
+    </channel>
+    
+   
+
+</system>

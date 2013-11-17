@@ -3,7 +3,7 @@
 <!--
     Usable with FlightGear
     Property of Gerard Robin
-    Copyright License:  GPL
+    Copyright License:  GPLv2
 -->
 
 <PropertyList>
@@ -60,8 +60,12 @@
 				<dep>300</dep>
 			</entry>
 			<entry>
-				<ind>340</ind>
-				<dep>140</dep>
+				<ind>140</ind>
+				<dep>340</dep>
+			</entry>
+                        <entry>
+                            <ind>150</ind>
+                            <dep>360</dep>
 			</entry>
 		</interpolation>
 		<center>

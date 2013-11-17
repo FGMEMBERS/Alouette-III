@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    copyright 12-09-2011 grthteam (eekpo )
+    Copyright License:  GPLv2
+-->
+<PropertyList>
+
+ <path>Models/rotor-clutch-al3.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<animation>
+		<type>noshadow</type>
+		<object-name>Temoin</object-name>
+	</animation>
+
+        <animation include="Instrument-Light1b.xml">
+            <object-name>Temoin-Marquage</object-name>
+            <!--<object-name>Temoin1-open</object-name>
+            <object-name>Temoin2-close</object-name>-->
+        </animation>
+
+	<animation>
+		<type>select</type>
+                <object-name>Clutch-Open</object-name>
+		<object-name>Temoin2MActif</object-name>
+                <object-name>Clutch-Close</object-name>
+		<object-name>Temoin1-Actif</object-name>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/outputs/instr-ignition-switch</property>
+				<value>27</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Clutch-Open</object-name>
+		<condition>
+                    <equals>
+                        <property>fdm/jsbsim/propulsion/engine[0]/free-wheel-transmission</property>
+                        <value>0</value>
+                    </equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+                <object-name>Clutch-Close</object-name>
+		<condition>
+                    <equals>
+                        <property>fdm/jsbsim/propulsion/engine[0]/free-wheel-transmission</property>
+                        <value>1</value>
+                    </equals>
+		</condition>
+	</animation>
+
+</PropertyList>

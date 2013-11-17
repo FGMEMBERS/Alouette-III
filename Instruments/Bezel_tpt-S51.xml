@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!--
     Usable with FlightGear
-    Property of Gerard Robin  12-12-2005
-    Copyright License:  GPL
+    Copyright Gerard Robin  12-12-2005
+
 -->
 <PropertyList>
 
@@ -12,6 +12,26 @@
 	<animation include="Instrument-Light5.xml">
 		<object-name>Couronne</object-name>
 	</animation>
+
+        <model>
+            <name>Light</name>
+            <path>Aircraft/Alouette-III/Instruments/Light-Bezel_tpt-S51.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+
+        <animation>
+            <type>select</type>
+            <object-name>Light</object-name>
+            <condition>
+                <or><property>sim/rendering/rembrandt</property> <property>sim/rendering/rembrandt/enabled</property> </or>
+            </condition>
+        </animation>
+
 
 
 

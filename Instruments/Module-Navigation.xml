@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<!--
+
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+    <path>Models/module-navigation.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+   <!-- <animation>
+            <type>noshadow</type>
+            <object-name></object-name>
+    </animation>-->
+
+
+   <!-- <animation>
+        <type>rotate</type>
+        <object-name></object-name>
+        <property></property>
+        <factor></factor>
+
+        <center>
+            <x-m></x-m>
+            <y-m></y-m>
+            <z-m></z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name></object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property></property>
+            </binding>
+        </action>
+    </animation>-->
+
+    <model>
+        <name>Light</name>
+        <path>Aircraft/Alouette-III/Instruments/Light-Autopilot.xml</path>
+        <offsets>
+            <x-m>-0.030038</x-m>
+            <y-m>-0.0150942</y-m>
+            <z-m>0.0028628</z-m>
+        </offsets>
+    </model>
+
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Autopilot-Switch</object-name>
+        <property>fdm/jsbsim/instruments/autopilot-hold</property>
+        <factor>35</factor>
+        <center>
+            <x-m>0.00343875</x-m>
+            <y-m>0.0162291</y-m>
+            <z-m>-0.0</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>Autopilot-Switch</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/instruments/autopilot-hold</property>
+            </binding>
+        </action>
+    </animation>
+
+
+
+
+    <animation>
+        <type>translate</type>
+        <object-name>True-Heading-Lock</object-name>
+        <property>fdm/jsbsim/instruments/autopilot-lock-true-heading</property>
+        <factor>0.008</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>True-Heading-Lock</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/instruments/autopilot-lock-true-heading</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Heading-Bug-Lock</object-name>
+        <property>fdm/jsbsim/instruments/autopilot-lock-heading-bug</property>
+        <factor>0.008</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>Heading-Bug-Lock</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/instruments/autopilot-lock-heading-bug</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Altitude-Lock</object-name>
+        <property>fdm/jsbsim/instruments/autopilot-lock-altitude</property>
+        <factor>0.008</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>Altitude-Lock</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/instruments/autopilot-lock-altitude</property>
+            </binding>
+        </action>
+    </animation>
+
+
+
+
+
+
+
+
+
+
+
+</PropertyList>

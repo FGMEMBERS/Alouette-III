@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<!--Usable with FlightGear
+Property of Gerard Robin
+    Copyright License:  GPLv2-->
+
+  <PropertyList>
+    <path>Models/attitudeV6.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+
+    <animation include="Instrument-Light4.xml">
+        <object-name>Mark</object-name>
+        <object-name>Horizon</object-name>
+        <object-name>Fleche</object-name>
+    </animation>
+
+    <animation include="Instrument-Light3.xml">
+        <object-name>Cadran</object-name>
+        </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>Fleche</object-name>
+      <object-name>Fleche-Fond</object-name>
+      <object-name>Horizon</object-name>
+      <property>orientation/roll-deg</property>
+       <center>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+        </center>
+      <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <type>rotate</type>
+      <object-name>Horizon</object-name>
+      <property>orientation/pitch-deg</property>
+      <interpolation>
+        <entry>
+            <ind>-180</ind>
+            <dep>-15</dep>
+        </entry>
+        <entry>
+            <ind>-90</ind>
+            <dep>-15</dep>
+        </entry>
+        <entry>
+            <ind>0</ind>
+            <dep>0</dep>
+        </entry>
+        <entry>
+            <ind>90</ind>
+            <dep>15</dep>
+        </entry>
+        <entry>
+            <ind>180</ind>
+            <dep>15</dep>
+        </entry>
+      </interpolation>
+       <center>
+           <x-m>-0.056363</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.014306</z-m>
+        </center>
+      <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+  </PropertyList>

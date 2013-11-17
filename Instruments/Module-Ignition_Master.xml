@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+    <path>Models/module-ignition_master.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+   <!-- <animation>
+            <type>noshadow</type>
+            <object-name></object-name>
+    </animation>-->
+
+   
+    <model>
+	<name>Starter_Light</name>
+	<path>Aircraft/Alouette-III/Instruments/Light-Master.xml</path>
+	<offsets>
+	    <x-m>0.020</x-m>
+	    <y-m>-0.0246744</y-m>
+	    <z-m>0.075</z-m>
+	    <pitch-deg>0</pitch-deg>
+	</offsets>
+    </model>
+    
+    
+	<animation>
+            <type>select</type>
+            <object-name>Starter_Light</object-name>
+	    <object-name>Light-M1-On</object-name>
+            <condition>
+		<not-equals>
+		    <property>fdm/jsbsim/annunciator/engine-starting</property>
+		    <value>0</value>
+		</not-equals>
+            </condition>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+	    <object-name>Light-M1-Off</object-name>
+            <condition>
+		<not-equals>
+		    <property>fdm/jsbsim/annunciator/engine-starting</property>
+		    <value>1</value>
+		</not-equals>
+            </condition>
+        </animation>
+	
+	
+	
+	 <model>
+	<name>Faucet_Light</name>
+	<path>Aircraft/Alouette-III/Instruments/Light-Master.xml</path>
+	<offsets>
+	    <x-m>0.020</x-m>
+	    <y-m>-0.0</y-m>
+	    <z-m>0.075</z-m>
+	    <pitch-deg>0</pitch-deg>
+	</offsets>
+    </model>
+    
+    
+	<animation>
+            <type>select</type>
+            <object-name>Faucet_Light</object-name>
+	    <object-name>Light-M2-On</object-name>
+            <condition>
+		<not-equals>
+		    <property>fdm/jsbsim/annunciator/valve</property>
+		    <value>0</value>
+		</not-equals>
+            </condition>
+        </animation>
+	
+	
+	<animation>
+            <type>select</type>
+	    <object-name>Light-M2-Off</object-name>
+            <condition>
+		<not-equals>
+		    <property>fdm/jsbsim/annunciator/valve</property>
+		    <value>1</value>
+		</not-equals>
+            </condition>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+	    <object-name>Light-M3-On</object-name>
+            <condition>
+		<not-equals>
+		    <property>fdm/jsbsim/annunciator/WAIT</property>
+		    <value>0</value>
+		</not-equals>
+            </condition>
+        </animation>
+
+
+       <!-- ========master================-->
+
+    <animation>
+        <type>pick</type>
+        <object-name>Cde-Master-Verrou</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/master-switch-lock-cmd</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Cde-Master-Inter</object-name>
+        <object-name>Master-Inter-base</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/master-switch-cmd</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Cde-Master-Verrou</object-name>
+        <property>fdm/jsbsim/animation/master-switch-lock-cmd</property>
+	<interpolation>
+	    <entry>
+		<ind>0.0 </ind>
+		<dep>-85</dep>
+	    </entry>
+	    <entry>
+		<ind>1</ind> 
+		<dep>0</dep>
+	    </entry>
+	</interpolation>
+        <center>
+            <x-m>0.0158294</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0629051</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Cde-Master-Inter</object-name>
+        <property>fdm/jsbsim/animation/electrical-master-switch</property>
+	<interpolation>
+	    <entry>
+		<ind>0.0 </ind>
+		<dep>45</dep>
+	    </entry>
+	    <entry>
+		<ind>1</ind> 
+		<dep>0</dep>
+	    </entry>
+	</interpolation>
+        <center>
+            <x-m>0.00209951</x-m>
+            <y-m>0</y-m>
+            <z-m>0.0451173</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    
+    <!--===========Rotor  Brake=============-->
+
+	<animation>
+            <type>rotate</type>
+	    <object-name>RotorFreins-Cde</object-name>
+	     <property>fdm/jsbsim/animation/rotor_brake-switch-lock-cmd</property>
+            
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>-90</dep>
+                </entry>
+		<entry>
+                    <ind>1.0</ind>
+                    <dep>0</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>0</x-m>
+                <y-m>-0.0901599</y-m>
+                <z-m>0.0841244</z-m>
+            </center>
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>translate</type>
+	    <object-name>RotorFreins-Cde</object-name>
+	    <property>fdm/jsbsim/animation/rotor_brake-switch-cmd</property>
+	    <factor>0.05</factor>            
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+       <animation>
+            <type>pick</type>
+            <object-name>RotorFreins-Cde</object-name>
+            <action>
+                <button>0</button>
+                <repeatable type="bool">false</repeatable>
+                <binding>
+		    <command>property-toggle</command>
+		    <property>fdm/jsbsim/animation/rotor_brake-switch-cmd</property>		
+                </binding>
+		<binding>
+		    <command>property-toggle</command>
+		    <property>fdm/jsbsim/animation/rotor_brake-switch-lock-cmd</property>	
+                </binding>
+		<binding>
+		    <command>property-toggle</command>
+		    <property>fdm/jsbsim/animation/rotor_clutch-switch-cmd</property>
+		</binding>
+            </action>
+        </animation>
+	
+	<animation>
+            <type>translate</type>
+	    <object-name>wheel-steer-lock</object-name>
+	    <property>fdm/jsbsim/gear/NWS/engaged/</property>
+	    <factor>-0.035</factor>            
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+       <animation>
+            <type>pick</type>
+            <object-name>wheel-steer-lock</object-name>
+            <action>
+                <button>0</button>
+                <repeatable type="bool">false</repeatable>
+                <binding>
+		    <command>property-toggle</command>	    <property>fdm/jsbsim/gear/NWS/engaged</property>		
+                </binding>
+            </action>
+        </animation>
+    
+
+    <!--===========cutoff=============-->
+    
+   <!-- <animation>
+        <type>pick</type>
+        <object-name>Cde-CutOff-Verrou</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/cutoff-switch-lock-cmd</property>
+            </binding>
+        </action>
+    </animation>-->
+
+    <animation>
+        <type>pick</type>
+        <object-name>Cde-Pump-Inter</object-name>
+	<object-name>Pump-Inter-base</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/engines/engine[0]/cutoff</property>
+            </binding>
+	     <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/cutoff-switch-lock-cmd</property>
+            </binding>
+        </action>
+    </animation>
+    
+    
+    
+    <!--<animation>
+        <type>rotate</type>
+        <object-name>Cde-CutOff-Verrou</object-name>
+        <property>fdm/jsbsim/animation/cutoff-switch-lock</property>
+	<interpolation>
+	    <entry>
+		<ind>0.0 </ind>
+		<dep>-75</dep>
+	    </entry>
+	    <entry>
+		<ind>1</ind> 
+		<dep>0</dep>
+	    </entry>
+	</interpolation>
+        <center>
+            <x-m>0.018724</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0700209</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>-->
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Cde-Pump-Inter</object-name>
+        <property>fdm/jsbsim/animation/cutoff-master-switch</property>
+      <interpolation>
+	    <entry>
+		<ind>0.0 </ind>
+		<dep>30</dep>
+	    </entry>
+	    <entry>
+		<ind>1.0</ind> 
+		<dep>-30</dep>
+	    </entry>
+	</interpolation>
+        <center>
+            <x-m>0.00209951</x-m>
+            <y-m>0</y-m>
+            <z-m>0.0451173</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    
+
+
+
+
+
+
+
+
+
+</PropertyList>

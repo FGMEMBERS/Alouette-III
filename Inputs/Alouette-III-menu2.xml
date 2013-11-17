@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Gerard Robin  14-01-2009
+    Copyright License:  CREATIVE-COMMON
+-->
+<PropertyList>
+    <default>
+        <menu n="10">
+            <label>Alouette-III</label>
+            <enabled type="bool">true</enabled>
+	    <item>
+                <label>Aircraft_Control</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        var start = gui.Dialog.new("/sim/gui/dialogs/AL3/menu/control/dialog",
+                        "Aircraft/Alouette-III/Inputs/propulsion-control.xml");
+                        start.open();
+                    </script>
+                </binding>
+            </item>
+	    
+	  <!-- <item>
+                <label>Equipment_Control</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        var startctl2 = gui.Dialog.new("/sim/gui/dialogs/AL3/menu/control/dialog",
+                        "Aircraft/Alouette-III/Inputs/equipment-control.xml");
+                        startctl2.open();
+                    </script>
+                </binding>
+            </item>
+	    -->
+	    <item>
+                <label>Quick START</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>al3.init_Run();</script>
+                </binding>
+            </item>
+	   
+            <item>
+                <label>Fcs Devel Help</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>al3.display_helper();</script>
+                </binding>
+            </item>
+	    
+	    <item>
+                <label>Fcs Devel Help close</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>al3.close_helper();</script>
+                </binding>
+            </item>
+	   
+	   </menu>
+	   </default>
+</PropertyList>

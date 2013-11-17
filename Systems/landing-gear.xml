@@ -1,0 +1,467 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Copyright Gerard Robin  20-09-2010
+
+-->
+
+<system name="Landing-Gear">
+
+
+    <property value="1">systems/gear/gear-constant-value-coeff-rain</property>
+    <property value="1">systems/gear/gear-constant-value-coeff-snow</property>
+    <property value="99999">/sim/carrier/carrier-altitude-ft</property>
+
+    <channel name="Landing Gear Extand Retract">
+        <!--process which include the terrain under: water or solid-->
+        <!--the conatct point processing (can be up ) and the gear animation processing ( can be down) are not sync, which simulate the aircraft behaviour on water when gear down-->
+
+        
+
+            <switch name="Gear Switch">
+                <default value="1"/>
+                <test  logic="AND" value="0">
+                    systems/crash-detect/crashed-sw  == 1
+                </test>
+                <test  logic="AND" value="0">
+                    simulation/terrain_sw == 0
+                </test>
+                <output>gear/gear-cp-cmd-norm</output>
+            </switch>
+
+            <!--actuate the contact points-->
+            <kinematic name="Gear Control">
+                <input>gear/gear-cp-cmd-norm</input>
+                <traverse>
+                    <setting>
+                        <position> 0 </position>
+                        <time>     0 </time>
+                    </setting>
+                    <setting>
+                        <position> 1 </position>
+                        <time>     5 </time>
+                    </setting>
+                </traverse>
+                <output>gear/unit[0]/pos-norm</output>
+                <output>gear/unit[1]/pos-norm</output>
+                <output>gear/unit[2]/pos-norm</output>
+            </kinematic>
+	    
+	    
+	  <!-- === must be included in a specific file with crash behaviour====-->
+	    
+	     <switch name="Crash Switch">
+                <default value="/controls/gear/gear-down"/>
+                <test  logic="AND" value="0">
+                    simulation/terrain_sw == 0
+                </test>
+                <output>gear/crash-cp-cmd-norm</output>
+            </switch>
+	    
+	    <kinematic name="Crash Control">
+                <input>gear/crash-cp-cmd-norm</input>
+                <traverse>
+                    <setting>
+                        <position> 0 </position>
+                        <time>     0 </time>
+                    </setting>
+                    <setting>
+                        <position> 1 </position>
+                        <time>     5 </time>
+                    </setting>
+                </traverse>
+		<output>gear/unit[3]/pos-norm</output>
+		<output>gear/unit[4]/pos-norm</output>
+		<output>gear/unit[5]/pos-norm</output>
+		<output>gear/unit[6]/pos-norm</output>
+            </kinematic>
+	    
+        </channel>
+
+
+            <channel name="Gear Steering">	
+		
+          <!-- steering efficeincy-->
+            <scheduled_gain name="Scheduled Steer Cmd Deg">
+                <input>fcs/steer-cmd-norm</input>
+                <table>
+                    <independentVar>velocities/vg-fps</independentVar>
+                    <tableData>
+                        10.0000	80.0000
+                        50.0000	15.0000
+                        150.0000	2.0000
+                    </tableData>
+                </table>
+                <output>fcs/steer-pos-deg-raw</output>
+            </scheduled_gain>
+	    
+	    <switch name="fcs/steer-pos-deg">
+                <default value="fcs/steer-pos-deg-raw"/>
+                <test  logic="AND" value="0">
+                   gear/NWS/engaged == 0
+                </test>
+	    </switch>
+	    
+	 </channel>    
+	 
+	<channel name="Braking">	
+	    
+	    
+	    
+	   
+	    
+	    <kinematic name="fcs/brake-parking-pos">
+		<input>fcs/brake-parking-cmd-norm</input>
+		<traverse>
+		    <setting>
+			<position>0</position>
+			<time>0</time>
+		    </setting>
+		    <setting>
+			<position>1</position>
+			<time>2</time>
+		    </setting>
+		</traverse>
+		<output>fcs/brake-parking-pos-norm</output>
+	    </kinematic>    
+	    
+	   
+        </channel>
+	
+	
+	
+	<!--converted from ground_reactions contact <z> position
+	If, for some reasons the original values are modified, these value must be modified acording to-->
+	
+	<property value="-52.241732">systems/gear/gear[0]/z-position</property>
+	<property value="-51.968504">systems/gear/gear[1]/z-position</property>
+	<property value="-52.241732">systems/gear/gear[2]/z-position</property>
+	
+	
+	
+    <channel name="Snow terrain condition">
+	
+	 <switch name="systems/terrain/snow-condition">
+	    <default value="0"/>
+	    <test  logic="OR" value="1">
+		position/h-sl-meters > /environment/snow-level-m
+		/environment/metar/snow-norm  == 1
+	    </test>
+	</switch>	
+		
+	
+	 <fcs_function name="fcs/gear-r_z-position">
+            <function>
+		<difference>
+		    <property>systems/gear/gear[0]/z-position</property>
+		     <product>
+			 <property>systems/terrain/snow-condition</property>
+			<value>-3</value>
+		    </product>
+		</difference>
+	    </function>
+	    <output>gear/unit[0]/z-position</output>
+	 </fcs_function>
+	 
+	 <fcs_function name="fcs/gear-l_z-position">
+            <function>
+		<difference>
+		    <property>systems/gear/gear[0]/z-position</property>
+		     <product>
+			 <property>systems/terrain/snow-condition</property>
+			<value>-3</value>
+		    </product>
+		</difference>
+	    </function>
+	    <output>gear/unit[1]/z-position</output>
+	 </fcs_function>
+	 
+	 
+	<fcs_function name="fcs/gear-n_z-position">
+            <function>
+		<difference>
+		    <property>systems/gear/gear[0]/z-position</property>
+		     <product>
+			 <property>systems/terrain/snow-condition</property>
+			<value>-3</value>
+		    </product>
+		</difference>
+	    </function>
+	    <output>gear/unit[2]/z-position</output>
+	 </fcs_function>
+	
+    </channel>
+
+        <!--copied from ground_reactions landing gear definition-->
+        <property value="0.8">systems/gear/gear[0]/static-friction-coeff-base</property>
+        <property value="0.8">systems/gear/gear[1]/static-friction-coeff-base</property>
+        <property value="0.8">systems/gear/gear[2]/static-friction-coeff-base</property>
+
+        <channel name="Additionnal Static Friction duetoTerrain">
+            <scheduled_gain name="systems/gear/terrain-static-friction-coeff-rain">
+                <input>environment/terrain-friction-factor</input>
+                <table>
+                    <independentVar>/environment/metar/rain-norm</independentVar>
+                    <tableData>
+                        0.0000	1.0000
+                        1.0000	0.6000
+                    </tableData>
+                </table>
+            </scheduled_gain>
+
+            <scheduled_gain name="systems/gear/terrain-static-friction-coeff-snow">
+                <input>environment/terrain-friction-factor</input>
+                <table>
+                    <independentVar>systems/terrain/snow-condition</independentVar>
+                    <tableData>
+                        0.0000	1.0000
+                        1.0000	0.30000
+                    </tableData>
+                </table>
+            </scheduled_gain>
+
+            <fcs_function name="fcs/gear-n-static_friction_coeff">
+                <function>
+                    <product>
+			 <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/gear[0]/static-friction-coeff-base</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </function>
+                <output>gear/unit[0]/static_friction_coeff</output>
+            </fcs_function>
+
+            <fcs_function name="fcs/gear-l-static_friction_coeff">
+                <function>
+                    <product>
+			 <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/gear[1]/static-friction-coeff-base</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </function>
+                <output>gear/unit[1]/static_friction_coeff</output>
+            </fcs_function>
+
+            <fcs_function name="fcs/gear-r-static_friction_coeff">
+                <function>
+                    <product>
+			 <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/gear[2]/static-friction-coeff-base</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </function>
+                <output>gear/unit[2]/static_friction_coeff</output>
+            </fcs_function>
+        </channel>
+	
+	
+	<!--These values given with a supposed to be perfect terrain ==> with terrain-friction-factor = 1-->
+    <property value="0.5">systems/gear/gear[0]/dynamic-friction-coeff-base</property>
+    <property value="0.3">systems/gear/gear[1]/dynamic-friction-coeff-base</property>
+    <property value="0.3">systems/gear/gear[2]/dynamic-friction-coeff-base</property>
+    
+    
+<channel name="Additionnal Dynamic Friction duetoTerrain">
+
+        <fcs_function name="fcs/gear-n-dynamic_friction_coeff">
+            <function>
+                <product>
+                    <property>systems/gear/gear[0]/dynamic-friction-coeff-base</property>
+                    <product>
+                        <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </product>
+            </function>
+            <output>gear/unit[0]/dynamic_friction_coeff</output>
+        </fcs_function>
+
+        <fcs_function name="fcs/gear-l-dynamic_friction_coeff">
+            <function>
+                <product>
+                    <property>systems/gear/gear[1]/dynamic-friction-coeff-base</property>
+                    <product>
+                        <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </product>
+            </function>
+            <output>gear/unit[1]/dynamic_friction_coeff</output>
+        </fcs_function>
+
+        <fcs_function name="fcs/gear-r-dynamic_friction_coeff">
+            <function>
+                <product>
+                    <property>systems/gear/gear[2]/dynamic-friction-coeff-base</property>
+                    <product>
+                        <property>environment/terrain-friction-factor</property>
+                        <property>systems/gear/terrain-static-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-static-friction-coeff-snow</property>
+                    </product>
+                </product>
+            </function>
+            <output>gear/unit[2]/dynamic_friction_coeff</output>
+        </fcs_function>
+    </channel>
+    
+   
+    <!--These values given with a supposed to be perfect terrain ==> with terrain-rolling-friction = 0 -->
+    <property value="0.02">systems/gear/gear[0]/rolling-friction-coeff-base</property>
+    <property value="0.02">systems/gear/gear[1]/rolling-friction-coeff-base</property>
+    <property value="0.02">systems/gear/gear[2]/rolling-friction-coeff-base</property>
+
+    <channel name="Additionnal Rolling Friction duetoTerrain">
+	
+            <scheduled_gain name="systems/gear/terrain-rolling-friction-coeff-rain">
+                <input>gear/gear-cmd-norm</input>
+                <table>
+                    <independentVar>/environment/metar/rain-norm</independentVar>
+                    <tableData>
+                        0.0000	1.0000
+                        1.0000	1.0000
+                    </tableData>
+                </table>
+            </scheduled_gain>
+
+            <scheduled_gain name="systems/gear/terrain-rolling-friction-coeff-snow">
+                <input>gear/gear-cmd-norm</input>
+                <table>
+                    <independentVar>systems/terrain/snow-condition</independentVar>
+                    <tableData>
+                        0.0000	1.0000
+                        1.0000	1.2000
+                    </tableData>
+                </table>
+            </scheduled_gain>
+            <!--here a guess , we take in account the gear rolling-friction modified by the terrain rolling-friction-->
+            <fcs_function name="fcs/gear-n-rolling_friction_coeff">
+                <function>
+                    <sum>
+                    <product>
+                        <property>environment/terrain-rolling-friction</property>
+                        <property>systems/gear/terrain-rolling-friction-coeff-rain</property>
+                        <property>systems/gear/terrain-rolling-friction-coeff-snow</property>
+                    </product>
+                    <property>systems/gear/gear[0]/rolling-friction-coeff-base</property>
+                    </sum>
+                </function>
+                <output>gear/unit[0]/rolling_friction_coeff</output>
+            </fcs_function>
+
+            <fcs_function name="fcs/gear-l-rolling_friction_coeff">
+                <function>
+                    <sum>
+                        <product>
+                            <property>environment/terrain-rolling-friction</property>
+                            <property>systems/gear/terrain-rolling-friction-coeff-rain</property>
+                            <property>systems/gear/terrain-rolling-friction-coeff-snow</property>
+                        </product>
+                        <property>systems/gear/gear[1]/rolling-friction-coeff-base</property>
+                    </sum>
+                </function>
+                <output>gear/unit[1]/rolling_friction_coeff</output>
+            </fcs_function>
+
+            <fcs_function name="fcs/gear-r-rolling_friction_coeff">
+                <function>
+                    <sum>
+                        <product>
+                            <property>environment/terrain-rolling-friction</property>
+                            <property>systems/gear/terrain-rolling-friction-coeff-rain</property>
+                            <property>systems/gear/terrain-rolling-friction-coeff-snow</property>
+                        </product>
+                        <property>systems/gear/gear[2]/rolling-friction-coeff-base</property>
+                    </sum>
+                </function>
+                <output>gear/unit[2]/rolling_friction_coeff</output>
+        </fcs_function>
+
+    </channel>
+
+
+    <channel name="Additionnal bumpiness  duetoTerrain">
+       <!-- NOTE   not achieved, must be investigated-->
+
+       <!--   <scheduled_gain name="systems/gear/gear[0]/bump-coeff">
+                <input>gear/unit[0]/pos-norm</input>
+                <table>
+                    <independentVar>environment/terrain-bumpiness</independentVar>
+                    <tableData>
+                        0.1	0
+                        1       0.2
+                    </tableData>
+                </table>
+            </scheduled_gain>
+
+            <scheduled_gain name="systems/gear/gear[1]/bump-coeff">
+                <input>gear/unit[1]/pos-norm</input>
+                <table>
+                    <independentVar>environment/terrain-bumpiness</independentVar>
+                    <tableData>
+                        0.1	0
+                        1       0.15
+                    </tableData>
+                </table>
+            </scheduled_gain>
+
+            <scheduled_gain name="systems/gear/gear[2]/bump-coeff">
+                <input>gear/unit[2]/pos-norm</input>
+                <table>
+                    <independentVar>environment/terrain-bumpiness</independentVar>
+                    <tableData>
+                        0.1	0
+                        1       0.15
+                    </tableData>
+                </table>
+            </scheduled_gain> -->
+
+
+           <!-- <fcs_function name="gear-n-terrain-bump-Z">
+                <function>
+                    <product>
+                        <property>gear/unit[0]/compression-ft</property>
+                        <property>forces/fbz-gear-lbs</property>
+                        <property>systems/gear/gear[0]/bump-coeff</property>
+                        <property>fcs/gear-n-rolling</property>
+                    </product>
+                </function>
+                <output>external_reactions/nose-gear-bump/magnitude</output>
+            </fcs_function>-->
+
+            <!--<fcs_function name="gear-l-terrain-bump-Z">
+                <function>
+                    <product>
+                        <property>gear/unit[1]/compression-ft</property>
+                        <property>forces/fbz-gear-lbs</property>
+                        <property>systems/gear/gear[1]/bump-coeff</property>
+                        <property>fcs/gear-l-rolling</property>
+                    </product>
+                </function>
+                <output>external_reactions/left-gear-bump/magnitude</output>
+            </fcs_function>-->
+
+           <!-- <fcs_function name="gear-r-terrain-bump-Z">
+                <function>
+                    <product>
+                        <property>gear/unit[2]/compression-ft</property>
+                        <property>forces/fbz-gear-lbs</property>
+                        <property>systems/gear/gear[2]/bump-coeff</property>
+                        <property>fcs/gear-r-rolling</property>
+                    </product>
+                </function>
+                <output>external_reactions/right-gear-bump/magnitude</output>
+            </fcs_function>-->
+    </channel>
+	
+    
+    
+
+    
+
+
+</system>

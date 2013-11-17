@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin  (C)  2007
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+ <path>Models/al3-turbine_rotor-rpm.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<!--<animation>
+		<type>noshadow</type>
+		<object-name></object-name>
+	</animation>-->
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Rotor-Needle</object-name>
+		<object-name>Turbine-Needle</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+	
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Rotor-Needle</object-name>
+		<property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+		<factor>0.67</factor>
+		<center>
+			<x-m>0.00</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+	
+	<!--only to animate since turbine rpm is calculated from the n1 percentage-->
+	<animation>
+		<type>rotate</type>
+		<object-name>Turbine-Needle</object-name>
+		<property>fdm/jsbsim/propulsion/engine[0]/engine-rpm</property>
+		<factor>0.007</factor>
+		<axis>
+                    <x>-1</x>
+                    <y>0</y>
+                    <z>0</z>
+		</axis>
+	</animation>
+	
+	
+	
+
+
+	
+</PropertyList>
