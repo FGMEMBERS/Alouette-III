@@ -1,6 +1,9 @@
 
 var min_carrier_alt = 2;
 
+# Do terrain modelling ourselves.
+setprop("sim/fdm/surface/override-level", 1);
+
 terrain_survol = func {
 
 var lat = getprop("/position/latitude-deg");
