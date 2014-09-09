@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    was Gerard Robin , maintain grtuxteam
+    Copyright License:  GPLv2  with GrTuxTEAM's courtesy
+-->
+<!--
+************************************************************************
+
+************************************************************************
+-->
+
+<PropertyList>
+    <note>
+        This model was created using publicly available data, publicly available
+        technical reports, textbooks, and guesses. It contains no proprietary or
+        restricted data. It has been validated only to the extent that it seems
+        to "fly right", and possibly to comply to published, publicly known,
+        performance data (maximum speed, endurance, etc.). Thus, this model
+        is meant for educational and entertainment purposes only.
+
+        This simulation model is not endorsed by the manufacturer.
+    </note>
+
+
+ <sim>
+	<description>Alouette-III_Helicopter</description>
+        <author>was Gerard Robin, update David, Josh (FDM), https://sites.google.com/site/grtuxhangar/</author>
+        <status></status>
+        <version> 1.1.1  2013-10-29</version>
+	<rating>
+	 <!--only  a generic wrong estimation since given by the author himself-->   
+	    <FDM type="int">3</FDM>
+	    <systems type="int">3</systems>
+	    <model type="int">3</model>
+	    <cockpit type="int">3</cockpit>
+	</rating>
+	<flight-model>jsb</flight-model>
+	<aero>Aero/al3-jsbsim</aero>
+        <!--<model-hz>200</model-hz>-->
+        <startup>
+	<splash-texture>Aircraft/Alouette-III/al_III-splash.png</splash-texture>
+        </startup>
+	<sound>
+	    <path>Aircraft/Alouette-III/Fx/sound.xml</path>
+	</sound>
+
+        <instrumentation>
+            <path>Aircraft/Alouette-III/Instruments/instrumentation.xml</path>
+        </instrumentation>
+
+        <hud>
+           <!-- <path n="1">Huds/default.xml</path>-->
+            <visibility n="1">false</visibility>
+            <enable3d n="1">false</enable3d>
+        </hud>
+
+        <systems>
+            <electrical>
+                <path>Aircraft/Alouette-III/Systems/dummy-electrical.xml</path>
+            </electrical>
+        </systems>
+
+        <model>
+		<!--dont load Carrier System-->
+		<carrier-jsbsim type="bool">false</carrier-jsbsim>
+		<sea-variant  type="bool">false</sea-variant>
+                <path archive="y">Aircraft/Alouette-III/Models/Alouette-III-sc_jsb.xml</path>
+                <fg-ver_min type="string">2.12</fg-ver_min>
+                <fg-ver_max type="string">3.00</fg-ver_max>
+                <al3>
+                        <instrument-lights type="float">0.7</instrument-lights>
+			<panel-lights type="float">0.7</panel-lights>
+                        <nav-lights type="float">1</nav-lights>
+                </al3>
+		<ski-equipment type="bool">false</ski-equipment>
+                <rescue-lift>1</rescue-lift>
+                <rescue type="bool">false</rescue>
+                <shader>
+                    <reflection-correction type="float">0.2</reflection-correction>
+		    <reflection-enabled type="int">1</reflection-enabled>
+		    <reflection-fresnel type="float">0.05</reflection-fresnel>
+		    <reflection-noise type="float">0.3</reflection-noise>
+		    <ambient-correction type="float">0.0</ambient-correction>
+		    <reflection-rainbow type="float">0.05</reflection-rainbow>
+		</shader>
+		<shader_2>
+		    <reflection-correction type="float">0.4</reflection-correction>
+		    <reflection-enabled type="int">1</reflection-enabled>
+		    <reflection-fresnel type="float">0.2</reflection-fresnel>
+		    <reflection-noise type="float">0.4</reflection-noise>
+		    <ambient-correction type="float">0.0</ambient-correction>
+		    <reflection-rainbow type="float">0.1</reflection-rainbow>
+		</shader_2>
+                <rendering><shader-effects>1</shader-effects></rendering>
+        </model>
+
+        <view>
+                <internal archive="y">true</internal>
+                <config>
+                            <x-offset-m archive="y">0.556831</x-offset-m><!--right-->
+                            <y-offset-m archive="y">0.59</y-offset-m><!--up-->
+                            <z-offset-m archive="y">-1.45</z-offset-m><!--back-->
+                            <heading-offset-deg>0</heading-offset-deg>
+                            <pitch-offset-deg>-14</pitch-offset-deg>
+                            <default-field-of-view-deg type="double">75.0</default-field-of-view-deg>
+                </config>
+        </view>
+        <view n="100">
+            <name>Rescued_View</name>
+            <type>lookfrom</type>
+            <internal >false</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <ground-level-nearplane-m type="double">0.05f</ground-level-nearplane-m>
+                <x-offset-m >-4.00</x-offset-m>
+                <y-offset-m >-0</y-offset-m>
+                <z-offset-m >10</z-offset-m>
+                <pitch-offset-deg>0</pitch-offset-deg>
+                <default-field-of-view-deg>75</default-field-of-view-deg>
+            </config>
+            </view>
+            <view n="101">
+                <name>Wide-cockpit_View</name>
+                <type>lookfrom</type>
+                <internal >false</internal>
+                <config>
+                    <from-model type="bool">true</from-model>
+                    <x-offset-m archive="y">0.556831</x-offset-m><!--right-->
+                    <y-offset-m archive="y">0.59</y-offset-m><!--up-->
+                    <z-offset-m archive="y">-1.45</z-offset-m><!--back-->
+                    <heading-offset-deg>3</heading-offset-deg>
+                    <pitch-offset-deg>-19</pitch-offset-deg>
+                    <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>
+                </config>
+        </view>
+	<view n="102">
+                <name>Close_To_Panel_View</name>
+                <type>lookfrom</type>
+                <internal >false</internal>
+                <config>
+                    <from-model type="bool">true</from-model>
+                    <x-offset-m archive="y">0.556831</x-offset-m><!--right-->
+                    <y-offset-m archive="y">0.59</y-offset-m><!--up-->
+                    <z-offset-m archive="y">-1.45</z-offset-m><!--back-->
+                    <heading-offset-deg>13</heading-offset-deg>
+                    <pitch-offset-deg>-28</pitch-offset-deg>
+                    <default-field-of-view-deg type="double">54.0</default-field-of-view-deg>
+                </config>
+        </view>
+        <chase-distance-m type="double">-15.0</chase-distance-m>
+
+
+        <help include="Help/Alouette-III-help_dev.xml"/>
+        <menubar  include="Inputs/Alouette-III-menu2.xml"/>
+	<multiplay include="Outputs/Alouette-III-multiplay.xml"/>
+ </sim>
+
+
+ <controls>
+	<engines>
+                <engine n="0">
+                        <throttle>1</throttle>
+			<starter alias="/fdm/jsbsim/propulsion/engine[0]/starter"/>
+                </engine>
+                <engine n="1">
+                        <throttle>1</throttle>
+                </engine>
+	</engines>
+        <gear>
+	    <brake-parking type="bool">true</brake-parking>
+               <!-- <brake-parking alias="/fdm/jsbsim/fcs/brake-parking-cmd-norm"/>-->
+		<!--<brake-left alias="/fdm/jsbsim/fcs/left-brake-cmd-norm"/>
+		<brake-right alias="/fdm/jsbsim/fcs/right-brake-cmd-norm"/>-->
+        </gear>
+ </controls>
+
+ <engines>
+     <engine n="0">
+         <running type="bool">false</running>
+     </engine>
+     <engine n="1">
+         <running type="bool">false</running>
+     </engine>
+ </engines>
+
+ <instrumentation>
+     <gsdi>
+         <serviceable type="bool">true</serviceable>
+         <enabled type="bool">true</enabled>
+     </gsdi>
+</instrumentation>
+
+<input include="Inputs/Alouette-III-input_dev.xml"/>
+
+<environment>
+    <params>
+	<control-fdm-atmosphere type="bool">true</control-fdm-atmosphere>
+    </params>
+</environment>
+
+<nasal>
+    <al3>
+        <file>Aircraft/Alouette-III/Inputs/init_Run.nas</file>
+	<file>Aircraft/Alouette-III/Inputs/sys_controls.nas</file>
+    </al3>
+    <terrain>
+        <file>Aircraft/Alouette-III/Systems/terrain.nas</file>
+    </terrain>
+    <rescue>
+        <file>Aircraft/Alouette-III/Systems/rescue_operation.nas</file>
+    </rescue>
+    <nav>
+            <file>Aircraft/Alouette-III/Systems/nav.nas</file>
+    </nav>
+</nasal>
+
+<fdm include="Systems/jsbsim_init.xml"/>
+
+</PropertyList>

@@ -1,0 +1,1632 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin (C) 2008-2010
+    Copyright 
+    Update David grthteam (eekpo)  2013
+-->
+<PropertyList>
+
+	<path>alouetteIII_SC-ss_cockpit.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<offsets>
+            <pitch-deg>-1.0</pitch-deg>
+            <z-m>0.115</z-m>
+            <x-m>0</x-m>
+        </offsets>
+	
+	<model>
+	    <name>Cockpit_Empty</name>
+            <path>Aircraft/Alouette-III/Models/Alouette-III_Cockpit_Empty.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+	    <name>Cockpit</name>
+            <path>Aircraft/Alouette-III/Models/Alouette-III_Crew.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+	    <name>Cockpit</name>
+            <path>Aircraft/Alouette-III/Models/Alouette-III_Cockpit_Console.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+	    <name>Cockpit</name>
+            <path>Aircraft/Alouette-III/Models/Alouette-III_Cockpit_Command.xml</path>
+            <offsets>
+                    <x-m>0</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	
+	<model>
+            <path>Aircraft/Alouette-III/Models/Al3-sc-Marquage_ZZ_rb.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	<model>
+            <path>Aircraft/Alouette-III/Models/Al3-sc-VStab_Marquage.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	<model>
+            <path>Aircraft/Alouette-III/Models/Al3-sc-Marquage3_rb.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+
+        <model>
+            <path>Aircraft/Alouette-III/Models/Al3-sc-Marquage2_rb.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	<model>
+            <path>Aircraft/Alouette-III/Models/Al3-sc-Marquage1_rb.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	<effect>
+            <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>
+            <object-name>Fuselage</object-name>
+	     <object-name>Fuselage-AVStruc</object-name>
+	      <object-name>Fuselage-AVStrucB</object-name>
+	      <object-name>Hole0-Fuselage</object-name>
+	      <object-name>Hole1-Fuselage</object-name>
+	      <object-name>Hole2-Fuselage</object-name>
+	     
+            <object-name>AR-GPorte</object-name>
+            <object-name>AR-DPorte</object-name>
+            <object-name>HGouv</object-name>
+            <object-name>Rotor-Protec</object-name>
+	    <object-name>AR-DPorte-acsry</object-name>
+	    <object-name>AR-GPorte-acsry</object-name>
+	     <object-name>AV-Porte-StructFuse</object-name>
+	    <object-name>AV-GPorte-Struct</object-name>
+            <object-name>AV-GPorte-Struct1</object-name>
+	    <object-name>AV-DPorte-Struct</object-name>
+            <object-name>AV-DPorte-Struct1</object-name>
+            <object-name>ARPorte-HRail</object-name>
+	    <object-name>Fuselage-TBeacon</object-name>
+	     <object-name>Fuselage-DBeacon</object-name>
+	    <object-name>Fuselage-ARPorte-Struct</object-name>
+	    
+	    <object-name>GTrain-BrasOscillant</object-name>
+	    <object-name>GTrain-Jambe-Cylindre</object-name>
+	    <object-name>DTrain-BrasOscillant</object-name>
+	    <object-name>DTrain-Jambe-Cylindre</object-name>
+	    <object-name>AVTrain-Fix</object-name>
+	    
+	    <object-name>Loudspeakers</object-name>
+	    
+	     <object-name>Left_Box</object-name>
+	     <object-name>Marche-Pieds</object-name>
+	     <object-name>Right-Step</object-name>
+	     <object-name>Treuil-Bras</object-name>
+	      <object-name>AVAntenne</object-name>
+	      
+	      <object-name>AR-Porte-Guide</object-name>
+	      <object-name>GPorte-Rail</object-name>
+	      <object-name>AR-Porte-Rail</object-name>
+	      <object-name>Ext-Fuselage-AVStruct</object-name>
+	      <object-name>AR-Antenna</object-name>
+	      <object-name>AVExt-Struct</object-name>
+	      
+	      <object-name>AV-Ski</object-name>
+	      <object-name>D-Ski</object-name>
+	      <object-name>G-Ski</object-name>
+	      <!--<object-name></object-name>-->
+	    
+        </effect>
+
+        <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>Queue-Disc_M</object-name>
+	    <object-name>Turbine-Filtre</object-name>
+        </effect>
+	
+	 <effect>
+            <inherits-from>Aircraft/Alouette-III/Models/Effects/reflecttrain_2</inherits-from>
+            <object-name>AVTrain-Roue</object-name>
+	    <object-name>GTrain-Roue</object-name>
+	     <object-name>GTrain-Tambour</object-name>
+	    <object-name>DTrain-Roue</object-name>
+	    <object-name>DTrain-Tambour</object-name>
+	    <object-name>GTrain-Noyau</object-name>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>DTrain-Noyau</object-name>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	     <object-name>AVTrain-Fourche</object-name>
+	    <object-name>AVTrain-Piston</object-name>
+	    
+	    <object-name>Rotor-Tail_Gear</object-name>
+	    
+        </effect>
+	
+	
+	<animation>
+            <type>shader</type>
+            <shader>chrome</shader>
+            <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
+            <object-name>Vitrage</object-name>
+	   <!-- <object-name>rear-view mirror</object-name>-->
+	    <object-name>rear-view mirror-glass</object-name>
+        </animation>
+	
+	
+        <!--==============RESCUE=======================-->
+        <model>
+            <name>Rescue-Op</name>
+            <path>Aircraft/Alouette-III/Models/Rescue/Rescue-Op.xml</path>
+            <offsets>
+                <x-m>-1.36017</x-m>
+                <y-m>-1.03112</y-m>
+                <z-m>-4.94186</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+
+
+        <model>
+            <name>Rescue-Man</name>
+            <path>Aircraft/Alouette-III/Models/Rescue/Rescue-Man.xml</path>
+            <offsets>
+                <x-m>-1.02689</x-m>
+                <y-m>-0.844932</y-m>
+                <z-m>-0.0</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>180</heading-deg>
+            </offsets>
+        </model>
+
+        <animation>
+            <type>rotate</type>
+	    <object-name>Rescue-Op</object-name>
+            <object-name>Treuil-Block</object-name>
+            <object-name>Treuil-Bras</object-name>
+            <object-name>Treuil-Crochet</object-name>
+           <property>fdm/jsbsim/animation/mission-winch-pos-norm</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>-5</dep>
+                </entry>
+                <entry>
+                    <ind>1</ind>
+                    <dep>10</dep>
+                </entry>
+            </interpolation>
+            <center>
+                <x-m>0.555458</x-m>
+                <y-m>-0.328843</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Rescue-Op</object-name>
+            <object-name>Rescue-Man</object-name>
+            <condition>
+		<and>
+                <equals>
+                    <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+                    <value>1</value>
+                </equals>
+		<equals>
+                    <property>fdm/jsbsim/animation/mission-winch-pos-norm</property>
+                    <value>1</value>
+                </equals>
+		</and>
+            </condition>
+        </animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Treuil-Crochet</object-name>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/sim/model/rescue-lift</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+        </animation>
+        <!--=================RESCUE===END======================-->
+
+
+        
+	
+	<!--=================ROTOR   ROTOR  MAIN=============-->
+
+        <!--=================DUST==========================-->
+
+        <model>
+            <name>Rotor-Poussiere1</name>
+            <path>Aircraft/Alouette-III/Fx/Poussiere.xml</path>
+            <offsets>
+                <x-m>7</x-m>
+                <y-m>0</y-m>
+                <z-m>-5</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>90</heading-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Poussiere2</name>
+            <path>Aircraft/Alouette-III/Fx/Poussiere.xml</path>
+            <offsets>
+                <x-m>-6</x-m>
+                <y-m>3.5</y-m>
+                <z-m>-5</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>210</heading-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Poussiere3</name>
+            <path>Aircraft/Alouette-III/Fx/Poussiere.xml</path>
+            <offsets>
+                <x-m>-6</x-m>
+                <y-m>-3.5</y-m>
+                <z-m>-5</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>330</heading-deg>
+            </offsets>
+        </model>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Rotor-Poussiere1</object-name>
+            <object-name>Rotor-Poussiere2</object-name>
+            <object-name>Rotor-Poussiere3</object-name>
+            <property>sim/multiplay/generic/float[2]</property><!--orientation/pitch-deg-->
+            <axis>
+                <x>0</x>
+                <y>-1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Rotor-Poussiere1</object-name>
+            <object-name>Rotor-Poussiere2</object-name>
+            <object-name>Rotor-Poussiere3</object-name>
+            <property>sim/multiplay/generic/float[3]</property><!--orientation/roll-deg-->
+            <axis>
+                <x>1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>translate</type>
+            <object-name>Rotor-Poussiere1</object-name>
+            <object-name>Rotor-Poussiere2</object-name>
+            <object-name>Rotor-Poussiere3</object-name>
+            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
+            <factor>0.6</factor>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>-1</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>scale</type>
+            <object-name>Rotor-Poussiere1</object-name>
+            <object-name>Rotor-Poussiere2</object-name>
+            <object-name>Rotor-Poussiere3</object-name>
+            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
+            <offset>0</offset>
+            <x-min>1</x-min>
+            <y-min>1</y-min>
+            <z-min>0.2</z-min>
+            <z-max>0.5</z-max>
+            <x-factor>0.2</x-factor>
+            <y-factor>0.2</y-factor>
+            <z-factor>0.5</z-factor>
+        </animation>
+
+        <animation>
+            <type>spin</type>
+            <object-name>Rotor-Poussiere1</object-name>
+            <object-name>Rotor-Poussiere2</object-name>
+            <object-name>Rotor-Poussiere3</object-name>
+            <property>sim/multiplay/generic/float[1]</property>
+            <factor>1.2</factor>
+            <center>
+                <x-m>-0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>-1</z>
+            </axis>
+        </animation>
+       
+
+	 <model>
+            <name>Rotor-Gear</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Tete.xml</path>
+            <offsets>
+                    <x-m>-0.0051344</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59275</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale0</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale0_rb.xml</path>
+            <offsets>
+                    <x-m>-0.0051344</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59275</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale1</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale1_rb.xml</path>
+            <offsets>
+                    <x-m>-0.0051344</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59275</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Rotor-Pale2</name>
+            <path>Aircraft/Alouette-III/Models/Rotors/AL3-Rotor-Pale2_rb.xml</path>
+            <offsets>
+                    <x-m>-0.0051344</x-m>
+                    <y-m>0</y-m>
+                    <z-m>1.59275</z-m>
+                    <pitch-deg>-1.5</pitch-deg>
+            </offsets>
+        </model>
+
+        <!--<animation>
+            <type>rotate</type>
+	    <object-name>Rotor-Gear</object-name>
+            <property>/fdm/jsbsim/propulsion/engine/longitudinal-ctrl-rad</property>
+            <factor>6</factor>
+            <center>
+                <x-m>0.00354106</x-m>
+                <y-m>0</y-m>
+                <z-m>1.25659</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>-1</y>
+                <z>0</z>
+            </axis>
+        </animation>
+
+        <animation>
+            <type>rotate</type>
+	     <object-name>Rotor-Gear</object-name>
+            <property>/fdm/jsbsim/propulsion/engine/lateral-ctrl-rad</property>
+            <factor>4</factor>
+            <center>
+		<x-m>0.00354106</x-m>
+                <y-m>0</y-m>
+                <z-m>1.25659</z-m>
+            </center>
+            <axis>
+                <x>-1</x>
+                <y>0</y>
+                <z>0</z>
+            </axis>
+        </animation>
+	-->
+	<!--==============END   ROTOR   MAIN =============-->
+	
+	<!--==============ROTOR   TAIL =============-->
+
+        <animation>
+            <type>select</type>
+            <object-name>Queue-Disc_M</object-name>
+            <condition>
+		<and>
+		    <not>
+			<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+		    </not>
+                    <not-equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </not-equals>
+		</and>
+            </condition>
+        </animation>
+
+        <animation>
+            <type>select</type>
+            <object-name>Rotor-Pales-Queue</object-name>
+            <condition>
+		<and>
+		    <property>fdm/jsbsim/systems/crash-detect/aero-on</property>
+		    <less-than>
+    			<!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+			<property>sim/multiplay/generic/float[8]</property>
+    			<value>1000</value>
+		    </less-than>
+                    <not-equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>0</value>
+                    </not-equals>
+		</and>
+            </condition>
+        </animation>
+
+    
+	<animation>
+		<type>blend</type>
+		<object-name>Rotor-Pales-Queue</object-name>
+		<object-name>Rotor-Queue-Tete</object-name>
+		<!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+		<property>sim/multiplay/generic/float[8]</property>
+		<offset>-0.35</offset>
+		<factor>0.0012</factor>
+		<min>0.05</min>
+	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>Rotor-Pales-Queue</object-name>
+                <object-name>Rotor-Queue-Tete</object-name>
+                <!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+		<property>sim/multiplay/generic/float[8]</property>
+		<center>
+                    <x-m>6.2582</x-m>
+                    <y-m>0.307309</y-m>
+			<z-m>0.437969</z-m>
+		</center>
+		<axis>
+			<x>0.08748866352592399637</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+	<animation>
+		<type>blend</type>
+		<object-name>Queue-Disc_M</object-name>
+		<!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+		<property>sim/multiplay/generic/float[8]</property>
+		<offset>-0.5</offset>
+		<factor>0.0009</factor>
+	</animation>
+        
+        <animation>
+            <type>select</type>
+            <object-name>Queue-Disc_M</object-name>
+            <condition>
+                <greater-than>
+                    <!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+		    <property>sim/multiplay/generic/float[8]</property>
+                    <value>950</value>
+                </greater-than>
+            </condition>
+ 	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>Queue-Disc_M</object-name>
+                <!--<property>fdm/jsbsim/animation/rotor/tail/rpm</property>-->
+		<property>sim/multiplay/generic/float[8]</property>
+		<factor>0.5</factor>
+		<center>
+			<x-m>6.2582</x-m>
+                        <y-m>0.307309</y-m>
+			<z-m>0.437969</z-m>
+		</center>
+		<axis>
+			<x>0.08748866352592399637</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+<!--==============END   ROTOR   TAIL=============-->
+
+<!--============LANDING GEAR====================-->
+
+	<animation>
+            <type>select</type>
+            <object-name>AV-Ski</object-name>
+	    <object-name>G-Ski</object-name>
+	    <object-name>D-Ski</object-name>
+            <condition>
+		<or>
+		    <property>sim/model/ski-equipment</property>
+                <greater-than>
+		<property>fdm/jsbsim/position/h-sl-meters</property>
+		<property>environment/snow-level-m</property>
+		</greater-than>
+		</or>
+	    </condition>
+	</animation>
+		
+	<animation>
+            <type>rotate</type>
+            <object-name>AVTrain-Roue</object-name>
+	     <object-name>AVTrain-Fourche</object-name>
+	     <object-name>AV-Ski</object-name>
+            <property>fdm/jsbsim/animation/gear2main_pos-deg</property>
+	     <offset-deg>54.005225274300</offset-deg>
+	     <factor>-1</factor>          
+	    <center>
+			<x-m>-2.34538</x-m>
+                        <y-m>0</y-m>
+			<z-m>-0.925756</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+            <object-name>AVTrain-Roue</object-name>
+	     <object-name>AVTrain-Fourche</object-name>
+	     <object-name>AV-Ski</object-name>
+            <property>fdm/jsbsim/fcs/steer-pos-deg</property>	     
+	     <factor>-1</factor>          
+	    <center>
+			<x-m>-2.20963</x-m>
+                        <y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+        </animation>
+       
+	
+	<animation>
+	    <type>translate</type>
+	    <object-name>AVTrain-Piston</object-name>
+	     <property>fdm/jsbsim/animation/gear2piston_length</property>        
+	     <offset-m>0.070</offset-m>
+	     <factor>-1</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>AV-Ski</object-name>
+	     <property>fdm/jsbsim/animation/gear2main_pos-deg</property>
+	    <offset-deg>-54.005225274300</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+			<x-m>-2.03925</x-m>
+                        <y-m>0</y-m>
+			<z-m>-1.14802</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	
+
+	 
+	 <!--=========LEFT LEFT ===VAR1  like real with cylinder independant===-->
+	 <!--some ugly gap-->
+	<!--<animation>
+            <type>rotate</type>
+            <object-name>GTrain-Roue</object-name>
+	    <object-name>GTrain-Tambour</object-name>
+	    <object-name>GTrain-BrasOscillant</object-name>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>GTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear0main_pos-deg</property>
+	     <offset-deg>56.53</offset-deg>
+	     <factor>-1</factor>            
+	    <center>
+			<x-m>0.550705</x-m>
+                        <y-m>0</y-m>
+			<z-m>-0.871487</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>GTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear0main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	     <object-name>GTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	     <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+		 <center>
+			<x-m>0.74823</x-m>
+                        <y-m>-0.70251</y-m>
+			<z-m>-0.0663809</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+			
+	
+	<animation>
+            <type>rotate</type>
+	     <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.74823</x-m>
+                        <y-m>-0.70251</y-m>
+			<z-m>-0.0663809</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>-->
+	
+	<!--===LEFT LEFT ===VAR2==fake with cylinder translated==-->
+	<!--better eye candy -->
+	
+	<animation>
+            <type>rotate</type>
+            <object-name>GTrain-Roue</object-name>
+	    <object-name>G-Ski</object-name>
+	    <object-name>GTrain-Tambour</object-name>
+	    <object-name>GTrain-BrasOscillant</object-name>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>GTrain-Noyau</object-name>
+	    <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0main_pos-deg</property>
+	     <offset-deg>56.53</offset-deg>
+	     <factor>-1</factor>            
+	    <center>
+			<x-m>0.550705</x-m>
+                        <y-m>0</y-m>
+			<z-m>-0.871487</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>G-Ski</object-name>
+	     <property>fdm/jsbsim/animation/gear0main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+		    <x-m>0.959386</x-m>
+		    <y-m>0</y-m>
+		    <z-m>-1.15362</z-m>
+	    </center>
+	    <axis>
+		    <x>0</x>
+		    <y>1</y>
+		    <z>0</z>
+	    </axis>
+        </animation>
+	
+	
+	
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>GTrain-Noyau</object-name>
+	    <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	     <object-name>GTrain-Noyau</object-name>
+	     <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>GTrain-Jambe-Piston</object-name>
+	    <object-name>GTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear0strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>-1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>translate</type>
+	    <object-name>GTrain-Jambe-Cylindre</object-name>
+	    <property>fdm/jsbsim/animation/gear0strut_XYZlength</property>
+	     <offset-m>1.1698</offset-m>
+	     <factor>-1</factor>
+	    <axis>
+                <x1-m>0.74823</x1-m>
+                <y1-m>-0.70251</y1-m>
+                <z1-m>-0.0663809</z1-m>
+		<x2-m>0.964836</x2-m>
+		<y2-m>-1.06888</y2-m>
+		<z2-m>-1.1706</z2-m>
+            </axis>
+	  </animation>
+	  
+	
+	
+	
+	<!--========================RIGHT RIGHT ===VAR1===============-->
+	
+	<!--<animation>
+            <type>rotate</type>
+            <object-name>DTrain-Roue</object-name>
+	    <object-name>DTrain-Tambour</object-name>
+	    <object-name>DTrain-BrasOscillant</object-name>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	    <object-name>DTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear1main_pos-deg</property>
+	     <offset-deg>56.53</offset-deg>
+	     <factor>-1</factor>            
+	    <center>
+			<x-m>0.550705</x-m>
+                        <y-m>0</y-m>
+			<z-m>-0.871487</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	    <object-name>DTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear1main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	     <object-name>DTrain-Noyau</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	     <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+		 <center>
+			<x-m>0.74823</x-m>
+                        <y-m>0.70251</y-m>
+			<z-m>-0.0663809</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	     <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.74823</x-m>
+                        <y-m>0.70251</y-m>
+			<z-m>-0.0663809</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>-->
+	
+	
+	
+	  
+	  <!--========================RIGHT RIGHT ===VAR2===============-->
+	  
+	  <animation>
+            <type>rotate</type>
+            <object-name>DTrain-Roue</object-name>
+	    <object-name>D-Ski</object-name>
+	    <object-name>DTrain-Tambour</object-name>
+	    <object-name>DTrain-BrasOscillant</object-name>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	    <object-name>DTrain-Noyau</object-name>
+	    <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1main_pos-deg</property>
+	     <offset-deg>56.53</offset-deg>
+	     <factor>-1</factor>            
+	    <center>
+			<x-m>0.550705</x-m>
+                        <y-m>0</y-m>
+			<z-m>-0.871487</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>D-Ski</object-name>
+	     <property>fdm/jsbsim/animation/gear1main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+		    <x-m>0.959386</x-m>
+		    <y-m>0</y-m>
+		    <z-m>-1.15362</z-m>
+	    </center>
+	    <axis>
+		    <x>0</x>
+		    <y>1</y>
+		    <z>0</z>
+	    </axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	    <object-name>DTrain-Noyau</object-name>
+	    <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1main_pos-deg</property>
+	     <offset-deg>-56.53</offset-deg>
+	     <factor>1</factor>            
+	    <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	     <object-name>DTrain-Noyau</object-name>
+	     <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_pos-deg</property>
+	     <offset-deg>11.868</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	    <object-name>DTrain-Jambe-Piston</object-name>
+	     <object-name>DTrain-Jambe-Cylindre</object-name>
+	     <property>fdm/jsbsim/animation/gear1strut_Zpos-deg</property>
+	     <offset-deg>15.669</offset-deg>
+	     <factor>-1</factor>
+	     <center>
+			<x-m>0.964836</x-m>
+                        <y-m>1.06888</y-m>
+			<z-m>-1.1706</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+        </animation>
+	
+	
+	<animation>
+            <type>translate</type>
+	    <object-name>DTrain-Jambe-Cylindre</object-name>
+	    <property>fdm/jsbsim/animation/gear1strut_XYZlength</property>
+	     <offset-m>1.1698</offset-m>
+	     <factor>-1</factor>
+	    <axis>
+                <x1-m>0.74823</x1-m>
+                <y1-m>0.70251</y1-m>
+                <z1-m>-0.0663809</z1-m>
+		<x2-m>0.964836</x2-m>
+		<y2-m>1.06888</y2-m>
+		<z2-m>-1.1706</z2-m>
+            </axis>
+	  </animation>
+	  
+           
+<!--=====END =======LANDING GEAR====================-->
+
+	<!--       ======   Doors Open/Close ==========-->
+
+	<animation>
+            <type>rotate</type>
+	     <object-name>AV-GPorte-Struct1</object-name>
+            <object-name>AV-GPorte-Struct2</object-name>
+	    <object-name>AV-GPorte-Struct3</object-name>
+           <object-name>AV-GPorte-Vitrage</object-name>
+	   <object-name>AV-GPorte-Poignee</object-name>
+             <property>fdm/jsbsim/animation/left-door-pos-norm</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>0</dep>
+                </entry>
+                <entry>
+                    <ind>1.0</ind>
+                    <dep>170</dep>
+                </entry>
+            </interpolation>
+            <axis>
+                <x1-m>-2.1097</x1-m>
+                <y1-m>-0.998391</y1-m>
+                <z1-m>0.204642</z1-m>
+                <x2-m>-2.1708</x2-m>
+                <y2-m>-0.978129</y2-m>
+                <z2-m>-0.29983</z2-m>
+            </axis>
+        </animation>
+	
+	<animation>
+        <type>pick</type>
+        <object-name>AV-GPorte-Poignee</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/left-door-pos-cmd</property>
+            </binding>
+        </action>
+    </animation>
+	
+	<animation>
+            <type>shader</type>
+            <shader>chrome</shader>
+            <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
+            <object-name>AV-GPorte-Vitrage</object-name>
+        </animation>
+	
+	
+	<animation>
+            <type>rotate</type>
+	     <object-name>AV-DPorte-Struct1</object-name>
+            <object-name>AV-DPorte-Struct2</object-name>
+	    <object-name>AV-DPorte-Struct3</object-name>
+           <object-name>AV-DPorte-Vitrage</object-name>
+	   <object-name>AV-DPorte-Poignee</object-name>
+            <property>fdm/jsbsim/animation/right-door-pos-norm</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>0</dep>
+                </entry>
+                <entry>
+                    <ind>1.0</ind>
+                    <dep>-170</dep>
+                </entry>
+            </interpolation>
+            <axis>
+                <x1-m>-2.1097</x1-m>
+                <y1-m>0.998391</y1-m>
+                <z1-m>0.204642</z1-m>
+                <x2-m>-2.1708</x2-m>
+                <y2-m>0.978129</y2-m>
+                <z2-m>-0.29983</z2-m>
+            </axis>
+        </animation>
+	
+	<animation>
+        <type>pick</type>
+        <object-name>AV-DPorte-Poignee</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/right-door-pos-cmd</property>
+            </binding>
+        </action>
+    </animation>
+	
+	<animation>
+            <type>shader</type>
+            <shader>chrome</shader>
+            <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
+            <object-name>AV-DPorte-Vitrage</object-name>
+        </animation>
+
+
+
+	<animation>
+        <type>rotate</type>
+	<object-name>AR-GPorte</object-name>
+        <object-name>AR-GPorte-Dbl</object-name>
+        <object-name>AR-GPorte-Vitrage</object-name>
+	<object-name>AR-GPorte-acsry</object-name>
+	<object-name>AR-GPorte-Poignee</object-name>
+	<object-name>AR-GPorte-Dbl-jT</object-name>
+	<object-name>AR-GPorte-Guide</object-name>
+        <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+        <factor>7</factor>
+        	<center>
+			<x-m> -1.22139</x-m>
+			<y-m>7.12871</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.04</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>translate</type>
+	<object-name>AR-GPorte</object-name>
+        <object-name>AR-GPorte-Dbl</object-name>
+        <object-name>AR-GPorte-Vitrage</object-name>
+	<object-name>AR-GPorte-acsry</object-name>
+	<object-name>AR-GPorte-Poignee</object-name>
+	<object-name>AR-GPorte-Dbl-jT</object-name>
+	<object-name>AR-GPorte-Guide</object-name>
+        <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+        <factor>0.03</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>pick</type>
+        <object-name>AR-GPorte-Poignee</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
+            </binding>
+        </action>
+    </animation>
+	
+
+        <animation>
+            <type>rotate</type>
+            <object-name>L-Door_floor</object-name>
+            <object-name>L-Door_floor-Dbl</object-name>
+            <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+            <interpolation>
+                <entry>
+                    <ind>0.0</ind>
+                    <dep>0</dep>
+                </entry>
+		<entry>
+                    <ind>0.95</ind>
+                    <dep>0</dep>
+                </entry>
+                <entry>
+                    <ind>0.97</ind>
+                    <dep>90</dep>
+                </entry>
+		<entry>
+                    <ind>1</ind>
+                    <dep>90</dep>
+                </entry>
+            </interpolation>
+            <axis>
+                <x1-m>-1.33827</x1-m>
+                <y1-m>-0.599911</y1-m>
+                <z1-m>-0.464261</z1-m>
+                <x2-m>-0.47286</x2-m>
+                <y2-m>-0.599911</y2-m>
+                <z2-m>-0.49902</z2-m>
+            </axis>
+        </animation>
+	
+	<animation>
+            <type>select</type>
+            <object-name>GPorte-Rail</object-name>
+            <condition>
+                    <less-than>
+                        <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+                        <value>0.96</value>
+                    </less-than>
+	    </condition>
+	</animation>
+
+        <animation>
+            <type>shader</type>
+            <shader>chrome</shader>
+            <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
+            <object-name>AR-GPorte-Vitrage</object-name>
+        </animation>
+
+	<animation>
+        <type>rotate</type>
+	<object-name>AR-DPorte</object-name>
+        <object-name>AR-DPorte-Dbl</object-name>
+        <object-name>AR-DPorte-Vitrage</object-name>
+	<object-name>AR-DPorte-acsry</object-name>
+	<object-name>AR-DPorte-Poignee</object-name>
+	<object-name>AR-DPorte-Dbl-jT</object-name>
+	<object-name>AR-DPorte-Guide</object-name>
+         <property>fdm/jsbsim/animation/right-cabin_door-pos-norm</property>
+        <factor>-7</factor>
+        	<center>
+			<x-m> -1.22139</x-m>
+			<y-m> -7.12871</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.05</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>translate</type>
+	<object-name>AR-DPorte</object-name>
+        <object-name>AR-DPorte-Dbl</object-name>
+        <object-name>AR-DPorte-Vitrage</object-name>
+	<object-name>AR-DPorte-acsry</object-name>
+	<object-name>AR-DPorte-Poignee</object-name>
+	<object-name>AR-DPorte-Dbl-jT</object-name>
+	<object-name>AR-DPorte-Guide</object-name>
+        <property>fdm/jsbsim/animation/right-cabin_door-pos-norm</property>
+        <factor>0.03</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>pick</type>
+        <object-name>AR-DPorte-Poignee</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
+            </binding>
+        </action>
+    </animation>
+
+        <animation>
+            <type>shader</type>
+            <shader>chrome</shader>
+            <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
+            <object-name>AR-DPorte-Vitrage</object-name>
+        </animation>
+	
+	
+	
+	
+	<!--===============FLOATS     equipment====================-->
+	
+	<!-- <animation>
+            <type>select</type>
+            <object-name>Flotteurs-struct</object-name>
+	    <object-name>Flotteurs-plie</object-name>
+            <condition>
+                <and>
+		     <equals>
+			<property>sim/model/sea-variant</property>
+                        <value>1</value>
+                    </equals>
+		</and>
+	    </condition>
+	</animation>-->
+	
+	
+	<!--===============FLOATS     INFLATE====================-->
+
+       <!-- <animation>
+            <type>select</type>
+            <object-name>Flotteurs-gonfle</object-name>
+            <condition>
+                <and>
+		     <equals>
+			<property>sim/model/sea-variant</property>
+                        <value>1</value>
+                    </equals>
+                    <less-than>
+                        <property>position/altitude-agl-ft</property>
+                        <value>6</value>
+                    </less-than>
+                    <equals>
+                        <property>environment/terrain-solid</property>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property>fdm/jsbsim/gear/gear-cp-cmd-norm</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+ 	</animation>-->
+	
+	
+	
+	<!--===========OUTSIDE  LIGHTS=====================-->
+	
+	<model>
+            <name>Al3-Rbdt_Beacon</name>
+            <path>Aircraft/Alouette-III/Models/Remb/Al3-Rembrandt_Beacon.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>-0</y-m>
+                <z-m>0</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>Al3-TBeacon</name>
+            <path>Aircraft/Alouette-III/Models/Lights/Beacon.xml</path>
+            <offsets>
+                <x-m>-1.23927</x-m>
+                <y-m>-0</y-m>
+                <z-m>1.00995</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>Al3-DBeacon</name>
+            <path>Aircraft/Alouette-III/Models/Lights/Beacon.xml</path>
+            <offsets>
+                <x-m>1.03339</x-m>
+                <y-m>-0</y-m>
+                <z-m>-0.981655</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>Al3-RBeacon</name>
+            <path>Aircraft/Alouette-III/Models/Lights/BBeacon.xml</path>
+            <offsets>
+                <x-m>6.3642</x-m>
+                <y-m>-0</y-m>
+                <z-m>0.312118</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+        </model>
+	
+	
+	
+	
+	<model>
+            <name>DFVert</name>
+            <path>Aircraft/Alouette-III/Models/Lights/FVert.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+        </model>
+
+        <model>
+            <name>Al3-Rbdt_Green-side</name>
+            <path>Aircraft/Alouette-III/Models/Remb/Al3-Rembrandt_Green-side.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>0.932108</y-m>
+                <z-m>-0.486038</z-m>
+            </offsets>
+        </model>
+
+
+        <model>
+            <name>GFRouge</name>
+            <path>Aircraft/Alouette-III/Models/Lights/FRouge.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>-0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+        </model>
+
+
+        <model>
+            <name>Al3-Rbdt_Red-side</name>
+            <path>Aircraft/Alouette-III/Models/Remb/Al3-Rembrandt_Red-side.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>-0.932108</y-m>
+                <z-m>-0.486038</z-m>
+            </offsets>
+        </model>
+
+	<model>
+            <name>Al3-Phare</name>
+            <path>Aircraft/Alouette-III/Models/Lights/Flash-eff.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	<model>
+            <name>Al3-Rbdt_Phare</name>
+            <path>Aircraft/Alouette-III/Models/Remb/Al3-Rembrandt_Lights.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+	
+	
+	<!--right now only open/close-->
+	<!--wants improvement since the light can be rotated at SAR positions on request-->
+	<animation>
+        <type>rotate</type>
+	<object-name>SAR-light</object-name>
+	<object-name>Al3-Phare</object-name>
+	<object-name>Al3-Rbdt_Phare</object-name>
+        <property>fdm/jsbsim/animation/landing-light-pos-norm</property>
+        <factor>30</factor>
+        	<center>
+			<x-m>-2.63051</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.553747</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+ 	</animation>
+	
+	
+	<!--============END OUTSIDE LIGHTS ==================-->
+
+</PropertyList>

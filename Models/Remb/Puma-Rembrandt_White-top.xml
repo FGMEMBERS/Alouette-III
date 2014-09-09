@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>puma-nav_Wlight.ac</path>
+  <nopreview/>
+
+  <animation>
+    <type>light</type>
+    <light-type>spot</light-type>
+    <name>Nav_White-Light-top</name>
+    <object-name>light-volume</object-name>
+    <position>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </position>
+    <direction>
+      <x> 1.0 </x>
+      <y> 0.4 </y>
+      <z> 0.0 </z>
+    </direction>
+    <ambient>
+      <r>  1.0 </r>
+      <g>  1.0 </g>
+      <b>  1.0 </b>
+      <a>  1.0 </a>
+    </ambient>
+    <diffuse>
+      <r>  1.0 </r>
+      <g>  1.0 </g>
+      <b>  1.0 </b>
+      <a>  1.0 </a>
+    </diffuse>
+    <specular>
+      <r>  0.5 </r>
+      <g>  0.5 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </specular>
+    <attenuation>
+      <c>  0.80 </c>
+      <l>  0.80 </l>
+      <q>  1 </q>
+    </attenuation>
+    <exponent> 8.0   </exponent>
+    <cutoff>   180.0   </cutoff>
+    <near-m>    0.0   </near-m>
+    <far-m>     1 </far-m>
+  </animation>
+
+
+  <animation>
+      <type>select</type>
+      <object-name>Nav_White-Light-top</object-name>
+      <object-name>light-volume</object-name>
+      <condition>
+          <and>
+              <property>fdm/jsbsim/systems/effets/lights/blinker-kinemat-in</property>
+              <property>fdm/jsbsim/electrical/strobe-lights</property>
+          </and>
+      </condition>
+  </animation>
+
+  <animation>
+      <type>billboard</type>
+      <object-name>w_light</object-name>
+      <spherical type="bool">true</spherical>
+    </animation>
+
+
+  <animation>
+      <type>flash</type>
+      <object-name>w_light</object-name>
+      <center>
+          <x-m>0</x-m>
+          <y-m>0</y-m>
+          <z-m>0</z-m>
+      </center>
+      <axis>
+          <x>1</x>
+          <y>0</y>
+          <z>0</z>
+      </axis>
+      <power>10</power>
+      <factor>0.5</factor>
+      <offset>0</offset>
+      <two-sides type="bool">false</two-sides>
+      <min>0.03</min>
+      <max>0.05</max>
+ </animation>
+
+
+ <effect>
+     <inherits-from>Effects/model-transparent</inherits-from>
+     <object-name>w_light</object-name>
+ </effect>
+
+
+ <animation>
+     <type>select</type>
+     <object-name>w_light</object-name>
+     <condition>
+         <and>
+             <or><property>sim/rendering/rembrandt</property> <property>sim/rendering/rembrandt/enabled</property> </or>
+            <property>fdm/jsbsim/systems/effets/lights/blinker-kinemat-in</property>
+             <property>fdm/jsbsim/electrical/strobe-lights</property>
+         </and>
+     </condition>
+ </animation>
+
+
+
+
+
+</PropertyList>

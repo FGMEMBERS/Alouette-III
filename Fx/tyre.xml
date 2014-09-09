@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<!--
+    Usable with FlightGear
+-->
+   <!--    Auteur :      Gerard ROBIN             COPYRIGHT-->
+
+ <path>heat2.osgt</path>
+ <offsets>
+    <x-m> 0 </x-m>
+ </offsets>
+
+ <!--
+geode name
+<object-name>fumee2-pneu</object-name>-->
+<!--nuage idle-->
+ <animation>
+     <type>select</type>
+     <object-name>fumee2-pneu</object-name>
+     <condition>
+         <and>
+             <not-equals>
+                 <!--does not work on carrier-->
+                 <property>sim/carrier/start-on-carrier</property>
+                 <value>1</value>
+            </not-equals>
+             <equals>
+                <property>surface-positions/gear-pos-norm</property>
+                <value>1</value>
+            </equals>
+             <property>sim/rendering/particles</property>
+         </and>
+        <or>
+                <not-equals>
+                    <property>fdm/jsbsim/systems/gear/gear[1]/tyre-smoke</property>
+                    <value>0</value>
+                </not-equals>
+                <not-equals>
+                    <property>fdm/jsbsim/systems/gear/gear[2]/tyre-smoke</property>
+                    <value>0</value>
+                </not-equals>
+        </or>
+     </condition>
+</animation>
+
+
+
+
+
+
+<animation>
+    <type>material</type>
+    <object-name>fumee2-pneu</object-name>
+    <emission>
+        <red>0.008</red>
+        <green>0.008</green>
+        <blue>0.008</blue>
+    </emission>
+    <transparency>
+        <alpha-prop>fdm/jsbsim/systems/gear/gear[1]/wheel-speed-diff</alpha-prop>
+        <min>0.08</min>
+        <max>0.1</max>
+    </transparency>
+</animation>
+
+</PropertyList>

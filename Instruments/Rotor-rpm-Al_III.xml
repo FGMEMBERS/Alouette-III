@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin  (C)  2007
+    Copyright License:  GPLv2 
+-->
+
+<PropertyList>
+
+ <path>Models/rotor-rpm-al.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<!--<animation>
+		<type>noshadow</type>
+		<object-name></object-name>
+	</animation>-->
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille</object-name>
+		<property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+		<interpolation>
+			<entry>
+				<ind>200</ind>
+				<dep>10</dep>
+			</entry>
+			<entry>
+				<ind>250</ind>
+				<dep>70</dep>
+			</entry>
+			<entry>
+				<ind>300</ind>
+				<dep>130</dep>
+			</entry>
+			<entry>
+				<ind>350</ind>
+				<dep>190</dep>
+			</entry>
+			<entry>
+				<ind>400</ind>
+				<dep>250</dep>
+			</entry>
+                        <entry>
+                            <ind>450</ind>
+                            <dep>310</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.00</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+
+</PropertyList>

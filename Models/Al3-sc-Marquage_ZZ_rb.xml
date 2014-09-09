@@ -1,0 +1,86 @@
+<PropertyList>
+
+
+    <!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright
+    -->
+    <!--                   Auteur :      Gerard ROBIN        COPYRIGHT-->
+	<path>al3_sc-flanV.ac</path>
+
+	<texture-path>Textures</texture-path>
+
+        <!--<effect>
+            <inherits-from>Aircraft/Alouette-III/Models/Effects/reflectMark</inherits-from>
+            <object-name>Marquage</object-name>
+         </effect>-->
+
+
+         <effect>
+             <inherits-from>Effects/model-transparent</inherits-from>
+	     <object-name>Fuse-Marq_ZZ</object-name>
+	     <object-name>GPorte--Marq_ZZ</object-name>
+	      <object-name>DPorte--Marq_ZZ</object-name>
+        </effect>
+	
+	<animation>
+        <type>rotate</type>
+	<object-name>GPorte--Marq_ZZ</object-name>
+         <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+        <factor>7</factor>
+        	<center>
+			<x-m> -1.22139</x-m>
+			<y-m>7.12871</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.04</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>translate</type>
+	<object-name>GPorte--Marq_ZZ</object-name>
+        <property>fdm/jsbsim/animation/left-cabin_door-pos-norm</property>
+        <factor>0.03</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>rotate</type>
+	<object-name>DPorte--Marq_ZZ</object-name>
+         <property>fdm/jsbsim/animation/right-cabin_door-pos-norm</property>
+        <factor>-7</factor>
+        	<center>
+			<x-m> -1.22139</x-m>
+			<y-m> -7.12871</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0.05</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+ 	</animation>
+	
+	<animation>
+        <type>translate</type>
+	<object-name>DPorte--Marq_ZZ</object-name>
+        <property>fdm/jsbsim/animation/right-cabin_door-pos-norm</property>
+        <factor>0.03</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+ 	</animation>
+	
+
+</PropertyList>

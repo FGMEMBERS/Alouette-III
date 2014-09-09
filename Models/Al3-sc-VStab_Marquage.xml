@@ -1,0 +1,25 @@
+<PropertyList>
+
+
+    <!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright 
+    -->
+    <!--                   Auteur :      Gerard ROBIN      COPYRIGHT-->
+	<path>V-Stab_Marq.ac</path>
+
+	<texture-path>Textures</texture-path>
+
+        <!--<effect>
+            <inherits-from>Aircraft/Alouette-III/Models/Effects/reflectMark</inherits-from>
+            <object-name>Marquage</object-name>
+         </effect>-->
+
+
+         <effect>
+             <inherits-from>Effects/model-transparent</inherits-from>
+             <object-name>VGouv-Marq</object-name>
+        </effect>
+
+</PropertyList>

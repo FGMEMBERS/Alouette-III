@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+
+<system name="Engine-Ctl">
+    
+    <property value="0"> animation/master-switch-cmd</property>
+    <property value="0">systems/engine/starter</property>
+     <property value="0">systems/engine/starter-timer</property>
+   
+    <channel name="Start-Process">
+	
+	 <switch name="systems/engine/start-state-sw">
+           <default value="systems/engine/start-state"/>
+	   <test logic="AND" value="0">
+                propulsion/engine[0]/cutoff  == 1
+           </test>
+           <test logic="AND" value="1">
+                propulsion/engine[0]/cutoff  == 0
+              electrical/supplier/battery-on  == 1
+	      electrical/switch/alternator  == 1
+           </test>
+	   <output>systems/engine/start-state</output>
+	</switch>
+	
+	<switch name="systems/engine/fuel-pump-sw">
+           <default value="0"/>
+	   <test logic="AND" value="1">
+                propulsion/engine[0]/cutoff  == 0
+           </test>
+	    <output>systems/engine/fuel-pump</output>
+	</switch>
+	
+	
+	
+       
+        <switch name="systems/engine/starter-sw1">
+           <default value="systems/engine/starter"/>
+           <test logic="AND" value="1">
+              animation/master-switch-cmd  == 1
+           </test>
+	    <test logic="OR" value="0">
+	      propulsion/engine/set-running == 1
+	      systems/engine/starter-timer == 1
+           </test>
+	   <output>systems/engine/starter</output>
+       </switch>
+       
+       
+        <kinematic name="fcs/starter-timer">
+            <input>systems/engine/starter</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>5</time>
+                </setting>
+            </traverse>
+            <output>systems/engine/starter-timer</output>
+        </kinematic>
+	
+	
+	<switch name="systems/engine/starter-sw2">
+           <default value="0"/>
+           <test logic="AND" value="1">
+             systems/engine/starter-timer GT 0
+	     systems/engine/starter-timer LT 1
+           </test>
+	   <output>propulsion/engine[0]/starter</output>
+       </switch>
+	
+    </channel> 
+
+
+  <channel name="Trigger-StartStop-Engine">
+
+       <switch name="systems/engine/n1">
+           <default value="propulsion/engine/n1"/>
+           <test logic="AND" value="20">
+                propulsion/engine[0]/cutoff  == 0
+              systems/engine/start-state  == 1
+	       propulsion/engine[0]/starter == 1
+           </test>
+           <output>propulsion/engine/n1</output>
+       </switch>
+
+      <switch name="fcs/rpm-governor-active-norm-sw">
+          <default value="fcs/rpm-governor-active-norm"/>
+                <test logic="AND" value="0">
+                    systems/crash-detect/aero-on == 0
+		     electrical/switch/alternator  == 0
+              </test>
+              <test logic="AND" value="1">
+                  systems/engine/start-state == 1
+                  propulsion/engine[0]/starter == 1
+              </test>
+              <test logic="AND" value="1">
+                   propulsion/engine[0]/cutoff  == 0
+                  electrical/switch/alternator  == 1
+                  propulsion/engine/rotor-rpm LT 450
+              </test>
+              <test logic="AND" value="0">
+                  systems/engine/start-state == 1
+                  propulsion/engine/engine-rpm GE 45000
+              </test>
+              <output>fcs/rpm-governor-active-norm</output>
+       </switch>
+
+    </channel>
+    
+    <property value="0">fcs/nominal-flow-cmd</property>
+    
+    <channel name="Nominal-RPM">
+	
+	<switch name="fcs/nominal-flow-pos">
+          <default value="0"/>
+	        <test logic="AND" value="1">
+                   propulsion/engine/engine-rpm GT 33450
+		   fcs/nominal-flow-cmd == 1
+	       </test>
+	        <test logic="AND" value="0.75">
+                   propulsion/engine/engine-rpm GT 27950
+		   fcs/nominal-flow-cmd GE 0.75
+	       </test>
+	       <test logic="AND" value="0.50">		   
+                   propulsion/engine/engine-rpm GT 19950
+		   fcs/nominal-flow-cmd GE 0.50
+	       </test>
+	        <test logic="AND" value="0.25">
+                   propulsion/engine/engine-rpm GT 17950
+		   fcs/nominal-flow-cmd GE 0.25		   
+              </test>
+	</switch>     
+	
+	
+	 <kinematic name="fcs/nominal-flow-control">
+            <input>fcs/nominal-flow-pos</input>
+            <traverse>
+                <setting>
+                    <position> 0 </position>
+                    <time> 0 </time>
+                </setting>
+		 <setting>
+                    <position>0.25 </position>
+                    <time> 10 </time>
+                </setting>
+		<setting>
+                    <position>0.50</position>
+                    <time> 14 </time>
+                </setting>
+		<setting>
+                    <position>0.75</position>
+                    <time> 14 </time>
+                </setting>
+                <setting>
+                    <position>1 </position>
+                    <time> 1 </time>
+                </setting>
+            </traverse>
+	    <output>fcs/fuel-flow-control</output>
+        </kinematic>
+	
+	<scheduled_gain name="Nominal RPM Pos">
+            <input>systems/engine/start-state</input>
+            <table>
+                <independentVar lookup="row">fcs/fuel-flow-control</independentVar>               
+                <tableData>                                
+                   0.00	18000  
+		   0.25	20000
+		   0.50	28000
+		   0.75	33500		   
+                </tableData>
+            </table>
+            <output>fcs/nominal-rpm</output>
+        </scheduled_gain>
+	
+    </channel>
+    
+     <channel name="MenuHelp-to-control">
+	 
+	 <switch name="fcs/nominal-flow-pos-idle-sw">
+	    <default value="0"/>
+	        <test logic="AND" value="1">
+		   fcs/nominal-flow-cmd == 0
+	       </test>
+	    <output>fcs/nominal-flow-pos-idle</output>
+	 </switch>	 
+	 <switch name="fcs/nominal-flow-pos-clutch-sw">
+	    <default value="0"/>
+	        <test logic="AND" value="1">
+		   fcs/nominal-flow-cmd == 0.25
+	       </test>
+	    <output>fcs/nominal-flow-pos-clutch</output>
+	 </switch>	 
+	 <switch name="fcs/nominal-flow-pos-low-sw">
+	    <default value="0"/>
+	        <test logic="AND" value="1">
+		   fcs/nominal-flow-cmd == 0.50
+	       </test>
+	    <output>fcs/nominal-flow-pos-low</output>
+	 </switch>	 
+	 <switch name="fcs/nominal-flow-pos-nominal-sw">
+	    <default value="0"/>
+	        <test logic="AND" value="1">
+		   fcs/nominal-flow-cmd == 0.75
+	       </test>
+	    <output>fcs/nominal-flow-pos-nominal</output>
+	 </switch>	 
+	 <switch name="fcs/nominal-flow-pos-fcm-sw">
+	    <default value="0"/>
+	        <test logic="AND" value="1">
+		   fcs/nominal-flow-cmd == 1
+	       </test>
+	    <output>fcs/nominal-flow-pos-fcm</output>
+	 </switch>	 	 
+	 
+    </channel>
+    
+    
+
+  <channel name="RPM-Governor">
+    <switch name="fcs/rpm-governor-pid-inhibit">
+      <default value="-1.0"/>
+      <test value="0.0"> fcs/rpm-governor-active-norm GT 0.0 </test>
+    </switch>
+    <fcs_function name="fcs/rpm-delta">
+      <function>
+        <product>
+          <property> fcs/rpm-governor-active-norm </property>
+          <difference>
+            <property> fcs/nominal-rpm </property>
+            <property> propulsion/engine/engine-rpm </property>
+          </difference>
+        </product>
+      </function>
+      <clipto>
+          <min> -100.0 </min>
+          <max> 100.0 </max>
+      </clipto>
+    </fcs_function>
+    <pid name="fcs/throttle-pid">
+      <input>fcs/rpm-delta</input>
+      <kp> 220.00</kp>
+      <ki> 0.0001 </ki>
+      <kd> 72.0  </kd>
+      <trigger> fcs/rpm-governor-pid-inhibit </trigger>
+      <clipto>
+        <min>  0.00 </min>
+	<max> 1.00 </max>
+      </clipto>
+      <output>fcs/throttle-pos-norm</output>
+    </pid>
+  </channel>
+
+</system>

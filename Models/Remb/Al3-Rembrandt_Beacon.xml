@@ -1,0 +1,93 @@
+<PropertyList>
+
+
+    <!--
+    Usable with FlightGear
+    Copyright License:  GPLv2
+    -->
+    <!--                   Auteur :      David   GRTHTeam          -->
+	<path>al3-beacon.ac</path>
+        <nopreview/>
+
+
+
+
+        <animation>
+            <type>light</type>
+            <light-type>spot</light-type>
+            <name>Beacon_Light</name>
+            <object-name>Beacon-volume</object-name>
+            <position>
+                <x>-1.23927</x>
+                <y></y>
+                <z>1.00995</z>
+            </position>
+            <direction>
+                <x> -1.0 </x>
+                <y>  0.0 </y>
+                <z>  0.0000 </z>
+            </direction>
+            <ambient>
+                <r>0.0</r>
+                <g>0.0</g>
+                <b>0.0</b>
+                <a>1.0</a>
+            </ambient>
+            <diffuse>
+                <r>1.0</r>
+                <g>0.2</g>
+                <b>0.2</b>
+                <a>1.0</a>
+            </diffuse>
+            <specular>
+                <r>0.0</r>
+                <g>0.0</g>
+                <b>0.0</b>
+                <a>1.0</a>
+            </specular>
+            <attenuation>
+                <c>0.10</c>
+                <l>0.0001</l>
+                <q>0.00025</q>
+            </attenuation>
+            <exponent>16</exponent>
+            <near-m>0.0001</near-m>
+            <far-m>110</far-m>
+            <cutoff>90</cutoff>
+            <dim-factor>
+                <property>sim/model/al3/nav-lights</property>
+            </dim-factor>
+        </animation>
+
+
+
+        <animation>
+            <type>rotate</type>
+            <object-name>Beacon_Light</object-name>
+            <property>sim/time/elapsed-sec</property>
+            <factor>300</factor> <!--waiting for jsbsim fdm ==> blinker and others animations-->
+            <center>
+                <x-m>-1.23927</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </center>
+            <axis>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </axis>
+        </animation>
+
+
+        <animation>
+            <type>select</type>
+            <object-name>Beacon_Light</object-name>
+            <condition>
+                <and>
+                     <property>sim/rendering/rembrandt/enabled</property>
+                    <property>fdm/jsbsim/electrical/beacon</property>
+                </and>
+            </condition>
+        </animation>
+
+</PropertyList>

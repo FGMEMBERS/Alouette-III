@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2 
+-->
+
+<PropertyList>
+
+ <path>Models/altitude-radio.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<animation>
+		<type>noshadow</type>
+		<object-name>Altitude</object-name>
+	</animation>
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille</object-name>
+		<property>fdm/jsbsim/instruments/agl-under_wheel</property>
+		<interpolation>
+			<entry>
+				<ind></ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>50</ind>
+				<dep>55</dep>
+			</entry>
+			<entry>
+				<ind>100</ind>
+				<dep>110</dep>
+			</entry>
+			<entry>
+				<ind>150</ind>
+				<dep>165</dep>
+			</entry>
+			<entry>
+				<ind>200</ind>
+				<dep>195</dep>
+			</entry>
+                        <entry>
+				<ind>250</ind>
+				<dep>218</dep>
+			</entry>
+                        <entry>
+				<ind>300</ind>
+				<dep>235</dep>
+			</entry>
+			<entry>
+				<ind>350</ind>
+				<dep>249</dep>
+			</entry>
+                        <entry>
+                            <ind>400</ind>
+                            <dep>259</dep>
+			</entry>
+                        <entry>
+                            <ind>450</ind>
+                            <dep>267</dep>
+			</entry>
+                        <entry>
+                            <ind>500</ind>
+                            <dep>274</dep>
+			</entry>
+                        <entry>
+                            <ind>850</ind>
+                            <dep>316</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.00</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+
+</PropertyList>

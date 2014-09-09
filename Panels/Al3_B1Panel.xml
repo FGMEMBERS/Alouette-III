@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+
+<!--
+    Dedicated only to FlightGear
+    Property of Gerard Robin
+    License:  GPLv2
+-->
+
+
+
+<PropertyList>
+
+   <!-- Background  drawn within Module-Ignition_Master-->
+
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>0</y-m>
+        <z-m>0</z-m>
+    </offsets>
+    
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Module-Ignition_Master.xml</path>
+            <offsets>
+                <x-m>0.00698465</x-m>
+                <y-m>0.0</y-m>
+                <z-m>0.0</z-m>
+		<pitch-deg>0</pitch-deg>
+            </offsets>
+    </model>
+
+<!--== ========Droite=================-->
+
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel_tpt-nu.xml</path>
+            <offsets>
+		 <x-m>0.007</x-m>
+		<y-m>0.0668741</y-m>
+		<z-m>0.0185177</z-m>                
+            </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Tuyere-temp.xml</path>
+        <offsets>
+            <x-m>0.007</x-m>
+            <y-m>0.0668741</y-m>
+            <z-m>0.0185177</z-m>
+        </offsets>
+    </model>
+    
+    
+    <!--== ========Gauche=================-->
+    
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel_tpt-nu.xml</path>
+            <offsets>
+		 <x-m>0.007</x-m>
+		<y-m>-0.0668741</y-m>
+		<z-m>0.0185177</z-m>                
+            </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Fuel.xml</path>
+        <offsets>
+	    <x-m>0.007</x-m>
+            <y-m>-0.0668741</y-m>
+            <z-m>0.0185177</z-m>
+        </offsets>
+    </model>
+    
+    
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel_tpt-nu.xml</path>
+            <offsets>
+		 <x-m>0.007</x-m>
+		<y-m>-0.0668741</y-m>
+		<z-m>-0.059454</z-m>                
+            </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Voltage.xml</path>
+        <offsets>
+            <x-m>0.007</x-m>
+            <y-m>-0.0668741</y-m>
+            <z-m>-0.059454</z-m>
+        </offsets>
+    </model>
+    
+    <!--== ========Centre=================-->
+    
+     <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel-nu.xml</path>
+        <offsets>
+	    <x-m>0.007</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.0204556</z-m>
+        </offsets>
+	</model>
+    
+        
+     <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Turbine_Rotor-rpm-Al_III.xml</path>
+        <offsets>
+	    <x-m>0.007</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.0204556</z-m>
+        </offsets>
+    </model>
+    
+    <!--== =========================-->
+    
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Module-RadioG.xml</path>
+        <offsets>
+	    <x-m>-0.0442238</x-m>
+            <y-m>-0.137394</y-m>
+            <z-m>-0.02</z-m>
+	    <heading-deg>-30</heading-deg>
+        </offsets>
+    </model>
+    
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Module-RadioD.xml</path>
+        <offsets>
+	    <x-m>-0.0442238</x-m>
+            <y-m>0.137394</y-m>
+            <z-m>-0.02</z-m>
+	    <heading-deg>30</heading-deg>
+        </offsets>
+    </model>
+
+
+
+
+</PropertyList>

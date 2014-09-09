@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of grthteam copyright
+   
+-->
+<PropertyList>
+
+ <path>light_flash-eff.ac</path>
+ <texture-path>Textures</texture-path>
+
+
+	<effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>phare</object-name>
+        </effect>
+<!--reminder: the children object must be drawn at he right place,  main parent  model related-->
+        <animation>
+            <type>flash</type>
+            <object-name>phare</object-name>
+            <center>
+                <x-m>-2.60369</x-m>
+                <y-m>0</y-m>
+                <z-m>-0.585916</z-m>
+            </center>
+            <axis>
+                <x>-1</x>
+                <y>0</y>
+                <z>-0.50</z>
+            </axis>
+            <power>1</power>
+            <factor>1</factor>
+            <offset>0</offset>
+            <two-sides type="bool">false</two-sides>
+            <min>0.1</min>
+            <max>1</max>
+        </animation>
+	
+	<animation>
+        <type>select</type>
+        <object-name>phare</object-name>
+        <condition>
+	    <and>
+	     <property>fdm/jsbsim/electrical/landing-light</property>
+	    </and>
+        </condition>
+    </animation>
+
+
+</PropertyList>

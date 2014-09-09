@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!--
+    Dedicated only to FlightGear
+    
+    License:  GPLv2
+-->
+
+
+
+<PropertyList>
+
+    <path>Models/al3-panel_d.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+
+
+   <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/GSDI-Al_III.xml</path>
+            <offsets>
+                    <x-m>0.00</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0.0527235</z-m>
+            </offsets>
+    </model>
+    
+     <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+            <offsets>
+                    <x-m>0.00587326</x-m>
+                    <y-m>0</y-m>
+                    <z-m>0.0527235</z-m>
+            </offsets>
+	</model>
+	
+	
+     <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Altitude-radio-Al3.xml</path>
+            <offsets>
+                    <x-m>0.00587326</x-m>
+                    <y-m>0</y-m>
+                    <z-m>-0.0527235</z-m>
+            </offsets>
+    </model>
+    
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+            <offsets>
+                    <x-m>0.00587326</x-m>
+                    <y-m>0</y-m>
+                    <z-m>-0.0527235</z-m>
+            </offsets>
+    </model>
+    
+
+    
+
+
+</PropertyList>

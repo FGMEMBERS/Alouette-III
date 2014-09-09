@@ -1,0 +1,322 @@
+#Ascii Scene
+#Version 77
+#Generator OpenSceneGraph 2.9.16
+
+osg::Group {
+  UniqueID 1
+  Name "fumee"
+  DataVariance DYNAMIC
+  Children 5 {
+    osgParticle::ModularEmitter {
+      UniqueID 2
+      DataVariance STATIC
+      ReferenceFrame ABSOLUTE_RF
+      ParticleSystem TRUE {
+        osgParticle::ParticleSystem {
+          UniqueID 3
+          DataVariance DYNAMIC
+          StateSet TRUE {
+            osg::StateSet {
+              UniqueID 4
+              DataVariance STATIC
+              ModeList 2 {
+                GL_LIGHTING OFF
+                GL_BLEND ON
+              }
+              AttributeList 2 {
+                osg::Material {
+                  UniqueID 5
+                  DataVariance STATIC
+                  Ambient TRUE Front 0.2 0.2 0.2 1 Back 0.2 0.2 0.2 1
+                  Diffuse TRUE Front 0.8 0.8 0.8 1 Back 0.8 0.8 0.8 1
+                  Specular FALSE Front 0 0 0 0 Back 0 0 0 0
+                  Emission FALSE Front 0 0 0 0 Back 0 0 0 0
+                  Shininess TRUE Front 0 Back 0
+                }
+                Value OFF
+                osg::BlendFunc {
+                  UniqueID 6
+                  DataVariance STATIC
+                  SourceRGB SRC_ALPHA
+                  SourceAlpha SRC_ALPHA
+                  DestinationRGB ONE_MINUS_SRC_ALPHA
+                  DestinationAlpha ONE_MINUS_SRC_ALPHA
+                }
+                Value OFF
+              }
+              TextureModeList 1 {
+                Data 1 {
+                  GL_TEXTURE_2D ON
+                }
+              }
+              TextureAttributeList 1 {
+                Data 2 {
+                  osg::Texture2D {
+                    UniqueID 7
+                    DataVariance STATIC
+                    WRAP_S CLAMP
+                    WRAP_T CLAMP
+                    WRAP_R CLAMP
+                    MIN_FILTER LINEAR
+                    MAG_FILTER LINEAR
+                    BorderColor 1 1 1 0.4
+                    BorderWidth 1
+                    Image TRUE {
+                      UniqueID 8
+                      FileName "particle.png"
+                      WriteHint 0 2
+                      DataVariance STATIC
+                    }
+                  }
+                  Value OFF
+                  osg::TexEnv {
+                    UniqueID 9
+                    DataVariance STATIC
+                  }
+                  Value OFF
+                }
+              }
+              RenderingHint 2
+              RenderBinMode USE_RENDERBIN_DETAILS
+              BinNumber 1
+              BinName "DepthSortedBin"
+            }
+          }
+          SupportsDisplayList FALSE
+          UseDisplayList FALSE
+          DefaultBoundingBox {
+            Minimum -1 -1 -1
+            Maximum 1 1 1
+          }
+          AlignVectorX 1 0 0
+          AlignVectorY 0 1 0
+          DefaultParticleTemplate {
+            Shape QUAD
+            LifeTime 2
+            SizeRange 0.3 0.2
+            AlphaRange 0.05 0.02
+            ColorRange 0.85 0.85 0.85 1 0.95 0.95 0.95 1
+            SizeInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 10
+              }
+            }
+            AlphaInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 11
+              }
+            }
+            ColorInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 12
+              }
+            }
+            Radius 1
+            Mass 0.1
+            Position 0 0 0
+            Velocity 3 0 0
+            Angle 0 0 0
+            AngularVelocity 1 1 1
+            TextureTile 1 1 1
+            Drawable FALSE
+          }
+          FreezeOnCull TRUE
+        }
+      }
+      Counter TRUE {
+        osgParticle::RandomRateCounter {
+          UniqueID 13
+          DataVariance DYNAMIC
+          RateRange 32 32
+        }
+      }
+      Placer TRUE {
+        osgParticle::SectorPlacer {
+          UniqueID 14
+          DataVariance DYNAMIC
+          RadiusRange 0 0
+          PhiRange 0 0
+        }
+      }
+      Shooter TRUE {
+        osgParticle::RadialShooter {
+          UniqueID 15
+          DataVariance DYNAMIC
+          ThetaRange 1.5708 1.5708
+          PhiRange -0 0
+          InitialSpeedRange 8 6
+          InitialRotationalSpeedRange 0 0 0 0 0 0
+        }
+      }
+    }
+    osgParticle::ParticleSystemUpdater {
+      UniqueID 16
+      DataVariance DYNAMIC
+      ParticleSystems 1 {
+        osgParticle::ParticleSystem {
+          UniqueID 3
+        }
+      }
+    }
+    osgParticle::ModularEmitter {
+      UniqueID 17
+      DataVariance DYNAMIC
+      ReferenceFrame ABSOLUTE_RF
+      ParticleSystem TRUE {
+        osgParticle::ParticleSystem {
+          UniqueID 18
+          DataVariance DYNAMIC
+          StateSet TRUE {
+            osg::StateSet {
+              UniqueID 19
+              DataVariance DYNAMIC
+              ModeList 2 {
+                GL_LIGHTING ON
+                GL_BLEND ON
+              }
+              AttributeList 2 {
+                osg::Material {
+                  UniqueID 20
+                  DataVariance DYNAMIC
+                  Ambient TRUE Front 0.6 0.6 0.6 0.9 Back 0.6 0.6 0.6 0.9
+                  Diffuse TRUE Front 0.6 0.6 0.6 0.9 Back 0.6 0.6 0.6 0.9
+                  Specular FALSE Front 0.6 0.6 0.6 1 Back 0.6 0.6 0.6 1
+                  Emission FALSE Front 0 0 0 0 Back 0 0 0 0
+                  Shininess TRUE Front 0.4 Back 0.4
+                }
+                Value OFF
+                osg::BlendFunc {
+                  UniqueID 21
+                  DataVariance STATIC
+                  SourceRGB SRC_ALPHA
+                  SourceAlpha SRC_ALPHA
+                  DestinationRGB ONE_MINUS_SRC_ALPHA
+                  DestinationAlpha ONE_MINUS_SRC_ALPHA
+                }
+                Value OFF
+              }
+              TextureModeList 1 {
+                Data 1 {
+                  GL_TEXTURE_2D ON
+                }
+              }
+              TextureAttributeList 1 {
+                Data 2 {
+                  osg::Texture2D {
+                    UniqueID 22
+                    DataVariance DYNAMIC
+                    WRAP_S CLAMP
+                    WRAP_T CLAMP
+                    WRAP_R CLAMP
+                    MIN_FILTER LINEAR
+                    MAG_FILTER LINEAR
+                    UnRefImageDataAfterApply TRUE
+                    Image TRUE {
+                      UniqueID 23
+                      FileName "particle.rgb"
+                      WriteHint 0 2
+                      DataVariance STATIC
+                    }
+                  }
+                  Value OFF
+                  osg::TexEnv {
+                    UniqueID 24
+                    DataVariance STATIC
+                  }
+                  Value OFF
+                }
+              }
+              RenderingHint 2
+              RenderBinMode USE_RENDERBIN_DETAILS
+              BinNumber 1
+              BinName "DepthSortedBin"
+            }
+          }
+          SupportsDisplayList FALSE
+          UseDisplayList FALSE
+          DefaultBoundingBox {
+            Minimum -1 -1 -1
+            Maximum 1 1 1
+          }
+          AlignVectorX 1 0 0
+          AlignVectorY 0 1 0
+          DefaultParticleTemplate {
+            Shape QUAD
+            LifeTime 0.6
+            SizeRange 0.15 0.3
+            AlphaRange 1 1
+            ColorRange 0.9 0.9 0.9 1 0.94 0.94 0.94 1
+            SizeInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 25
+              }
+            }
+            AlphaInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 26
+              }
+            }
+            ColorInterpolator TRUE {
+              osgParticle::LinearInterpolator {
+                UniqueID 27
+              }
+            }
+            Radius 1
+            Mass 0.1
+            Position 0 0 0
+            Velocity 0 0 0
+            Angle 0 0 0
+            AngularVelocity 0 0 0
+            TextureTile 1 1 1
+            Drawable FALSE
+          }
+          FreezeOnCull TRUE
+        }
+      }
+      Counter TRUE {
+        osgParticle::RandomRateCounter {
+          UniqueID 28
+          DataVariance DYNAMIC
+          RateRange 64 64
+        }
+      }
+      Placer TRUE {
+        osgParticle::SectorPlacer {
+          UniqueID 29
+          DataVariance DYNAMIC
+          RadiusRange 0 0
+          PhiRange 0 0
+        }
+      }
+      Shooter TRUE {
+        osgParticle::RadialShooter {
+          UniqueID 30
+          DataVariance DYNAMIC
+          ThetaRange 1.5708 1.3708
+          PhiRange -0.2 0.2
+          InitialSpeedRange 7 3
+          InitialRotationalSpeedRange 0 0 0 2 2 2
+        }
+      }
+    }
+    osgParticle::ParticleSystemUpdater {
+      UniqueID 31
+      DataVariance DYNAMIC
+      ParticleSystems 1 {
+        osgParticle::ParticleSystem {
+          UniqueID 18
+        }
+      }
+    }
+    osg::Geode {
+      UniqueID 32
+      Name "fumee2-pneu"
+      DataVariance DYNAMIC
+      Drawables 1 {
+        osgParticle::ParticleSystem {
+          UniqueID 18
+        }
+      }
+    }
+  }
+}

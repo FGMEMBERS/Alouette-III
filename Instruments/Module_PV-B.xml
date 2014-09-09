@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    copyright 12-09-2011 grthteam (eekpo )
+    Copyright License:  GPLv2
+-->
+<PropertyList>
+
+    <path>Models/bandeau-bas.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<!--<animation>
+		<type>noshadow</type>
+		<object-name>Temoin</object-name>
+	</animation>-->
+
+        <!--<animation include="Instrument-Light1b.xml">
+            <object-name>Temoin-Marquage</object-name>
+        </animation>-->
+	
+	
+	
+	
+	<effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>Bulle-Cyl</object-name>
+        </effect>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Bille</object-name>
+		<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+		<interpolation>
+			<entry>
+				<ind>-1.1</ind>
+				<dep>-6.3019</dep>
+			</entry>
+			<entry>
+				<ind>1.1</ind>
+				<dep>6.3019</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.0537548</y-m>
+			<z-m>0.258393</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+        
+
+</PropertyList>

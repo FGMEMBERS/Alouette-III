@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2
+-->
+<PropertyList>
+
+ <path>Models/fuel-al3.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+        <animation>
+                <type>noshadow</type>
+                <object-name>KERO</object-name>
+        </animation>
+
+
+
+
+
+        <animation include="Instrument-Light4.xml">
+                <object-name>Aiguille</object-name>
+        </animation>
+
+        <animation include="Instrument-Light3.xml">
+                <object-name>Cadran</object-name>
+                <object-name>Cache</object-name>
+        </animation>
+
+
+
+        <animation>
+                <type>rotate</type>
+                <object-name>Aiguille</object-name>
+                <property>fdm/jsbsim/propulsion/tank/contents-lbs</property>
+                <interpolation>
+                        <entry>
+                            <ind>0</ind>
+                                <dep>0</dep>
+                        </entry>
+                        <entry>
+                            <ind>300</ind>
+                            <dep>28</dep>
+                        </entry>
+                        <entry>
+                            <ind>600</ind>
+                                <dep>56</dep>
+                        </entry>
+                        <entry>
+                            <ind>900</ind>
+                            <dep>84</dep>
+                        </entry>
+                        <entry>
+                            <ind>1200</ind>
+                            <dep>112</dep>
+                        </entry>
+                </interpolation>
+                <center>
+                    <x-m>0.00</x-m>
+                    <y-m>0</y-m>
+                    <z-m>-0.0132047</z-m>
+		</center>
+                <axis>
+                        <x>-1</x>
+                        <y>0</y>
+                        <z>0</z>
+                </axis>
+        </animation>
+
+
+
+
+
+</PropertyList>

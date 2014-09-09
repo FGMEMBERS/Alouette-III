@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+    usable with flightgear or JSBSim stand-alone
+    COPYRIGHT gerard robin  23-03-2010
+
+
+
+
+-->
+
+<system name="Instrumentation">
+
+
+
+<channel name="radar-altitude">
+
+
+    <fcs_function name="instruments/agl-under_wheel">
+        <function>
+            <difference>
+                <property>position/h-agl-ft</property>
+                <property>instruments/agl-offset-ref</property>
+            </difference>
+        </function>
+    </fcs_function>
+
+
+</channel>
+
+<property value="-7.3">instruments/pitch-offset-ref</property>
+<channel name="attitude">
+    <fcs_function name="instruments/indicated-pitch-deg">
+        <function>
+            <difference>
+                <product>
+                    <property>attitude/pitch-rad</property>
+                    <value>57.29578</value>
+                </product>
+                <property>instruments/pitch-offset-ref</property>
+            </difference>
+        </function>
+    </fcs_function>
+</channel>
+
+
+<property>instruments/autopilot-lock-true-heading</property>
+<property>instruments/autopilot-lock-heading-bug</property>
+<property>instruments/autopilot-lock-altitude</property>
+<property>instruments/autopilot-hold</property>
+
+<property>/instrumentation/heading-indicator/heading-marker</property>
+<property>/instrumentation/heading-indicator/heading-bug-deg</property>
+
+<property>/autopilot/settings/true-heading-deg</property>
+<property>/autopilot/settings/heading-bug-deg</property>
+<property>/autopilot/settings/target-altitude-ft</property>
+
+<channel name="autopilot-switch">
+
+     <switch name="instruments/true-heading-switch-ctrl">
+         <default value="instruments/autopilot-lock-true-heading"/>
+         <test logic="AND" value="0">
+             instruments/autopilot-lock-heading-bug == 1
+         </test>
+         <output>instruments/autopilot-lock-true-heading</output>
+     </switch>
+
+     <switch name="instruments/heading-bug-switch-ctrl">
+         <default value="instruments/autopilot-lock-heading-bug"/>
+         <test logic="AND" value="0">
+             instruments/autopilot-lock-true-heading == 1
+         </test>
+         <output>instruments/autopilot-lock-heading-bug</output>
+     </switch>
+
+    <switch name="instruments/autopilot-true-heading-indicator-switch">
+        <default value="/autopilot/settings/true-heading-deg"/>
+        <test logic="AND" value="/instrumentation/heading-indicator/heading-marker">
+            instruments/autopilot-lock-true-heading == 1
+        </test>
+        <output>instruments/autopilot-true-heading-indicator</output>
+        <output>/autopilot/settings/true-heading-deg</output>
+     </switch>
+
+     <switch name="instruments/autopilot-heading-bug-indicator-switch">
+         <default value="/autopilot/settings/heading-bug-deg"/>
+         <test logic="AND" value="/instrumentation/heading-indicator/heading-bug-deg">
+             instruments/autopilot-lock-heading-bug == 1
+         </test>
+         <output>instruments/autopilot-dg-heading-indicator</output>
+         <output>/autopilot/settings/heading-bug-deg</output>
+     </switch>
+
+     <switch name="instruments/autopilot-altitude-indicator-switch">
+         <default value="/autopilot/settings/target-altitude-ft"/>
+         <test logic="AND" value="position/h-sl-ft">
+             instruments/autopilot-lock-altitude == 0
+         </test>
+         <test logic="AND" value="instruments/autopilot-altitude-indicator">
+             instruments/autopilot-lock-altitude == 1
+         </test>
+         <output>instruments/autopilot-altitude-indicator</output>
+     </switch>
+
+
+
+     <switch name="instruments/autopilot-engaged">
+         <default value="0"/>
+         <test logic="AND" value="1">
+            instruments/autopilot-hold == 1
+         </test>
+     </switch>
+
+
+     <switch name="instruments/autopilot-target-altitude">
+         <default value="/autopilot/settings/target-altitude-ft"/>
+         <test logic="AND" value="instruments/autopilot-altitude-indicator">
+             instruments/autopilot-engaged == 1
+         </test>
+         <output>/autopilot/settings/target-altitude-ft</output>
+     </switch>
+
+</channel>
+
+
+</system>

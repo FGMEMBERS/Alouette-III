@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2
+-->
+
+
+<!--Fond de "Panel"-->
+
+<PropertyList>
+    <condition>
+        <and>
+            <not>
+                <or><property>sim/rendering/rembrandt</property> <property>sim/rendering/rembrandt/enabled</property> </or>
+            </not>
+        </and>
+      </condition>
+    <type>material</type>
+    <emission>
+            <factor-prop>fdm/jsbsim/electrical/lighting/instruments-norm</factor-prop>
+            <red>0.30</red>
+            <green>0.15</green>
+            <blue>0.0</blue>
+    </emission>
+</PropertyList>

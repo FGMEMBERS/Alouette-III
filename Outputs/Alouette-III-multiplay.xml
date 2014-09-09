@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PropertyList>
+
+           <chat_display>1</chat_display>
+            <generic>
+                <int type="bool" n="0">0</int> <!-- Smoke on or off, 0 = off, 1 = on -->
+
+                <float n="0" alias="/position/altitude-agl-ft"/>
+		<float n="1" alias="/fdm/jsbsim/animation/rotor0-rotation"/>
+                 <float n="2" alias="/orientation/pitch-deg"/>
+                 <float n="3" alias="/orientation/roll-deg"/>
+                 <float n="4" alias="/position/gear-agl-m"/>
+		<float n="5" alias="/fdm/jsbsim/systems/rotor/pale0pos-deg"/>
+		<float n="6" alias="/fdm/jsbsim/systems/rotor/pale1pos-deg"/>
+		<float n="7" alias="/fdm/jsbsim/systems/rotor/pale2pos-deg"/>
+		 <float n="8" alias="/fdm/jsbsim/animation/rotor/tail/rpm"/>
+                <!-- <float n="11" alias=""/>-->
+            </generic>
+
+</PropertyList>

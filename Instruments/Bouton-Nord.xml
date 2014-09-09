@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPL
+-->
+<PropertyList>
+
+    <path>Models/bouton-nord.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+            <animation>
+                    <type>noshadow</type>
+                    <object-name>BTN</object-name>
+            </animation>
+
+            <animation include="Instrument-Light3.xml">
+                    <object-name>Couronne</object-name>
+            </animation>
+
+
+</PropertyList>

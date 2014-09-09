@@ -1,0 +1,821 @@
+<?xml version="1.0"?>
+
+
+<system name="Addon-anim">
+    
+    <property value="1.35">animation/gear0main_k-position</property>
+    <property value="1.35">animation/gear1main_k-position</property>
+    
+    <property value="1">systems/rotor/cone-blade-k</property>
+    <property value="2">systems/rotor/minx-rpm</property>
+    <property value="1">animation/variable-rpm</property>
+    <property value="0">systems/rotor/raw-pos-deg</property>
+    <property>systems/rotor/pos-deg</property>    
+    <property value="1">systems/rotor/blade-deployed</property>
+    
+    <property value="1">animation/master-switch-lock-cmd</property>   
+    <property value="0">animation/cutoff-switch-lock-cmd</property>    
+   <property value="0">animation/mission-switch</property>
+    <property value="1">animation/mission-switch-lock</property>
+
+    <channel name="Animation">
+        <!--<documentation>Only for 3D model animation</documentation>-->
+	
+	
+	<switch name="animation/pilot-copilot">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                electrical/switch/master  == 1
+            </test>
+	</switch>
+	
+	
+	<switch name="animation/cockpit-left-door-pos">
+            <default value="0"/>
+            <test logic="AND" value="animation/left-door-pos-cmd">
+                systems/rotor/collective-cmd-norm  == 0
+                gear/unit[0]/WOW == 1
+                gear/unit[1]/WOW == 1
+                gear/unit[2]/WOW == 1
+               propulsion/engine[0]/cutoff == 1
+            </test>
+        </switch>
+
+        <switch name="animation/cockpit-right-door-pos">
+            <default value="0"/>
+            <test logic="AND" value="animation/right-door-pos-cmd">
+                systems/rotor/collective-cmd-norm  == 0
+                gear/unit[0]/WOW == 1
+                gear/unit[1]/WOW == 1
+                gear/unit[2]/WOW == 1
+                propulsion/engine[0]/cutoff == 1
+            </test>
+        </switch>
+
+        <kinematic name="LeftDoor Surface Position">
+            <input>animation/cockpit-left-door-pos</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>4</time>
+                </setting>
+            </traverse>
+             <output>animation/left-door-pos-norm</output>
+        </kinematic>
+
+        <kinematic name="RightDoor Surface Position">
+            <input>animation/cockpit-right-door-pos</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>3</time>
+                </setting>
+            </traverse>
+           <output>animation/right-door-pos-norm</output>
+        </kinematic>
+
+        
+	
+	 <kinematic name="LeftCabinDoor Surface Position">
+           <input>animation/left-cabin_door-pos-cmd</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>5</time>
+                </setting>
+            </traverse>
+            <output>animation/left-cabin_door-pos-norm</output>
+        </kinematic>
+
+        <kinematic name="RightCabinDoor Surface Position">
+            <input>animation/right-cabin_door-pos-cmd</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>8</time>
+                </setting>
+            </traverse>
+            <output>animation/right-cabin_door-pos-norm</output>
+        </kinematic>
+	
+	<!--==============Rescue Winch Equipment position============ -->
+	
+	 <switch name="animation/mission-position-sw">
+            <default value="0"/>
+            <test logic="AND" value="1">
+	       animation/mission-switch  == 1
+            </test>
+	    <output>animation/mission-pos-cmd</output>
+        </switch>
+	
+	
+	 <kinematic name="Mission Winch Surface Position">
+            <input>animation/mission-pos-cmd</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>12</time>
+                </setting>
+            </traverse>
+           <output>animation/mission-winch-pos-norm</output>
+        </kinematic>
+	
+	
+	
+	 <switch name="animation/rescue-lift-sw">
+            <default value="/sim/model/rescue-lift"/>
+            <test logic="AND" value="0">
+	      animation/mission-winch-pos-norm != 1
+            </test>
+	    <output>animation/rescue-lift</output>
+	    <output>/sim/model/rescue-lift</output>
+        </switch>
+	
+	
+	
+	<!--=============Electrical Master===================-->
+	
+	<switch name="animation/electrical-master-switch">
+            <default value="1"/>
+            <test logic="AND" value="0">
+                animation/master-switch-cmd == 0
+            </test>
+	</switch>
+	
+	<!--<switch name="animation/master-switch-lock">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                animation/master-switch-lock-cmd == 1
+		animation/electrical-master-switch == 1
+            </test>
+        </switch>-->
+	
+
+        
+	
+	<!--================CutOff==================-->
+	
+	<switch name="animation/cutoff-master-switch">
+            <default value="1"/>
+            <test logic="AND" value="0">
+               propulsion/engine[0]/cutoff  == 1
+            </test>
+        </switch>
+	
+	
+	
+	<!--================   Landing -SAR Light==================-->
+	
+	<switch name="animation/landing-light-pos">
+            <default value="0"/>
+            <test logic="AND" value="1">
+              electrical/lighting/landing-lights  == 1
+            </test>
+	    <output>animation/landing-light-pos-norm</output>
+        </switch>
+	
+        
+
+        <!--====================Rotor  Positon================-->
+        
+
+        <scheduled_gain name="Rotor0 Cone">
+            <input>systems/rotor/cone-blade-k</input>
+            <table>
+                <independentVar lookup="row">propulsion/engine[0]/thrust-lbs</independentVar>
+                <independentVar lookup="column">propulsion/engine[0]/rotor-rpm</independentVar>
+                <tableData>
+                                 0  150
+                    0        -1.5     -0.8
+                    4500  0     0
+                    6000  3     3
+                </tableData>
+            </table>
+            <output>systems/rotor/flap-deg</output>
+        </scheduled_gain>
+	
+	
+	
+	 <switch name="animation/rotor/main/blade/flap-deg">
+            <default value="systems/rotor/flap-deg"/>
+            <test logic="OR" value="-10">
+                systems/crash-detect/crashed == 1
+		systems/behaviour/steady-crashed-onwater  == 1
+            </test>
+	    <output>systems/rotor/pale0flap-deg</output>
+            <output>systems/rotor/pale1flap-deg</output>
+            <output>systems/rotor/pale2flap-deg</output>
+        </switch>
+	
+	
+	
+	
+	
+
+        <scheduled_gain name="Rotor0 Torque">
+            <input>systems/rotor/blade-deployed</input>
+            <table>
+                <independentVar>propulsion/engine[0]/torque-lbsft</independentVar>
+                <tableData>
+                    0 0
+                    20000  20000
+                </tableData>
+            </table>
+	    <output>systems/rotor/main/torque</output>
+        </scheduled_gain>
+	
+	
+	
+	<switch name="animation/blade-ready-sw">
+            <default value="1"/>
+            <test logic="OR" value="0">
+                systems/crash-detect/crashed == 1
+		systems/rotor/blade-deployed  == 0
+		systems/behaviour/steady-crashed-onwater  == 1
+            </test>
+	    <output>systems/rotor/blade-ready</output>
+        </switch>
+
+        <scheduled_gain name="animation/rotor0-rotation">
+            <input>systems/rotor/blade-ready</input>
+            <table>
+                <independentVar>propulsion/engine[0]/rotor-rpm</independentVar>
+                <tableData>
+		    2		2
+                    10      10
+                    20      20
+                    40      40
+                    160     140
+                    400     300
+                </tableData>
+            </table>
+        </scheduled_gain>
+	
+	
+	<fcs_function name="systems/rotor/velocity-deg-s">
+            <function>
+		 <product>
+		    <value>6</value>
+		    <property>systems/crash-detect/aero-on</property>
+                    <property>animation/rotor0-rotation</property>
+		</product>
+            </function>
+        </fcs_function>
+	
+	
+	<!--===NN==IS an other way to calculate animation blade position=========-->
+	<!--BEWARE /rotors/main/blade/position-deg is not the real value , it is only an animation value-->
+	
+	<!-- for rotor animation, we are missing a valuable sequencial timer clock, but can be done right with nasal (=> look at "time_rotate" func within init-Run.nas file) which provide "systems/rotor/raw-pos-deg"-->
+	
+	<switch name="systems/rotor/raw-pos-deg_sw">
+	    <default value="systems/rotor/raw-pos-deg"/>
+	    <test logic="AND" value="0">
+		systems/rotor/raw-pos-deg GT 360
+	    </test>
+	    <output>systems/rotor/raw-pos-deg</output>
+	    <output>systems/rotor/pos-deg</output>
+	    <output>systems/rotor/pale0pos-deg</output>
+	 </switch>  
+	 
+	 <switch name="animation/delta-sec">
+            <default value="/sim/time/delta-sec"/>
+	    <test logic="AND" value="0">                
+		 simulation/sim-time-sec LT 5.0
+            </test>
+            <test logic="AND" value="0">
+                propulsion/engine[0]/brake-ctrl-norm  == 1
+                propulsion/engine[0]/rotor-rpm LE systems/rotor/minx-rpm
+		systems/rotor/raw-pos-deg LE 1
+            </test>
+	</switch>
+	 
+	 
+	<!-- ===NN======================================================-->
+	 <fcs_function name="systems/rotor/pale1pos-deg">
+            <function>
+                <sum>
+                    <property>systems/rotor/pale0pos-deg</property>
+                    <value>120</value>
+                </sum>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="systems/rotor/pale2pos-deg">
+            <function>
+                <sum>
+                    <property>systems/rotor/pale0pos-deg</property>
+                    <value>240</value>
+                </sum>
+            </function>
+        </fcs_function>
+	
+	
+	<switch name="animation/rotor/tail/rotor-brake_off">
+	    <default value="1"/>
+	    <test logic="AND" value="0">
+		propulsion/engine[0]/brake-ctrl-norm  == 1
+		propulsion/engine[1]/rotor-rpm  LT 12
+	    </test>
+	 </switch>   
+
+        <scheduled_gain name="Rotor1 Rotation">
+            <input>animation/rotor/tail/rotor-brake_off</input>
+            <table>
+                <independentVar>propulsion/engine[1]/rotor-rpm</independentVar>
+                <tableData>
+                    0        	0
+                    6000     6000
+                </tableData>
+            </table>
+            <output>animation/rotor/tail/rpm</output>
+        </scheduled_gain>
+        
+
+    </channel>
+
+    <channel name="Rescue">
+        <!--temporary done with Nasal-->
+    </channel>
+
+    <channel name="gear-agl-m">
+        <fcs_function name="position/gear-agl-m">
+            <function>
+                <product>
+                    <sum>
+                        <value>-3.856</value>
+                        <property>position/h-agl-ft</property>
+                    </sum>
+                    <value>0.3048</value>
+                </product>
+            </function>
+        </fcs_function>
+    </channel>
+    
+   
+
+    <channel name="gears">
+	
+	<switch name="animation/gear0extend_sw">
+            <default value="0"/>
+            <test logic="OR" value="0.24">  <!--will be at least 10 deg -->
+                position/gear-agl-m  GT 10
+		gear/gear-cp-cmd-norm == 0
+            </test>
+	</switch>
+	
+	<kinematic name="animation/gear0extend">
+            <input>animation/gear0extend_sw</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>10</time>
+                </setting>
+            </traverse>
+        </kinematic>
+	
+	
+	
+	<!--Calcul de base en ft et rad      x  e t y en cordonnées   2D -->
+	
+	<fcs_function name="animation/gear0main_pos-rad">
+            <function>
+		<difference>
+                    <acos>
+			<quotient>
+			    <difference>
+				<!--<value>1.155354460000</value>-->  <!--0.92555446 ft +  0.2298 ft-->
+				<property>animation/gear0main_k-position</property>
+				<property>gear/unit[0]/compression-ft</property>
+				</difference>
+			    <value>1.6748824</value> <!--ft-->
+			 </quotient>                        
+                    </acos>
+		    <property>animation/gear0extend</property>
+		    </difference>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear0main_pos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear0main_pos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>	   
+	
+	<fcs_function name="animation/gear0strut_Xpos">
+            <function>
+		<sum>
+		<product>
+                    <sin>
+			 <property>animation/gear0main_pos-rad</property>
+                    </sin>
+		     <value>1.6748824</value>
+		</product>
+		<value>-0.6480479</value>
+		</sum>
+            </function>
+        </fcs_function>
+	
+	
+	<fcs_function name="animation/gear0strut_Ypos">
+            <function>
+		<sum>
+		<product>
+                    <cos>
+			 <property>animation/gear0main_pos-rad</property>
+                    </cos>
+		     <value>1.6748824</value>
+		</product>
+		<value>2.6414242</value>
+		</sum>
+            </function>
+        </fcs_function>
+	
+	
+	
+	
+	<fcs_function name="animation/gear0strut_pos-deg">
+            <function>
+		<product>
+                    <atan>
+			<quotient>
+			 <property>animation/gear0strut_Xpos</property>
+			 <property>animation/gear0strut_Ypos</property>
+			 </quotient>
+                    </atan>
+		      <value>57.29578</value> 
+		</product>
+            </function>
+        </fcs_function>
+	
+	
+	<!--en profondeur Z   constante 1.2020013 ft -->
+	
+	<fcs_function name="animation/gear0strut_Zpos-deg">
+            <function>
+		<difference>
+		    <value>90</value>
+		<product>
+                    <atan>
+			 <property>animation/gear0strut_Ypos</property>
+			 <value>1.2020013</value>
+                    </atan>
+		    <value>57.29578</value> 
+		</product>
+		</difference>
+            </function>
+        </fcs_function>
+	
+	
+	
+	<!--===CALCUL   pour option EXTENSION   entre piston et cylindre=========-->
+	
+	<!--vue de dessus  selon x (variable )  et profondeur Z constante (1.2020013)-->
+	
+	<fcs_function name="animation/gear0strut_XZpos-rad">
+            <function>
+                    <atan>
+			<quotient>
+			 <property>animation/gear0strut_Xpos</property>
+			 <value>1.2020013</value> 
+			 </quotient>
+                    </atan>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear0strut_XZpos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear0strut_XZpos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>	
+	
+	<fcs_function name="animation/gear0strut_XZpos-ft">
+            <function>
+		<quotient>
+		    <value>1.2020013</value> 
+                    <cos>
+			<property>animation/gear0strut_XZpos-rad</property>
+                    </cos>
+		</quotient>
+            </function>
+	</fcs_function>
+	
+	<!--donc dans l'espace 3D  selon  y  ( hauteur variable)-->
+	
+	<fcs_function name="animation/gear0strut_XYZpos-rad">
+            <function>
+                    <atan>
+			<quotient>
+			 <property>animation/gear0strut_XZpos-ft</property>
+			 <property>animation/gear0strut_Ypos</property>
+			 </quotient>
+                    </atan>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear0strut_XYZpos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear0strut_XYZpos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear0strut_XYZlength">
+            <function>
+		<product>
+		<quotient>
+		    <property>animation/gear0strut_XZpos-ft</property>
+                    <sin>
+			<property>animation/gear0strut_XYZpos-rad</property>
+                    </sin>
+		</quotient>
+		 <value>0.3048</value> 
+		 </product>
+            </function>
+	</fcs_function>
+	
+	
+	<!--=================================================-->
+	
+	<switch name="animation/gear1extend_sw">
+            <default value="0"/>
+            <test logic="OR" value="0.24">  <!--will be at least 10-->
+                position/gear-agl-m  GT 10
+		 gear/gear-cp-cmd-norm == 0
+            </test>
+	</switch>
+	
+	<kinematic name="animation/gear1extend">
+            <input>animation/gear1extend_sw</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>10</time>
+                </setting>
+            </traverse>
+        </kinematic>
+	
+	
+	<fcs_function name="animation/gear1main_pos-rad">
+            <function>
+		<difference>
+                    <acos>
+			<quotient>
+			    <difference>
+				<!--<value>1.155354460000</value>-->  <!--0.92555446 ft +  0.2298 ft-->
+				<property>animation/gear1main_k-position</property>
+				<property>gear/unit[1]/compression-ft</property>
+				</difference>
+			     <value>1.6748824</value> <!--ft-->
+			 </quotient>                        
+                    </acos>
+		    <property>animation/gear1extend</property>
+		</difference>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear1main_pos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear1main_pos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>	   
+	
+	<fcs_function name="animation/gear1strut_Xpos">
+            <function>
+		<sum>
+		<product>
+                    <sin>
+			 <property>animation/gear1main_pos-rad</property>
+                    </sin>
+		     <value>1.6748824</value>
+		</product>
+		<value>-0.6480479</value>
+		</sum>
+            </function>
+        </fcs_function>
+	
+	
+	<fcs_function name="animation/gear1strut_Ypos">
+            <function>
+		<sum>
+		<product>
+                    <cos>
+			 <property>animation/gear1main_pos-rad</property>
+                    </cos>
+		    <value>1.6748824</value>
+		</product>
+		<value>2.6414242</value>
+		</sum>
+            </function>
+        </fcs_function>
+	
+	
+	<fcs_function name="animation/gear1strut_pos-deg">
+            <function>
+		<product>
+                    <atan>
+			<quotient>
+			 <property>animation/gear1strut_Xpos</property>
+			 <property>animation/gear1strut_Ypos</property>
+			 </quotient>
+                    </atan>
+		      <value>57.29578</value> 
+		</product>
+            </function>
+        </fcs_function>
+	
+	
+	<fcs_function name="animation/gear1strut_Zpos-deg">
+            <function>
+		<difference>
+		    <value>90</value>
+		<product>
+                    <atan>
+			 <property>animation/gear1strut_Ypos</property>
+			 <value>1.2020013</value>
+                    </atan>
+		    <value>57.29578</value> 
+		</product>
+		</difference>
+            </function>
+        </fcs_function>
+	
+	<!--===CALCUL   pour option EXTENSION   entre piston et cylindre=========-->
+	
+	<!--vue de dessus  selon x (variable )  et profondeur Z constante (1.2020013)-->
+	
+	<fcs_function name="animation/gear1strut_XZpos-rad">
+            <function>
+                    <atan>
+			<quotient>
+			 <property>animation/gear1strut_Xpos</property>
+			 <value>1.2020013</value> 
+			 </quotient>
+                    </atan>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear1strut_XZpos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear1strut_XZpos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>	
+	
+	<fcs_function name="animation/gear1strut_XZpos-ft">
+            <function>
+		<quotient>
+		    <value>1.2020013</value> 
+                    <cos>
+			<property>animation/gear1strut_XZpos-rad</property>
+                    </cos>
+		</quotient>
+            </function>
+	</fcs_function>
+	
+	<!--donc dans l'espace 3D  selon  y  ( hauteur variable)-->
+	
+	<fcs_function name="animation/gear1strut_XYZpos-rad">
+            <function>
+                    <atan>
+			<quotient>
+			 <property>animation/gear1strut_XZpos-ft</property>
+			 <property>animation/gear1strut_Ypos</property>
+			 </quotient>
+                    </atan>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear1strut_XYZpos-deg">
+            <function>		
+		<product>
+		    <property>animation/gear1strut_XYZpos-rad</property>
+		    <value>57.29578</value> 
+		</product>
+	    </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear1strut_XYZlength">
+            <function>
+		<product>
+		<quotient>
+		    <property>animation/gear1strut_XZpos-ft</property>
+                    <sin>
+			<property>animation/gear1strut_XYZpos-rad</property>
+                    </sin>
+		</quotient>
+		 <value>0.3048</value> 
+		 </product>
+            </function>
+	</fcs_function>
+	
+	
+	<!--=================================================-->
+	
+	<fcs_function name="animation/gear2main_pos-rad">
+            <function>
+                    <acos>
+			<quotient>
+			    <difference>
+				<value>1.001253810000</value>  <!--0.72955381 ft + 0.2717 ft-->
+				<property>gear/unit[2]/compression-ft</property>
+				</difference>
+			    <value>1.2413469</value> <!--ft-->
+			 </quotient>                        
+                    </acos>
+            </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear2main_pos-deg">
+            <function>
+		<product>
+		    <property>animation/gear2main_pos-rad</property>
+		    <value>57.29578</value>
+		</product>
+	    </function>
+        </fcs_function>
+	
+	<fcs_function name="animation/gear2piston_length">
+            <function>
+		<product>
+                    <cos>
+			<property>animation/gear2main_pos-rad</property>
+                    </cos>
+		<value>0.135742</value>
+		 </product>
+            </function>
+	</fcs_function>
+	
+    </channel>
+    
+    
+<!--
+TRAIN ARRIERE
+articulation primaire
+
+<x-m>0.550705      <y-m>0       <z-m>-0.871487
+pos    bras de levier 
+<x-m>0.964836    <y-m>0    <z-m>-1.170
+    
+long      0.414131000000       h    0.298513000000
+
+longueur bras  0.510504158974  m    1.6748824  ft
+
+
+position attache haute jambe
+<x-m>0.74823  <y-m>-0.70251  <z-m>-0.0663809
+
+-->
+ 
+ 
+ <!--
+ TRAIN AVANT
+   h 0.222368  m   0.72955381 ft  long 0.306122 m  1.0043373 ft 
+soit long bras levier  0.378362532907 m     1.2413469 ft
+
+35.994774725700  deg ou   54.005225274300   pour compression-ft  0.2717-->
+
+
+
+</system>

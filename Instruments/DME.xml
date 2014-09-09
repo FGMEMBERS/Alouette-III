@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+    Property of Gerard Robin
+    Copyright License:  GPLv2
+-->
+
+<PropertyList>
+
+ <path>Models/dme.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<animation>
+		<type>noshadow</type>
+		<object-name>DME</object-name>
+	</animation>
+
+
+	<animation include="Instrument-Light4.xml">
+		<object-name>Aiguille</object-name>
+	</animation>
+
+	<animation include="Instrument-Light3.xml">
+		<object-name>Cadran</object-name>
+	</animation>
+
+
+        <animation>
+            <type>select</type>
+            <object-name>Light-Range</object-name>
+            <condition>
+                <or>
+                    <property>instrumentation/dme/in-range</property>
+                    <property>instrumentation/tacan/in-range</property>
+                </or>
+            </condition>
+        </animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Aiguille</object-name>
+		<property>/instrumentation/tacan/indicated-distance-nm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>20</ind>
+				<dep>300</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.00</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+			</axis>
+	</animation>
+
+</PropertyList>

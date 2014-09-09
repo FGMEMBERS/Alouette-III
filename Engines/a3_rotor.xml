@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+
+
+<!--Rotor Name: a3_rotor
+Diameter = 36.1549 ft.
+Number of Blades = 3
+Gear Ratio = 5.66572
+Sense = -1
+Nominal RPM = 353
+Minimal RPM = 2
+Maximal RPM = 400
+Blade Chord = 1.64042
+Lift Curve Slope = 6
+Blade Twist = -0.175
+Hinge Offset =   blade inner position  is 3.15    real hinge position is 0.119061
+CG pos 10.59  calc 8.13
+Blade Flapping Moment = 341.786
+Blade Mass Moment = 25.5242 * 1.30
+Polar Moment = 1127.9
+Inflow Lag = 0.059737
+Tip Loss = 0.98
+Lock Number = 7.24558 (SL)
+Solidity = 0.0866542
+Max Brake Power = 30 HP
+Control Mapping = Main Rotor
+Free Wheel Threshold = 1.5
+X = 0
+Y = 0
+Z = 68.8976
+Pitch = 88.5 degrees
+Yaw = 0 degrees-->
+
+
+ <!--blade inner position 0.960431
+ hinge position 0.119061-->
+
+
+<rotor name="a3_rotor">
+
+    <diameter  unit="M"> 11.02 </diameter>
+    <numblades>  3 </numblades>
+    <!--Sense = -1.0; // 'CW' as seen from above-->
+    <sense>-1.0</sense>
+    <gearratio>94.900849858400 </gearratio>
+  <nominalrpm> 353.0 </nominalrpm> <!-- shaft gear engine 33500 rpm / -->
+
+  <minrpm>0</minrpm>
+  <maxrpm>400</maxrpm>
+  <chord unit="M">  0.35</chord>
+  <liftcurveslope>  5.76 </liftcurveslope><!-- naca 63A 11.5%-->
+  <flappingmoment unit="SLUG*FT2">  341.786  </flappingmoment> <!--341.786-->
+  <twist> -0.06 </twist> <!--6.3 deg--><!--pretwisted-->
+  <massmoment> 33.18</massmoment> <!--25.5242 with cg 0.45 * R --><!-- with cg at 10.59 => 33.18--> 
+  <tiplossfactor> 0.97 </tiplossfactor>
+  <!--<polarmoment unit="SLUG*FT2"> 1127.9</polarmoment>--><!--1127.9-->
+  <inflowlag>  0.085 </inflowlag><!--guess-->
+  <hingeoffset unit="M"> 0.119</hingeoffset>  <!--blade inner position 3.15 -->
+
+  <maxbrakepower unit="HP">14</maxbrakepower>
+
+  <groundeffectexp> 0.06 </groundeffectexp>
+  <groundeffectshift unit="M"> 1.0</groundeffectshift>
+  
+  <gearloss unit="HP"> 1.8  </gearloss>
+
+  <!--<ExternalRPM> 0 </ExternalRPM>-->
+
+  <!--Default
+      Gear Loss = 2.01029 HP
+  Gear Moment = 112.79-->
+
+
+  
+  <!--<gearmoment unit="SLUG*FT2"> </gearmoment>-->
+
+
+
+</rotor>

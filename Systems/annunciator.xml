@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+    Usable with FlightGear
+    Copyright Gerard Robin  31-03-2009
+    Under License:  GPLv2
+-->
+
+<system name="annunciator">
+
+    <channel name="turbine starter">
+	
+	 <switch name="annunciator/engine-starting-sw">
+           <default value="0"/>
+           <test logic="AND" value="1">
+             systems/engine/start-state  == 1
+	     propulsion/engine[0]/engine-rpm LT 17800
+	     animation/master-switch-cmd  == 1
+           </test>
+	   <output>annunciator/engine-starting</output>
+	</switch>
+	
+	<switch name="annunciator/valve-sw">
+           <default value="0"/>
+           <test logic="AND" value="1">
+             systems/engine/start-state  == 1
+	     propulsion/engine[0]/engine-rpm LT 35000
+	     fcs/fuel-flow-control  != 1
+           </test>
+	   <output>annunciator/valve</output>
+	</switch>
+       
+    </channel>
+
+</system>

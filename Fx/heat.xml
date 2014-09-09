@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<!--
+    Usable with FlightGear
+-->
+   <!--    Auteur :      Gerard ROBIN                  COPYRIGHT-->
+
+ <path>heat1.osgx</path>
+ <offsets>
+    <x-m> 0 </x-m>
+ </offsets>
+
+ <!--
+geode name
+     <object-name>fluxturbine</object-name>-->
+<!--nuage idle-->
+ <animation>
+     <type>select</type>
+     <object-name>fluxturbine2</object-name>
+     <condition>
+        <and>
+            <property>sim/rendering/particles</property>
+            <not-equals>
+                <property>sim/multiplay/generic/float[5]</property>
+                <value>1</value>
+            </not-equals>
+            <greater-than>
+                <property>sim/multiplay/generic/float[6]</property>
+                <value>1</value>
+            </greater-than>
+            <less-than>
+                <property>sim/multiplay/generic/float[6]</property>
+                <value>61</value>
+            </less-than>
+        </and>
+     </condition>
+</animation>
+
+<!--flux altitude-combustion-->
+<animation>
+    <type>select</type>
+    <object-name>fluxturbine</object-name>
+    <condition>
+        <and>
+            <property>sim/rendering/particles</property>
+            <equals>
+                <property>sim/multiplay/generic/float[5]</property>
+                <value>1</value>
+            </equals>
+            <greater-than>
+                <property>sim/multiplay/generic/float[6]</property>
+                <value>70</value>
+            </greater-than>
+        </and>
+    </condition>
+</animation>
+
+
+
+<animation>
+    <type>material</type>
+    <object-name>fluxturbine2</object-name>
+    <emission>
+        <factor-prop>sim/multiplay/generic/float[6]</factor-prop>
+        <red>0.008</red>
+        <green>0.008</green>
+        <blue>0.008</blue>
+    </emission>
+     <transparency>
+         <alpha-prop>fdm/jsbsim/systems/animations/startsmoke</alpha-prop>
+         <factor-prop>fdm/jsbsim/systems/animations/startsmoke</factor-prop>
+        <min>0.0</min>
+        <max>1</max>
+    </transparency>
+</animation>
+
+</PropertyList>

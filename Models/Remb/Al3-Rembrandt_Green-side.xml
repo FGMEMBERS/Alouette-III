@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>puma-nav_light.ac</path>
+  <nopreview/>
+
+  <animation>
+    <type>light</type>
+    <light-type>spot</light-type>
+    <name>Nav_Green-Light-side</name>
+    <object-name>light-volume</object-name>
+    <position>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </position>
+    <direction>
+      <x> -1.0 </x>
+      <y> 0.8 </y>
+      <z>  -0.5 </z>
+    </direction>
+    <ambient>
+      <r>  0.0 </r>
+      <g>  0.8 </g>
+      <b>  0.0 </b>
+      <a>  1.0 </a>
+    </ambient>
+    <diffuse>
+      <r>  0.0 </r>
+      <g>  1.0 </g>
+      <b>  0.0 </b>
+      <a>  1.0 </a>
+    </diffuse>
+    <specular>
+      <r>  0.5 </r>
+      <g>  0.5 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </specular>
+    <attenuation>
+        <c>  0.10 </c>
+        <l>  0.80 </l>
+        <q>  1.0 </q>
+    </attenuation>
+    <exponent> 1.0   </exponent>
+    <cutoff>   90.0   </cutoff>
+    <near-m>    0.0   </near-m>
+    <far-m>     0.15 </far-m>
+    <dim-factor>
+        <property>sim/model/al3/nav-lights</property>
+    </dim-factor>
+  </animation>
+
+  <animation>
+      <type>select</type>
+      <object-name>Nav_Green-Light-side</object-name>
+      <condition>
+          <and>
+              <not-equals>
+                  <property>fdm/jsbsim/systems/effets/lights/blinker-kinemat-in</property>
+                  <value>1</value>
+               </not-equals>
+               <property>fdm/jsbsim/electrical/strobe-lights</property>
+          </and>
+      </condition>
+  </animation>
+
+
+
+</PropertyList>

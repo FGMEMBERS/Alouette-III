@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!--
+    Usable with FlightGear
+   
+    Copyright GPLV2
+-->
+<PropertyList>
+
+ <path>Models/alarm-cutoff-al3.ac</path>
+ <texture-path>Models/Textures</texture-path>
+
+ 	<animation>
+		<type>noshadow</type>
+		<object-name>Temoin</object-name>
+	</animation>
+
+        <animation include="Instrument-Light1b.xml">
+            <object-name>Temoin-Marquage</object-name>
+            <!--<object-name>Temoin1-open</object-name>
+            <object-name>Temoin2-close</object-name>-->
+        </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Cutoff-Open</object-name>
+		<object-name>Temoin2MActif</object-name>
+		<object-name>Cutoff-Close</object-name>
+		<object-name>Temoin1-Actif</object-name>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/outputs/instr-ignition-switch</property>
+				<value>27</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Cutoff-Open</object-name>
+		<condition>
+			<equals>
+				<property>/controls/engines/engine[0]/cutoff</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+                <object-name>Cutoff-Close</object-name>
+		<condition>
+			<and>
+				<equals>
+                                    <property>/controls/engines/engine[0]/cutoff</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+</PropertyList>

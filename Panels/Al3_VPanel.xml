@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+
+<!--
+    Dedicated only to FlightGear
+    Property of Gerard Robin
+    License:  GPL-v2
+-->
+
+
+
+<PropertyList>
+
+    <path>Models/al3-panel.ac</path>
+    <texture-path>Models/Textures</texture-path>
+
+<!--== ========Gauche=================-->
+
+    <model>
+            <name></name>
+            <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+            <offsets>
+                <x-m>-0.000301468</x-m>
+                <y-m>-0.157376</y-m>
+                <z-m>0.0651907</z-m>
+            </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Attitude.xml</path>
+        <offsets>
+            <x-m>-0.059</x-m>
+            <y-m>-0.157376</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>-0.0504375</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>IVSI</name>
+        <path>Aircraft/Alouette-III/Instruments/IVSI-Nord.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>-0.0504375</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>-0.157376</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>RPM</name>
+        <path>Aircraft/Alouette-III/Instruments/DME.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>-0.157376</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>-0.0504375</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/ALT-AL_III.xml</path>
+        <offsets>
+            <x-m>-0.00938629</x-m>
+            <y-m>-0.0504375</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+
+    <!--== ========Droite=================-->
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>0.157376</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>ASI</name>
+        <path>Aircraft/Alouette-III/Instruments/ASI-S51.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>0.157376</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>0.0504375</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/HI-al3.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>0.0504375</y-m>
+            <z-m>0.0651907</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>Afficheur</name>
+        <path>Aircraft/Alouette-III/Instruments/Afficheur_Fake.xml</path>
+        <offsets>
+	    <x-m>0.0014998</x-m>
+            <y-m>0.14526</y-m>
+            <z-m>-0.0508388</z-m>
+        </offsets>
+    </model>
+
+    <!--<model>
+        <name>Bezel-Alt</name>
+        <path>Aircraft/Alouette-III/Instruments/Bezel.xml</path>
+        <offsets>
+            <x-m>-0.000301468</x-m>
+            <y-m>0.0504375</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>Altitude</name>
+        <path>Aircraft/Alouette-III/Instruments/Altitude-radio-Al3.xml</path>
+        <offsets>
+            <x-m>-0.003</x-m>
+            <y-m>0.0504375</y-m>
+            <z-m>-0.055423</z-m>
+        </offsets>
+    </model>
+    -->
+    
+    <model>
+        <name></name>
+        <path>Aircraft/Alouette-III/Instruments/Module_PV-B.xml</path>
+        <offsets>
+            <x-m>0.01</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.12886</z-m>
+	    <pitch-deg>-30</pitch-deg>
+        </offsets>
+    </model>
+    
+    
+    
+    
+
+   <!-- ===============Bottom=====================-->
+    
+
+
+
+
+
+</PropertyList>
