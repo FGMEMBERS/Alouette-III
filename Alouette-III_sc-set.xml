@@ -28,6 +28,16 @@
         <author>was Gerard Robin, update David, Josh (FDM), https://sites.google.com/site/grtuxhangar/</author>
         <status></status>
         <version> 1.1.1  2013-10-29</version>
+        <tags>
+          <tag>helicopter</tag>
+          <tag>tricycle</tag>
+          <tag>retractable-gear</tag>
+          <tag>single-engine</tag>
+          <tag>turboprop</tag>
+          <tag>1960s</tag>
+          <tag>1970s</tag>
+          <tag>1980s</tag>
+        </tags>
 	<rating>
 	 <!--only  a generic wrong estimation since given by the author himself-->   
 	    <FDM type="int">3</FDM>
