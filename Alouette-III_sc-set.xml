@@ -24,16 +24,17 @@
 
 
  <sim>
-	<description>Alouette-III_Helicopter</description>
-        <author>was Gerard Robin, update David, Josh (FDM), https://sites.google.com/site/grtuxhangar/</author>
+	<description>Alouette-III</description>
+        <author>Gerard Robin,  David, Josh (FDM)</author> <!--cleanup of tag for display in the launcher https://sites.google.com/site/grtuxhangar/ -->
         <status></status>
         <version> 1.1.1  2013-10-29</version>
         <tags>
           <tag>helicopter</tag>
           <tag>tricycle</tag>
-          <tag>retractable-gear</tag>
+          <tag>fixed-gear</tag>
           <tag>single-engine</tag>
           <tag>turboprop</tag>
+	  <tag>vtol</tag>
           <tag>1960s</tag>
           <tag>1970s</tag>
           <tag>1980s</tag>
@@ -51,6 +52,28 @@
         <startup>
 	<splash-texture>Aircraft/Alouette-III/al_III-splash.png</splash-texture>
         </startup>
+	<previews>
+	  <preview>
+		<type>exterior</type>
+		<splash type="bool">true</splash>
+		<path>Pics/alouette3-exterior01.jpg</path>
+	  </preview>
+	  <preview>
+		<type>exterior</type>
+		<splash type="bool">true</splash>
+		<path>Pics/alouette3-exterior02.jpg</path>
+	  </preview>
+	  <preview>
+		<type>exterior</type>
+		<splash type="bool">true</splash>
+		<path>Pics/alouette3-exterior03.jpg</path>
+	  </preview>
+	  <preview>
+		<type>panel</type>
+		<splash type="bool">true</splash>
+		<path>Pics/alouette3-interior.jpg</path>
+	  </preview>
+	</previews>
 	<sound>
 	    <path>Aircraft/Alouette-III/Fx/sound.xml</path>
 	</sound>
