@@ -4,7 +4,6 @@
 
 <system name="crash-detect">
 
-    <property value="0">/fdm/simulation/wrg-ver</property>
     <property value="0">systems/crash-detect/recover</property>
     
  <!--<property value="0">systems/crash-detect/crashed</property>
@@ -16,7 +15,6 @@
          <test logic="OR" value="1">
              accelerations/Nz gt 7.0
              accelerations/Nz lt -4.0
-	     /fdm/simulation/wrg-ver != 9
          </test>
      </switch>
   </channel>
@@ -85,7 +83,7 @@
                   <time>  0 </time>
               </setting>
               <setting>
-                  <position> 1 </position>
+                  <position> 0 </position>
                   <time> 1.5</time>
               </setting>
           </traverse>

@@ -13,24 +13,27 @@
     <property>systems/rotor/pos-deg</property>    
     <property value="1">systems/rotor/blade-deployed</property>
     
+    <property value="0">animation/pilot-copilot</property>
     <property value="1">animation/master-switch-lock-cmd</property>   
     <property value="0">animation/cutoff-switch-lock-cmd</property>    
-   <property value="0">animation/mission-switch</property>
+    <property value="0">animation/mission-switch</property>
     <property value="1">animation/mission-switch-lock</property>
+    <property value="1">animation/cockpit-left-door-pos-cmd</property>
+    <property value="1">animation/cockpit-right-door-pos-cmd</property>
 
     <channel name="Animation">
         <!--<documentation>Only for 3D model animation</documentation>-->
 	
 	
-	<switch name="animation/pilot-copilot">
+	<!--<switch name="animation/pilot-copilot">
             <default value="0"/>
             <test logic="AND" value="1">
                 electrical/switch/master  == 1
             </test>
-	</switch>
+	</switch>-->
 	
 	
-	<switch name="animation/cockpit-left-door-pos">
+	<!--<switch name="animation/cockpit-left-door-pos">
             <default value="0"/>
             <test logic="AND" value="animation/left-door-pos-cmd">
                 systems/rotor/collective-cmd-norm  == 0
@@ -50,10 +53,10 @@
                 gear/unit[2]/WOW == 1
                 propulsion/engine[0]/cutoff == 1
             </test>
-        </switch>
+        </switch>-->
 
         <kinematic name="LeftDoor Surface Position">
-            <input>animation/cockpit-left-door-pos</input>
+            <input>animation/cockpit-left-door-pos-cmd</input>
             <traverse>
                 <setting>
                     <position>0</position>
@@ -68,7 +71,7 @@
         </kinematic>
 
         <kinematic name="RightDoor Surface Position">
-            <input>animation/cockpit-right-door-pos</input>
+            <input>animation/cockpit-right-door-pos-cmd</input>
             <traverse>
                 <setting>
                     <position>0</position>

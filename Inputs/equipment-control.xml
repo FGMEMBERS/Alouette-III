@@ -6,6 +6,7 @@
 	<x>-10</x>
 	<y>-30</y>
 	<layout>vbox</layout>
+	<width>200</width>
 	<group>
 		    <layout>hbox</layout>
 		    <default-padding>1</default-padding>
@@ -13,7 +14,7 @@
 		    <stretch>true</stretch>
 		    </empty>
 		    <text>
-			<label>Main</label>
+			<label>Configuration</label>
 			<halign>center</halign>
 		    </text>
 		    <empty>
@@ -35,17 +36,17 @@
 		<group>
 	    <layout>vbox</layout>
 	    </group>
-	    <group>
+	    <!--<group>
 		 <layout>hbox</layout>
 		<text>
 		    <label>EQUIPMENT CONTROL</label>
 		    <halign>center</halign>
 		</text>
-	    </group>
-	     <hrule/>
+	    </group>-->
+
 	    <group>
 		<layout>table</layout>
-		    <text>
+		    <!--<text>
 			<label>Brake-Parking Engage</label>
 			<halign>left</halign>
 			<row>1</row>
@@ -78,15 +79,15 @@
 			    <command>property-toggle</command>
 			    <property>fdm/jsbsim/gear/NWS/engaged</property>
 			</binding>
-		    </checkbox>
+		    </checkbox>-->
 		    <text>
 			<label>Rotor-Blades Fold</label>
 			<halign>left</halign>
-			<row>3</row>
+			<row>0</row>
 		    <col>0</col>
 		    </text>
 		    <checkbox>
-			<row>3</row>
+			<row>0</row>
 			<col>1</col> 
 			<property>fdm/jsbsim/fcs/wing-fold-cmd</property>
 			<command>dialog-apply</command>
@@ -99,7 +100,7 @@
 			    <property>fdm/jsbsim/fcs/wing-fold-cmd</property>
 			</binding>
 		    </checkbox>
-		    <text>
+		    <!--<text>
 			<label>Landing-Light</label>
 			<halign>left</halign>
 			<row>4</row>
@@ -166,15 +167,15 @@
 			    <command>property-toggle</command>
 			    <property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
 			</binding>
-		    </checkbox>
+		    </checkbox>-->
 		    <text>
 			<label>Ski landing gear</label>
 			<halign>left</halign>
-			<row>8</row>
+			<row>1</row>
 		    <col>0</col>
 		    </text>
 		     <checkbox>
-			<row>8</row>
+			<row>1</row>
 			<col>1</col>
 			<property>/sim/model/ski-equipment</property>
 			<command>dialog-apply</command>
@@ -184,11 +185,29 @@
 			    <property>/sim/model/ski-equipment</property>
 			</binding>
 		    </checkbox>
+		    <text>
+			<label>Pilot/Copilot model</label>
+			<halign>left</halign>
+			<row>2</row>
+		    <col>0</col>
+		    </text>
+		     <checkbox>
+			<row>2</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/pilot-copilot</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-toggle</command>
+			    <property>/fdm/jsbsim/animation/pilot-copilot</property>
+			</binding>
+		    </checkbox>
+
+
 		</group>
-	    <hrule/>
 	     <hrule/>
 	     
-	     <button>
+	     <!--<button>
                 <legend>Propulsion_Controls</legend>
 		<binding>
                     <command>nasal</command>
@@ -201,9 +220,9 @@
 		<binding>
 		    <command>dialog-close</command>
                 </binding>
-	    </button>
+	    </button>-->
 	     
-           <!-- <button>
+           <button>
                 <legend>Close</legend>
                 <default>true</default>
                 <key>Esc</key>
@@ -211,6 +230,6 @@
                 <binding>
 		    <command>dialog-close</command>
                 </binding>
-            </button>-->
+            </button>
 
 </PropertyList>

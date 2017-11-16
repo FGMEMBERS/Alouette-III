@@ -3,6 +3,8 @@
     Usable with FlightGear
     was Gerard Robin , maintain grtuxteam
     Copyright License:  GPLv2  with GrTuxTEAM's courtesy
+    additions by Thorsten Renk 2017
+
 -->
 <!--
 ************************************************************************
@@ -25,7 +27,7 @@
 
  <sim>
 	<description>Alouette-III</description>
-        <author>Gerard Robin,  David, Josh (FDM)</author> <!--cleanup of tag for display in the launcher https://sites.google.com/site/grtuxhangar/ -->
+        <author>Gerard Robin,  David, Josh (FDM), Thorsten Renk</author> <!--cleanup of tag for display in the launcher https://sites.google.com/site/grtuxhangar/ -->
         <status></status>
         <version> 1.1.1  2013-10-29</version>
         <tags>
@@ -50,8 +52,9 @@
 	<aero>Aero/al3-jsbsim</aero>
         <!--<model-hz>200</model-hz>-->
         <startup>
-	<splash-texture>Aircraft/Alouette-III/al_III-splash.png</splash-texture>
+	<splash-texture>Aircraft/Alouette-III/Pics/alouette3-exterior03.jpg</splash-texture>
         </startup>
+        <checklists include="Alouette-III-checklists.xml"/>
 	<previews>
 	  <preview>
 		<type>exterior</type>
@@ -125,7 +128,6 @@
 		    <ambient-correction type="float">0.0</ambient-correction>
 		    <reflection-rainbow type="float">0.1</reflection-rainbow>
 		</shader_2>
-                <rendering><shader-effects>1</shader-effects></rendering>
         </model>
 
         <view>
@@ -234,17 +236,16 @@
 
 <nasal>
     <al3>
-        <file>Aircraft/Alouette-III/Inputs/init_Run.nas</file>
-	<file>Aircraft/Alouette-III/Inputs/sys_controls.nas</file>
+        <file>Aircraft/Alouette-III/Nasal/init_Run.nas</file>
     </al3>
     <terrain>
-        <file>Aircraft/Alouette-III/Systems/terrain.nas</file>
+        <file>Aircraft/Alouette-III/Nasal/terrain.nas</file>
     </terrain>
     <rescue>
-        <file>Aircraft/Alouette-III/Systems/rescue_operation.nas</file>
+        <file>Aircraft/Alouette-III/Nasal/rescue_operation.nas</file>
     </rescue>
     <nav>
-            <file>Aircraft/Alouette-III/Systems/nav.nas</file>
+            <file>Aircraft/Alouette-III/Nasal/nav.nas</file>
     </nav>
 </nasal>
 

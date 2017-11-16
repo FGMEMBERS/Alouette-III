@@ -32,7 +32,7 @@
 		<reflect_map>1</reflect_map>
 	</parameters>
 
-        <technique n="9">
+        <!--<technique n="9">
             <predicate>
                 <and>
                     <property>/sim/model/rendering/shader-effects</property>
@@ -50,6 +50,6 @@
                     </or>
                 </and>
             </predicate>
-        </technique>
+        </technique>-->
 
 </PropertyList>

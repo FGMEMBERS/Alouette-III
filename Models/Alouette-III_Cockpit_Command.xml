@@ -894,7 +894,20 @@
                     <command>property-toggle</command>
 		    <property>fdm/jsbsim/electrical/lighting/landing-lights</property>
                 </binding>
+                <!--<binding>
+                    <command>property-toggle</command>
+		    <property>/sim/rendering/als-secondary-lights/use-landing-light</property>
+                </binding>-->
             </action>
+            <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>planding_lights</tooltip-id>
+		        <label>Landing lights: %s</label>
+		        <mapping>on-off</mapping>
+		        <property>fdm/jsbsim/electrical/lighting/landing-lights</property>
+		    </binding>
+            </hovered>
         </animation>
 	
 	<animation>

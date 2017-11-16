@@ -1215,9 +1215,22 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>fdm/jsbsim/animation/left-door-pos-cmd</property>
+                <property>fdm/jsbsim/animation/cockpit-left-door-pos-cmd</property>
             </binding>
         </action>
+       <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cockpit_door_left</tooltip-id>
+		        <label>Left door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/cockpit-left-door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 	<animation>
@@ -1263,9 +1276,22 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>fdm/jsbsim/animation/right-door-pos-cmd</property>
+                <property>/fdm/jsbsim/animation/cockpit-right-door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cockpit_door_right</tooltip-id>
+		        <label>Right door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/cockpit-right-door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 	<animation>
@@ -1328,6 +1354,19 @@
                 <property>fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cabin_door_left</tooltip-id>
+		        <label>Left cabin door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 
@@ -1433,6 +1472,19 @@
                 <property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cabin_door_right</tooltip-id>
+		        <label>Right cabin door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 
         <animation>

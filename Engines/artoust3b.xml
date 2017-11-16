@@ -75,7 +75,7 @@ output shaft RPM 5770 ( clutch input )-->
   <maxn1>                       100.0   </maxn1>
   <maxpower unit="HP">          550.0   </maxpower>  
   <psfc unit="LBS/HR/HP">         0.669 </psfc>
-  <idlefuelflow>                 30.0   </idlefuelflow>
+  <!--<idlefuelflow>                 30.0   </idlefuelflow>-->
   <n1idle_max_delay>              1     </n1idle_max_delay>
   <maxstartingtime>              2     </maxstartingtime>
   <startern1>                    20     </startern1>
@@ -83,9 +83,9 @@ output shaft RPM 5770 ( clutch input )-->
   <itt_delay>                     0.05  </itt_delay>
   <betarangeend>                 64     </betarangeend>
   <reversemaxpower>              0     </reversemaxpower>
-
   <table name="EnginePowerVC">
     <description> Engine power, function of airspeed and pressure </description>
+   
     <independentVar lookup="row">atmosphere/P-psf</independentVar>
     <independentVar lookup="column">velocities/ve-kts</independentVar>
     <tableData>
@@ -100,7 +100,7 @@ output shaft RPM 5770 ( clutch input )-->
       2213   1.029  1.043  1.057  1.079  1.114  1.171
     </tableData>
   </table>
-
+ 
   
  <!-- temporary giving a very low effinciency at N1 / RPM   range 0 %  to 86 %  and 18000 RPM
   just to simulate at idle  since we are  missing within the source code lost of hp due to gear  and other transmission  between-->

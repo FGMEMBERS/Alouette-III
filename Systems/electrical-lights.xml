@@ -46,6 +46,7 @@
                 electrical/generic/landing-light-power  == 1
                 electrical/outputs/landing-light  gt 24
             </test>
+	    <output>/sim/rendering/als-secondary-lights/use-landing-light</output>
         </switch>
 
         <switch name="electrical/strobe-lights">

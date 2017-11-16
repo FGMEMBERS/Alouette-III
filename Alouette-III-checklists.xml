@@ -1,0 +1,103 @@
+ <PropertyList>
+  <checklist>
+    <title>Engine start</title>  
+
+
+
+    <item>
+      <name>Rotor brake</name>
+      <value>RELEASED</value>
+      <condition>
+	
+        <equals>
+          <property>/fdm/jsbsim/animation/rotor_brake-switch-cmd</property>
+          <value>0</value>
+        </equals>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Battery</name>
+      <value>ON</value>
+      <condition>
+	
+        <equals>
+          <property>/fdm/jsbsim/electrical/switch/battery</property>
+          <value>1</value>
+        </equals>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Alternator</name>
+      <value>ON</value>
+      <condition>
+	
+        <equals>
+          <property>/fdm/jsbsim/electrical/switch/alternator</property>
+          <value>1</value>
+        </equals>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Fuel pump</name>
+      <value>ON</value>
+      <condition>
+	
+        <equals>
+          <property>/controls/engines/engine[0]/cutoff</property>
+          <value>0</value>
+        </equals>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Starter</name>
+      <value>ON</value>
+      <condition>
+	
+        <equals>
+          <property>/fdm/jsbsim/animation/master-switch-cmd</property>
+          <value>1</value>
+        </equals>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Turbine RPM</name>
+      <value>>18000</value>
+      <condition>
+        <greater-than>
+          <property>/fdm/jsbsim/propulsion/engine[0]/engine-rpm</property>
+          <value>18000</value>
+        </greater-than>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Fuel flow</name>
+      <value>NORM</value>
+      <condition>
+        <greater-than>
+          <property>/fdm/jsbsim/fcs/nominal-flow-cmd</property>
+          <value>0.7</value>
+        </greater-than>
+      </condition>   
+    </item>
+
+    <item>
+      <name>Turbine RPM</name>
+      <value>>33000</value>
+      <condition>
+        <greater-than>
+          <property>/fdm/jsbsim/propulsion/engine[0]/engine-rpm</property>
+          <value>33000</value>
+        </greater-than>
+      </condition>   
+    </item>
+
+
+  </checklist>
+</PropertyList>
+
