@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>/Models/Effects/procedural_light.ac</path>
+
+
+
+
+ <effect>
+   <inherits-from>Models/Effects/procedural_light_red</inherits-from>
+   <object-name>procedural_light</object-name>
+ </effect>
+
+
+    <animation>
+        <type>select</type>
+        <object-name>procedural_light</object-name>
+        <condition>
+	    <and>
+            <not-equals>
+                <property>fdm/jsbsim/systems/effets/lights/blinker-kinemat-in</property>
+                <value>1</value>
+            </not-equals>
+	     <property>fdm/jsbsim/electrical/strobe-lights</property>
+	    </and>
+        </condition>
+    </animation>
+
+</PropertyList>

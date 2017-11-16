@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>/Models/Effects/procedural_light.ac</path>
+
+
+ <effect>
+   <inherits-from>Models/Effects/procedural_landing_light_white</inherits-from>
+   <object-name>procedural_light</object-name>
+ </effect>
+
+
+    <animation>
+        <type>select</type>
+        <object-name>procedural_light</object-name>
+        <condition>
+	    <and>
+	     <property>fdm/jsbsim/electrical/landing-light</property>
+	    </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>scale</type>
+        <object-name>procedural_light</object-name>
+        <x-offset>2.0</x-offset>
+        <y-offset>2.0</y-offset>
+        <z-offset>2.0</z-offset>
+    </animation>
+
+</PropertyList>

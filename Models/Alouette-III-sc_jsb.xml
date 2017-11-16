@@ -4,6 +4,7 @@
     Property of Gerard Robin (C) 2008-2010
     Copyright 
     Update David grthteam (eekpo)  2013
+    Update by Thorsten Renk 2017
 -->
 <PropertyList>
 
@@ -1565,6 +1566,25 @@
                 <z-m>1.00995</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>upper_beacon_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red_nd.xml</path>
+            <offsets>
+                <x-m>-1.23927</x-m>
+                <y-m>-0</y-m>
+                <z-m>1.05995</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>
@@ -1576,6 +1596,25 @@
                 <z-m>-0.981655</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>lower_beacon_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red_nd.xml</path>
+            <offsets>
+                <x-m>1.03339</x-m>
+                <y-m>-0</y-m>
+                <z-m>-0.931655</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>
@@ -1587,9 +1626,26 @@
                 <z-m>0.312118</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
         </model>
 	
-	
+        <model>
+            <name>rear_beacon</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_white.xml</path>
+            <offsets>
+                <x-m>6.4042</x-m>
+                <y-m>-0</y-m>
+                <z-m>0.312118</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
+        </model>
 	
 	
 	<model>
@@ -1601,6 +1657,25 @@
                 <z-m>-0.486038</z-m>
                 <heading-deg>0</heading-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>flashlight_green</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_green.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 
         <model>
@@ -1623,8 +1698,26 @@
                 <z-m>-0.486038</z-m>
                 <heading-deg>0</heading-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
         </model>
 
+        <model>
+            <name>flashlight_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>-0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
+        </model>
 
         <model>
             <name>Al3-Rbdt_Red-side</name>
@@ -1644,6 +1737,25 @@
                 <y-m>0</y-m>
                 <z-m>0</z-m>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>landing_light_white</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_landing_light_white.xml</path>
+            <offsets>
+                <x-m>-3.0</x-m>
+                <y-m>0</y-m>
+                <z-m>-0.55</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>
