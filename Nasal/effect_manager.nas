@@ -153,7 +153,9 @@ var effect_manager = {
  
 		if (me.run == 0) {return;}
  
-		if (getprop("/sim/rendering/shaders/skydome") == 1)
+		var alt_agl = getprop("/position/altitude-agl-ft");
+
+		if ((getprop("/sim/rendering/shaders/skydome") == 1) and (alt_agl < 100.0))
 			{
 			var apos = geo.aircraft_position();
 			var vpos = geo.viewer_position();
@@ -224,9 +226,26 @@ var effect_manager = {
 				}
 
 
+			# rotor wash
+
+			var delta_x = (apos.lat() - vpos.lat()) * me.lat_to_m;
+			var delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
+			 
+			setprop("/environment/aircraft-effects/wash-x", delta_x);
+			setprop("/environment/aircraft-effects/wash-y", delta_y);
+			 
+			var rpm_factor = getprop("/fdm/jsbsim/propulsion/engine/rotor-rpm")/350.0;
+			 
+			 
+			var strength = 20.0/alt_agl;
+			if (strength > 1.0) {strength = 1.0;}
+			strength = strength * rpm_factor;
+			 
+			setprop("/environment/aircraft-effects/wash-strength", strength);
+
 			# light 1 position
 	 
-			var alt_agl = getprop("/position/altitude-agl-ft");
+			#var alt_agl = getprop("/position/altitude-agl-ft");
 	 
 			var proj_x = alt_agl;
 			var proj_z = alt_agl/10.0;
@@ -234,8 +253,8 @@ var effect_manager = {
 			apos.set_lat(lat + ((me.light1_xpos + proj_x) * ch + me.light1_ypos * sh) / me.lat_to_m);
 			apos.set_lon(lon + ((me.light1_xpos + proj_x)* sh - me.light1_ypos * ch) / me.lon_to_m);
 	 
-			var delta_x = (apos.lat() - vpos.lat()) * me.lat_to_m;
-			var delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
+			delta_x = (apos.lat() - vpos.lat()) * me.lat_to_m;
+			delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			var delta_z = apos.alt()- proj_z - vpos.alt();
 	 
 			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m", delta_x);
@@ -281,6 +300,9 @@ var effect_manager = {
 			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[3]", delta_x);
 			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[3]", delta_y);
 			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[3]", delta_z);
+
+
+
 		}
  
 		settimer ( func me.update(), 0.0);
