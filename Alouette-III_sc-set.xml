@@ -237,6 +237,7 @@
 <nasal>
     <al3>
         <file>Aircraft/Alouette-III/Nasal/init_Run.nas</file>
+        <file>Aircraft/Alouette-III/Nasal/effect_manager.nas</file>
     </al3>
     <terrain>
         <file>Aircraft/Alouette-III/Nasal/terrain.nas</file>

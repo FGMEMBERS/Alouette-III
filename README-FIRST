@@ -21,3 +21,4 @@ updates Nov 2017 (Thorsten Renk)
 * added engine start checklist
 * streamlined rendering config
 * added ALS procedural lights
+* added ALS external lightspots for landing and strobe lights
