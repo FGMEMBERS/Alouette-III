@@ -58,6 +58,34 @@ var effect_manager = {
 	splash_y: 0.0,
 	splash_z: -1.0,
 
+	# node reference pointers for faster property I/O
+
+	nd_ref_light1_x:  props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m", 1),
+	nd_ref_light1_y:  props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m", 1),
+	nd_ref_light1_z: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m", 1),
+	nd_ref_light1_dir: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/dir", 1),
+
+	nd_ref_light2_x: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[1]", 1),
+	nd_ref_light2_y: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[1]", 1),
+	nd_ref_light2_z: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[1]", 1),
+
+	nd_ref_light3_x: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[2]", 1),
+	nd_ref_light3_y: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[2]", 1),
+	nd_ref_light3_z: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[2]", 1),
+
+	nd_ref_light4_x: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[3]", 1),
+	nd_ref_light4_y: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[3]", 1),
+	nd_ref_light4_z: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[3]", 1),
+
+	nd_ref_wash_x: props.globals.getNode("/environment/aircraft-effects/wash-x", 1),
+	nd_ref_wash_y: props.globals.getNode("/environment/aircraft-effects/wash-y", 1),
+	nd_ref_wash_strength: props.globals.getNode("/environment/aircraft-effects/wash-strength", 1),
+
+	nd_ref_splash_x: props.globals.getNode("/environment/aircraft-effects/splash-vector-x", 1),
+	nd_ref_splash_y: props.globals.getNode("/environment/aircraft-effects/splash-vector-y", 1),
+	nd_ref_splash_z: props.globals.getNode("/environment/aircraft-effects/splash-vector-z", 1),
+
+
 	init: func {
 		# define your lights here
  
@@ -241,17 +269,16 @@ var effect_manager = {
 			var delta_x = (apos.lat() - vpos.lat()) * me.lat_to_m;
 			var delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			 
-			setprop("/environment/aircraft-effects/wash-x", delta_x);
-			setprop("/environment/aircraft-effects/wash-y", delta_y);
+			me.nd_ref_wash_x.setValue(delta_x);
+			me.nd_ref_wash_y.setValue(delta_x);
 			 
 			var rpm_factor = rotor_rpm /350.0;
-			 
 			 
 			var strength = 20.0/alt_agl;
 			if (strength > 1.0) {strength = 1.0;}
 			strength = strength * rpm_factor;
 			 
-			setprop("/environment/aircraft-effects/wash-strength", strength);
+			me.nd_ref_wash_strength.setValue(strength);
 
 			# light 1 position
 	 
@@ -267,10 +294,12 @@ var effect_manager = {
 			delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			var delta_z = apos.alt()- proj_z - vpos.alt();
 	 
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m", delta_x);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m", delta_y);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m", delta_z);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/dir", heading);
+			me.nd_ref_light1_x.setValue(delta_x);
+			me.nd_ref_light1_y.setValue(delta_y);
+			me.nd_ref_light1_z.setValue(delta_z);
+			me.nd_ref_light1_dir.setValue(heading);			
+
+
 	 
 			# light 2 position
 	 
@@ -281,9 +310,10 @@ var effect_manager = {
 			delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			delta_z = apos.alt() - vpos.alt();
 	 
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[1]", delta_x);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[1]", delta_y);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[1]", delta_z);
+			me.nd_ref_light2_x.setValue(delta_x);
+			me.nd_ref_light2_y.setValue(delta_y);
+			me.nd_ref_light2_z.setValue(delta_z);
+
 	 
 			# light 3 position
 	 
@@ -294,9 +324,11 @@ var effect_manager = {
 			delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			delta_z = apos.alt() - vpos.alt();
 	 
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[2]", delta_x);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[2]", delta_y);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[2]", delta_z);
+			me.nd_ref_light3_x.setValue(delta_x);
+			me.nd_ref_light3_y.setValue(delta_y);
+			me.nd_ref_light3_z.setValue(delta_z);
+
+		
 
 			# light 4 position
 	 
@@ -307,11 +339,9 @@ var effect_manager = {
 			delta_y = -(apos.lon() - vpos.lon()) * me.lon_to_m;
 			delta_z = apos.alt() - vpos.alt();
 	 
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-x-m[3]", delta_x);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-y-m[3]", delta_y);
-			setprop("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[3]", delta_z);
-
-
+			me.nd_ref_light4_x.setValue(delta_x);
+			me.nd_ref_light4_y.setValue(delta_y);
+			me.nd_ref_light4_z.setValue(delta_z);
 
 			}
 		
@@ -332,10 +362,9 @@ var effect_manager = {
 			me.splash_x = splash_h * math.cos(beta) -0.001;
 			me.splash_y = splash_h * math.sin(beta);
 
-    			setprop("/environment/aircraft-effects/splash-vector-x", me.splash_x);
-    			setprop("/environment/aircraft-effects/splash-vector-y", me.splash_y);
-    			setprop("/environment/aircraft-effects/splash-vector-z", me.splash_z);
-
+			me.nd_ref_splash_x.setValue(me.splash_x);
+			me.nd_ref_splash_y.setValue(me.splash_y);
+			me.nd_ref_splash_z.setValue(me.splash_z);
 
 			}
 
