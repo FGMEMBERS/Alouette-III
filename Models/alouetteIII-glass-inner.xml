@@ -1,0 +1,12 @@
+<PropertyList>
+
+	<path>alouetteIII-glass-inner.ac</path>
+
+	 <effect>
+	    <inherits-from>Models/Effects/glass_inner</inherits-from>
+            <object-name>Windshield</object-name>
+        </effect>
+
+	
+
+</PropertyList>

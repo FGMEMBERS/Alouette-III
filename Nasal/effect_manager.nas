@@ -3,8 +3,10 @@
 
 # provides relative vectors from eye-point to aircraft lightspots on runway
 # and rotor wash
-# in east/north/up coordinates the renderer uses
-# used for outside views
+# in east/north/up coordinates the renderer uses used for outside views
+
+# in addition manages splash vector for rain
+
 # Thorsten Renk, 2017
  
  
@@ -51,6 +53,10 @@ var effect_manager = {
 	light4_b: 0.0,
 	light4_size: 0.0,
 	light4_is_on: 0,
+
+	splash_x: 0.0,
+	splash_y: 0.0,
+	splash_z: -1.0,
 
 	init: func {
 		# define your lights here
@@ -154,8 +160,12 @@ var effect_manager = {
 		if (me.run == 0) {return;}
  
 		var alt_agl = getprop("/position/altitude-agl-ft");
+		var rotor_rpm = getprop("/fdm/jsbsim/propulsion/engine/rotor-rpm");
+		var als_on = getprop("/sim/rendering/shaders/skydome");
 
-		if ((getprop("/sim/rendering/shaders/skydome") == 1) and (alt_agl < 100.0))
+		# lights and wash we only need to do close to the ground when ALS is on
+
+		if ((als_on == 1) and (alt_agl < 100.0))
 			{
 			var apos = geo.aircraft_position();
 			var vpos = geo.viewer_position();
@@ -234,7 +244,7 @@ var effect_manager = {
 			setprop("/environment/aircraft-effects/wash-x", delta_x);
 			setprop("/environment/aircraft-effects/wash-y", delta_y);
 			 
-			var rpm_factor = getprop("/fdm/jsbsim/propulsion/engine/rotor-rpm")/350.0;
+			var rpm_factor = rotor_rpm /350.0;
 			 
 			 
 			var strength = 20.0/alt_agl;
@@ -303,7 +313,32 @@ var effect_manager = {
 
 
 
-		}
+			}
+		
+		# rain also needs to be done above 100 ft
+		
+		if (als_on == 1)
+			{
+
+			me.splash_z = -1.0 - rotor_rpm/100.0;
+			if (me.splash_z < -2.0) {me.splash_z = -2.0;}
+			
+			var beta = getprop("/fdm/jsbsim/aero/beta-deg") * math.pi/180.0;
+			var airspeed = getprop("/velocities/airspeed-kt");
+
+			var splash_h = airspeed/80.0;
+			if (splash_h > 1.0) {splash_h = 1.0;}
+
+			me.splash_x = splash_h * math.cos(beta) -0.001;
+			me.splash_y = splash_h * math.sin(beta);
+
+    			setprop("/environment/aircraft-effects/splash-vector-x", me.splash_x);
+    			setprop("/environment/aircraft-effects/splash-vector-y", me.splash_y);
+    			setprop("/environment/aircraft-effects/splash-vector-z", me.splash_z);
+
+
+			}
+
  
 		settimer ( func me.update(), 0.0);
 		},

@@ -106,6 +106,15 @@
                 <z-m>0</z-m>
             </offsets>
         </model>
+
+	<model>
+            <path>Aircraft/Alouette-III/Models/alouetteIII-glass-inner.xml</path>
+            <offsets>
+                <x-m>-0.01</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
 	
 	<effect>
             <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>
@@ -190,7 +199,6 @@
             <shader>chrome</shader>
             <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
             <object-name>Vitrage</object-name>
-	   <!-- <object-name>rear-view mirror</object-name>-->
 	    <object-name>rear-view mirror-glass</object-name>
         </animation>
 	
