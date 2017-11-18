@@ -115,6 +115,15 @@
                 <z-m>0</z-m>
             </offsets>
         </model>
+
+	<model>
+            <path>Aircraft/Alouette-III/Models/alouetteIII-windows.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
 	
 	<effect>
             <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>

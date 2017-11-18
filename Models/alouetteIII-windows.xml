@@ -1,0 +1,15 @@
+<PropertyList>
+
+	<path>alouetteIII-windows.ac</path>
+
+	 <effect>
+	    <inherits-from>Models/Effects/glass_inner</inherits-from>
+            <object-name>AR-DPorte-Vitrage</object-name>
+            <object-name>AR-GPorte-Vitrage</object-name>
+            <object-name>AV-DPorte-Vitrage</object-name>
+            <object-name>AV-GPorte-Vitrage</object-name>
+        </effect>
+
+	
+
+</PropertyList>

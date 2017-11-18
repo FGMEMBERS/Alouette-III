@@ -20,6 +20,9 @@ helper.add("fdm/jsbsim/propulsion/engine[0]/b1-rad");
 
 var init_Run =   func {
 
+setprop("/fdm/jsbsim/animation/cockpit-left-door-pos-cmd", 0);
+setprop("/fdm/jsbsim/animation/cockpit-right-door-pos-cmd", 0);
+
 setprop("fdm/jsbsim/electrical/switch/battery", 1);
 setprop("fdm/jsbsim/electrical/switch/alternator", 1);
 
@@ -36,9 +39,9 @@ interpolate("fdm/jsbsim/propulsion/engine[0]/cutoff",0, 2.0);
 setprop("fdm/jsbsim/animation/master-switch-cmd", 1);
 interpolate("fdm/jsbsim/animation/master-switch-cmd", 1,4.0);
 
-print("INIT RUN DONE");
+print("Startup sequence complete");
 var window_lhbon = screen.window.new(nil, -210, 1, 15);
-window_lhbon.write("ROTOR READY,  ENGINE  STARTED ",0.5,1,0.9);
+window_lhbon.write("Rotor ready, engine started, wait for rotor to spin up. ",0.5,1,0.9);
             }
 
 #display_helper();
