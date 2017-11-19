@@ -155,7 +155,7 @@
 		<difference>
 		    <property>systems/gear/gear[0]/z-position</property>
 		     <product>
-			 <property>systems/terrain/snow-condition</property>
+			 <property>/sim/model/ski-equipment</property>
 			<value>-3</value>
 		    </product>
 		</difference>
@@ -168,7 +168,7 @@
 		<difference>
 		    <property>systems/gear/gear[0]/z-position</property>
 		     <product>
-			 <property>systems/terrain/snow-condition</property>
+			 <property>/sim/model/ski-equipment</property>
 			<value>-3</value>
 		    </product>
 		</difference>
@@ -182,7 +182,7 @@
 		<difference>
 		    <property>systems/gear/gear[0]/z-position</property>
 		     <product>
-			 <property>systems/terrain/snow-condition</property>
+			 <property>/sim/model/ski-equipment</property>
 			<value>-3</value>
 		    </product>
 		</difference>

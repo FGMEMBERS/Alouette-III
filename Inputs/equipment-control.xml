@@ -202,6 +202,23 @@
 			    <property>/fdm/jsbsim/animation/pilot-copilot</property>
 			</binding>
 		    </checkbox>
+		    <text>
+			<label>Rotor particles</label>
+			<halign>left</halign>
+			<row>3</row>
+		    <col>0</col>
+		    </text>
+		     <checkbox>
+			<row>3</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/rotor-particles</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-toggle</command>
+			    <property>/fdm/jsbsim/animation/rotor-particles</property>
+			</binding>
+		    </checkbox>
 
 
 		</group>

@@ -9,6 +9,7 @@
 
 # Thorsten Renk, 2017
  
+var landcover_map = {BuiltUpCover: 0.1, Town: 0.1, Freeway:0.1, BarrenCover:1.0, HerbTundraCover: 0.2, GrassCover: 0.2, CropGrassCover: 0.2, EvergreenBroadCover: 0.2, EvergreenNeedleCover: 0.2, Sand: 1.0, Grass: 0.2, Grassland: 0.2, Ocean: 2.0, Marsh: 1.5, Lake: 2.0, ShrubCover: 0.4, Shrub: 0.4, Landmass: 0.2, CropWoodCover: 0.1, MixedForestCover: 0.1, DryCropPastureCover: 0.4, MixedCropPastureCover: 0.2, MixedCrop: 0.2, ComplexCrop: 0.2, IrrCropPastureCover: 0.1, DeciduousBroadCover: 0.1, DeciduousNeedleCover: 0.1, Bog: 1.5, Littoral: 2.0, pa_taxiway : 0.1, pa_tiedown: 0.1, pc_taxiway: 0.1, pc_tiedown: 0.1, Glacier: 3.0, SnowCover: 3.0, DryLake: 1.0, IntermittentStream: 1.0, DryCrop: 0.6, Lava: 1.0, GolfCourse: 0.1, Rock: 0.3, Construction: 0.5, PackIce: 2.0, NaturalCrop: 0.2};
  
 var effect_manager = {
  
@@ -54,9 +55,16 @@ var effect_manager = {
 	light4_size: 0.0,
 	light4_is_on: 0,
 
-	splash_x: 0.0,
+	splash_x: 0.01,
 	splash_y: 0.0,
 	splash_z: -1.0,
+	frost: 0.0,
+
+	dust: 0.0,
+	is_water: 0,
+	is_snow: 0,
+	dust_color: [1.0, 1.0,1.0],
+	dust_color_last: [0.0, 0.0, 0.0],
 
 	# node reference pointers for faster property I/O
 
@@ -85,6 +93,11 @@ var effect_manager = {
 	nd_ref_splash_y: props.globals.getNode("/environment/aircraft-effects/splash-vector-y", 1),
 	nd_ref_splash_z: props.globals.getNode("/environment/aircraft-effects/splash-vector-z", 1),
 
+	nd_ref_frost_level: props.globals.getNode("/environment/aircraft-effects/frost-level", 1),
+
+	nd_ref_dust_r: props.globals.getNode("/fdm/jsbsim/effects/dust-r", 1),
+	nd_ref_dust_g: props.globals.getNode("/fdm/jsbsim/effects/dust-g", 1),
+	nd_ref_dust_b: props.globals.getNode("/fdm/jsbsim/effects/dust-b", 1),
 
 	init: func {
 		# define your lights here
@@ -191,6 +204,8 @@ var effect_manager = {
 		var rotor_rpm = getprop("/fdm/jsbsim/propulsion/engine/rotor-rpm");
 		var als_on = getprop("/sim/rendering/shaders/skydome");
 
+		setprop("/position/gear-agl-m", alt_agl * 0.3048 - 0.72);
+
 		# lights and wash we only need to do close to the ground when ALS is on
 
 		if ((als_on == 1) and (alt_agl < 100.0))
@@ -262,6 +277,11 @@ var effect_manager = {
 				{
 				me.light1_off();
 				}
+
+			# rotor particle dust
+
+			me.terrain_probe(apos.lat(), apos.lon(), apos.alt());
+			me.set_dust();
 
 
 			# rotor wash
@@ -343,6 +363,9 @@ var effect_manager = {
 			me.nd_ref_light4_y.setValue(delta_y);
 			me.nd_ref_light4_z.setValue(delta_z);
 
+
+			
+
 			}
 		
 		# rain also needs to be done above 100 ft
@@ -365,7 +388,14 @@ var effect_manager = {
 			me.nd_ref_splash_x.setValue(me.splash_x);
 			me.nd_ref_splash_y.setValue(me.splash_y);
 			me.nd_ref_splash_z.setValue(me.splash_z);
+	
+			var temperature = getprop("/environment/temperature-degc");
 
+			me.frost = - (temperature + 5.0);
+			if (me.frost < 0.0) {me.frost = 0.0;}
+			else if (me.frost > 0.5) {me.frost = 0.5;}
+
+			me.nd_ref_frost_level.setValue(me.frost);
 			}
 
  
@@ -436,10 +466,124 @@ var effect_manager = {
 		#setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-b[3]", 0.0);
   		me.light4_is_on = 0;
 		},
+
+
+	terrain_probe: func (lat, lon, alt) {
+		
+		var info = geodinfo(lat, lon);
+		if ((info != nil) and (info[1] != nil))
+			{
+	 		if (contains(landcover_map,info[1].names[0])) 
+				{me.dust = landcover_map[info[1].names[0]];}
+			else 
+				{me.dust = 0.2;}
+		
+			}
+		else
+			{
+			me.dust = 0.2;	
+			}
+
+			if (me.dust > 2.99)
+				{
+				me.is_snow = 1;
+				me.is_water = 0;
+				me.dust = 2.0 * (me.dust - 2.0);
+				}
+			else if (me.dust > 1.99)
+				{
+				me.is_water = 1;
+				me.is_snow = 0;
+				me.dust = 3.0 * (me.dust - 1.0);
+				}
+			else
+				{
+				me.dust = 2.0 * me.dust;
+				me.is_snow = 0;
+				me.is_water = 0;
+				}
+				
+         		var snowlevel = getprop("/environment/snow-level-m");
+			var dustcover = getprop("/environment/surface/dust-cover-factor");
+			var wetness = getprop("/environment/surface/wetness");
+
+			if ((alt  > snowlevel) and (me.is_water == 0))
+				{
+				me.is_snow = 1;
+				}
+			else if ((wetness > 0.3) and (me.is_snow == 0))
+				{
+				me.is_water = 1;
+				}
+
+			if (me.is_snow == 1)
+				{
+				me.dust = 2.0 * (me.dust + 1.0);
+				}
+			else if (me.is_water == 1)
+				{
+				me.dust = me.dust + 5.0 * wetness;
+				}
+			else
+				{
+				me.dust = me.dust + 3.5 * dustcover;
+				}
+		},
+
+
+		set_dust: func {
+
+
+			var torque = getprop("/fdm/jsbsim/propulsion/engine/torque-lbsft");
+
+			var size = 0.04 * math.sqrt(math.abs(torque)) + 0.8  + 0.00000004 * math.pow(torque, 2.0);
+			size *= me.dust;
+			setprop("/fdm/jsbsim/effects/dust", me.dust);
+			setprop("/fdm/jsbsim/effects/particle-size", size);
+			
+			if ((me.is_snow) or (me.is_water))
+				{
+				me.dust_color = [1.0, 1.0, 1.0];
+				}
+			else 
+				{
+				me.dust_color = [0.75, 0.75, 0.6];
+				}
+			var scenelight = 1.2 * getprop("/rendering/scene/diffuse/red");
+			if (me.light1_is_on == 1)
+				{
+				scenelight+= 0.5;
+				}
+
+			if (scenelight > 1.0) {scenelight = 1.0;}
+
+			me.dust_color[0] *= scenelight;
+			me.dust_color[1] *= scenelight;
+			me.dust_color[2] *= scenelight;
+
+			if (me.dust_color[0] != me.dust_color_last[0])
+				{
+				me.nd_ref_dust_r.setValue(me.dust_color[0]);
+				me.dust_color_last[0] = me.dust_color[0];
+				}
+			if (me.dust_color[1] != me.dust_color_last[1])
+				{
+				me.nd_ref_dust_g.setValue(me.dust_color[1]);
+				me.dust_color_last[1] = me.dust_color[1];
+				}
+			if (me.dust_color[2] != me.dust_color_last[2])
+				{
+				me.nd_ref_dust_b.setValue(me.dust_color[2]);
+				me.dust_color_last[2] = me.dust_color[2];
+				}
+
+		},
+
  
 };
 
 
 effect_manager.init();
+
 
 

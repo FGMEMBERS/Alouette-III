@@ -306,6 +306,18 @@
         <!--=================DUST==========================-->
 
         <model>
+            <name>Rotor-Particles</name>
+            <path>Aircraft/Alouette-III/Models/Particles/rotor_particle.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>0</heading-deg>
+            </offsets>
+        </model>
+
+        <!--<model>
             <name>Rotor-Poussiere1</name>
             <path>Aircraft/Alouette-III/Fx/Poussiere.xml</path>
             <offsets>
@@ -346,7 +358,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[2]</property><!--orientation/pitch-deg-->
+            <property>sim/multiplay/generic/float[2]</property>
             <axis>
                 <x>0</x>
                 <y>-1</y>
@@ -359,7 +371,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[3]</property><!--orientation/roll-deg-->
+            <property>sim/multiplay/generic/float[3]</property>
             <axis>
                 <x>1</x>
                 <y>0</y>
@@ -372,8 +384,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
-            <factor>0.6</factor>
+            <property>sim/multiplay/generic/float[4]</property>
             <axis>
                 <x>0</x>
                 <y>0</y>
@@ -386,7 +397,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
+            <property>sim/multiplay/generic/float[4]</property>
             <offset>0</offset>
             <x-min>1</x-min>
             <y-min>1</y-min>
@@ -414,7 +425,7 @@
                 <y>0</y>
                 <z>-1</z>
             </axis>
-        </animation>
+        </animation>-->
        
 
 	 <model>
@@ -615,13 +626,7 @@
 	    <object-name>G-Ski</object-name>
 	    <object-name>D-Ski</object-name>
             <condition>
-		<or>
-		    <property>sim/model/ski-equipment</property>
-                <greater-than>
-		<property>fdm/jsbsim/position/h-sl-meters</property>
-		<property>environment/snow-level-m</property>
-		</greater-than>
-		</or>
+		<property>sim/model/ski-equipment</property>
 	    </condition>
 	</animation>
 		

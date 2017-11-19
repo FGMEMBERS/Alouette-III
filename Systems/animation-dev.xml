@@ -14,6 +14,7 @@
     <property value="1">systems/rotor/blade-deployed</property>
     
     <property value="0">animation/pilot-copilot</property>
+    <property value="1">animation/rotor-particles</property>
     <property value="1">animation/master-switch-lock-cmd</property>   
     <property value="0">animation/cutoff-switch-lock-cmd</property>    
     <property value="0">animation/mission-switch</property>
