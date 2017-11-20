@@ -224,6 +224,12 @@
          <serviceable type="bool">true</serviceable>
          <enabled type="bool">true</enabled>
      </gsdi>
+     <heading-indicator>
+	 <indicated-heading-deg type="double">0.0</indicated-heading-deg>
+     </heading-indicator>
+     <altimeter>
+	 <indicated-altitude-ft type="double">0.0</indicated-altitude-ft>
+     </altimeter>
 </instrumentation>
 
 <input include="Inputs/Alouette-III-input_dev.xml"/>

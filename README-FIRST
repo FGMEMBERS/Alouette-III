@@ -24,3 +24,5 @@ updates Nov 2017 (Thorsten Renk)
 * added ALS external lightspots for landing and strobe lights
 * added rotor wash
 * added rain splash simulation
+* added environment-dependent rotor wash particle system (based on EC-135 by Heiko Schulz)
+* added autopilot with heading hold, heding bug and altitude-hold modes

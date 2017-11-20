@@ -86,6 +86,19 @@
                 <property>fdm/jsbsim/instruments/autopilot-hold</property>
             </binding>
         </action>
+        <hovered>
+		<binding>
+		    	<command>set-tooltip</command>
+		        <tooltip-id>ap-master</tooltip-id>
+		        <label>Autopilot: %s</label>
+		    	<mapping>nasal</mapping>
+		    	<script>
+		            var modes = ['OFF', 'ON'];
+		            return modes[arg[0]];
+		     	</script>
+		        <property>/fdm/jsbsim/instruments/autopilot-hold</property>
+		    </binding>
+            </hovered>
     </animation>
 
 
@@ -114,6 +127,19 @@
                 <property>fdm/jsbsim/instruments/autopilot-lock-true-heading</property>
             </binding>
         </action>
+        <hovered>
+		<binding>
+		    	<command>set-tooltip</command>
+		        <tooltip-id>ap-heading-hold</tooltip-id>
+		        <label>AP heading hold: %s</label>
+		    	<mapping>nasal</mapping>
+		    	<script>
+		            var modes = ['OFF', 'ON'];
+		            return modes[arg[0]];
+		     	</script>
+		        <property>/fdm/jsbsim/instruments/autopilot-lock-true-heading</property>
+		    </binding>
+            </hovered>
     </animation>
 
     <animation>
@@ -139,6 +165,19 @@
                 <property>fdm/jsbsim/instruments/autopilot-lock-heading-bug</property>
             </binding>
         </action>
+        <hovered>
+		<binding>
+		    	<command>set-tooltip</command>
+		        <tooltip-id>ap-heading-bug</tooltip-id>
+		        <label>AP heading follow bug: %s</label>
+		    	<mapping>nasal</mapping>
+		    	<script>
+		            var modes = ['OFF', 'ON'];
+		            return modes[arg[0]];
+		     	</script>
+		        <property>/fdm/jsbsim/instruments/autopilot-lock-heading-bug</property>
+		    </binding>
+            </hovered>
     </animation>
 
     <animation>
@@ -164,6 +203,19 @@
                 <property>fdm/jsbsim/instruments/autopilot-lock-altitude</property>
             </binding>
         </action>
+        <hovered>
+		<binding>
+		    	<command>set-tooltip</command>
+		        <tooltip-id>ap-altitude</tooltip-id>
+		        <label>AP altitude hold: %s</label>
+		    	<mapping>nasal</mapping>
+		    	<script>
+		            var modes = ['OFF', 'ON'];
+		            return modes[arg[0]];
+		     	</script>
+		        <property>/fdm/jsbsim/instruments/autopilot-lock-altitude</property>
+		    </binding>
+            </hovered>
     </animation>
 
 

@@ -150,7 +150,7 @@
       
       <summer name="fcs/collective_root-ctrl-rad">
         <input>fcs/x-col</input>
-        <input> ap/collective-cmd </input>
+        <!--<input> ap/collective-cmd </input>-->
         <clipto>
           <min> 0.0 </min>
           <max> 1 </max>
