@@ -124,6 +124,16 @@
                 <z-m>0</z-m>
             </offsets>
         </model>
+
+      <!-- Flexible winch rope -->
+  	<!--<model>
+    		<path>Aircraft/Alouette-III/Models/Rope/long-line.xml</path>
+    		<offsets>
+        		<x-m>0.156</x-m>
+        		<y-m>-1.333</y-m>
+        		<z-m>2.100</z-m>
+    		</offsets>
+  	</model>-->
 	
 	<effect>
             <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>

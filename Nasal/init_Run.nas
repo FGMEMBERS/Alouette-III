@@ -46,15 +46,16 @@ window_lhbon.write("Rotor ready, engine started, wait for rotor to spin up. ",0.
 
 #display_helper();
 
-#setlistener("/sim/signals/fdm-initialized",     init_Run    );
+
 
 close_helper = func { helper.close(); }
 
 
+# flex rope animation
 
 
 
-
+#setlistener("/sim/signals/fdm-initialized",     func {rescue.rope_animation(0); }    );
 
 
 

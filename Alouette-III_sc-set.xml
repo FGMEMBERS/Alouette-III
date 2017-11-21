@@ -129,7 +129,7 @@
 		    <reflection-rainbow type="float">0.1</reflection-rainbow>
 		</shader_2>
         </model>
-
+        <winch include="rope.xml"/>
         <view>
                 <internal archive="y">true</internal>
                 <config>
@@ -251,6 +251,7 @@
     </terrain>
     <rescue>
         <file>Aircraft/Alouette-III/Nasal/rescue_operation.nas</file>
+        <file>Aircraft/Alouette-III/Nasal/ropeanimation.nas</file>
     </rescue>
     <nav>
             <file>Aircraft/Alouette-III/Nasal/nav.nas</file>

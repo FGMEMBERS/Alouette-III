@@ -3,47 +3,13 @@
     Usable with FlightGear
     Property of Gerard Robin
     Copyright 
+
+    Re-written by Thorsten Renk 2017
 -->
 <PropertyList>
 
         <title>Helicoptere Alouette III</title>
             
-	<!--<key>
-	    <name>F</name>
-	    <desc>Blades folded</desc>
-	    </key>
-            <key>
-	    <name>f</name>
-	    <desc>Blades deployed</desc>
-            </key>
-	    <key>
-            <name>B</name>
-            <desc>Toggle Brake-Parking</desc>
-            </key>
-	    <key>
-            <name>{</name>
-	    <desc>Toggle Pump ON/OFF</desc>
-            </key>
-            <key>
-            <name>}</name>
-            <desc>Toggle Electric power ON and Start Turbine at idle </desc>
-            </key>
-            <key>
-	    <name>k</name>
-	    <desc>Toggle rotor brake ON/OFF</desc>
-            </key>
-	    <key>
-	    <name>d</name>
-	    <desc>Toggle open/close rear left door</desc>
-            </key>
-	    <key>
-	    <name>r</name>
-	    <desc>Toggle rescue op</desc>
-            </key>
-            <key>
-            <name>B</name>
-            <desc>Toggle Brake-Parking</desc>
-            </key>-->
 
 	<key>
 		<name>Ctrl+a</name>

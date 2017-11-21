@@ -26,3 +26,5 @@ updates Nov 2017 (Thorsten Renk)
 * added rain splash simulation
 * added environment-dependent rotor wash particle system (based on EC-135 by Heiko Schulz)
 * added autopilot with heading hold, heding bug and altitude-hold modes
+* fixes for classic rescue operation using winch
+* added flexible rope animations for winch
