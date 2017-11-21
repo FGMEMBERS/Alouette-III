@@ -220,6 +220,23 @@
 			</binding>
 		    </checkbox>
 
+		    <text>
+			<label>Rescue Mission</label>
+			<halign>left</halign>
+			<row>4</row>
+		    <col>0</col>
+		    </text>
+		    <checkbox>
+			<row>4</row>
+			<col>1</col>
+			<property>/sim/model/rescue</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-toggle</command>
+			    <property>/sim/model/rescue</property>
+			</binding>
+		    </checkbox>
 
 		</group>
 	     <hrule/>

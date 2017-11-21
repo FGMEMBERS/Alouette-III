@@ -232,7 +232,8 @@
      </altimeter>
 </instrumentation>
 
-<input include="Inputs/Alouette-III-input_dev.xml"/>
+<!--<input include="Inputs/Alouette-III-input_dev.xml"/>-->
+<input include="Inputs/key_bindings.xml"/>
 
 <environment>
     <params>

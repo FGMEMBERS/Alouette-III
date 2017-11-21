@@ -8,7 +8,7 @@
 
         <title>Helicoptere Alouette III</title>
             
-	<key>
+	<!--<key>
 	    <name>F</name>
 	    <desc>Blades folded</desc>
 	    </key>
@@ -43,86 +43,79 @@
             <key>
             <name>B</name>
             <desc>Toggle Brake-Parking</desc>
-            </key>
-	    
+            </key>-->
+
+	<key>
+		<name>Ctrl+a</name>
+            	<desc>AP master switch</desc>
+	</key>
+	<key>
+		<name>Ctrl+b</name>
+            	<desc>AP lock heading bug</desc>
+	</key>
+	<key>
+		<name>Ctrl+h</name>
+            	<desc>AP lock current heading</desc>
+	</key>
+	<key>
+		<name>Ctrl+l</name>
+            	<desc>AP lock altitude</desc>
+	</key>
+	<key>
+		<name>Ctrl+w</name>
+            	<desc>Toggle winch deployment</desc>
+	</key>
+	<key>
+		<name>Shift+w</name>
+            	<desc>Winch down</desc>
+	</key>
+	<key>
+		<name>w</name>
+            	<desc>Winch up</desc>
+	</key>
 
         <text>
             
-            That Helicopter is loaded with:
-                    Electric power OFF
-                    Engines and Rotor Gear OFF
-                    Rotor Brake ON
-                    Brake-Parking ON
-                    Nose Wheel Steering LOCKed
+The Helicopter is loaded with:
+ * Electric power OFF
+ * Engines and Rotor Gear OFF
+ * Rotor Brake ENGAGED
+ * Parking Brake ENGAGED
+ * Nose Wheel Steering LOCKED
     
-  ++++++HOW-TO-START+++++++	     
-   ========================
-   =With Menu Aircraft Control=
-   ========================
-   Uncheck ROTOR BRAKE
-   Button PUMP
-   Button BATTERY
-   Button ALTERNATOR
-   Button START ON
-   
-   then after a short delay:
-   you will notice the Turbine RPM increasing 
-   When between 17500==>18000
-       go to    TURBINE RPM CONTROL
-       then Check  20000 - Clutch
-       then Check  28000 - Low
-       then Check  33500 - Nominal 
-   When Turbine RPM at 33500 you may take off  
-    
-   ==================
-   =With shortcut Keys=
-   ==================
-    You follow that sequence:
-    1/Rotor brake OFF  key  "k"
-    2/  fuel pump ON with "{"
-    3/ battery, alternator, and turbine  ON  with "}"
-===> You will notice the green and yellow lamps light up
-===>You will notice the temperature increasing
-===>After some delay you will notice yellow and green lamps light down
-===>After some delay you will notice the turbine RPM increasing
-    Then you are at Idle the clutch is not engaged
-     4/Turbine at normal RPM the clucht is being engaged => key "j"
+====== Engine startup ======
 
-    OR OR OR OR OR OR OR 
-    Menu/Alouette-III/Qick START
+Please refer to the in-sim checklist (Help -> Aircraft checklists) for the engine start procedure.
 
-++++++HOW-TO-STOP+++++++
-    The fuel pump OFF with "{"
-    The Rotor brake can be ON
-    Or With Menu Aircraft Control Button STOP ENGINE
+====== Autopilot      ======
 
-++++++AUTO ROTATION+++++++
-    You can experiment it with  fuel pump OFF ( with key "{" ).
-    The Collective must be at  full (down) position
-    Keep on a stabilized position with  a  speed of 40 knts
-    The Rotor will stabilize at 200 rpm
-    When close to the ground level, pull quickly the Collective
+The Alouette III has a simple autopilot for cruise flight. Do not use it in hover flight, it won't work! The AP is designed to help you fly the helicopter, not to fly it for you - it expects a well-trimmed craft, do not engage the AP during dynamical maneuvers.
 
- ++++++ RESCUE OPERATION+++++++
-            For fun
-            With Menu Aircraft Control:
-              Check Rescue Mission
-            you will notice the winch arm deploying
-              Check Open Left Cabin Door  
-            you will notice the left cabin door opening
-            Select Rescue-Op   ON => key "r"  (toggle ON/OFF)
-            You will notice a man on the side of the left door, and a man hanging on the rope
-            UP the rescued man => key 'w' or DOWN    => key 'W'
-            When full UP the rescued person will be removed
-    
-    
+To engage the AP, make sure you're flying straight and level and use the pedals to null drift. First flick the AP master switch (Ctrl+a) - this makes the AP take over pedal controls. Next engage heading-hold mode (Ctrl+h) and be prepared to deal with transient altitude changes. Then trim the helicopter well in the pitch axis such that you can let go of the controls for at least 10 seconds without loss of control. Once that is the case, engage altitude hold mode to lock current altitude (Ctrl+l).
 
-   OPEN/CLOSE THE DOORS
-   Click on the doors handle
-   
-   LOCK/UNLOCK THE NOSE WHEEL STEERING
-   Click on the red control handle (on the console  handle at the right side)
-    
+Once the Alouette is in stable flight, you can control it via the heading bug on the heading indicator by engaging the heading bug acquire mode (Ctrl+b). You have very limited control over airspeed using the collective.
+
+Do not change trim while the AP is on, and do not move your controls around, or you will have to fight nasty transients when you disengage the AP again.
+
+
+====== Auto rotation  ======
+
+Auto rotation uses the residual energy stored in the angular momentum of the rotor to land the helicopter in case of a turbine failure. You can cause an engine failure in the air by switching the fuel pump off.
+
+Move collective into full (down) position. Stabilize airspeed using pitch at 40 kt. The helicopter will drop, the potential energy released helps to drive the rotor to about 200 rpm. Close to the ground, pull up to control sinkrate, then quickly use collective for a soft touchdown.
+
+====== Rescue ops     ======
+
+Rescue operations using the helicopter's winch can be tried. To prepare for such an operation:
+
+* check 'Rescue mission' in the configuration dialog
+* open the left rear cabin door
+
+This puts the winch operator in place as soon as the winch is deployed.
+
+When close to the emergency site, deploy the winch (overhead panel switch or Ctrl+w), then the winch rope can be extended and pulled in by w and Shift+w. There's a model of a man hanging from the rope, he'll vanish as soon as the winch rope is hauled fully in.
+
+
     
         </text>
 

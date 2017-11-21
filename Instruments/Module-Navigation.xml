@@ -10,42 +10,6 @@
     <path>Models/module-navigation.ac</path>
     <texture-path>Models/Textures</texture-path>
 
-   <!-- <animation>
-            <type>noshadow</type>
-            <object-name></object-name>
-    </animation>-->
-
-
-   <!-- <animation>
-        <type>rotate</type>
-        <object-name></object-name>
-        <property></property>
-        <factor></factor>
-
-        <center>
-            <x-m></x-m>
-            <y-m></y-m>
-            <z-m></z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-
-    <animation>
-        <type>pick</type>
-        <object-name></object-name>
-        <action>
-            <button>0</button>
-            <binding>
-                <command>property-toggle</command>
-                <property></property>
-            </binding>
-        </action>
-    </animation>-->
 
     <model>
         <name>Light</name>
