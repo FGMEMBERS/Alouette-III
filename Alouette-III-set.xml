@@ -78,7 +78,7 @@
 	  </preview>
 	</previews>
 	<sound>
-	    <path>Aircraft/Alouette-III/Fx/sound.xml</path>
+	    <path>Aircraft/Alouette-III/Sounds/sound.xml</path>
 	</sound>
 
         <instrumentation>

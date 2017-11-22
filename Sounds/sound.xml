@@ -31,6 +31,58 @@
 			</pitch>
 		</engine>
 
+		<turbine-startup>
+			<mode>transient</mode>
+			<path>Sounds/turbine_start.wav</path>
+			<name>turbine-startup</name>
+			<condition>
+				<and>
+					<greater-than>
+					    <property>fdm/jsbsim/propulsion/engine/engine-rpm</property>
+					    <value>100</value>
+					</greater-than>
+					<equals>
+						<property>/controls/engines/engine[0]/cutoff</property>
+						<value>0</value>
+					</equals>
+					<not>
+						<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+					</not>
+				</and>
+			</condition>
+			<volume>
+				<factor>0.2</factor>
+			</volume>
+		</turbine-startup>
+
+		<turbine-shutdown>
+			<mode>transient</mode>
+			<path>Sounds/turbine_shutdown.wav</path>
+			<name>turbine-shutdown</name>
+			<condition>
+				<and>
+					<less-than>
+					    <property>fdm/jsbsim/propulsion/engine/engine-rpm</property>
+					    <value>5000</value>
+					</less-than>
+					<equals>
+						<property>/controls/engines/engine[0]/cutoff</property>
+						<value>1</value>
+					</equals>
+					<greater-than>
+						<property>fdm/jsbsim/animation/rotor0-rotation</property>
+						<value>5</value>
+					</greater-than>
+					<not>
+						<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+					</not>
+				</and>
+			</condition>
+			<volume>
+				<factor>0.2</factor>
+			</volume>
+		</turbine-shutdown>
+
 		<overspeed>
 			<name>overspeed</name>
 			<mode>looped</mode>
@@ -106,6 +158,31 @@
 			<reference-dist>10.0</reference-dist>
 			<max-dist>20.0</max-dist>
 		</wind>
+
+		<rain>
+			<name>rain</name>
+			<mode>looped</mode>
+			<path>Sounds/rain-windshield.wav</path>
+			<condition>
+				<and>
+					<greater-than>
+					<property>/environment/rain-norm</property>
+					<value>0.3</value>
+					</greater-than>
+					<not>
+						<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+					</not>
+				</and>
+			</condition>
+			<volume>
+				<property>/environment/rain-norm</property>
+				<factor>0.3</factor>
+				<min>0.0</min>
+				<max>0.5</max>
+			</volume>
+			<reference-dist>10.0</reference-dist>
+			<max-dist>20.0</max-dist>
+		</rain>
 
 		<crash>
 			<name>intense ground contact</name>
