@@ -128,6 +128,7 @@
 		    <ambient-correction type="float">0.0</ambient-correction>
 		    <reflection-rainbow type="float">0.1</reflection-rainbow>
 		</shader_2>
+        	<crew include="crew_cfg.xml"/>
         </model>
         <winch include="rope.xml"/>
         <view>
@@ -249,13 +250,16 @@
     <terrain>
         <file>Aircraft/Alouette-III/Nasal/terrain.nas</file>
     </terrain>
+    <crew>
+ 	<file>Aircraft/Alouette-III/Nasal/crew.nas</file>
+    </crew>
     <rescue>
         <file>Aircraft/Alouette-III/Nasal/rescue_operation.nas</file>
         <file>Aircraft/Alouette-III/Nasal/ropeanimation.nas</file>
     </rescue>
-    <nav>
+    <!--<nav>
             <file>Aircraft/Alouette-III/Nasal/nav.nas</file>
-    </nav>
+    </nav>-->
 </nasal>
 
 <fdm include="Systems/jsbsim_init.xml"/>

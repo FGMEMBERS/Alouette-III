@@ -38,6 +38,24 @@
                     <pitch-deg>0</pitch-deg>
             </offsets>
         </model>
+
+	<model>
+	    <name>Cockpit</name>
+            <path>Aircraft/Alouette-III/Models/Crew/amelia.xml</path>
+            <offsets>
+                    <x-m>-1.5</x-m>
+                    <y-m>-0.15</y-m>
+                    <z-m>-1.1</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+	  <condition>
+	   <equals>
+	    <property>/fdm/jsbsim/animation/amelia</property>
+	    <value>1</value>
+	   </equals>
+   	  </condition>
+        </model>
+
 	
 	<model>
 	    <name>Cockpit</name>
@@ -127,6 +145,7 @@
 
       <!-- Flexible winch rope -->
   	<!--<model>
+		<name>rope</name>
     		<path>Aircraft/Alouette-III/Models/Rope/long-line.xml</path>
     		<offsets>
         		<x-m>0.156</x-m>
@@ -134,6 +153,9 @@
         		<z-m>2.100</z-m>
     		</offsets>
   	</model>-->
+
+
+
 	
 	<effect>
             <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>
