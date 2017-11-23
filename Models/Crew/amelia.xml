@@ -11,7 +11,7 @@
 <!-- Character -->
 	<model>
 		<name>Amelia</name>
-	  <path>Aircraft/Generic/Human/Models/amelia.xml</path>
+	  <path>Aircraft/Alouette-III/Models/Crew/amelia_wrapper.xml</path>
 	 </model>
 
 
@@ -208,6 +208,31 @@
 		</axis>
 	</animation>
 
+
+	<animation>
+		  <type>scale</type>
+		  <object-name>chest</object-name>
+		  <property>/sim/model/crew/pilot[1]/pose/position/limb[1]/breath</property>
+		  <x-min>0.98</x-min>
+		  <y-min>0.98</y-min>
+		  <z-min>0.98</z-min>
+		  <x-factor>1.0</x-factor>
+		  <y-factor>0.5</y-factor>
+		  <z-factor>0.3</z-factor>
+	</animation>
+
+	<animation>
+		  <type>scale</type>
+		  <object-name>chest</object-name>
+		  <property>/sim/model/crew/pilot[1]/pose/position/limb[1]/shrug</property>
+		  <x-min>1.0</x-min>
+		  <y-min>1.0</y-min>
+		  <z-min>1.0</z-min>
+		  <x-factor>0.0</x-factor>
+		  <y-factor>0.0</y-factor>
+		  <z-factor>1.0</z-factor>
+	</animation>
+
 <!-- head -->
 	<animation>
 		<type>rotate</type>
@@ -378,7 +403,7 @@
 <!-- Hand Poses -->
  <animation>
   <type>select</type>
-	<object-name>hand.R</object-name>
+	<object-name>hand.R.001</object-name>
   <condition>
  	<equals>
     <property>sim/model/crew/pilot[1]/pose/position/limb[5]/hand-pose</property>
@@ -582,7 +607,7 @@
 <!-- Hand Poses -->
  <animation>
   <type>select</type>
-	<object-name>hand.L</object-name>
+	<object-name>hand.L.001</object-name>
   <condition>
  	<equals>
     <property>sim/model/crew/pilot[1]/pose/position/limb[8]/hand-pose</property>

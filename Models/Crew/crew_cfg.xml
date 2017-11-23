@@ -18,6 +18,8 @@
    <limb n="1">	
 	<y-deg type="double">10.0</y-deg>
 	<z-deg type="double">0.0</z-deg>
+	<breath type="double">1.0</breath>
+	<shrug type="double">1.0</shrug>
     </limb>
    <limb n="2">	
 	<y-deg type="double">-10.0</y-deg>

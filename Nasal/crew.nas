@@ -69,18 +69,27 @@ var amelia = {
 
 		me.running_flag = 0;
 
+		me.breath_state = 0.0;
+		me.breath_flag = 1;
+
 		me.headshake = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[2]/z-deg", 30.0);
 		me.nod = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[2]/y-deg", 30.0);
 
+		me.shrug = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/shrug", 0.05);
+		me.breath = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/breath", 0.05);
+	
 		me.hip_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/y-deg", 30.0);
 		me.hip_side = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/z-deg", 30.0);
 
 		me.elbow_right_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[4]/z-deg", 20.0);
 		me.elbow_left_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[7]/z-deg", 20.0);
 
+		me.upper_right_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[9]/y-deg",  60.0);
+		me.lower_right_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[10]/y-deg", 60.0);
+
 		me.nd_ref_acc_x = props.globals.getNode("/accelerations/pilot/x-accel-fps_sec");
 		me.nd_ref_acc_y = props.globals.getNode("/accelerations/pilot/y-accel-fps_sec");
-
+		me.nd_ref_delta_t = props.globals.getNode("/sim/time/delta-sec");
 
 
 
@@ -88,7 +97,7 @@ var amelia = {
 
 	stop: func {
 
-		print("Stopping Amelia");
+		if (me.running_flag > 0) {print("Stopping Amelia");}
 		me.running_flag = 0;
 
 	},
@@ -144,7 +153,7 @@ var amelia = {
 		me.elbow_left_bend.execute(ang);
 		}
 
-	# Amelia changes seat
+	# Amelia changes seat position
 
 	rn = rand();
 
@@ -153,6 +162,77 @@ var amelia = {
 		var ang = rand() * 10.0;
 		me.hip_side.execute(ang);
 		}
+
+	# Amelia shrugs
+	
+	rn = rand();
+
+	if (rn > 0.9)
+		{
+		me.shrug.execute(1.01);
+
+		settimer (func {me.shrug.execute(1.0); }, 0.5);
+		}
+
+	# Amelia taps feet
+
+	rn = rand();
+
+	if (rn > 0.95)
+		{
+
+
+		me.upper_right_leg.execute(-90.0 - 4.0);
+		me.lower_right_leg.execute(40.0 + 6.0);
+		settimer (
+			  func {
+				me.upper_right_leg.execute(-90.0);
+				me.lower_right_leg.execute(40.0);
+				}, 0.2);
+		settimer (
+			  func {
+				me.upper_right_leg.execute(-90.0 - 4.0);
+				me.lower_right_leg.execute(40.0 + 6.0);
+				}, 0.4);
+		settimer (
+			  func {
+				me.upper_right_leg.execute(-90.0);
+				me.lower_right_leg.execute(40.0);
+				}, 0.6);
+		settimer (
+			  func {
+				me.upper_right_leg.execute(-90.0 - 4.0);
+				me.lower_right_leg.execute(40.0 + 6.0);
+				}, 0.8);
+		settimer (
+			  func {
+				me.upper_right_leg.execute(-90.0);
+				me.lower_right_leg.execute(40.0);
+				}, 1.0);
+
+		}
+
+	# Amelia moves hands
+
+
+	rn = rand();
+
+	if (rn > 0.9)
+		{
+		var handpos = int(rand() * 3);
+
+		setprop("/sim/model/crew/pilot[1]/pose/position/limb[5]/hand-pose", handpos);
+
+		}
+	else if (rn > 0.8)
+		{
+		var handpos = int(rand() * 3);
+
+		setprop("/sim/model/crew/pilot[1]/pose/position/limb[8]/hand-pose", handpos);
+		}
+		
+		
+
 
 	settimer (func {me.run ();}, 1.0);
 
@@ -169,7 +249,15 @@ var amelia = {
 		else if (acc_x < -5.0) {acc_x = -5.0;}	
 
 		me.hip_bend.execute(10.0 - acc_x);
-		
+
+
+	# Amelia breathes
+
+		me.breath_state = me.breath_state + me.breath_flag * 0.6 * me.nd_ref_delta_t.getValue();
+		if (me.breath_state > 1.0) {me.breath_state = 1.0; me.breath_flag = -1;}
+		else if (me.breath_state < 0.0) {me.breath_state = 0.0; me.breath_flag = 1;}
+
+		me.breath.execute(1.0 + 0.03 * me.breath_state);
 
 	settimer (func {me.run_fast ();}, 0.0);
 	},
