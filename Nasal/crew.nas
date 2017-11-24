@@ -1,5 +1,6 @@
 
 # animations for walker-based models
+# and co-piloting scripts 
 # Thorsten Renk 2017
 
 var movement = {
@@ -95,6 +96,8 @@ var amelia = {
 		me.hover_loop_flag = 0;
 		me.collective = 1;
 		me.collective_step = 0.005;
+		me.hover_alt_bias = 0.0;
+		me.collective_damping_bias = 0.0;
 
 	},
 
@@ -309,17 +312,50 @@ var amelia = {
 
 				}
 
-			if (alt_agl < 4.0)
+			if (alt_agl < 5.0 + me.hover_alt_bias)
 		
 				{
 				me.collective = me.collective - me.collective_step;
+				me.collective_damping_bias = 0.0;
 				}
-			else if (alt_agl > 15.0)
+			else if (alt_agl > 15.0 + me.hover_alt_bias)
 				{
 				me.collective = me.collective + me.collective_step;
+				me.collective_damping_bias = 0.0;
+				}
+			else
+				{
+				var vspeed = getprop("/fdm/jsbsim/velocities/v-down-fps");
+			
+
+				if (vspeed < -3.0)
+					{
+					me.collective_damping_bias = 0.01;
+					}
+				else if (vspeed < -2.0)
+					{
+					me.collective_damping_bias = 0.015;
+					}
+				else if (vspeed < -1.0)
+					{
+					me.collective_damping_bias = 0.005;
+					}
+				else if (vspeed > 3.0)
+					{
+					me.collective_damping_bias = -0.01;
+					}
+				else if (vspeed > 2.0)
+					{
+					me.collective_damping_bias = -0.015;
+					}
+				else if (vspeed > 1.0)
+					{
+					me.collective_damping_bias = -0.005;
+					}
+	
 				}
 
-			setprop("/controls/engines/engine[0]/throttle", me.collective);
+			setprop("/controls/engines/engine[0]/throttle", me.collective + me.collective_damping_bias - 0.005 * me.hover_alt_bias);
 
 			}
 		

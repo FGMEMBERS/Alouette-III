@@ -227,7 +227,7 @@
 		<fcs_function name="systems/amelia/pitch/pitch-cmd">
 		<function>
 			<sum>
-				<value>-0.16</value>
+				<value>-0.12</value>
 				<property>systems/amelia/pitch/pitch-cmd-pid</property>
 			</sum>
 		</function>
