@@ -47,6 +47,7 @@
         <summer name="fcs/longitudinal-cmd-trim-sum">
             <input> fcs/elevator-cmd-norm-exmod </input>
             <input> fcs/pitch-trim-cmd-norm </input>
+	    <input>systems/amelia/pitch-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  2 </max>
@@ -85,6 +86,7 @@
         <summer name="fcs/lateral-cmd-trim-sum">
             <input> fcs/aileron-cmd-norm </input>
             <input> fcs/roll-trim-cmd-norm </input>
+	    <input>systems/amelia/roll-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  1.0 </max>
@@ -122,6 +124,7 @@
         <summer name="fcs/pedal-cmd-trim-sum">
             <input> fcs/rudder-cmd-norm </input>
             <input> fcs/yaw-trim-cmd-norm </input>
+	    <input> systems/amelia/yaw-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  1.0 </max>

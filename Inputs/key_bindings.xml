@@ -23,6 +23,23 @@
     </binding>
    </key>
 
+   <key n="4"> 
+    <name>Ctrl+d</name>
+    <desc>Amelia flies</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+		if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+
+		if (crew.amelia.hover_loop_flag == 0)
+			{crew.amelia.hover();}
+		else
+		   	{crew.amelia.hover_end();}
+	 </script>
+    </binding>
+   </key>
+
    <key n="8"> 
     <name>Ctrl+h</name>
     <desc>Autopilot heading hold</desc>

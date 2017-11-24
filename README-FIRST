@@ -28,3 +28,5 @@ updates Nov 2017 (Thorsten Renk)
 * added autopilot with heading hold, heding bug and altitude-hold modes
 * fixes for classic rescue operation using winch
 * added flexible rope animations for winch
+* added Amelia co-pilot model
+* Amelia can take off into hover flight

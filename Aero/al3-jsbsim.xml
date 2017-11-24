@@ -436,6 +436,7 @@
     </system>
 
     <system file="autopilot"/>
+    <system file="amelia"/>
     <system file="engine_control"/>
     <system file="rotor-power_ctrl"/>
     <system file="rotor-flight_ctrl"/>

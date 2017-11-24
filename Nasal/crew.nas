@@ -92,6 +92,9 @@ var amelia = {
 		me.nd_ref_delta_t = props.globals.getNode("/sim/time/delta-sec");
 
 
+		me.hover_loop_flag = 0;
+		me.collective = 1;
+		me.collective_step = 0.005;
 
 	},
 
@@ -114,6 +117,8 @@ var amelia = {
 		me.run_fast();
 
 	},
+
+
 
 	run: func {
 
@@ -263,6 +268,63 @@ var amelia = {
 	},
 
 
+	hover: func {
+
+		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 1);
+		setprop("/sim/messages/copilot", "I'm taking controls!");
+
+		var current_heading = getprop("/orientation/heading-deg");
+
+		setprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt", current_heading);
+
+		me.hover_loop_flag = 1;
+		me.hover_loop();
+
+	},
+
+	hover_end: func {
+
+		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 0);
+		me.hover_loop_flag = 0;
+		setprop("/sim/messages/copilot", "Your controls!");
+
+	},
+
+	hover_loop: func {
+
+		if (me.hover_loop_flag == 0) {return;}
+
+		if (getprop("/fdm/jsbsim/animation/rotor0-rotation") > 250.0)
+			{
+			var alt_agl = 	getprop("/position/altitude-agl-ft");	
+
+			if (alt_agl > 2.75)
+				{
+				me.collective_step = 0.0005;
+				}
+			else 
+				{
+				if (me.collective > 0.6) {me.collective_step = 0.02;}
+				else {me.collective_step = 0.005;} 
+
+				}
+
+			if (alt_agl < 4.0)
+		
+				{
+				me.collective = me.collective - me.collective_step;
+				}
+			else if (alt_agl > 15.0)
+				{
+				me.collective = me.collective + me.collective_step;
+				}
+
+			setprop("/controls/engines/engine[0]/throttle", me.collective);
+
+			}
+		
+		settimer (func {me.hover_loop ();}, 0.2);
+	},
 	
 
 };
