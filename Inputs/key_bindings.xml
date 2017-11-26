@@ -40,7 +40,7 @@
     </binding>
    </key>
 
-   <key n="6"> 
+  <!-- <key n="6"> 
     <name>Ctrl+f</name>
     <desc>Amelia decreases altitude</desc>
     <repeatable type="bool">false</repeatable>
@@ -92,7 +92,7 @@
 			}	
 	 </script>
     </binding>
-   </key>
+   </key>-->
 
    <key n="8"> 
     <name>Ctrl+h</name>
@@ -138,6 +138,16 @@
          <step type="double">-0.01</step>
          <min>0.0</min>
          <max>1</max>
+    </binding>
+   </key>
+
+   <key n="108"> 
+    <name>l</name>
+    <desc>Landing light</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/electrical/lighting/landing-lights</property>
     </binding>
    </key>
 

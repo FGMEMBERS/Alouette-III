@@ -18,6 +18,12 @@ var movement = {
 		return m;
 	},
 
+	set_speed: func (speed) {
+
+		me.speed = speed;
+
+	},
+
 	execute: func (target) {
 
 		me.cur = me.nd_ref_ang.getValue();
@@ -68,36 +74,65 @@ var amelia = {
 
 	init: func {
 
+		# movement-related flags
+
 		me.running_flag = 0;
+
+		me.random_motion = 1;
 
 		me.breath_state = 0.0;
 		me.breath_flag = 1;
+
+		# movements
 
 		me.headshake = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[2]/z-deg", 30.0);
 		me.nod = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[2]/y-deg", 30.0);
 
 		me.shrug = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/shrug", 0.05);
 		me.breath = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/breath", 0.05);
-	
+
+
 		me.hip_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/y-deg", 30.0);
 		me.hip_side = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[1]/z-deg", 30.0);
 
+		me.shoulder_right_x = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[3]/x-deg", 20.0);
+		me.shoulder_right_y = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[3]/y-deg", 20.0);
+		me.shoulder_right_z = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[3]/z-deg", 20.0);
+
 		me.elbow_right_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[4]/z-deg", 20.0);
+		me.elbow_right_twist = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[4]/y-deg", 20.0);
+
+		me.shoulder_left_x = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[6]/x-deg", 20.0);
+		me.shoulder_left_y = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[6]/y-deg", 20.0);
+		me.shoulder_left_z = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[6]/z-deg", 20.0);
+
 		me.elbow_left_bend = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[7]/z-deg", 20.0);
+		me.elbow_left_twist = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[7]/y-deg", 20.0);
+
+
 
 		me.upper_right_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[9]/y-deg",  60.0);
 		me.lower_right_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[10]/y-deg", 60.0);
+		me.right_foot = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[11]/y-deg", 60.0);
+
+		me.upper_left_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[12]/y-deg",  60.0);
+		me.lower_left_leg = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[13]/y-deg", 60.0);
+		me.left_foot = movement.new("/sim/model/crew/pilot[1]/pose/position/limb[14]/y-deg", 60.0);
+
+		# property node references
 
 		me.nd_ref_acc_x = props.globals.getNode("/accelerations/pilot/x-accel-fps_sec");
 		me.nd_ref_acc_y = props.globals.getNode("/accelerations/pilot/y-accel-fps_sec");
 		me.nd_ref_delta_t = props.globals.getNode("/sim/time/delta-sec");
 
+		# piloting-related flags
 
 		me.hover_loop_flag = 0;
 		me.collective = 1;
 		me.collective_step = 0.005;
 		me.hover_alt_bias = 0.0;
 		me.collective_damping_bias = 0.0;
+		me.landing_flag = 0;
 
 	},
 
@@ -121,6 +156,69 @@ var amelia = {
 
 	},
 
+	
+	take_controls: func {
+		
+		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 1);
+		me.speak("I'm taking controls!");
+
+		me.hip_bend.execute(10.0);
+		me.hip_side.execute(0.0);
+
+		me.shoulder_right_x.execute(-75.0);
+		me.shoulder_right_y.execute(-25.0);
+		me.shoulder_right_z.execute(-20.0);
+
+		me.elbow_right_bend.execute(60.0);
+		me.elbow_right_twist.execute(-5);
+
+		me.elbow_right_twist.set_speed(80.0);
+
+		me.shoulder_left_x.execute(-70.0);
+		me.shoulder_left_y.execute(10.0);
+		me.shoulder_left_z.execute(0.0);
+
+		me.elbow_left_bend.execute(10.0);
+		me.elbow_left_twist.execute(30.0);
+
+		me.upper_right_leg.execute(-120.0);
+		me.lower_right_leg.execute(70.0);
+		me.right_foot.execute(0.0);
+
+		me.upper_left_leg.execute(-120.0);
+		me.lower_left_leg.execute(70.0);
+		me.left_foot.execute(0.0);
+
+
+		setprop("/sim/model/crew/pilot[1]/pose/position/limb[5]/hand-pose", 1);
+
+		me.random_motion = 0;
+
+	},
+
+	relinquish_controls: func {
+
+		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 0);
+		me.speak("Your controls!");	
+
+		me.shoulder_right_x.execute(-90.0);
+		me.shoulder_right_y.execute(-30.0);
+		me.shoulder_right_z.execute(0.0);
+
+		me.elbow_right_twist.set_speed(20.0);
+
+		me.upper_right_leg.execute(-90.0);
+		me.lower_right_leg.execute(40.0);
+		me.right_foot.execute(0.0);
+
+		me.upper_left_leg.execute(-90.0);
+		me.lower_left_leg.execute(40.0);
+		me.left_foot.execute(0.0);
+
+		me.random_motion = 1;
+
+	},
+
 
 
 	run: func {
@@ -136,6 +234,12 @@ var amelia = {
 		var ang1 = (rand() - 0.5) * 60.0;
 		var ang2 = (rand() - 0.5) * 10.0 - 10.0;
 
+		if (me.random_motion == 0)
+			{
+			ang1 = 0.5 * ang1;
+			ang2 = ang2 - 10.0;
+			}
+
 		me.headshake.execute(ang1);
 		me.nod.execute(ang2);
 		}
@@ -145,7 +249,7 @@ var amelia = {
 
 	rn = rand();
 
-	if (rn > 0.6)
+	if ((rn > 0.6) and (me.random_motion == 1)) 
 		{
 		var ang = 40.0 + rand() * 10.0;
 
@@ -154,7 +258,7 @@ var amelia = {
 
 	rn = rand();
 
-	if (rn > 0.6)
+	if ((rn > 0.6) and (me.random_motion == 1))
 		{
 		var ang = (rand() - 0.5) * 20.0 + 30.0;
 
@@ -165,7 +269,7 @@ var amelia = {
 
 	rn = rand();
 
-	if (rn > 0.9)
+	if ((rn > 0.9) and (me.random_motion == 1))
 		{
 		var ang = rand() * 10.0;
 		me.hip_side.execute(ang);
@@ -186,7 +290,7 @@ var amelia = {
 
 	rn = rand();
 
-	if (rn > 0.95)
+	if ((rn > 0.95) and (me.random_motion == 1))
 		{
 
 
@@ -225,14 +329,14 @@ var amelia = {
 
 	rn = rand();
 
-	if (rn > 0.9)
+	if ((rn > 0.9) and (me.random_motion == 1))
 		{
 		var handpos = int(rand() * 3);
 
 		setprop("/sim/model/crew/pilot[1]/pose/position/limb[5]/hand-pose", handpos);
 
 		}
-	else if (rn > 0.8)
+	else if ((rn > 0.8) and (me.random_motion == 1))
 		{
 		var handpos = int(rand() * 3);
 
@@ -267,14 +371,31 @@ var amelia = {
 
 		me.breath.execute(1.0 + 0.03 * me.breath_state);
 
+	# Amelia moves stick and pedals
+
+		if (me.random_motion == 0)
+			{
+			var stick_lateral = getprop("/fdm/jsbsim/animation/lateral-stick-deflection-deg");
+	
+			me.elbow_right_twist.execute(-5.0 -5.0 * stick_lateral);
+
+			var pedal = getprop("/fdm/jsbsim/animation/pedal-deflection-deg");
+
+			me.left_foot.execute(pedal * 40.0/27.0);
+			me.right_foot.execute(pedal * -40.0/27.0);
+
+			}
+
+
 	settimer (func {me.run_fast ();}, 0.0);
 	},
 
 
 	hover: func {
 
-		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 1);
-		setprop("/sim/messages/copilot", "I'm taking controls!");
+
+
+		me.take_controls();
 
 		var current_heading = getprop("/orientation/heading-deg");
 
@@ -287,9 +408,19 @@ var amelia = {
 
 	hover_end: func {
 
-		setprop("/fdm/jsbsim/systems/amelia/amelia-active", 0);
+		me.relinquish_controls();
+
+		#setprop("/fdm/jsbsim/systems/amelia/amelia-active", 0);
 		me.hover_loop_flag = 0;
-		setprop("/sim/messages/copilot", "Your controls!");
+
+		
+		#me.speak("Your controls!");
+
+	},
+
+	land: func {
+
+		me.landing_flag = 1;
 
 	},
 
@@ -301,9 +432,12 @@ var amelia = {
 			{
 			var alt_agl = 	getprop("/position/altitude-agl-ft");	
 
-			if (alt_agl > 2.75)
+			if (alt_agl > 2.75) 
 				{
-				me.collective_step = 0.0005;
+				if (me.landing_flag == 0)
+					{me.collective_step = 0.0005;}
+				else
+					{me.collective_step = 0.0001;}
 				}
 			else 
 				{
@@ -312,47 +446,72 @@ var amelia = {
 
 				}
 
-			if (alt_agl < 5.0 + me.hover_alt_bias)
+			if (me.landing_flag == 0)
+				{
+
+				if (alt_agl < 5.0 + me.hover_alt_bias)
 		
-				{
-				me.collective = me.collective - me.collective_step;
-				me.collective_damping_bias = 0.0;
-				}
-			else if (alt_agl > 15.0 + me.hover_alt_bias)
-				{
-				me.collective = me.collective + me.collective_step;
-				me.collective_damping_bias = 0.0;
-				}
-			else
-				{
-				var vspeed = getprop("/fdm/jsbsim/velocities/v-down-fps");
+					{
+					me.collective = me.collective - me.collective_step;
+					me.collective_damping_bias = 0.0;
+					}
+				else if (alt_agl > 15.0 + me.hover_alt_bias)
+					{
+					me.collective = me.collective + me.collective_step;
+					me.collective_damping_bias = 0.0;
+					}
+				else
+					{
+					var vspeed = getprop("/fdm/jsbsim/velocities/v-down-fps");
 			
 
-				if (vspeed < -3.0)
-					{
-					me.collective_damping_bias = 0.01;
-					}
-				else if (vspeed < -2.0)
-					{
-					me.collective_damping_bias = 0.015;
-					}
-				else if (vspeed < -1.0)
-					{
-					me.collective_damping_bias = 0.005;
-					}
-				else if (vspeed > 3.0)
-					{
-					me.collective_damping_bias = -0.01;
-					}
-				else if (vspeed > 2.0)
-					{
-					me.collective_damping_bias = -0.015;
-					}
-				else if (vspeed > 1.0)
-					{
-					me.collective_damping_bias = -0.005;
-					}
+					if (vspeed < -3.0)
+						{
+						me.collective_damping_bias = 0.01;
+						}
+					else if (vspeed < -2.0)
+						{
+						me.collective_damping_bias = 0.015;
+						}
+					else if (vspeed < -1.0)
+						{
+						me.collective_damping_bias = 0.005;
+						}
+					else if (vspeed > 3.0)
+						{
+						me.collective_damping_bias = -0.01;
+						}
+					else if (vspeed > 2.0)
+						{
+						me.collective_damping_bias = -0.015;
+						}
+					else if (vspeed > 1.0)
+						{
+						me.collective_damping_bias = -0.005;
+						}
 	
+					}
+
+				}
+
+			else # landing is commanded
+
+				{
+				me.collective_damping_bias = 0;
+				me.collective = me.collective + me.collective_step;
+
+
+				if (me.collective > 1.0)
+					{
+					me.collective = 1.0;
+					me.hover_loop_flag = 0;
+
+					me.speak("Here we are.");
+					
+					me.relinquish_controls();
+
+					}
+
 				}
 
 			setprop("/controls/engines/engine[0]/throttle", me.collective + me.collective_damping_bias - 0.005 * me.hover_alt_bias);
@@ -360,6 +519,162 @@ var amelia = {
 			}
 		
 		settimer (func {me.hover_loop ();}, 0.2);
+
+
+	},
+
+	request_parse: func {
+
+
+		var request = getprop("/sim/model/crew/pilot[1]/request-string");
+
+
+		if (request == "... take off?")
+			{
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 3.0)
+				{
+				if (crew.amelia.hover_loop_flag == 0)
+					{
+					crew.amelia.hover();
+					}
+				}
+			else
+				{
+				me.speak("In case you didn't notice, we are in the air.");
+				}
+			
+
+			}
+		else if (request == "... hover lower?")
+			{
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 3.0)
+				{
+				if (crew.amelia.hover_loop_flag == 0)
+					{
+					me.speak("Shouldn't we take off first?");
+					return;
+
+					}
+				}
+			else
+		   		{
+				if (crew.amelia.hover_alt_bias <  0.0)
+					{
+					me.speak("Do you want to land? Then say so.");
+					}
+				else
+					{
+					me.speak(me.get_affirm_string());
+					crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias - 2.0;
+					}
+				}
+
+				
+
+			}
+		else if (request == "... hover higher?")
+			{
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 3.0)
+				{
+				if (crew.amelia.hover_loop_flag == 0)
+					{
+					me.speak("Shouldn't we take off first?");
+					return;
+
+					}
+				}
+			else
+		   		{
+				if (crew.amelia.hover_alt_bias >  13.8)
+					{
+					me.speak( "High enough for hover flight I think...");
+					}
+				else
+					{
+					me.speak(me.get_affirm_string());
+					crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias + 2.0;
+					}
+				}
+
+				
+
+			}
+		else if (request == "... land?")
+			{
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 2.6)
+				{
+				me.speak("We seem to be on the ground.");
+				return;
+				}
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("We need to hover before we can land.");
+				return;
+				}
+
+			else
+				{
+				me.speak(me.get_affirm_string());
+				me.land();
+				}
+
+
+			}
+		else if (request == "... give me controls?")
+			{
+			if (me.hover_loop_flag == 1)
+				{
+				me.speak(me.get_affirm_string());
+
+				me.relinquish_controls();
+				}
+			else
+				{
+				me.speak("You are already flying - how did you miss that?");
+				}
+
+			}
+
+
+	},
+
+	get_affirm_string: func {
+
+		var rn = rand();
+
+		if (rn < 0.2)
+			{return "Wilco.";}
+		else if (rn < 0.4)
+			{return "Sure thing.";}
+		else if (rn < 0.6)
+			{return "Affirmative.";}
+		else if (rn < 0.8)
+			{return "Okay.";}
+		else
+			{return "Roger.";}
+
+
+	},
+
+	speak: func (string) {
+
+		me.headshake.set_speed(80.0);
+		me.headshake.execute(45.0);
+		me.nod.execute(-10.0);
+
+		settimer ( func { me.headshake.set_speed(30.0);}, 2.0);
+		
+		setprop("/sim/messages/copilot", string);
+
 	},
 	
 

@@ -42,6 +42,20 @@
                     </script>
                 </binding>
             </item>
+
+	   <item>
+                <label>Amelia</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+			if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+		
+                        var amtalk = gui.Dialog.new("/sim/gui/dialogs/AL3/menu/amelia/dialog",
+                        "Aircraft/Alouette-III/Inputs/amelia_talk.xml");
+                        amtalk.open();
+                    </script>
+                </binding>
+            </item>
 	   
             <!--<item>
                 <label>Fcs Devel Help</label>

@@ -31,8 +31,10 @@
         <animation>
             <type>rotate</type>
             <object-name>Pi-GRudder</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>1</factor>
             <center>
                 <x-m>-2.21566</x-m>
                 <y-m>0</y-m>
@@ -48,8 +50,10 @@
 	 <animation>
             <type>rotate</type>
             <object-name>Pi-GRudder-Pedal</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>-27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>-27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>-1</factor>
             <center>
                 <x-m>-2.34903</x-m>
                 <y-m>0</y-m>
@@ -69,8 +73,10 @@
         <animation>
             <type>rotate</type>
             <object-name>Pi-DRudder</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>-27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>-27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>-1</factor>
             <center>
                 <x-m>-2.21566</x-m>
                 <y-m>0</y-m>
@@ -86,8 +92,10 @@
 	 <animation>
             <type>rotate</type>
             <object-name>Pi-DRudder-Pedal</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>1</factor>
 	     <center>
                 <x-m>-2.34903</x-m>
                 <y-m>0</y-m>
@@ -103,8 +111,10 @@
         <animation>
             <type>rotate</type>
             <object-name>CoPi-GRudder</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>1</factor>
             <center>
                 <x-m>-2.21566</x-m>
                 <y-m>0</y-m>
@@ -119,8 +129,10 @@
 	<animation>
             <type>rotate</type>
             <object-name>CoPi-GRudder-Pedal</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>-27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>-27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>-1</factor>
 	     <center>
                 <x-m>-2.34903</x-m>
                 <y-m>0</y-m>
@@ -137,8 +149,10 @@
         <animation>
             <type>rotate</type>
             <object-name>CoPi-DRudder</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>-27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>-27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>-1</factor>
             <center>
                 <x-m>-2.21566</x-m>
                 <y-m>0</y-m>
@@ -154,8 +168,10 @@
 	<animation>
             <type>rotate</type>
             <object-name>CoPi-DRudder-Pedal</object-name>
-            <property>/controls/flight/rudder</property>
-            <factor>27</factor>
+            <!--<property>/controls/flight/rudder</property>
+            <factor>27</factor>-->
+	    <property>animation/pedal-deflection-deg</property>
+            <factor>1</factor>
 	   <center>
                 <x-m>-2.34903</x-m>
                 <y-m>0</y-m>
@@ -851,8 +867,9 @@
 	    <object-name>Pi-Manche-Poignee</object-name>
 	    <object-name>Pi-Manche-Poignee_Land_Light_SW</object-name>
 	    <object-name>Pi-Manche-Chaussette</object-name>
-            <property>/controls/flight/elevator</property>
-            <factor>-10</factor>
+            <!--<property>/controls/flight/elevator</property>
+            <factor>-10</factor>-->
+	    <property>/fdm/jsbsim/animation/longitudinal-stick-deflection-deg</property>
             <center>
                 <x-m>-1.94821</x-m>
                 <y-m>0.555267</y-m>
@@ -871,8 +888,9 @@
 	     <object-name>Pi-Manche-Poignee</object-name>
 	     <object-name>Pi-Manche-Poignee_Land_Light_SW</object-name>
 	     <object-name>Pi-Manche-Chaussette</object-name>
-            <property>/controls/flight/aileron</property>
-            <factor>-10</factor>
+            <!--<property>/controls/flight/aileron</property>
+            <factor>-10</factor>-->
+	    <property>/fdm/jsbsim/animation/lateral-stick-deflection-deg</property>
             <center>
                 <x-m>-1.94821</x-m>
                 <y-m>0.555267</y-m>
@@ -894,10 +912,6 @@
                     <command>property-toggle</command>
 		    <property>fdm/jsbsim/electrical/lighting/landing-lights</property>
                 </binding>
-                <!--<binding>
-                    <command>property-toggle</command>
-		    <property>/sim/rendering/als-secondary-lights/use-landing-light</property>
-                </binding>-->
             </action>
             <hovered>
 		    <binding>
@@ -927,8 +941,9 @@
             <object-name>CoPi-Manche</object-name>
 	     <object-name>CoPi-Manche-Poignee</object-name>
 	     <object-name>CoPi-Manche-Chaussette</object-name>
-            <property>/controls/flight/elevator</property>
-            <factor>-10</factor>
+            <!--<property>/controls/flight/elevator</property>
+            <factor>-10</factor>-->
+	    <property>/fdm/jsbsim/animation/longitudinal-stick-deflection-deg</property>
             <center>
                 <x-m>-1.94821</x-m>
                 <y-m>-0.136246</y-m>
@@ -946,8 +961,9 @@
             <object-name>CoPi-Manche</object-name>
 	    <object-name>CoPi-Manche-Poignee</object-name>
 	    <object-name>CoPi-Manche-Chaussette</object-name>
-            <property>/controls/flight/aileron</property>
-            <factor>-10</factor>
+            <!--<property>/controls/flight/aileron</property>
+            <factor>-10</factor>-->
+	    <property>/fdm/jsbsim/animation/lateral-stick-deflection-deg</property>
             <center>
                 <x-m>-1.94821</x-m>
                 <y-m>-0.136246</y-m>
