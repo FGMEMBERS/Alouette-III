@@ -28,12 +28,20 @@
             	<desc>AP lock altitude</desc>
 	</key>
 	<key>
+		<name>Ctrl+t</name>
+            	<desc>Toggle Amelia takeover</desc>
+	</key>
+	<key>
 		<name>Ctrl+w</name>
             	<desc>Toggle winch deployment</desc>
 	</key>
 	<key>
 		<name>Shift+w</name>
             	<desc>Winch down</desc>
+	</key>
+	<key>
+		<name>l</name>
+            	<desc>Toggle landing light</desc>
 	</key>
 	<key>
 		<name>w</name>
@@ -53,7 +61,7 @@ The Helicopter is loaded with:
 
 Please refer to the in-sim checklist (Help -> Aircraft checklists) for the engine start procedure.
 
-====== Autopilot      ======
+======   Autopilot    ======
 
 The Alouette III has a simple autopilot for cruise flight. Do not use it in hover flight, it won't work! The AP is designed to help you fly the helicopter, not to fly it for you - it expects a well-trimmed craft, do not engage the AP during dynamical maneuvers.
 
@@ -62,6 +70,16 @@ To engage the AP, make sure you're flying straight and level and use the pedals 
 Once the Alouette is in stable flight, you can control it via the heading bug on the heading indicator by engaging the heading bug acquire mode (Ctrl+b). You have very limited control over airspeed using the collective.
 
 Do not change trim while the AP is on, and do not move your controls around, or you will have to fight nasty transients when you disengage the AP again.
+
+======    Amelia      ======
+
+The helicopter has the option to select a working co-pilot as assistant or flight instructor - Amelia (inspired by aviation pioneer Amelia Earhart). If she is selected as crew option, she can be asked to take over controls for hover flight. As she is simulating a human pilot rather than an AP, she is not dependent on working instruments to do this but will fly by sight. She is (intentionally) not perfect in achieving a static hover state immediately.
+
+When asked to take off or take over controls, she'll attempt to stabilize the helicopter in static hover and from then on follow instructions to hover into a certain direction or change altitude. She is a fairly capable pilot able to stabilize even a moderately bad situation, but don't expect miracles.
+
+While Amelia is flying, there should be no control input given (otherwise the result will be a fight for control). When Amelia takes over, she will always say 'I'm taking controls' and visibly reach for the stick, when she lets go of controls she will lean back and say 'Your controls.'
+
+Amelia will not work if not selected as crew, nor will she take over during cruise flight (you can use the AP for that purpose).
 
 
 ====== Auto rotation  ======

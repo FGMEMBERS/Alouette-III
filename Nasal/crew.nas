@@ -133,6 +133,8 @@ var amelia = {
 		me.hover_alt_bias = 0.0;
 		me.collective_damping_bias = 0.0;
 		me.landing_flag = 0;
+		me.hover_speed_fwd = 0.0;
+		me.hover_speed_lr = 0.0;
 
 	},
 
@@ -214,6 +216,14 @@ var amelia = {
 		me.upper_left_leg.execute(-90.0);
 		me.lower_left_leg.execute(40.0);
 		me.left_foot.execute(0.0);
+
+		me.hover_speed_lr = 0.0;
+		me.hover_speed_fwd = 0.0;
+
+		me.landing_flag = 0;
+
+		setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
+		setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
 
 		me.random_motion = 1;
 
@@ -420,6 +430,9 @@ var amelia = {
 
 	land: func {
 
+		setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
+		setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
+
 		me.landing_flag = 1;
 
 	},
@@ -562,14 +575,14 @@ var amelia = {
 				}
 			else
 		   		{
-				if (crew.amelia.hover_alt_bias <  0.0)
+				if (me.hover_alt_bias <  0.0)
 					{
 					me.speak("Do you want to land? Then say so.");
 					}
 				else
 					{
 					me.speak(me.get_affirm_string());
-					crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias - 2.0;
+					me.hover_alt_bias = crew.amelia.hover_alt_bias - 2.0;
 					}
 				}
 
@@ -582,7 +595,7 @@ var amelia = {
 			
 			if (alt_agl < 3.0)
 				{
-				if (crew.amelia.hover_loop_flag == 0)
+				if (me.hover_loop_flag == 0)
 					{
 					me.speak("Shouldn't we take off first?");
 					return;
@@ -591,14 +604,14 @@ var amelia = {
 				}
 			else
 		   		{
-				if (crew.amelia.hover_alt_bias >  13.8)
+				if (me.hover_alt_bias >  13.8)
 					{
 					me.speak( "High enough for hover flight I think...");
 					}
 				else
 					{
 					me.speak(me.get_affirm_string());
-					crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias + 2.0;
+					me.hover_alt_bias = me.hover_alt_bias + 2.0;
 					}
 				}
 
@@ -644,6 +657,178 @@ var amelia = {
 
 			}
 
+		else if (request == "... take controls?")
+			{
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak(me.get_affirm_string());
+
+				me.hover();
+				}
+			else
+				{
+				me.speak("I am already flying, genius.");
+				}
+
+			}
+		else if (request == "... hover more forward?")
+			{
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			else if (me.landing_flag == 1)
+				{
+				me.speak("Not while we're landing.");
+				return;
+				}
+
+			var heading = getprop("/orientation/heading-deg") * math.pi/180.0;
+
+			var sh = math.sin(heading);
+			var ch = math.cos(heading);
+
+			me.hover_speed_fwd = me.hover_speed_fwd + 1.0;
+
+			me.speak(me.get_affirm_string());
+		
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh);
+			}
+		else if (request == "... hover more backward?")
+			{
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			else if (me.landing_flag == 1)
+				{
+				me.speak("Not while we're landing.");
+				return;
+				}
+
+			var heading = getprop("/orientation/heading-deg") * math.pi/180.0;
+
+			var sh = math.sin(heading);
+			var ch = math.cos(heading);
+
+			me.hover_speed_fwd = me.hover_speed_fwd - 1.0;
+
+			me.speak(me.get_affirm_string());
+		
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh);
+			}
+		else if (request == "... hover more left?")
+			{
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			else if (me.landing_flag == 1)
+				{
+				me.speak("Not while we're landing.");
+				return;
+				}
+
+			var heading = getprop("/orientation/heading-deg") * math.pi/180.0;
+
+			var sh = math.sin(heading);
+			var ch = math.cos(heading);
+
+			me.hover_speed_lr = me.hover_speed_lr - 1.0;
+
+			me.speak(me.get_affirm_string());
+		
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", -me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_lr * ch);
+			}
+		else if (request == "... hover more right?")
+			{
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			else if (me.landing_flag == 1)
+				{
+				me.speak("Not while we're landing.");
+				return;
+				}
+
+			var heading = getprop("/orientation/heading-deg") * math.pi/180.0;
+
+			var sh = math.sin(heading);
+			var ch = math.cos(heading);
+
+			me.hover_speed_lr = me.hover_speed_lr + 1.0;
+
+			me.speak(me.get_affirm_string());
+
+			#print ("Speed LR: ", me.hover_speed_lr);
+			#print ("Heading: ", heading * 180.0/math.pi);
+			#print ("CH: ", ch, " SH: ", sh);
+		
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", -me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_lr * ch);
+			}
+		else if (request == "... hover still?")
+			{
+
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+
+			me.speak(me.get_affirm_string());
+
+			me.hover_speed_lr = 0.0;
+			me.hover_speed_fwd = 0.0;
+		
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
+			}
+
+	},
+
+	takeover_request: func {
+
+		if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+
+		if (me.hover_loop_flag == 0)
+			{
+
+			var alt_agl = getprop("/position/altitude-agl-ft");
+
+			if (alt_agl > 10.0)
+				{
+				if (getprop("/velocities/groundspeed-kt") > 15.0)
+					{
+					me.speak("Negative - at least make an attempt to hover first.");
+					}
+
+
+				me.hover_alt_bias = 12.0; 
+				}
+			else
+				{
+				me.hover_alt_bias = 0.0;
+
+				}
+
+			me.hover();
+
+			}
+		else
+		   	{me.hover_end();}
 
 	},
 
@@ -661,6 +846,24 @@ var amelia = {
 			{return "Okay.";}
 		else
 			{return "Roger.";}
+
+
+	},
+
+	get_deny_string: func {
+
+		var rn = rand();
+
+		if (rn < 0.2)
+			{return "Negative.";}
+		else if (rn < 0.4)
+			{return "Can't do that.";}
+		else if (rn < 0.6)
+			{return "No way.";}
+		else if (rn < 0.8)
+			{return "Not now.";}
+		else
+			{return "Impossible.";}
 
 
 	},

@@ -23,7 +23,7 @@
     </binding>
    </key>
 
-   <key n="4"> 
+   <!--<key n="4"> 
     <name>Ctrl+d</name>
     <desc>Amelia flies</desc>
     <repeatable type="bool">false</repeatable>
@@ -38,7 +38,7 @@
 		   	{crew.amelia.hover_end();}
 	 </script>
     </binding>
-   </key>
+   </key>-->
 
   <!-- <key n="6"> 
     <name>Ctrl+f</name>
@@ -111,6 +111,18 @@
     <binding>
 	 <command>property-toggle</command>
 	 <property>/fdm/jsbsim/instruments/autopilot-lock-altitude</property>
+    </binding>
+   </key>
+
+   <key n="20"> 
+    <name>Ctrl+t</name>
+    <desc>Toggle Amelia takeover</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+		crew.amelia.takeover_request();
+	 </script>
     </binding>
    </key>
 

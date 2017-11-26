@@ -42,7 +42,13 @@
 		 <value>... take off?</value>
 		 <value>... hover higher?</value>
 		 <value>... hover lower?</value>
+		 <value>... hover more forward?</value>
+		 <value>... hover more backward?</value>
+		 <value>... hover more left?</value>
+		 <value>... hover more right?</value>
+		 <value>... hover still?</value>
 		 <value>... land?</value>
+		 <value>... take controls?</value>
 		 <value>... give me controls?</value>
         	 <binding>
              	 	<command>dialog-apply</command>

@@ -199,23 +199,12 @@
 			<width>20.0</width>
   		</deadband>
 
-		<!--<fcs_function name="systems/amelia/pitch/v-fwd-error-clipped">
-		<function>	
-			<max>	
-				<value>-3.0</value>
-				<min>
-				<property>systems/amelia/pitch/v-fwd-error</property>
-				<value>3.0</value>
-				</min>
-			</max>
-		</function>
-		</fcs_function>-->
 
 		<pid name="systems/amelia/pitch/pitch-cmd-pid">
 			<input>systems/amelia/pitch/a-fwd-error</input>
 			<kp> 0.03 </kp>
 			<ki> 0.003 </ki>
-			<kd> 0.005</kd>
+			<kd> 0.009</kd>
 			<trigger>systems/amelia/pitch/a-fwd-error-trigger</trigger>
 			<clipto>
 				<min> -0.2</min>
@@ -238,20 +227,52 @@
 
 	<channel name="Hover roll" execute="systems/amelia/amelia-active">
 
- 		<deadband name="systems/amelia/roll/v-lr-error-trigger">
+		<pid name="systems/amelia/roll/a-lr">
 			<input>systems/amelia/roll/v-lr-error</input>
-			<width>30.0</width>
+			<kp> 0.00 </kp>
+			<ki> 0.00 </ki>
+			<kd> 1.00</kd>
+			<output>systems/amelia/roll/a-lr-debug</output>
+  		</pid>
+
+		<fcs_function name="systems/amelia/roll/a-lr-tgt">
+		<function>
+			<table>
+			<independentVar lookup="row">systems/amelia/roll/v-lr-error</independentVar>
+				<tableData>
+					 -10.0	   5.0
+					   0.0	   0.0
+				 	  10.0	  -5.0
+				</tableData>
+	      		</table>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/roll/a-lr-error">
+		<function>
+			<difference>
+				<property>systems/amelia/roll/a-lr</property>
+				<property>systems/amelia/roll/a-lr-tgt</property>
+			</difference>
+		</function>
+		</fcs_function>
+
+
+ 		<deadband name="systems/amelia/roll/a-lr-error-trigger">
+			<input>systems/amelia/roll/a-lr-error</input>
+			<width>20.0</width>
   		</deadband>
 
+
 		<pid name="systems/amelia/roll/roll-cmd-pid">
-			<input>systems/amelia/roll/v-lr-error</input>
-			<kp> 0.04 </kp>
-			<ki> 0.005 </ki>
-			<kd> 0.004</kd>
-			<trigger>systems/amelia/pitch/v-lr-error-trigger</trigger>
+			<input>systems/amelia/roll/a-lr-error</input>
+			<kp> 0.03 </kp>
+			<ki> 0.003 </ki>
+			<kd> 0.005</kd>
+			<trigger>systems/amelia/roll/a-lr-error-trigger</trigger>
 			<clipto>
-				<min> -0.1</min>
-        			<max>  0.1 </max>
+				<min> -0.2</min>
+        			<max>  0.2 </max>
 			</clipto>
 			<output>systems/amelia/roll/roll-cmd-debug</output>
   		</pid>
