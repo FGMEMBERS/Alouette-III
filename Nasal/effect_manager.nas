@@ -99,6 +99,8 @@ var effect_manager = {
 	nd_ref_dust_g: props.globals.getNode("/fdm/jsbsim/effects/dust-g", 1),
 	nd_ref_dust_b: props.globals.getNode("/fdm/jsbsim/effects/dust-b", 1),
 
+	nd_ref_heatblur: props.globals.getNode("/fdm/jsbsim/effects/heatblur", 1),
+
 	init: func {
 		# define your lights here
  
@@ -396,6 +398,13 @@ var effect_manager = {
 			else if (me.frost > 0.5) {me.frost = 0.5;}
 
 			me.nd_ref_frost_level.setValue(me.frost);
+
+			var turbine_rpm = getprop("/fdm/jsbsim/propulsion/engine/engine-rpm");
+
+			turbine_rpm = turbine_rpm / 5000.0;
+			if (turbine_rpm > 1.0) {turbine_rpm = 1.0;}
+
+			me.nd_ref_heatblur.setValue(turbine_rpm * 0.4);
 			}
 
  

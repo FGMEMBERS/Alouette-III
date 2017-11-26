@@ -83,6 +83,34 @@
 			</volume>
 		</turbine-shutdown>
 
+		<turbine>
+			<mode>looped</mode>
+			<path>Sounds/turbojet_fan.wav</path>
+			<name>turbine</name>
+			<condition>
+				<and>
+					<greater-than>
+					    <property>fdm/jsbsim/propulsion/engine/engine-rpm</property>
+					    <value>5000</value>
+					</greater-than>
+					<less-than>
+					    <property>fdm/jsbsim/propulsion/engine/engine-rpm</property>
+					    <value>21000</value>
+					</less-than>
+					<not>
+						<property>fdm/jsbsim/systems/crash-detect/crashed</property>
+					</not>
+				</and>
+			</condition>
+			<pitch>
+				<min>0.5</min>
+			</pitch>
+			<volume>
+				<min>0.1</min>
+				<max>0.1</max>
+			</volume>
+		</turbine>
+
 		<overspeed>
 			<name>overspeed</name>
 			<mode>looped</mode>

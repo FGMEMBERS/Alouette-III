@@ -143,6 +143,20 @@
             </offsets>
         </model>
 
+	<!-- heat blur -->
+	<model>
+	        <path>Aircraft/Alouette-III/Models/heat-blur.xml</path>
+            <offsets>
+                <x-m>2.33</x-m>
+                <y-m>0</y-m>
+                <z-m>0.73</z-m>
+				<pitch-deg>-7.0</pitch-deg>
+            </offsets>
+			<condition>	
+				<property>/sim/rendering/shaders/skydome</property>
+			</condition>
+	</model>
+
       <!-- Flexible winch rope -->
   	<!--<model>
 		<name>rope</name>

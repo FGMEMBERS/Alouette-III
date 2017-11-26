@@ -813,6 +813,7 @@ var amelia = {
 				if (getprop("/velocities/groundspeed-kt") > 15.0)
 					{
 					me.speak("Negative - at least make an attempt to hover first.");
+					return;
 					}
 
 

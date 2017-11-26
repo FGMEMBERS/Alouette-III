@@ -204,7 +204,7 @@
 			<input>systems/amelia/pitch/a-fwd-error</input>
 			<kp> 0.03 </kp>
 			<ki> 0.003 </ki>
-			<kd> 0.009</kd>
+			<kd> 0.005</kd>
 			<trigger>systems/amelia/pitch/a-fwd-error-trigger</trigger>
 			<clipto>
 				<min> -0.2</min>
@@ -213,11 +213,21 @@
 			<output>systems/amelia/pitch/pitch-cmd-debug</output>
   		</pid>
 
+		<fcs_function name="systems/amelia/pitch/pitch-damping">
+		<function>
+			<product>
+				<value>1.0</value>
+				<property>velocities/q-rad_sec</property>
+			</product>
+		</function>
+		</fcs_function>
+
 		<fcs_function name="systems/amelia/pitch/pitch-cmd">
 		<function>
 			<sum>
 				<value>-0.12</value>
 				<property>systems/amelia/pitch/pitch-cmd-pid</property>
+				<property>systems/amelia/pitch/pitch-damping</property>
 			</sum>
 		</function>
 		</fcs_function>
