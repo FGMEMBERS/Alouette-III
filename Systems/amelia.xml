@@ -203,7 +203,7 @@
 		<pid name="systems/amelia/pitch/pitch-cmd-pid">
 			<input>systems/amelia/pitch/a-fwd-error</input>
 			<kp> 0.03 </kp>
-			<ki> 0.003 </ki>
+			<ki> 0.009 </ki>
 			<kd> 0.005</kd>
 			<trigger>systems/amelia/pitch/a-fwd-error-trigger</trigger>
 			<clipto>
@@ -277,7 +277,7 @@
 		<pid name="systems/amelia/roll/roll-cmd-pid">
 			<input>systems/amelia/roll/a-lr-error</input>
 			<kp> 0.03 </kp>
-			<ki> 0.003 </ki>
+			<ki> 0.009 </ki>
 			<kd> 0.005</kd>
 			<trigger>systems/amelia/roll/a-lr-error-trigger</trigger>
 			<clipto>

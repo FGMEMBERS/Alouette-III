@@ -45,6 +45,8 @@
 
 	   <item>
                 <label>Amelia</label>
+		<name>amelia-mnu</name>
+		<enabled>false</enabled>
                 <binding>
                     <command>nasal</command>
                     <script>

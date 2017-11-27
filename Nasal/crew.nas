@@ -142,6 +142,7 @@ var amelia = {
 
 		if (me.running_flag > 0) {print("Stopping Amelia");}
 		me.running_flag = 0;
+		gui.menuEnable("amelia-mnu", 0);
 
 	},
 
@@ -156,6 +157,7 @@ var amelia = {
 		me.run();
 		me.run_fast();
 
+		gui.menuEnable("amelia-mnu", 1);
 	},
 
 	
@@ -414,17 +416,18 @@ var amelia = {
 		me.hover_loop_flag = 1;
 		me.hover_loop();
 
+		settimer( func {controls.centerFlightControls();}, 0.5);
+
 	},
 
 	hover_end: func {
 
 		me.relinquish_controls();
 
-		#setprop("/fdm/jsbsim/systems/amelia/amelia-active", 0);
 		me.hover_loop_flag = 0;
 
 		
-		#me.speak("Your controls!");
+
 
 	},
 
@@ -432,6 +435,9 @@ var amelia = {
 
 		setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
 		setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
+
+ 		me.hover_speed_fwd = 0.0;
+		me.hover_speed_lr = 0.0;
 
 		me.landing_flag = 1;
 
@@ -467,6 +473,19 @@ var amelia = {
 					{
 					me.collective = me.collective - me.collective_step;
 					me.collective_damping_bias = 0.0;
+					}
+				else if (alt_agl > 30.0 + me.hover_alt_bias)
+					{
+					var vspeed = getprop("/fdm/jsbsim/velocities/v-down-fps");
+
+					if (vspeed < 0.0)
+						{
+						me.collective = me.collective + me.collective_step;
+						}
+					else if (vspeed > 5.0)
+						{
+						me.collective = me.collective - me.collective_step;
+						}
 					}
 				else if (alt_agl > 15.0 + me.hover_alt_bias)
 					{
@@ -668,6 +687,7 @@ var amelia = {
 			else
 				{
 				me.speak("I am already flying, genius.");
+				return;
 				}
 
 			}
@@ -694,8 +714,8 @@ var amelia = {
 
 			me.speak(me.get_affirm_string());
 		
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch);
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch -me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh + me.hover_speed_lr * ch);
 			}
 		else if (request == "... hover more backward?")
 			{
@@ -720,8 +740,8 @@ var amelia = {
 
 			me.speak(me.get_affirm_string());
 		
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch);
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch -me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh + me.hover_speed_lr * ch);
 			}
 		else if (request == "... hover more left?")
 			{
@@ -746,8 +766,8 @@ var amelia = {
 
 			me.speak(me.get_affirm_string());
 		
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", -me.hover_speed_lr * sh);
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_lr * ch);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch - me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh + me.hover_speed_lr * ch);
 			}
 		else if (request == "... hover more right?")
 			{
@@ -772,12 +792,9 @@ var amelia = {
 
 			me.speak(me.get_affirm_string());
 
-			#print ("Speed LR: ", me.hover_speed_lr);
-			#print ("Heading: ", heading * 180.0/math.pi);
-			#print ("CH: ", ch, " SH: ", sh);
 		
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", -me.hover_speed_lr * sh);
-			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_lr * ch);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", me.hover_speed_fwd * ch - me.hover_speed_lr * sh);
+			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", me.hover_speed_fwd * sh + me.hover_speed_lr * ch);
 			}
 		else if (request == "... hover still?")
 			{
@@ -795,6 +812,59 @@ var amelia = {
 		
 			setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
 			setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
+			}
+		else if (request == "... yaw left?")
+			{
+			print ("Yaw left");
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 2.6)
+				{
+				me.speak("Not while we're on the ground.");
+				return;
+				}
+
+			var current_tgt = getprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt");
+
+			me.speak(me.get_affirm_string());
+
+			current_tgt = current_tgt - 5.0;
+			if (current_tgt < 0.0) {current_tgt = current_tgt + 360.0;}
+
+			setprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt", current_tgt);
+	
+
+			}
+		else if (request == "... yaw right?")
+			{
+			print ("Yaw right");
+			if (me.hover_loop_flag == 0)
+				{
+				me.speak("You are in control right now.");
+				return;
+				}
+			var alt_agl = getprop("/position/altitude-agl-ft");
+			
+			if (alt_agl < 2.6)
+				{
+				me.speak("Not while we're on the ground.");
+				return;
+				}
+			
+
+			var current_tgt = getprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt");
+
+			me.speak(me.get_affirm_string());
+
+			current_tgt = current_tgt + 5.0;
+			if (current_tgt > 360.0) {current_tgt = current_tgt - 360.0;}
+
+			setprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt", current_tgt);
 			}
 
 	},
