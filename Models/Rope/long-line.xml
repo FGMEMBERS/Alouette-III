@@ -4749,7 +4749,354 @@
   </animation>
 
 
+  <!-- translate upward if rope is reeled in -->
 
+  <animation>
+    <type>translate</type>
+    <object-name>RopeSegment01</object-name>
+    <property>/sim/winch/segments-reeled-in</property>
+  <factor>0.1636</factor>
+  <offset-m>0.0</offset-m>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
+<!--hide all segments that are reeled in -->
+
+
+ <animation>
+  <object-name>ropesegment.001</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>0</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+
+ <animation>
+  <object-name>ropesegment.002</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>1</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.003</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>2</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.004</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>3</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.005</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>4</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.006</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>5</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.007</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>6</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.008</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>7</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.009</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>8</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.010</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>9</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.011</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>10</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.012</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>11</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.013</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>12</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.014</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>13</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.015</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>14</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.016</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>15</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.017</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>16</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.018</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>17</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.019</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>18</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.020</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>19</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.021</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>20</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.022</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>21</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.023</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>22</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.024</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>23</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.025</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>24</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.026</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>25</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.027</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>26</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.028</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>27</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.029</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>28</value>
+   </less-than-equals>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>ropesegment.030</object-name>
+  <type>select</type>
+  <condition>
+   <less-than-equals>
+    <property>/sim/winch/segments-reeled-in</property>
+    <value>29</value>
+   </less-than-equals>
+  </condition>
+ </animation>
 
   <!-- Flex Hose Rotation Pitch -->
   <animation>

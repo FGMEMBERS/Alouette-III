@@ -54,7 +54,6 @@ close_helper = func { helper.close(); }
 # flex rope animation
 
 
-
 #setlistener("/sim/signals/fdm-initialized",     func {rescue.rope_animation(0); }    );
 
 
