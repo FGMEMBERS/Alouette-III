@@ -5,7 +5,15 @@ var rope_angle_vr_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 var rope_angle_r_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var onground_flag = 0;
 
+var rope_animation_run = 0;
+
 var rope_animation = func (reset=0) {
+
+if (rope_animation_run == 0) 
+	{
+	print ("Ending rope animation.");
+	return;
+	}
 
   #This is only needed if your flying over "hot" or colidable objects and want a true AGL
   var lonNode = getprop("/position/longitude-deg");
@@ -123,7 +131,7 @@ var rope_animation = func (reset=0) {
   # pull_force was hard coded into the force value below
   # I separated it out because I changed its value for other condition
   # that no longer apply to your implementation.
-  pull_force = 0.05;
+  var pull_force = 0.05;
 
 	var roll_target = 0.0;
 

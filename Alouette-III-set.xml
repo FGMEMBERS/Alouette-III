@@ -112,6 +112,8 @@
 		<ski-equipment type="bool">false</ski-equipment>
                 <rescue-lift>1</rescue-lift>
                 <rescue type="bool">false</rescue>
+                <rescue-flex type="bool">false</rescue-flex>
+                <rescue-none type="bool">true</rescue-none>
                 <shader>
                     <reflection-correction type="float">0.2</reflection-correction>
 		    <reflection-enabled type="int">1</reflection-enabled>
