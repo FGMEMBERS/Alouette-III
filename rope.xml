@@ -4,8 +4,9 @@
 
 <!-- rescue winch -->
 
+      <excitation-test type="double">0.0</excitation-test>
       <hitchoffset type="double">2.1</hitchoffset>
-      <segments-reeled-in type="int">90</segments-reeled-in>
+      <segments-reeled-in type="int">88</segments-reeled-in>
       <load type="double">0</load>
       <rope>
         <bearing type="double">1.0</bearing>
@@ -17,7 +18,7 @@
         <offset type="double">5.1</offset>
         <bendforce type="int">50</bendforce>
         <damping type="double">0.6</damping>
-        <stiffness type="double">9.0</stiffness>
+        <stiffness type="double">15.0</stiffness>
         <correction type="double">0.0</correction>
         <pitch1  type="double">0.0</pitch1>
         <pitch2  type="double">0.0</pitch2>

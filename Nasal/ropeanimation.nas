@@ -90,36 +90,37 @@ if (rope_animation_run == 0)
 	var ref_ang1 = math.asin(ax/a) * 180.0/math.pi;
 	var ref_ang2 = math.asin(ay/a) * 180.0/math.pi;
 
+
 	var damping_factor = math.pow(damping, dt);
 
 	if (onground_flag == 0)
 	  {
-      var current_angle = getprop("/sim/winch/rope/pitch1");
+      var current_angle = getprop("/sim/winch/rope/pitch"~(1+n_segments_reeled));
 
       var ang_error = ref_ang1 - current_angle;
 
-      rope_angle_v_array[0] += ang_error * stiffness * dt;
-      rope_angle_v_array[0] *= damping_factor;
+      rope_angle_v_array[n_segments_reeled] += ang_error * stiffness * dt;
+      rope_angle_v_array[n_segments_reeled] *= damping_factor;
 
-      var ang_speed = rope_angle_v_array[0];
+      var ang_speed = rope_angle_v_array[n_segments_reeled];
 
-      setprop("/sim/winch/rope/pitch1", current_angle + dt * ang_speed);
+      setprop("/sim/winch/rope/pitch"~(1+n_segments_reeled), current_angle + dt * ang_speed);
 
-      var current_roll = getprop("/sim/winch/rope/roll1");
+      var current_roll = getprop("/sim/winch/rope/roll"~(1+n_segments_reeled));
       ang_error = ref_ang2 - current_roll;
 
-      rope_angle_vr_array[0] +=  ang_error * stiffness * dt;
-      rope_angle_vr_array[0] *= damping_factor;
+      rope_angle_vr_array[n_segments_reeled] +=  ang_error * stiffness * dt;
+      rope_angle_vr_array[n_segments_reeled] *= damping_factor;
 
-      ang_speed = rope_angle_vr_array[0];
+      ang_speed = rope_angle_vr_array[n_segments_reeled];
 
       var next_roll =  current_roll + dt * ang_speed;
       setprop("/sim/winch/rope/roll"~(1+n_segments_reeled), next_roll);
 
       # kink excitation
-      var kink =  -(next_roll - rope_angle_r_array[0]);
+      var kink =  -(next_roll - rope_angle_r_array[n_segments_reeled]);
       setprop("/sim/winch/rope/roll"~(2+n_segments_reeled),  kink) ;
-      rope_angle_r_array[1] = kink;
+      rope_angle_r_array[n_segments_reeled + 1] = kink;
     } 
   else
     {
@@ -140,6 +141,7 @@ if (rope_animation_run == 0)
 		{
           	setprop("/sim/winch/rope/pitch"~(i+1),0.0);
 		setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+		
 		rope_angle_r_array[i] = 0.0;
 		}
 
@@ -190,7 +192,7 @@ if (rope_animation_run == 0)
 
 		      # the transverse dynamics is largely waves excited by the helicopter
 
-		      if (i==1) # this is set by the kink excitation
+	if ((i== (n_segments_reeled + 1)) or (i == n_segments_reeled)) # this is set by the kink excitation
             {
               continue;
             }   

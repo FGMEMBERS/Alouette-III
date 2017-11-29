@@ -156,7 +156,7 @@
 	 <property>/sim/winch/segments-reeled-in</property>
          <step type="int">-1</step>
          <min>0</min>
-         <max>90</max>
+         <max>88</max>
     </binding>
    </key>
 
@@ -188,7 +188,7 @@
 	 <property>/sim/winch/segments-reeled-in</property>
          <step type="int">1</step>
          <min>0</min>
-         <max>90</max>
+         <max>88</max>
     </binding>
    </key>
 
