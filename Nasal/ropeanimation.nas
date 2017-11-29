@@ -6,6 +6,8 @@ var rope_angle_r_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 var onground_flag = 0;
 
 var rope_animation_run = 0;
+var aircraft_roll_last = 0.0;
+
 
 var rope_animation = func (reset=0) {
 
@@ -69,6 +71,7 @@ if (rope_animation_run == 0)
 	var load = getprop("/sim/winch/load");
 
 	var aircraft_pitch = getprop("/orientation/pitch-deg");
+	var aircraft_roll = getprop("/orientation/roll-deg");
 
 	if (onground_flag == 0)
 		{
@@ -119,6 +122,10 @@ if (rope_animation_run == 0)
 
       # kink excitation
       var kink =  -(next_roll - rope_angle_r_array[n_segments_reeled]);
+
+      kink = kink + aircraft_roll - aircraft_roll_last;
+      aircraft_roll_last = aircraft_roll;
+
       setprop("/sim/winch/rope/roll"~(2+n_segments_reeled),  kink) ;
       rope_angle_r_array[n_segments_reeled + 1] = kink;
     } 
