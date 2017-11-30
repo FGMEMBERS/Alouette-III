@@ -413,6 +413,8 @@ var amelia = {
 
 		setprop("/fdm/jsbsim/systems/amelia/yaw/heading-tgt", current_heading);
 
+		me.collective = getprop("/controls/engines/engine[0]/throttle");
+
 		me.hover_loop_flag = 1;
 		me.hover_loop();
 

@@ -187,7 +187,7 @@
 		</function>
 		</fcs_function>
 
-		<fcs_function name="autopilot/roll/bank-angle-error">
+		<fcs_function name="autopilot/roll/bank-angle-error-raw">
 		<function>
 			<product>
 			<difference>
@@ -200,6 +200,18 @@
 		</function>
 		</fcs_function>
 
+		<fcs_function name="autopilot/roll/bank-angle-error">
+		<function>
+			<max>
+			<min>
+				<property>autopilot/roll/bank-angle-error-raw</property>
+				<value>5.0</value>
+			</min>
+			<value>-5.0</value>
+			</max>
+		</function>
+		</fcs_function>
+
   		<deadband name="autopilot/roll/bank-angle-error-trigger">
 			<input>autopilot/roll/bank-angle-error</input>
 			<width>2.0</width>
@@ -207,7 +219,7 @@
 
 		<pid name="autopilot/ap-roll-cmd">
 			<input>autopilot/roll/bank-angle-error</input>
-			<kp> 0.01 </kp>
+			<kp> 0.005 </kp>
 			<ki> 0.005 </ki>
 			<kd> 0.004</kd>
 			<trigger>autopilot/roll/bank-angle-error-trigger</trigger>
