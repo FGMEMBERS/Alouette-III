@@ -5760,6 +5760,26 @@
   </condition>
  </animation>
 
+
+  <!-- Flex Rope Rotation Yaw -->
+  <animation>
+    <type>rotate</type>
+    <object-name>RopeSegment01</object-name>
+    <property>/sim/winch/rope/yaw1</property>
+    <factor>1</factor>
+    <offset-deg>0</offset-deg>   
+    <center>
+      <x-m>-1.38048</x-m>
+      <y-m> 0.00551</y-m>
+      <z-m>-1.10667</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
+
   <!-- Flex Hose Rotation Pitch -->
   <animation>
     <type>rotate</type>

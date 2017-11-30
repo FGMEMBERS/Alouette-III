@@ -132,7 +132,7 @@
 		</shader_2>
         	<crew include="Models/Crew/crew_cfg.xml"/>
         </model>
-        <winch include="rope.xml"/>
+        <winch include="Models/Rope/rope_definitions.xml"/>
         <view>
                 <internal archive="y">true</internal>
                 <config>

@@ -19,18 +19,29 @@ var ground_contact = {
 		#print ("Ground contact.");
 	},
 
+
 	delete: func {
 		
 		me.active = 0;
 		#print ("Ground contact removed.");
 	},
 
-	get_distance: func {
+	get_distance: func (pos) {
 
-		var distance = me.position.distance_to (geo.aircraft_position());
+		var distance = me.position.distance_to (pos);
 		#print (distance);
 		return distance;
 	},
+
+	get_bearing: func (pos) {
+
+		var bearing = pos.course_to(me.position);
+		#print (bearing);
+
+		return bearing;
+
+	},
+
 
 	get_state: func {
 
@@ -60,6 +71,7 @@ var rope_manager = {
 	n_segments_reeled: 88,
 	flex_force: 0.0,
 	damping: 0.0,
+	ground_friction: 0.0,
 	
 	i_segment_firstground: -1,
 	n_segments_piled: 0, 
@@ -312,35 +324,63 @@ var rope_manager = {
 			    {
 			      force = force + bend_force * math.cos(me.sum_angle * math.pi/180.0);
 			    }
+			  else
+			    {
+			    force = force + me.ground_friction;
+			    }
+			
 			}
 
 				  if (force > 1.0 * gravity) {force = 1.0 * gravity;}
 
 				  var angle = - 180.0 /math.pi * math.atan2(force, gravity);
 
-				  # outside transition zone, make sure segments lie really flat or pile
+				  # outside transition zone, make sure segments lie really flat or coil into a pile
 				  if (dist_above_ground < -0.5 ) 
 					{
 					if (me.i_segment_firstground == -1)
 						{
 						me.i_segment_firstground = i;
-
+				
 						if (me.ground_contact.get_state() == 0)
 							{
 							me.ground_contact.mark();
+							
+
 							}
 
-						me.n_segments_straight = int(me.ground_contact.get_distance() /segment_length);
+						var aircraft_heading = getprop("/orientation/heading-deg");
+					
+						var aircraft_pos = geo.aircraft_position();
 
+						var bearing = me.ground_contact.get_bearing(aircraft_pos);
+						var dist = me.ground_contact.get_distance(aircraft_pos);
+						var rel_bearing =  (aircraft_heading - 180.0) - bearing;
+
+
+						me.n_segments_straight = int( dist/segment_length);		
 						me.n_segments_piled = me.n_segments - i - me.n_segments_straight;
+						
+						if (dist > 4.0) {dist = 4.0;}
 
+						me.ground_friction = 0.003 * dist * (me.n_segments_straight + me.n_segments_piled);
 
+						if (dist < 1.0) {rel_bearing = 0.0;}
+
+						setprop("/sim/winch/rope/yaw1", rel_bearing);
 
 						}
 					# decide whether to pile or straighed ground segments
 					if (i> me.n_segments - me.n_segments_piled)
 						{
-						angle = 127.0 * i + 3.0 * i - me.sum_angle - me.aircraft_pitch;
+						angle =  3.0 * i  + 127.0 * i - me.sum_angle - me.aircraft_pitch;
+						
+						#angle = 270.0;
+						#if ((math.mod(i,4) == 2) or (math.mod(i,4) == 3)) {angle = 90.0;}
+					
+						#angle = angle  - me.sum_angle - me.aircraft_pitch;
+						#if (math.mod(i, 3) == 1){angle = angle + 127.0 * i;}
+
 						}
 					else	
 						{
@@ -354,6 +394,7 @@ var rope_manager = {
 					if ((me.i_segment_firstground == -1) and (i == me.n_segments -1) and (me.ground_contact.get_state() == 1))
 						{
 						me.ground_contact.delete();
+						me.ground_friction = 0.0;
 						}
 					}
 
@@ -396,7 +437,15 @@ var rope_manager = {
 			{
 			  #rope sections to angle parallel to ground
 			  setprop("/sim/winch/rope/pitch"~(i+1), angle);
-			  setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+
+			  if (i == me.i_segment_firstground + me.n_segments_straight)
+				{
+			  	setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				}
+			  else	
+				{
+			  	setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				}
 			}
 		  }
 
