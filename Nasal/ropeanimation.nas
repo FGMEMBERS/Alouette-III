@@ -143,8 +143,10 @@ var rope_manager = {
 		me.coil_flag = me.nd_ref_coil_flag.getValue(); 
 		me.coil_factor = me.nd_ref_coil_factor.getValue(); 
 
+
 		# the rope for the Alouette is scaled by 0.7 via a global scale animation
 		me.segment_length = me.segment_length * 0.7;
+		me.load_damping_factor = math.pow(0.999, me.load);
 	},
 
 	init_arrays: func {
@@ -306,7 +308,7 @@ var rope_manager = {
 
 			var excitation_test = getprop("/sim/winch/excitation-test");
 			kink = kink + excitation_test;
-			setprop("/sim/winch/excitation-test", 0);
+
 
 		      setprop("/sim/winch/rope/roll"~(2+me.n_segments_reeled),  kink) ;
 		      me.rope_angle_r_array[me.n_segments_reeled + 1] = kink;
@@ -409,16 +411,7 @@ var rope_manager = {
 
 					else if (i> me.n_segments - me.n_segments_piled)
 						{
-						#angle =  3.0 * i  + 127.0 * i - me.sum_angle - me.aircraft_pitch;
-						
 						angle = 0.0;
-
-						#angle = 270.0;
-						#if ((math.mod(i,4) == 2) or (math.mod(i,4) == 3)) {angle = 90.0;}
-					
-						#angle = angle  - me.sum_angle - me.aircraft_pitch;
-						#if (math.mod(i, 3) == 1){angle = angle + 127.0 * i;}
-
 						}
 					else	
 						{
@@ -449,7 +442,7 @@ var rope_manager = {
 
 				      ang_speed = me.rope_angle_v_array[i];
 
-			  setprop("/sim/winch/rope/pitch"~(i+1), current_angle + me.dt * ang_speed);
+			  	      setprop("/sim/winch/rope/pitch"~(i+1), current_angle + me.dt * ang_speed);
 
 				      # the transverse dynamics is largely waves excited by the helicopter
 
@@ -460,6 +453,7 @@ var rope_manager = {
 			  else
 			    {
 			      roll_target =  me.rope_angle_r_array[i-1];
+			
 			    }
 
 				      ang_error = roll_target - me.rope_angle_r_array[i];
@@ -525,3 +519,4 @@ setlistener("/sim/winch/load", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/factor", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-flag", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-factor", func {rope_manager.read_parameters();},0,0);
+

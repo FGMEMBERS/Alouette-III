@@ -8,6 +8,7 @@
       <hitchoffset type="double">2.1</hitchoffset>
       <segments-reeled-in type="int">88</segments-reeled-in>
       <load type="double">0</load>
+      <load-damping type="double">1.0</load-damping>
       <rope>
         <bearing type="double">1.0</bearing>
 	<coil-flag type="int">1</coil-flag>

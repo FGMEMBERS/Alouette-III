@@ -531,7 +531,7 @@ var effect_manager = {
 				}
 			else if (me.is_water == 1)
 				{
-				me.dust = me.dust + 5.0 * wetness;
+				me.dust = 3.5 * me.dust + 1.0 * wetness ;
 				}
 			else
 				{
