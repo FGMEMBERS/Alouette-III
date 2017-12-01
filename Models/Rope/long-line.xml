@@ -8053,7 +8053,7 @@
   <animation>
     <type>rotate</type>
     <object-name>RopeSegment37</object-name>
-    <property>/sim/winch/rope/roll36</property>
+    <property>/sim/winch/rope/roll37</property>
     <factor>1</factor>
     <offset-deg>0</offset-deg>   
     <center>

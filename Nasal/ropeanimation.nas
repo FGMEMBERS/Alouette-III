@@ -134,6 +134,16 @@ var rope_manager = {
 
 	},
 
+	excitation_test: func {
+
+		setprop("/sim/winch/excitation-test", 10.0);
+
+		#settimer ( func {setprop("/sim/winch/excitation-test", -10.0); }, 1.0);
+
+		settimer ( func {setprop("/sim/winch/excitation-test", 0.0); }, 1.0);
+
+	},
+
 	read_parameters: func {
 
 		me.flex_force = me.nd_ref_flex_force.getValue();
@@ -296,6 +306,12 @@ var rope_manager = {
 		      ang_speed = me.rope_angle_vr_array[me.n_segments_reeled];
 
 		      var next_roll =  current_roll + me.dt * ang_speed;
+
+		      # test code block for kink excitations
+
+		      var excitation_test = getprop("/sim/winch/excitation-test");
+		      next_roll = next_roll + excitation_test;
+
 		      setprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled), next_roll);
 
 		      # kink excitation
@@ -304,10 +320,7 @@ var rope_manager = {
 		      kink = kink + me.aircraft_roll - me.aircraft_roll_last;
 		      me.aircraft_roll_last = me.aircraft_roll;
 
-		      # test code block for kink excitations
 
-			var excitation_test = getprop("/sim/winch/excitation-test");
-			kink = kink + excitation_test;
 
 
 		      setprop("/sim/winch/rope/roll"~(2+me.n_segments_reeled),  kink) ;
@@ -453,6 +466,7 @@ var rope_manager = {
 			  else
 			    {
 			      roll_target =  me.rope_angle_r_array[i-1];
+			      roll_target = roll_target * getprop("/sim/winch/load-damping");
 			
 			    }
 
@@ -519,4 +533,7 @@ setlistener("/sim/winch/load", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/factor", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-flag", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-factor", func {rope_manager.read_parameters();},0,0);
+
+
+setlistener("/sim/winch/excitation-test-start", func {rope_manager.excitation_test();},0,0);
 

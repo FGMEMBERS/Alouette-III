@@ -5,6 +5,7 @@
 <!-- rescue winch -->
 
       <excitation-test type="double">0.0</excitation-test>
+	<excitation-test-start type="int">0</excitation-test-start>
       <hitchoffset type="double">2.1</hitchoffset>
       <segments-reeled-in type="int">88</segments-reeled-in>
       <load type="double">0</load>
