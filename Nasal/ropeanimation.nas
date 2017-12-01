@@ -75,7 +75,7 @@ var rope_manager = {
 	flex_force: 0.0,
 	damping: 0.0,
 	load: 0.0,
-	load_damping_factor: 1.0,
+	load_damping: 1.0,
 	ground_friction: 0.0,
 	
 	coil_flag: 0,
@@ -110,6 +110,8 @@ var rope_manager = {
 	nd_ref_segment_length: props.globals.getNode("/sim/winch/rope/factor"),
 	nd_ref_coil_flag: props.globals.getNode("/sim/winch/rope/coil-flag"),
 	nd_ref_coil_factor: props.globals.getNode("/sim/winch/rope/coil-factor"),
+	nd_ref_load_damping: props.globals.getNode("/sim/winch/load-damping"),
+
 
 	nd_ref_acc_x: props.globals.getNode("/accelerations/pilot/x-accel-fps_sec"),
 	nd_ref_acc_y: props.globals.getNode("/accelerations/pilot/y-accel-fps_sec"),
@@ -156,7 +158,7 @@ var rope_manager = {
 
 		# the rope for the Alouette is scaled by 0.7 via a global scale animation
 		me.segment_length = me.segment_length * 0.7;
-		me.load_damping_factor = math.pow(0.999, me.load);
+		me.load_damping = me.nd_ref_load_damping.getValue();
 	},
 
 	init_arrays: func {
@@ -385,7 +387,8 @@ var rope_manager = {
 					if (me.i_segment_firstground == -1)
 						{
 						me.i_segment_firstground = i;
-				
+						#print ("On ground!");
+						#print ("setting: ", me.i_segment_firstground);
 						if (me.ground_contact.get_state() == 0)
 							{
 							me.ground_contact.mark();
@@ -438,6 +441,7 @@ var rope_manager = {
 					if ((me.i_segment_firstground == -1) and (i == me.n_segments -1) and (me.ground_contact.get_state() == 1))
 						{
 						me.ground_contact.delete();
+						setprop("/sim/winch/rope/yaw1", 0.0);
 						me.ground_friction = 0.0;
 						}
 					}
@@ -466,7 +470,7 @@ var rope_manager = {
 			  else
 			    {
 			      roll_target =  me.rope_angle_r_array[i-1];
-			      roll_target = roll_target * getprop("/sim/winch/load-damping");
+			      roll_target = roll_target * me.load_damping;
 			
 			    }
 
@@ -494,9 +498,20 @@ var rope_manager = {
 
 			  else if ((i > (me.i_segment_firstground + me.n_segments_straight)) and (me.i_segment_firstground > -1))
 				{
-				#print ("and now", i);
+
 				var coil = (math.mod(i,5) - 2.0) * me.coil_factor + 13.3;
-			  	setprop("/sim/winch/rope/roll"~(i+1), coil * me.coil_flag);
+				
+				if (me.coil_flag == 0)
+					{
+					coil = 2.0 * (math.mod(i,5) - 2.0) + 2.0 * (math.mod(i, 3) - 1.0);
+					}
+
+			  	setprop("/sim/winch/rope/roll"~(i+1), coil);
+				}
+			  else if ((i > me.i_segment_firstground) and (me.i_segment_firstground > -1))
+				{
+				var coil = 2.0 * (math.mod(i,5) - 2.0) + 2.0 * (math.mod(i, 3) - 1.0);
+				setprop("/sim/winch/rope/roll"~(i+1), coil);
 				}
 			  else
 				{
@@ -530,6 +545,7 @@ rope_manager.init();
 setlistener("/sim/winch/rope/flex-force", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/damping", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/load", func {rope_manager.read_parameters();},0,0);
+setlistener("/sim/winch/load-damping", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/factor", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-flag", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/coil-factor", func {rope_manager.read_parameters();},0,0);

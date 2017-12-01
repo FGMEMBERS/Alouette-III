@@ -418,7 +418,7 @@ var amelia = {
 		me.hover_loop_flag = 1;
 		me.hover_loop();
 
-		settimer( func {controls.centerFlightControls();}, 0.5);
+		#settimer( func {controls.centerFlightControls();}, 0.5);
 
 	},
 

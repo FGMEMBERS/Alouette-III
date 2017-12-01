@@ -19,7 +19,7 @@
         <pull-force type="double">9</pull-force>
         <flex-force type="double">0.09</flex-force>
         <factor type="double">0.18</factor>
-        <offset type="double">4.8</offset>
+        <offset type="double">4.9</offset>
         <bendforce type="int">50</bendforce>
         <damping type="double">0.6</damping>
         <stiffness type="double">15.0</stiffness>
