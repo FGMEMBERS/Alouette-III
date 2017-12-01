@@ -6432,7 +6432,7 @@
   <animation>
     <type>rotate</type>
     <object-name>RopeSegment37</object-name>
-    <property>/sim/winch/rope/pitch36</property>
+    <property>/sim/winch/rope/pitch37</property>
     <factor>1</factor>
     <offset-deg>0</offset-deg>   
     <center>
