@@ -10,6 +10,8 @@
       <load type="double">0</load>
       <rope>
         <bearing type="double">1.0</bearing>
+	<coil-flag type="int">1</coil-flag>
+	<coil-factor type="int">20.0</coil-factor>
         <pull-factor-pitch type="double">0.0</pull-factor-pitch>
         <pull-factor-roll type="double">0.0</pull-factor-roll>
         <pull-force type="double">9</pull-force>
@@ -19,7 +21,6 @@
         <bendforce type="int">50</bendforce>
         <damping type="double">0.6</damping>
         <stiffness type="double">15.0</stiffness>
-        <yaw1  type="double">0.0</yaw1>
         <pitch1  type="double">0.0</pitch1>
         <pitch2  type="double">0.0</pitch2>
         <pitch3  type="double">0.0</pitch3>
@@ -200,6 +201,7 @@
         <roll88 type="double">0.0</roll88>
         <roll89 type="double">0.0</roll89>
         <roll90 type="double">0.0</roll90>
+        <yaw1  type="double">0.0</yaw1>
       </rope>
 
 </PropertyList>

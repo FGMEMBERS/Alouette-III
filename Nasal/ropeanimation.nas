@@ -1,4 +1,6 @@
-#################### long line ####################
+
+# animations for a reelable rope hanging from an aircraft, possibly carrying a cargo
+# Thorsten Renk and Wayne Bragg, 2017
 
 
 var ground_contact = {
@@ -69,10 +71,15 @@ var rope_manager = {
 
 	n_segments: 90,
 	n_segments_reeled: 88,
+	segment_length: 0.2,
 	flex_force: 0.0,
 	damping: 0.0,
+	load: 0.0,
+	load_damping_factor: 1.0,
 	ground_friction: 0.0,
 	
+	coil_flag: 0,
+	coil_factor: 0.0,
 	i_segment_firstground: -1,
 	n_segments_piled: 0, 
 	n_segments_straight: 0,
@@ -84,6 +91,7 @@ var rope_manager = {
 	reset_flag: 0,
 	aircraft_roll_last: 0.0,
 	damping_factor: 0.0,
+	onground_flag: 0,
 
 	ax: 0.0,
 	ay: 0.0,
@@ -97,7 +105,11 @@ var rope_manager = {
 
 	nd_ref_flex_force: props.globals.getNode("/sim/winch/rope/flex-force"),
 	nd_ref_damping: props.globals.getNode("/sim/winch/rope/damping"),
+	nd_ref_load: props.globals.getNode("/sim/winch/load"),
 	nd_ref_n_segments_reeled: props.globals.getNode("/sim/winch/segments-reeled-in"),
+	nd_ref_segment_length: props.globals.getNode("/sim/winch/rope/factor"),
+	nd_ref_coil_flag: props.globals.getNode("/sim/winch/rope/coil-flag"),
+	nd_ref_coil_factor: props.globals.getNode("/sim/winch/rope/coil-factor"),
 
 	nd_ref_acc_x: props.globals.getNode("/accelerations/pilot/x-accel-fps_sec"),
 	nd_ref_acc_y: props.globals.getNode("/accelerations/pilot/y-accel-fps_sec"),
@@ -111,6 +123,8 @@ var rope_manager = {
 
 	nd_ref_lat:  props.globals.getNode("/position/latitude-deg"),
 	nd_ref_lon:  props.globals.getNode("/position/longitude-deg"),
+	nd_ref_alt:  props.globals.getNode("/position/altitude-ft"),
+
 
 	init: func {
 
@@ -124,6 +138,13 @@ var rope_manager = {
 
 		me.flex_force = me.nd_ref_flex_force.getValue();
 		me.damping = me.nd_ref_damping.getValue();
+		me.load = me.nd_ref_load.getValue();
+		me.segment_length = me.nd_ref_segment_length.getValue(); 
+		me.coil_flag = me.nd_ref_coil_flag.getValue(); 
+		me.coil_factor = me.nd_ref_coil_factor.getValue(); 
+
+		# the rope for the Alouette is scaled by 0.7 via a global scale animation
+		me.segment_length = me.segment_length * 0.7;
 	},
 
 	init_arrays: func {
@@ -180,7 +201,7 @@ var rope_manager = {
 		  #This is only needed if your flying over "hot" or colidable objects and want a true AGL
 		  var lonNode = me.nd_ref_lon.getValue(); #getprop("/position/longitude-deg");
 		  var latNode = me.nd_ref_lat.getValue(); #getprop("/position/latitude-deg");
-		  var aircraft_alt_ft = getprop("/position/altitude-ft") -13.8;#this was set for the aircrane, I didn't redo it.
+		  var aircraft_alt_ft = me.nd_ref_alt.getValue() -13.8; # this was set for the aircrane
 		  var true_grnd_elev_ft = geo.elevation(latNode, lonNode) * 3.28;           
 		  var true_agl_ft =  aircraft_alt_ft - true_grnd_elev_ft;
 		  setprop("position/true-agl-ft", true_agl_ft);
@@ -189,7 +210,6 @@ var rope_manager = {
 		  var overland = getprop("fdm/jsbsim/environment/terrain-solid");
 		  var altitude = getprop("position/true-agl-ft");
 		  var alt_agl = altitude * 0.3048 + getprop("/sim/winch/rope/offset");
-		  var segment_length = getprop("/sim/winch/rope/factor") * 0.7;
 		  var hitch_offset = getprop("/sim/winch/hitchoffset");
 
 		  me.n_segments_reeled = me.nd_ref_n_segments_reeled.getValue();
@@ -205,15 +225,19 @@ var rope_manager = {
 		  if (overland)
 		    {
 
-		      if ((alt_agl + 0.25) - ((me.n_segments - me.n_segments_reeled) * segment_length) < 0.0)
-					  onground_flag = 1;
+		      if ((alt_agl + 0.25) - ((me.n_segments - me.n_segments_reeled) * me.segment_length) < 0.0)
+					{
+					me.onground_flag = 1;
+					}
 				  else
-					  onground_flag = 0;
+					{
+					me.onground_flag = 0;
+					}
 		    }
 		  else
 			  {
 		      #TODO: decide how to handel this event, slowly allow to sink?
-			    onground_flag = 0;
+			    me.onground_flag = 0;
 			  }
 
 
@@ -221,12 +245,11 @@ var rope_manager = {
 			me.sum_angle = 0.0;
 			me.dt = me.nd_ref_delta_t.getValue();
 		  	var bend_force = getprop("/sim/winch/rope/bendforce");
-			var load = getprop("/sim/winch/load");
 
 			me.aircraft_pitch = me.nd_ref_aircraft_pitch.getValue();
 			me.aircraft_roll = me.nd_ref_aircraft_roll.getValue();
 
-			if (onground_flag == 0)
+			if (me.onground_flag == 0)
 				{
 					me.ax = me.nd_ref_acc_x.getValue();
 					me.ay = me.nd_ref_acc_y.getValue();
@@ -249,7 +272,7 @@ var rope_manager = {
 
 			me.damping_factor = math.pow(me.damping, me.dt);
 
-			if (onground_flag == 0)
+			if (me.onground_flag == 0)
 			  {
 		      var current_angle = getprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled));
 
@@ -279,6 +302,12 @@ var rope_manager = {
 		      kink = kink + me.aircraft_roll - me.aircraft_roll_last;
 		      me.aircraft_roll_last = me.aircraft_roll;
 
+		      # test code block for kink excitations
+
+			var excitation_test = getprop("/sim/winch/excitation-test");
+			kink = kink + excitation_test;
+			setprop("/sim/winch/excitation-test", 0);
+
 		      setprop("/sim/winch/rope/roll"~(2+me.n_segments_reeled),  kink) ;
 		      me.rope_angle_r_array[me.n_segments_reeled + 1] = kink;
 		    } 
@@ -307,14 +336,14 @@ var rope_manager = {
 
 			for (var i = me.n_segments_reeled; i< me.n_segments; i=i+1)
 		    		{
-			    	var gravity = me.n_segments - i + load;
+			    	var gravity = me.n_segments - i + me.load;
 
 				  var velocity = me.nd_ref_velocity.getValue();
 
 				  if (velocity == nil) {velocity = 0;}
 				  if (velocity > 500.0) {velocity = 500.0;}
 
-				  var dist_above_ground = alt_agl - (i+1 - me.n_segments_reeled) * segment_length + 0.25;
+				  var dist_above_ground = alt_agl - (i+1 - me.n_segments_reeled) * me.segment_length + 0.25;
 		 
 		      var force = me.flex_force * math.cos(me.sum_angle * math.pi/180.0) * pull_force * velocity;
 
@@ -358,23 +387,32 @@ var rope_manager = {
 						var rel_bearing =  (aircraft_heading - 180.0) - bearing;
 
 
-						me.n_segments_straight = int( dist/segment_length);		
+						me.n_segments_straight = int( dist/me.segment_length);		
 						me.n_segments_piled = me.n_segments - i - me.n_segments_straight;
 						
+
 						if (dist > 4.0) {dist = 4.0;}
 
 						me.ground_friction = 0.003 * dist * (me.n_segments_straight + me.n_segments_piled);
 
-						if (dist < 1.0) {rel_bearing = 0.0;}
+						if (dist < 0.5) {rel_bearing = 0.0;}
 
 						setprop("/sim/winch/rope/yaw1", rel_bearing);
 
 						}
 					# decide whether to pile or straighed ground segments
-					if (i> me.n_segments - me.n_segments_piled)
+				
+					if ((i == me.n_segments - me.n_segments_piled + 1) or (me.coil_flag == 0))
 						{
-						angle =  3.0 * i  + 127.0 * i - me.sum_angle - me.aircraft_pitch;
+						angle = 270.0- me.sum_angle - me.aircraft_pitch;
+						}
+
+					else if (i> me.n_segments - me.n_segments_piled)
+						{
+						#angle =  3.0 * i  + 127.0 * i - me.sum_angle - me.aircraft_pitch;
 						
+						angle = 0.0;
+
 						#angle = 270.0;
 						#if ((math.mod(i,4) == 2) or (math.mod(i,4) == 3)) {angle = 90.0;}
 					
@@ -400,7 +438,7 @@ var rope_manager = {
 
 				  me.sum_angle += angle;
 
-		      if (onground_flag == 0)
+		      if (me.onground_flag == 0)
 				    {
 				      current_angle = getprop("/sim/winch/rope/pitch"~(i+1));
 
@@ -438,14 +476,26 @@ var rope_manager = {
 			  #rope sections to angle parallel to ground
 			  setprop("/sim/winch/rope/pitch"~(i+1), angle);
 
-			  if (i == me.i_segment_firstground + me.n_segments_straight)
+			  if ((i == me.i_segment_firstground + me.n_segments_straight)  and (me.i_segment_firstground > -1))
 				{
-			  	setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				#print ("i is now", i);
+				#print ("Firstground is: ", me.i_segment_firstground, " straight: ", me.n_segments_straight);
+
+			  	setprop("/sim/winch/rope/roll"~(i+1), 90.0 * me.coil_flag);
 				}
-			  else	
+
+			  else if ((i > (me.i_segment_firstground + me.n_segments_straight)) and (me.i_segment_firstground > -1))
 				{
-			  	setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				#print ("and now", i);
+				var coil = (math.mod(i,5) - 2.0) * me.coil_factor + 13.3;
+			  	setprop("/sim/winch/rope/roll"~(i+1), coil * me.coil_flag);
 				}
+			  else
+				{
+				setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				}		
+
+
 			}
 		  }
 
@@ -471,5 +521,7 @@ rope_manager.init();
 
 setlistener("/sim/winch/rope/flex-force", func {rope_manager.read_parameters();},0,0);
 setlistener("/sim/winch/rope/damping", func {rope_manager.read_parameters();},0,0);
-
-
+setlistener("/sim/winch/load", func {rope_manager.read_parameters();},0,0);
+setlistener("/sim/winch/rope/factor", func {rope_manager.read_parameters();},0,0);
+setlistener("/sim/winch/rope/coil-flag", func {rope_manager.read_parameters();},0,0);
+setlistener("/sim/winch/rope/coil-factor", func {rope_manager.read_parameters();},0,0);
