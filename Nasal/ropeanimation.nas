@@ -5,11 +5,14 @@
 
 var ground_contact = {
 
+
 	new: func () {
 
 	 	var c = { parents: [ground_contact] };
 	
 		c.active = 0;
+		c.bearing = 0.0;
+		c.dragging_flag = 0;
 
 		return c;
 	},
@@ -25,6 +28,7 @@ var ground_contact = {
 	delete: func {
 		
 		me.active = 0;
+		me.dragging_flag = 0;
 		#print ("Ground contact removed.");
 	},
 
@@ -41,6 +45,68 @@ var ground_contact = {
 		#print (bearing);
 
 		return bearing;
+
+	},
+
+	unset_dragging: func {
+
+		me.dragging_flag = 0;
+
+	},
+
+	do_dragging: func (pos, dt, length_onground) {
+
+		if (me.dragging_flag == 0)
+			{
+			me.bearing =  pos.course_to(me.position);
+			me.dragging_flag = 1;
+			}
+
+		var v_north = getprop("/velocities/speed-north-fps");
+		var v_east = getprop("/velocities/speed-east-fps");
+
+		var v_ground = math.sqrt(v_north * v_north + v_east * v_east);
+
+		var course = (math.atan2(v_east, v_north) - math.pi) * 180.0/math.pi;
+		course = course;
+		if (course < 0.0) {course = course + 360.0;}
+		else if (course > 360.0) {course = course- 360.0;}
+
+		#print ("Drag bearing is now: ", course);
+
+
+		#print ("Contact bearing is now: ", me.bearing);
+
+		var dist = pos.distance_to(me.position);
+
+		var ang_error = course - me.bearing;
+		if (ang_error < -180.0) 
+			{ang_error = ang_error + 360.0;}
+		else if (ang_error > 180.0) 
+			{ang_error = ang_error - 360.0;}
+
+		var sign = 1;
+		
+		if (ang_error < 0.0)
+			{sign = -1}	
+
+		#print ("Error is now: ", ang_error);	
+
+		var correction = math.abs(ang_error) / 10.0;
+		correction = correction * v_ground * dt;
+		
+		if (correction > math.abs(ang_error))
+			{
+			me.bearing = course;
+			}
+		else
+			{
+			correction = correction * sign;
+			me.bearing = me.bearing + correction;
+			}
+		me.position = pos.apply_course_distance(me.bearing,  1.1 * length_onground);
+
+		return me.bearing;
 
 	},
 
@@ -139,9 +205,6 @@ var rope_manager = {
 	excitation_test: func {
 
 		setprop("/sim/winch/excitation-test", 10.0);
-
-		#settimer ( func {setprop("/sim/winch/excitation-test", -10.0); }, 1.0);
-
 		settimer ( func {setprop("/sim/winch/excitation-test", 0.0); }, 1.0);
 
 	},
@@ -199,6 +262,20 @@ var rope_manager = {
 			setprop("/sim/winch/rope/pitch"~i, 0);
 			setprop("/sim/winch/rope/roll"~i, 0);
 			}
+
+	},
+
+	coil_func : func (i) {
+		
+		var coil = (math.mod(i,5) - 2.0);
+
+		if (coil < -1) {coil = -1;}
+		else if (coil > 1) { coil = 1;}
+
+		var ground_factor = (1.0 - me.ground_friction);
+		if (ground_factor < 0.0) {ground_factor = 0.0;}
+
+		return me.coil_factor * coil * ground_factor;  ;
 
 	},
 
@@ -400,13 +477,29 @@ var rope_manager = {
 					
 						var aircraft_pos = geo.aircraft_position();
 
-						var bearing = me.ground_contact.get_bearing(aircraft_pos);
-						var dist = me.ground_contact.get_distance(aircraft_pos);
-						var rel_bearing =  (aircraft_heading - 180.0) - bearing;
 
+						var dist = me.ground_contact.get_distance(aircraft_pos);
 
 						me.n_segments_straight = int( dist/me.segment_length);		
 						me.n_segments_piled = me.n_segments - i - me.n_segments_straight;
+
+						var bearing = 0;
+			
+						if (me.n_segments_piled > 0)
+							{
+						 	bearing = me.ground_contact.get_bearing(aircraft_pos);
+							me.ground_contact.unset_dragging();
+							}
+						else
+							{
+							bearing = me.ground_contact.do_dragging(aircraft_pos, me.dt, me.segment_length * me.n_segments_straight);
+							}
+
+
+						var rel_bearing =  (aircraft_heading - 180.0) - bearing;
+
+
+
 						
 
 						if (dist > 4.0) {dist = 4.0;}
@@ -492,8 +585,46 @@ var rope_manager = {
 				{
 				#print ("i is now", i);
 				#print ("Firstground is: ", me.i_segment_firstground, " straight: ", me.n_segments_straight);
+				var coil = 90.0;
 
-			  	setprop("/sim/winch/rope/roll"~(i+1), 90.0 * me.coil_flag);
+				if (me.coil_flag == 0)
+					{
+					
+					# we want the rope to align with a non-wiggly rope
+					# so we have to connect with the right part of the pattern
+	
+					var coil_cur = me.coil_func(i);
+					var coil_next = me.coil_func(i+1);
+
+					#print ("Cur: ", coil_cur, " next: ", coil_next);
+
+					if (coil_cur == 0.0) 
+						{
+						coil = -1.0 * coil_next;
+						}
+					else if ((coil_cur > 0.0) and (coil_next > 0.0))
+						{
+						coil = 0.0;
+						}
+					else if ((coil_cur < 0.0) and (coil_next < 0.0))
+						{
+						coil = 0.0;
+						}
+					else if ((coil_cur > 0.0) and (coil_next < 0.0))
+						{
+						coil = -1.0 * coil_next;
+						}
+					else if ((coil_cur < 0.0) and (coil_next == 0.0))
+						{
+						coil = 1.0 * coil_cur;
+						}
+
+					coil = coil + 0.25 * me.coil_factor;
+						
+					}
+
+
+			  	setprop("/sim/winch/rope/roll"~(i+1), coil);
 				}
 
 			  else if ((i > (me.i_segment_firstground + me.n_segments_straight)) and (me.i_segment_firstground > -1))
@@ -503,15 +634,14 @@ var rope_manager = {
 				
 				if (me.coil_flag == 0)
 					{
-					coil = 2.0 * (math.mod(i,5) - 2.0) + 2.0 * (math.mod(i, 3) - 1.0);
+					coil = me.coil_func(i);		
 					}
 
 			  	setprop("/sim/winch/rope/roll"~(i+1), coil);
 				}
 			  else if ((i > me.i_segment_firstground) and (me.i_segment_firstground > -1))
 				{
-				var coil = 2.0 * (math.mod(i,5) - 2.0) + 2.0 * (math.mod(i, 3) - 1.0);
-				setprop("/sim/winch/rope/roll"~(i+1), coil);
+				setprop("/sim/winch/rope/roll"~(i+1), me.coil_func(i));
 				}
 			  else
 				{
