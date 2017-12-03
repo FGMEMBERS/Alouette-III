@@ -5,8 +5,7 @@
 <!-- rescue winch -->
 
       <excitation-test type="double">0.0</excitation-test>
-	<excitation-test-start type="int">0</excitation-test-start>
-      <hitchoffset type="double">2.1</hitchoffset>
+      <excitation-test-start type="int">0</excitation-test-start>
       <segments-reeled-in type="int">88</segments-reeled-in>
       <load type="double">0</load>
       <load-damping type="double">1.0</load-damping>
@@ -14,9 +13,7 @@
         <bearing type="double">1.0</bearing>
 	<coil-flag type="int">1</coil-flag>
 	<coil-factor type="int">20.0</coil-factor>
-        <pull-factor-pitch type="double">0.0</pull-factor-pitch>
-        <pull-factor-roll type="double">0.0</pull-factor-roll>
-        <pull-force type="double">9</pull-force>
+	<coil-angle type="double">13.3</coil-angle>
         <flex-force type="double">0.09</flex-force>
         <factor type="double">0.18</factor>
         <offset type="double">4.9</offset>
