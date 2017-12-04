@@ -174,6 +174,9 @@ var rope_manager = {
 
 	# property node references
 
+	nd_ref_pitch_array: [],
+	nd_ref_roll_array: [],
+
 	nd_ref_flex_force: props.globals.getNode("/sim/winch/rope/flex-force"),
 	nd_ref_damping: props.globals.getNode("/sim/winch/rope/damping"),
 	nd_ref_load: props.globals.getNode("/sim/winch/load"),
@@ -237,12 +240,44 @@ var rope_manager = {
 
 	init_arrays: func {
 
+
 		for (var i=0; i< me.n_segments; i=i+1)
 			{
 			append(me.rope_angle_v_array, 0);
 			append(me.rope_angle_vr_array, 0);
 			append(me.rope_angle_r_array, 0);
+
+			var nd_string = "/sim/winch/rope/pitch"~(i+1);
+			append(me.nd_ref_pitch_array, props.globals.getNode(nd_string));
+
+			nd_string = "/sim/winch/rope/roll"~(i+1);
+			append(me.nd_ref_roll_array, props.globals.getNode(nd_string));
 			}
+
+	},
+
+
+	_set_pitch: func (i, value) {
+
+		me.nd_ref_pitch_array[i].setValue(value);
+
+	},
+
+	_get_pitch: func (i) {
+
+		return me.nd_ref_pitch_array[i].getValue();
+
+	},
+
+	_set_roll: func (i, value) {
+
+		me.nd_ref_roll_array[i].setValue(value);
+
+	},
+
+	_get_roll: func (i) {
+
+		return me.nd_ref_roll_array[i].getValue();
 
 	},
 
@@ -380,66 +415,74 @@ var rope_manager = {
 
 			if (me.onground_flag == 0)
 			  {
-		      var current_angle = getprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled));
+		          #var current_angle = getprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled));
+			  var current_angle = me._get_pitch(me.n_segments_reeled);
 
-		      var ang_error = ref_ang1 - current_angle;
+		      	  var ang_error = ref_ang1 - current_angle;
 
-		      me.rope_angle_v_array[me.n_segments_reeled] += ang_error * me.stiffness * me.dt;
-		      me.rope_angle_v_array[me.n_segments_reeled] *= me.damping_factor;
+			  me.rope_angle_v_array[me.n_segments_reeled] += ang_error * me.stiffness * me.dt;
+			  me.rope_angle_v_array[me.n_segments_reeled] *= me.damping_factor;
 
-		      var ang_speed = me.rope_angle_v_array[me.n_segments_reeled];
+			  var ang_speed = me.rope_angle_v_array[me.n_segments_reeled];
 
-		      setprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled), current_angle + me.dt * ang_speed);
+			  #setprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled), current_angle + me.dt * ang_speed);
+			  me._set_pitch(me.n_segments_reeled, current_angle + me.dt * ang_speed);
 
+			  var current_roll = getprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled));
+			  ang_error = ref_ang2 - current_roll;
 
-		      var current_roll = getprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled));
-		      ang_error = ref_ang2 - current_roll;
+			  me.rope_angle_vr_array[me.n_segments_reeled] +=  ang_error * me.stiffness * me.dt;
+			  me.rope_angle_vr_array[me.n_segments_reeled] *= me.damping_factor;
 
-		      me.rope_angle_vr_array[me.n_segments_reeled] +=  ang_error * me.stiffness * me.dt;
-		      me.rope_angle_vr_array[me.n_segments_reeled] *= me.damping_factor;
+			  ang_speed = me.rope_angle_vr_array[me.n_segments_reeled];
 
-		      ang_speed = me.rope_angle_vr_array[me.n_segments_reeled];
+			  var next_roll =  current_roll + me.dt * ang_speed;
 
-		      var next_roll =  current_roll + me.dt * ang_speed;
+			  # test code block for kink excitations
 
-		      # test code block for kink excitations
+			  var excitation_test = getprop("/sim/winch/excitation-test");
+			  next_roll = next_roll + excitation_test;
 
-		      var excitation_test = getprop("/sim/winch/excitation-test");
-		      next_roll = next_roll + excitation_test;
+			  #setprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled), next_roll);
+			  me._set_roll(me.n_segments_reeled, next_roll);
 
-		      setprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled), next_roll);
+			  # kink excitation
+			  var kink =  -(next_roll - me.rope_angle_r_array[me.n_segments_reeled]);
 
-		      # kink excitation
-		      var kink =  -(next_roll - me.rope_angle_r_array[me.n_segments_reeled]);
+			  kink = kink + me.aircraft_roll - me.aircraft_roll_last;
+			  me.aircraft_roll_last = me.aircraft_roll;
 
-		      kink = kink + me.aircraft_roll - me.aircraft_roll_last;
-		      me.aircraft_roll_last = me.aircraft_roll;
+			  #setprop("/sim/winch/rope/roll"~(2+me.n_segments_reeled),  kink) ;
+			  me._set_roll(1+ me.n_segments_reeled, kink);
 
-
-
-
-		      setprop("/sim/winch/rope/roll"~(2+me.n_segments_reeled),  kink) ;
-		      me.rope_angle_r_array[me.n_segments_reeled + 1] = kink;
+			  me.rope_angle_r_array[me.n_segments_reeled + 1] = kink;
 		    } 
 		  else
 		    {
 		      #lets cargo align with parallel rope if not conditioned as above
-		      setprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled), ref_ang1);
-		      setprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled), ref_ang2);
+
+		      	   #setprop("/sim/winch/rope/pitch"~(1+me.n_segments_reeled), ref_ang1);
+		      	   #setprop("/sim/winch/rope/roll"~(1+me.n_segments_reeled), ref_ang2);
+	
+			   me._set_pitch(me.n_segments_reeled, ref_ang1);
+			   me._set_roll(me.n_segments_reeled, ref_ang2);
+
+
 		    }
 
-		  # pull_force was hard coded into the force value below
-		  # I separated it out because I changed its value for other condition
-		  # that no longer apply to your implementation.
-		  var pull_force = 0.05;
+
+		  	var pull_force = 0.05;
 
 			var roll_target = 0.0;
 
 
 			for (var i = 0; i< me.n_segments_reeled; i=i+1)
 				{
-			  	setprop("/sim/winch/rope/pitch"~(i+1),0.0);
-				setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+			  	#setprop("/sim/winch/rope/pitch"~(i+1),0.0);
+				#setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+
+			   	me._set_pitch(i, 0.0);
+			   	me._set_roll(i, 0.0);
 		
 				me.rope_angle_r_array[i] = 0.0;
 				}
@@ -562,7 +605,8 @@ var rope_manager = {
 
 				      if (i > me.n_segments_reeled)
 					      {
-					      current_angle = getprop("/sim/winch/rope/pitch"~(i+1));
+					      #current_angle = getprop("/sim/winch/rope/pitch"~(i+1));
+			   		      current_angle = me._get_pitch(i);
 
 					      ang_error = angle - current_angle;
 
@@ -571,7 +615,8 @@ var rope_manager = {
 
 					      ang_speed = me.rope_angle_v_array[i];
 
-				  	      setprop("/sim/winch/rope/pitch"~(i+1), current_angle + me.dt * ang_speed);			
+				  	      #setprop("/sim/winch/rope/pitch"~(i+1), current_angle + me.dt * ang_speed);			
+					      me._set_pitch(i, current_angle + me.dt * ang_speed);
 					}
 
 				      # the transverse dynamics is largely waves excited by the helicopter
@@ -594,12 +639,14 @@ var rope_manager = {
 
 				      ang_speed = me.rope_angle_vr_array[i];
 
-			  setprop("/sim/winch/rope/roll"~(i+1), roll_target);
+			  #setprop("/sim/winch/rope/roll"~(i+1), roll_target);
+			  me._set_roll(i, roll_target);
 				    }
 		      else
 			{
 			  #rope sections to angle parallel to ground
-			  setprop("/sim/winch/rope/pitch"~(i+1), angle);
+			  #setprop("/sim/winch/rope/pitch"~(i+1), angle);
+			  me._set_pitch(i, angle);
 
 			  if ((i == me.i_segment_firstground + me.n_segments_straight)  and (me.i_segment_firstground > -1))
 				{
@@ -644,7 +691,8 @@ var rope_manager = {
 					}
 
 
-			  	setprop("/sim/winch/rope/roll"~(i+1), coil);
+			  	#setprop("/sim/winch/rope/roll"~(i+1), coil);
+				me._set_roll(i, coil);				
 				}
 
 			  else if ((i > (me.i_segment_firstground + me.n_segments_straight)) and (me.i_segment_firstground > -1))
@@ -657,15 +705,18 @@ var rope_manager = {
 					coil = me._coil_func(i);		
 					}
 
-			  	setprop("/sim/winch/rope/roll"~(i+1), coil);
+			  	#setprop("/sim/winch/rope/roll"~(i+1), coil);
+				me._set_roll(i, coil);				
 				}
 			  else if ((i > me.i_segment_firstground) and (me.i_segment_firstground > -1))
 				{
-				setprop("/sim/winch/rope/roll"~(i+1), me._coil_func(i));
+				#setprop("/sim/winch/rope/roll"~(i+1), me._coil_func(i));
+				me._set_roll(i, me._coil_func(i));				
 				}
 			  else
 				{
-				setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				#setprop("/sim/winch/rope/roll"~(i+1), 0.0);
+				me._set_roll(i, 0.0);		
 				}		
 
 
@@ -676,7 +727,8 @@ var rope_manager = {
 
 		  for (var i = 0; i< me.n_segments; i=i+1)
 		    {
-		      me.rope_angle_r_array[i] = getprop("/sim/winch/rope/roll"~(i+1));
+		      #me.rope_angle_r_array[i] = getprop("/sim/winch/rope/roll"~(i+1));
+		      me.rope_angle_r_array[i] = me._get_roll(i);
 		    }
 
 		  settimer( func {me.rope_animation_loop();}, 0.0);
