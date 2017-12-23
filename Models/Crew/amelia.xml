@@ -61,7 +61,8 @@
  </animation>
 
 	<model> 
-		<path>Aircraft/Generic/Human/Models/outfit/flightsuit-f.xml</path>
+		<!--path>Aircraft/Generic/Human/Models/outfit/flightsuit-f.xml</path-->
+    <path>Aircraft/Alouette-III/Models/Crew/flightsuit-f.xml</path>
 		<name>Flightsuit</name>
 	</model>
  <animation>

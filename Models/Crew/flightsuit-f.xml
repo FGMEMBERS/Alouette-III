@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>flightsuit-f.ac</path>
+	<animation>
+		<enable-hot type="bool">false</enable-hot>
+	</animation>
+
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>hip</object-name>
+    <object-name>chest</object-name>
+    <object-name>arm1.L</object-name>
+    <object-name>arm1.R</object-name>
+    <object-name>leg1.L</object-name>
+    <object-name>leg1.R</object-name>
+    <object-name>leg2.L</object-name>
+    <object-name>leg2.R</object-name>
+  </effect>
+
+</PropertyList>

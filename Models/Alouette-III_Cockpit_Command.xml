@@ -10,23 +10,71 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>0</pitch-deg>
-            <z-m>0.0</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>0</pitch-deg>
+    <z-m>0.0</z-m>
+    <x-m>0</x-m>
+  </offsets>
 
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>CoPi-DRudder-Pedal</object-name>
+    <object-name>CoPi-gRudder-Pedal</object-name>
+    <object-name>box.004</object-name>
+    <object-name>box.005</object-name>
+    <object-name>CoPi-Manche</object-name>
+    <object-name>CoPi-Manche-Chaussette</object-name>
+    <object-name>CoPi-Manche-Poignee</object-name>
+    <object-name>CoPiCollective-Cde</object-name>
+    <object-name>CoPiCJ1</object-name>
+    <object-name>CoPiCJ2</object-name>
+    <object-name>CoPiCJ3</object-name>
+    <object-name>CoPiCJ4</object-name>
+    <object-name>CoPiCJ5</object-name>
+    <object-name>CoPiCJ6</object-name>
+    <object-name>CoPiLJ1</object-name>
+    <object-name>CoPiLJ2</object-name>
+    <object-name>CoPiLJ3</object-name>
+    <object-name>CoPiLJ4</object-name>
+    <object-name>CoPiLJ5</object-name>
+    <object-name>CoPiLJ6</object-name>
+    <object-name>CoPiRJ1</object-name>
+    <object-name>CoPiRJ2</object-name>
+    <object-name>CoPiRJ3</object-name>
+    <object-name>CoPiRJ4</object-name>
+    <object-name>CoPiRJ5</object-name>
+    <object-name>CoPiRJ6</object-name>
+    <object-name>box</object-name>
+    <object-name>box.001</object-name>
+    <object-name>box.002</object-name>
+    <object-name>box.003</object-name>
+    <object-name>Pi-DRudder-Pedal</object-name>
+    <object-name>Pi-GRudder-Pedal</object-name>
+    <object-name>Pi-Manche</object-name>
+    <object-name>Pi-Manche-Chaussette</object-name>
+    <object-name>Pi-Manche-Poignee</object-name>
+    <object-name>Pi-Manche-Poignee_Land_Light_SW</object-name>
+    <object-name>PiCJ1</object-name>
+    <object-name>PiCJ2</object-name>
+    <object-name>PiCJ3</object-name>
+    <object-name>PiCJ4</object-name>
+    <object-name>PiCJ5</object-name>
+    <object-name>PiCJ6</object-name>
+    <object-name>PiCollective-Cde</object-name>
+    <object-name>PiLJ1</object-name>
+    <object-name>PiLJ2</object-name>
+    <object-name>PiLJ3</object-name>
+    <object-name>PiLJ4</object-name>
+    <object-name>PiLJ5</object-name>
+    <object-name>PiLJ6</object-name>
+    <object-name>PiRJ1</object-name>
+    <object-name>PiRJ2</object-name>
+    <object-name>PiRJ3</object-name>
+    <object-name>PiRJ4</object-name>
+    <object-name>PiRJ5</object-name>
+    <object-name>PiRJ6</object-name>
+  </effect>
 
-
-        
-
-
-    
-
-
-       
-	
-	
-	
         <!--======palonnier============================================-->
         <animation>
             <type>rotate</type>

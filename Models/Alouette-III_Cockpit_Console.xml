@@ -10,26 +10,46 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>0</pitch-deg>
-            <z-m>0.0</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>0</pitch-deg>
+    <z-m>0.0</z-m>
+    <x-m>0</x-m>
+  </offsets>
 
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Debit-Cde</object-name>
+    <object-name>LG-Light</object-name>
+    <object-name>ParkFreins-Cde</object-name>
+    <object-name>ParkFreins-base</object-name>
+    <object-name>ellipse.002</object-name>
+    <object-name>ellipse.003</object-name>
+    <object-name>ellipse.004</object-name>
+    <object-name>ellipse.005</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>cylinder.001</object-name>
+    <object-name>cylinder.002</object-name>
+    <object-name>cylinder.003</object-name>
+    <object-name>off</object-name>
+    <object-name>sphere</object-name>
+    <object-name>sphere.001</object-name>
+    <object-name>sphere.002</object-name>
+    <object-name>sphere.003</object-name>
+    <object-name>sphere.004</object-name>
+    <object-name>sphere.005</object-name>
+    <object-name>sphere.006</object-name>
+  </effect>
 
-
-        
-
-
-        <model>
-            <name>VPanel</name>
-            <path>Aircraft/Alouette-III/Panels/Al3_VPanel.xml</path>
-            <offsets>
-                <x-m>-2.12641</x-m>
-                <y-m>0.200287</y-m>
-                <z-m>0.184616</z-m>
-                <pitch-deg>-5</pitch-deg>
-            </offsets>
-        </model>
+  <model>
+      <name>VPanel</name>
+      <path>Aircraft/Alouette-III/Panels/Al3_VPanel.xml</path>
+      <offsets>
+          <x-m>-2.12641</x-m>
+          <y-m>0.200287</y-m>
+          <z-m>0.184616</z-m>
+          <pitch-deg>-5</pitch-deg>
+      </offsets>
+  </model>
 	
 	<model>
             <name>VDPanel</name>

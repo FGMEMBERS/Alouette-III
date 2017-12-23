@@ -10,11 +10,39 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>0</pitch-deg>
-            <z-m>0.0</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>0</pitch-deg>
+    <z-m>0.0</z-m>
+    <x-m>0</x-m>
+  </offsets>
 
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Bras-Droit</object-name>
+    <object-name>Bras-Gauche</object-name>
+    <object-name>Casque</object-name>
+    <object-name>Casque-Int</object-name>
+    <object-name>Ceinture</object-name>
+    <object-name>Copi-Jacket</object-name>
+    <object-name>Corps</object-name>
+    <object-name>Jambes</object-name>
+    <object-name>Main-Droite</object-name>
+    <object-name>Main-Gauche</object-name>
+    <object-name>Tete</object-name>
+    <object-name>object</object-name>
+    <object-name>Bras-Droit.001</object-name>
+    <object-name>Bras-Gauche.001</object-name>
+    <object-name>Casque.001</object-name>
+    <object-name>Casque-Int.001</object-name>
+    <object-name>Ceinture.001</object-name>
+    <object-name>Copi-Jacket</object-name>
+    <object-name>Pilot-Jacket</object-name>
+    <object-name>Jambes.001</object-name>
+    <object-name>Main-Droite.001</object-name>
+    <object-name>Main-Gauche.001</object-name>
+    <object-name>Tete.001</object-name>
+    <object-name>object.001</object-name>
+  </effect>
 
     <!--<name>Cockpit_View</name> => 0
     <name>Wide-cockpit_View</name>  => 9-->

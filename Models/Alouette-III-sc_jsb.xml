@@ -12,10 +12,40 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>-1.0</pitch-deg>
-            <z-m>0.115</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>-1.0</pitch-deg>
+    <z-m>0.115</z-m>
+    <x-m>0</x-m>
+  </offsets>
+
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Int-FuselageAVStruct3</object-name>
+    <object-name>Int-Fuselage-AVStruct1</object-name>
+    <object-name>Int-Fuselage-AVStruct2</object-name>
+    <object-name>Int-Fuselage</object-name>
+    <object-name>AVAntenne</object-name>
+    <object-name>AVExt-Struct</object-name>
+    <object-name>AR-DPorte-Dbl</object-name>
+    <object-name>AR-DPorte-Dbl-jT</object-name>
+    <object-name>AR-DPorte-Poignee</object-name>
+    <object-name>AR-GPorte-Dbl</object-name>
+    <object-name>AR-GPorte-Dbl-jT</object-name>
+    <object-name>AR-GPorte-Poignee</object-name>
+    <object-name>AV-DPorte-Poignee</object-name>
+    <object-name>AV-DPorte-Struct1</object-name>
+    <object-name>AV-DPorte-Struct1.001</object-name>
+    <object-name>AV-GPorte-Poignee</object-name>
+    <object-name>AV-GPorte-Struct1.002</object-name>
+    <object-name>AV-Porte-StructFuse</object-name>
+    <object-name>Ext-Fuselage-AVStruct</object-name>
+    <object-name>Int-Fuselage</object-name>
+    <object-name>L-Door_floor</object-name>
+    <object-name>box.002</object-name>
+    <object-name>box.003</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>cylinder.034</object-name>
+  </effect>
 	
 	<model>
 	    <name>Cockpit_Empty</name>
