@@ -460,8 +460,10 @@
 		    <value>90</value>
 		<product>
                     <atan>
+			 <product>
 			 <property>animation/gear0strut_Ypos</property>
 			 <value>1.2020013</value>
+			</product>
                     </atan>
 		    <value>57.29578</value> 
 		</product>

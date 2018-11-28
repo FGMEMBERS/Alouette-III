@@ -141,23 +141,19 @@
 
 		<fcs_function name="autopilot/roll/heading-error-deg-subtracted">
 		<function>
-			<product>
-				<difference>
-					<property>autopilot/roll/heading-error-deg-raw</property>
-					<value>360.0</value>
-				</difference>
-			</product>
+			<difference>
+				<property>autopilot/roll/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</difference>
 		</function>
 		</fcs_function>
 
 		<fcs_function name="autopilot/roll/heading-error-deg-added">
 		<function>
-			<product>
-				<sum>
-					<property>autopilot/roll/heading-error-deg-raw</property>
-					<value>360.0</value>
-				</sum>
-			</product>
+			<sum>
+				<property>autopilot/roll/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</sum>
 		</function>
 		</fcs_function>
 
