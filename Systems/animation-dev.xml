@@ -649,7 +649,7 @@
 		<product>
                     <atan>
 			 <property>animation/gear1strut_Ypos</property>
-			 <value>1.2020013</value>
+			 <!--<value>1.2020013</value>-->
                     </atan>
 		    <value>57.29578</value> 
 		</product>
