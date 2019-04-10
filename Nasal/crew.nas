@@ -223,6 +223,7 @@ var amelia = {
 		me.hover_speed_fwd = 0.0;
 
 		me.landing_flag = 0;
+		me.hover_loop_flag = 0;
 
 		setprop("/fdm/jsbsim/systems/amelia/hover/v-north-tgt", 0.0);
 		setprop("/fdm/jsbsim/systems/amelia/hover/v-east-tgt", 0.0);
