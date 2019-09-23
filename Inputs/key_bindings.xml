@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <keyboard>
+
+   <key n="1"> 
+    <name>Ctrl+a</name>
+    <desc>Autopilot master</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/instruments/autopilot-hold</property>
+    </binding>
+   </key>
+
+   <key n="2"> 
+    <name>Ctrl+b</name>
+    <desc>Autopilot heading bug</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/instruments/autopilot-lock-heading-bug</property>
+    </binding>
+   </key>
+
+   <!--<key n="4"> 
+    <name>Ctrl+d</name>
+    <desc>Amelia flies</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+		if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+
+		if (crew.amelia.hover_loop_flag == 0)
+			{crew.amelia.hover();}
+		else
+		   	{crew.amelia.hover_end();}
+	 </script>
+    </binding>
+   </key>-->
+
+  <!-- <key n="6"> 
+    <name>Ctrl+f</name>
+    <desc>Amelia decreases altitude</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+ 	<![CDATA[ 
+		if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+
+		if (crew.amelia.hover_loop_flag == 0)
+			{return;}
+		else
+		   	{
+			if (crew.amelia.hover_alt_bias <  0.0)
+				{
+				setprop("/sim/messages/copilot", "Do you want to land? Then say so.");
+				}
+			else
+				{
+				crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias - 2.0;
+				}
+			}
+	       ]]>
+	 </script>
+    </binding>
+   </key>
+
+   <key n="7"> 
+    <name>Ctrl+g</name>
+    <desc>Amelia increases altitude</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+		if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+
+		if (crew.amelia.hover_loop_flag == 0)
+			{return;}
+		else
+		   	{
+			if (crew.amelia.hover_alt_bias > 13.8)
+				{
+				setprop("/sim/messages/copilot", "High enough for hover flight...");
+				}
+			else
+				{
+				crew.amelia.hover_alt_bias = crew.amelia.hover_alt_bias + 2.0;
+				}
+			}	
+	 </script>
+    </binding>
+   </key>-->
+
+   <key n="8"> 
+    <name>Ctrl+h</name>
+    <desc>Autopilot heading hold</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/instruments/autopilot-lock-true-heading</property>
+    </binding>
+   </key>
+
+   <key n="12"> 
+    <name>Ctrl+l</name>
+    <desc>Autopilot altitude hold</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/instruments/autopilot-lock-altitude</property>
+    </binding>
+   </key>
+
+   <key n="20"> 
+    <name>Ctrl+t</name>
+    <desc>Toggle Amelia takeover</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>nasal</command>
+	 <script>
+		crew.amelia.takeover_request();
+	 </script>
+    </binding>
+   </key>
+
+   <key n="23"> 
+    <name>Ctrl+w</name>
+    <desc>Toggle winch position</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/animation/mission-switch-lock</property>
+    </binding>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/animation/mission-switch</property>
+    </binding>
+   </key>
+
+   <key n="87"> 
+    <name>Shift+w</name>
+    <desc>Winch down</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+	 <command>property-adjust</command>
+	 <property>/sim/model/rescue-lift</property>
+         <step type="double">-0.01</step>
+         <min>0.0</min>
+         <max>1</max>
+    </binding>
+    <binding>
+	 <command>property-adjust</command>
+	 <property>/sim/winch/segments-reeled-in</property>
+         <step type="int">-1</step>
+         <min>0</min>
+         <max>88</max>
+    </binding>
+   </key>
+
+   <key n="108"> 
+    <name>l</name>
+    <desc>Landing light</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+	 <command>property-toggle</command>
+	 <property>/fdm/jsbsim/electrical/lighting/landing-lights</property>
+    </binding>
+
+   </key>
+
+
+   <key n="119"> 
+    <name></name>
+    <desc>Winch up</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+	 <command>property-adjust</command>
+	 <property>/sim/model/rescue-lift</property>
+         <step type="double">0.01</step>
+         <min>0.0</min>
+         <max>1</max>
+    </binding>
+    <binding>
+	 <command>property-adjust</command>
+	 <property>/sim/winch/segments-reeled-in</property>
+         <step type="int">1</step>
+         <min>0</min>
+         <max>88</max>
+    </binding>
+   </key>
+
+   
+
+
+  </keyboard>
+</PropertyList>

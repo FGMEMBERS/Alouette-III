@@ -48,6 +48,35 @@
             </test>
         </switch>
 
+	<switch name="electrical/als-light-use">
+		<default value="0"/>
+		<test logic="AND" value="1">
+			electrical/landing-light == 1
+			/sim/current-view/view-number == 0
+		</test>
+		<test logic="AND" value="1">
+			electrical/landing-light == 1
+			/sim/current-view/view-number == 9
+		</test>
+		<test logic="AND" value="1">
+			electrical/landing-light == 1
+			/sim/current-view/view-number == 10
+		</test>
+		<output>/sim/rendering/als-secondary-lights/use-landing-light</output>
+	</switch>
+
+
+	<switch name="electrical/als-light-offset">
+		<default value="-2"/>
+		<test value="-2">
+			/sim/current-view/view-number == 9
+		</test>
+		<test value="-5">
+			/sim/current-view/view-number == 10
+		</test>
+		<output>/sim/rendering/als-secondary-lights/landing-light1-offset-deg</output>
+	</switch>
+
         <switch name="electrical/strobe-lights">
             <default value="0"/>
             <test logic="AND" value="1">

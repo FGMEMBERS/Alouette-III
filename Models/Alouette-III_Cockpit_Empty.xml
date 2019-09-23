@@ -10,10 +10,39 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>0</pitch-deg>
-            <z-m>0.0</z-m>
-            <x-m>0</x-m>
-        </offsets>
-    
+    <pitch-deg>0</pitch-deg>
+    <z-m>0.0</z-m>
+    <x-m>0</x-m>
+  </offsets>
 
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Plancher</object-name>
+    <object-name>Int-Dos</object-name>
+    <object-name>Int-Dos.001</object-name>
+    <object-name>ellipse</object-name>
+    <object-name>ellipse.001</object-name>
+    <object-name>ellipse.002</object-name>
+    <object-name>ellipse.003</object-name>
+    <object-name>ellipse.004</object-name>
+    <object-name>ellipse.005</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>cylinder.001</object-name>
+    <object-name>box</object-name>
+    <object-name>box.001</object-name>
+    <object-name>box.002</object-name>
+    <object-name>box.003</object-name>
+    <object-name>box.004</object-name>
+    <object-name>box.005</object-name>
+    <object-name>object</object-name>
+    <object-name>object.001</object-name>
+    <object-name>object.002</object-name>
+    <object-name>object.003</object-name>
+    <object-name>object.004</object-name>
+    <object-name>object.005</object-name>
+    <object-name>object.006</object-name>
+    <object-name>object.007</object-name>
+  </effect>
+    
 </PropertyList>

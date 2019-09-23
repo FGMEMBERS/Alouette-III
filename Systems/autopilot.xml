@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+
+<!-- autopilot for Alouette-III Thorsten Renk 2017 -->
+
+<system name="Autopilot">
+
+	<channel name="Pitch">
+
+		<fcs_function name="autopilot/pitch/altitude-error">
+		<function>
+			<product>
+			<difference>
+				<property>autopilot/settings/target-altitude-ft</property>
+				<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+			</difference>
+			<property>instruments/autopilot-engaged</property>
+			<property>instruments/autopilot-lock-altitude</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="autopilot/pitch/vspeed-error">
+		<function>
+			<min>
+			<max>
+			<product>			
+			<difference>
+				<table>
+				<independentVar lookup="row">autopilot/pitch/altitude-error</independentVar>
+				<tableData>
+					-500.0	 10.0
+					-100.0	  5.0
+					   0.0	  0.0
+					 100.0	 -5.0
+					 500.0  -10.0
+				</tableData>
+	      			</table>
+				<property>velocities/v-down-fps</property>
+			</difference>
+			<property>instruments/autopilot-engaged</property>
+			<property>instruments/autopilot-lock-altitude</property>
+			</product>
+			<value>-10.0</value>
+			</max>
+			<value>10.0</value>
+			</min>
+		</function>
+		</fcs_function>
+
+
+  		<deadband name="autopilot/pitch/vspeed-error-trigger">
+			<input>autopilot/pitch/vspeed-error</input>
+			<width>4.0</width>
+  		</deadband>
+
+		<pid name="autopilot/ap-pitch-cmd">
+			<input>autopilot/pitch/vspeed-error</input>
+			<kp> 0.005 </kp>
+			<ki> 0.001 </ki>
+			<kd> 0.001</kd>
+			<trigger>autopilot/pitch/vspeed-error-trigger</trigger>
+			<clipto>
+				<min> -0.1</min>
+        			<max>  0.1 </max>
+			</clipto>
+			<output>autopilot/ap-pitch-cmd-debug</output>
+  		</pid>
+
+	</channel>
+
+
+	<channel name="Yaw">
+
+		<fcs_function name="autopilot/yaw/beta-error">
+		<function>
+			<product>
+			<difference>
+				<value>0.0</value>
+				<property>/instrumentation/gsdi/drift-v-kt</property>
+			</difference>
+			<property>autopilot/autopilot-engaged</property>
+			</product>
+		</function>
+		</fcs_function>
+
+  		<deadband name="autopilot/yaw/beta-error-trigger">
+			<input>autopilot/yaw/beta-error</input>
+			<width>5.0</width>
+  		</deadband>
+
+		<pid name="autopilot/ap-yaw-cmd">
+			<input>autopilot/yaw/beta-error</input>
+			<kp> 0.01 </kp>
+			<ki> 0.005 </ki>
+			<kd> 0.004</kd>
+			<trigger>autopilot/yaw/beta-error-trigger</trigger>
+			<clipto>
+				<min> -0.3</min>
+        			<max>  0.3 </max>
+			</clipto>
+			<output>autopilot/ap-yaw-cmd-debug</output>
+  		</pid>
+
+	</channel>
+
+
+	<channel name="Roll">
+
+	     	<switch name="autopilot/roll/heading-tgt-deg">
+		 	<default value="0"/>
+		 	<test  value="autopilot/settings/true-heading-deg">
+		    		instruments/autopilot-lock-true-heading == 1
+		 	</test>
+		 	<test  value="autopilot/settings/heading-bug-deg">
+		    		instruments/autopilot-lock-heading-bug == 1
+		 	</test>
+	     	</switch>
+
+	     	<switch name="autopilot/roll/channel-active">
+		 	<default value="0"/>
+		 	<test logic="OR" value="1">
+		    		instruments/autopilot-lock-true-heading == 1
+		    		instruments/autopilot-lock-heading-bug == 1
+		 	</test>
+	     	</switch>
+
+
+
+		<fcs_function name="autopilot/roll/heading-error-deg-raw">
+		<function>
+			<product>
+				<difference>
+					<property>autopilot/roll/heading-tgt-deg</property>
+					<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				</difference>
+				<property>autopilot/autopilot-engaged</property>
+				<property>autopilot/roll/channel-active</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="autopilot/roll/heading-error-deg-subtracted">
+		<function>
+			<difference>
+				<property>autopilot/roll/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</difference>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="autopilot/roll/heading-error-deg-added">
+		<function>
+			<sum>
+				<property>autopilot/roll/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</sum>
+		</function>
+		</fcs_function>
+
+	     	<switch name="autopilot/roll/heading-error-deg">
+		 	<default value="autopilot/roll/heading-error-deg-raw"/>
+		 	<test value="autopilot/roll/heading-error-deg-subtracted">
+				autopilot/roll/heading-error-deg-raw GT 180.0
+		 	</test>
+		 	<test value="autopilot/roll/heading-error-deg-added">
+				autopilot/roll/heading-error-deg-raw LT -180.0
+		 	</test>
+	     	</switch>
+
+
+		<fcs_function name="autopilot/roll/bank-angle-target">
+		<function>
+			<table>
+			<independentVar lookup="row">autopilot/roll/heading-error-deg</independentVar>
+			<tableData>
+				-180.0	 -20.0
+				 -10.0   -20.0 
+				   0.0	   0.0
+				  10.0	  20.0
+				 180.0	  20.0
+			</tableData>
+	      		</table>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="autopilot/roll/bank-angle-error-raw">
+		<function>
+			<product>
+			<difference>
+				<property>autopilot/roll/bank-angle-target</property>
+				<property>/orientation/roll-deg</property>
+			</difference>
+			<property>autopilot/autopilot-engaged</property>
+			<property>autopilot/roll/channel-active</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="autopilot/roll/bank-angle-error">
+		<function>
+			<max>
+			<min>
+				<property>autopilot/roll/bank-angle-error-raw</property>
+				<value>5.0</value>
+			</min>
+			<value>-5.0</value>
+			</max>
+		</function>
+		</fcs_function>
+
+  		<deadband name="autopilot/roll/bank-angle-error-trigger">
+			<input>autopilot/roll/bank-angle-error</input>
+			<width>2.0</width>
+  		</deadband>
+
+		<pid name="autopilot/ap-roll-cmd">
+			<input>autopilot/roll/bank-angle-error</input>
+			<kp> 0.005 </kp>
+			<ki> 0.005 </ki>
+			<kd> 0.004</kd>
+			<trigger>autopilot/roll/bank-angle-error-trigger</trigger>
+			<clipto>
+				<min> -0.3</min>
+        			<max>  0.3 </max>
+			</clipto>
+			<output>autopilot/ap-roll-cmd-debug</output>
+  		</pid>
+
+	</channel>
+</system>

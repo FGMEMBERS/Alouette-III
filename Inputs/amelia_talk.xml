@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>amelia-talk</name>
+	<layout>vbox</layout>
+	<default-padding>1</default-padding>
+	<modal>false</modal>
+	<width>500</width>
+
+	<empty>
+		<pref-height>6</pref-height>
+	</empty>
+
+	<text>
+		<label>Amelia</label>
+	</text>
+
+	<empty>
+		<pref-height>4</pref-height>
+	</empty>
+
+	<hrule/>
+
+ <group>
+    <layout>table</layout>
+  
+    <text>
+      <label>Amelia, could you please...</label>
+      <halign>left</halign>
+      <row>0</row>
+      <col>0</col>
+    </text>
+
+  	<combo>
+       		 <row>1</row>
+        	 <col>0</col>
+        	 <name>amelia-request</name>
+        	 <halign>left</halign>
+        	 <stretch>true</stretch>
+        	 <pref-width>400</pref-width>
+        	 <property>/sim/model/crew/pilot[1]/request-string</property>
+		 <value>... take off?</value>
+		 <value>... hover higher?</value>
+		 <value>... hover lower?</value>
+		 <value>... hover more forward?</value>
+		 <value>... hover more backward?</value>
+		 <value>... hover more left?</value>
+		 <value>... hover more right?</value>
+		 <value>... yaw left?</value>
+		 <value>... yaw right?</value>
+		 <value>... hover still?</value>
+		 <value>... land?</value>
+		 <value>... take controls?</value>
+		 <value>... give me controls?</value>
+        	 <binding>
+             	 	<command>dialog-apply</command>
+          	 	<object-name>amelia-request</object-name>
+        	 </binding>
+      	</combo>
+
+	<button>
+       		<row>1</row>
+        	<col>1</col>
+		<legend>Ask</legend>
+		<binding>
+			<command>nasal</command>
+			<script>
+				crew.amelia.request_parse();
+			</script>
+		</binding>
+	</button>
+
+
+</group>
+
+
+        <empty>
+		<pref-height>12</pref-height>
+	</empty>
+
+	<hrule/>
+
+	<empty>
+		<pref-height>20</pref-height>
+	</empty>
+
+	<button>
+		<legend>Close</legend>
+		<default>true</default>
+		<key>Esc</key>
+		<binding>
+			<command>dialog-close</command>
+		</binding>
+	</button>
+
+</PropertyList>

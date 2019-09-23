@@ -49,8 +49,8 @@
 		    </lighting>
 		</electrical>
 		<animation>
-		    <left-door-pos-cmd type="double">1</left-door-pos-cmd>
-		    <right-door-pos-cmd type="double">1</right-door-pos-cmd>
+		    <left-door-pos-cmd type="double">0</left-door-pos-cmd>
+		    <right-door-pos-cmd type="double">0</right-door-pos-cmd>
 		    <left-cabin_door-pos-cmd type="double">0</left-cabin_door-pos-cmd>
 		    <right-cabin_door-pos-cmd type="double">0</right-cabin_door-pos-cmd>
 		</animation>

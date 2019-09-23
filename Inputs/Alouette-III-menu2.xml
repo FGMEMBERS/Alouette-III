@@ -9,7 +9,7 @@
         <menu n="10">
             <label>Alouette-III</label>
             <enabled type="bool">true</enabled>
-	    <item>
+	    <!--<item>
                 <label>Aircraft_Control</label>
                 <binding>
                     <command>nasal</command>
@@ -19,10 +19,20 @@
                         start.open();
                     </script>
                 </binding>
-            </item>
+            </item>-->
 	    
-	  <!-- <item>
-                <label>Equipment_Control</label>
+
+	    
+	    <item>
+                <label>Autostart</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>al3.init_Run();</script>
+                </binding>
+            </item>
+
+	   <item>
+                <label>Configuration</label>
                 <binding>
                     <command>nasal</command>
                     <script>
@@ -32,16 +42,24 @@
                     </script>
                 </binding>
             </item>
-	    -->
-	    <item>
-                <label>Quick START</label>
+
+	   <item>
+                <label>Amelia</label>
+		<name>amelia-mnu</name>
+		<enabled>false</enabled>
                 <binding>
                     <command>nasal</command>
-                    <script>al3.init_Run();</script>
+                    <script>
+			if (getprop("/fdm/jsbsim/animation/amelia") == 0) {return;}
+		
+                        var amtalk = gui.Dialog.new("/sim/gui/dialogs/AL3/menu/amelia/dialog",
+                        "Aircraft/Alouette-III/Inputs/amelia_talk.xml");
+                        amtalk.open();
+                    </script>
                 </binding>
             </item>
 	   
-            <item>
+            <!--<item>
                 <label>Fcs Devel Help</label>
                 <binding>
                     <command>nasal</command>
@@ -55,7 +73,7 @@
                     <command>nasal</command>
                     <script>al3.close_helper();</script>
                 </binding>
-            </item>
+            </item>-->
 	   
 	   </menu>
 	   </default>

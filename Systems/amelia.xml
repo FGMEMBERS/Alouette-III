@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+
+<!-- Amelia as co-pilot for Alouette-III Thorsten Renk 2017 -->
+
+
+
+<system name="Amelia">
+
+	<property value="0"> systems/amelia/amelia-active </property>
+	<property value="0"> systems/amelia/yaw/heading-tgt </property>
+
+	<property value="0"> systems/amelia/hover/v-north-tgt </property>
+	<property value="0"> systems/amelia/hover/v-east-tgt </property>
+
+	<property value="0"> systems/amelia/pitch/a-fwd-tgt </property>
+	<property value="0"> systems/amelia/pitch/a-lr-tgt </property>
+
+	<channel name="Hover yaw" execute="systems/amelia/amelia-active">
+
+	     	<switch name="systems/amelia/hover-started">
+		 	<default value="0"/>
+		 	<test value="1">
+				/position/altitude-agl-ft GT 2.5
+		 	</test>
+		 	
+	     	</switch>
+
+		<fcs_function name="systems/amelia/yaw/heading-error-deg-raw">
+		<function>
+			<product>
+			<difference>
+				<property>/orientation/heading-deg</property>
+				<property>systems/amelia/yaw/heading-tgt</property>
+			</difference>
+			<property>systems/amelia/hover-started</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/yaw/heading-error-deg-subtracted">
+		<function>
+			<difference>
+				<property>systems/amelia/yaw/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</difference>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/yaw/heading-error-deg-added">
+		<function>
+			<sum>
+				<property>systems/amelia/yaw/heading-error-deg-raw</property>
+				<value>360.0</value>
+			</sum>
+		</function>
+		</fcs_function>
+
+	     	<switch name="systems/amelia/yaw/heading-error-deg">
+		 	<default value="systems/amelia/yaw/heading-error-deg-raw"/>
+		 	<test value="systems/amelia/yaw/heading-error-deg-subtracted">
+				systems/amelia/yaw/heading-error-deg-raw GT 180.0
+		 	</test>
+		 	<test value="systems/amelia/yaw/heading-error-deg-added">
+				systems/amelia/yaw/heading-error-deg-raw LT -180.0
+		 	</test>
+	     	</switch>
+		
+
+  		<deadband name="systems/amelia/yaw/heading-error-trigger">
+			<input>systems/amelia/yaw/heading-error-deg</input>
+			<width>30.0</width>
+  		</deadband>
+
+		<pid name="systems/amelia/yaw/yaw-cmd">
+			<input>systems/amelia/yaw/heading-error-deg</input>
+			<kp> 0.01 </kp>
+			<ki> 0.005 </ki>
+			<kd> 0.004</kd>
+			<trigger>systems/amelia/yaw/heading-error-trigger</trigger>
+			<clipto>
+				<min> -0.3</min>
+        			<max>  0.3 </max>
+			</clipto>
+			<output>systems/amelia/yaw/yaw-cmd-debug</output>
+  		</pid>
+
+	</channel>
+
+	<channel name="Hover target" execute="systems/amelia/amelia-active">
+
+		<fcs_function name="systems/amelia/hover/v-north-error">
+		<function>
+			<difference>
+				<property>systems/amelia/hover/v-north-tgt</property>
+				<property>velocities/v-north-fps</property>
+			</difference>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/hover/v-east-error">
+		<function>
+			<difference>
+				<property>systems/amelia/hover/v-east-tgt</property>
+				<property>velocities/v-east-fps</property>
+			</difference>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/hover/ch">
+		<function>
+			<cos>
+				<product>
+					<property>/orientation/heading-deg</property>
+					<value>0.01745277</value>
+				</product>
+			</cos>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/hover/sh">
+		<function>
+			<sin>
+				<product>
+					<property>/orientation/heading-deg</property>
+					<value>0.01745277</value>
+				</product>
+			</sin>
+		</function>
+		</fcs_function>
+
+
+		<fcs_function name="systems/amelia/pitch/v-fwd-error">
+		<function>
+			<sum>	
+			<product>
+				<property>systems/amelia/hover/ch</property>
+				<property>systems/amelia/hover/v-north-error</property>
+			</product>
+			<product>
+				<property>systems/amelia/hover/sh</property>
+				<property>systems/amelia/hover/v-east-error</property>
+			</product>
+			</sum>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/roll/v-lr-error">
+		<function>
+			<sum>	
+			<product>
+				<value>-1.0</value>
+				<property>systems/amelia/hover/sh</property>
+				<property>systems/amelia/hover/v-north-error</property>
+			</product>
+			<product>
+				<property>systems/amelia/hover/ch</property>
+				<property>systems/amelia/hover/v-east-error</property>
+			</product>
+			</sum>
+		</function>
+		</fcs_function>
+
+	</channel>
+
+	<channel name="Hover pitch" execute="systems/amelia/amelia-active">
+
+		<pid name="systems/amelia/pitch/a-fwd">
+			<input>systems/amelia/pitch/v-fwd-error</input>
+			<kp> 0.00 </kp>
+			<ki> 0.00 </ki>
+			<kd> 1.00</kd>
+			<output>systems/amelia/pitch/a-fwd-debug</output>
+  		</pid>
+
+		<fcs_function name="systems/amelia/pitch/a-fwd-tgt">
+		<function>
+			<table>
+			<independentVar lookup="row">systems/amelia/pitch/v-fwd-error</independentVar>
+				<tableData>
+					 -10.0	   5.0
+					   0.0	   0.0
+				 	  10.0	  -5.0
+				</tableData>
+	      		</table>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/pitch/a-fwd-error">
+		<function>
+			<difference>
+				<property>systems/amelia/pitch/a-fwd</property>
+				<property>systems/amelia/pitch/a-fwd-tgt</property>
+			</difference>
+		</function>
+		</fcs_function>
+
+ 		<deadband name="systems/amelia/pitch/a-fwd-error-trigger">
+			<input>systems/amelia/pitch/a-fwd-error</input>
+			<width>20.0</width>
+  		</deadband>
+
+
+		<pid name="systems/amelia/pitch/pitch-cmd-pid">
+			<input>systems/amelia/pitch/a-fwd-error</input>
+			<kp> 0.03 </kp>
+			<ki> 0.009 </ki>
+			<kd> 0.005</kd>
+			<trigger>systems/amelia/pitch/a-fwd-error-trigger</trigger>
+			<clipto>
+				<min> -0.2</min>
+        			<max>  0.2 </max>
+			</clipto>
+			<output>systems/amelia/pitch/pitch-cmd-debug</output>
+  		</pid>
+
+		<fcs_function name="systems/amelia/pitch/pitch-damping">
+		<function>
+			<product>
+				<value>1.0</value>
+				<property>velocities/q-rad_sec</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/pitch/pitch-cmd">
+		<function>
+			<sum>
+				<value>-0.12</value>
+				<property>systems/amelia/pitch/pitch-cmd-pid</property>
+				<property>systems/amelia/pitch/pitch-damping</property>
+			</sum>
+		</function>
+		</fcs_function>
+
+
+	</channel>
+
+	<channel name="Hover roll" execute="systems/amelia/amelia-active">
+
+		<pid name="systems/amelia/roll/a-lr">
+			<input>systems/amelia/roll/v-lr-error</input>
+			<kp> 0.00 </kp>
+			<ki> 0.00 </ki>
+			<kd> 1.00</kd>
+			<output>systems/amelia/roll/a-lr-debug</output>
+  		</pid>
+
+		<fcs_function name="systems/amelia/roll/a-lr-tgt">
+		<function>
+			<table>
+			<independentVar lookup="row">systems/amelia/roll/v-lr-error</independentVar>
+				<tableData>
+					 -10.0	   5.0
+					   0.0	   0.0
+				 	  10.0	  -5.0
+				</tableData>
+	      		</table>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/roll/a-lr-error">
+		<function>
+			<difference>
+				<property>systems/amelia/roll/a-lr</property>
+				<property>systems/amelia/roll/a-lr-tgt</property>
+			</difference>
+		</function>
+		</fcs_function>
+
+
+ 		<deadband name="systems/amelia/roll/a-lr-error-trigger">
+			<input>systems/amelia/roll/a-lr-error</input>
+			<width>20.0</width>
+  		</deadband>
+
+
+		<pid name="systems/amelia/roll/roll-cmd-pid">
+			<input>systems/amelia/roll/a-lr-error</input>
+			<kp> 0.03 </kp>
+			<ki> 0.009 </ki>
+			<kd> 0.005</kd>
+			<trigger>systems/amelia/roll/a-lr-error-trigger</trigger>
+			<clipto>
+				<min> -0.2</min>
+        			<max>  0.2 </max>
+			</clipto>
+			<output>systems/amelia/roll/roll-cmd-debug</output>
+  		</pid>
+
+		<fcs_function name="systems/amelia/roll/roll-cmd">
+		<function>
+			<sum>
+				<value>-0.05</value>
+				<property>systems/amelia/roll/roll-cmd-pid</property>
+			</sum>
+		</function>
+		</fcs_function>
+
+
+
+	</channel>
+
+
+
+	<channel name="Control output">
+		
+		<kinematic name="systems/amelia/control-strength">
+			<input>systems/amelia/amelia-active</input>
+			<traverse>
+				<setting>
+					<position>0.0</position>
+					<time>0.0</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.0</time>
+				</setting>
+			</traverse>
+		</kinematic>
+
+
+		<fcs_function name="systems/amelia/pitch-cmd">
+		<function>
+			<product>
+				<property>systems/amelia/control-strength</property>
+				<property>systems/amelia/pitch/pitch-cmd</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/yaw-cmd">
+		<function>
+			<product>
+				<property>systems/amelia/control-strength</property>
+				<property>systems/amelia/yaw/yaw-cmd</property>
+			</product>
+		</function>
+		</fcs_function>
+
+		<fcs_function name="systems/amelia/roll-cmd">
+		<function>
+			<product>
+				<property>systems/amelia/control-strength</property>
+				<property>systems/amelia/roll/roll-cmd</property>
+			</product>
+		</function>
+		</fcs_function>
+
+	</channel>
+	
+</system>

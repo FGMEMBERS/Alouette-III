@@ -435,6 +435,8 @@
 	<property value="0">fcs/fuel-flow-control</property> 
     </system>
 
+    <system file="autopilot"/>
+    <system file="amelia"/>
     <system file="engine_control"/>
     <system file="rotor-power_ctrl"/>
     <system file="rotor-flight_ctrl"/>
@@ -449,12 +451,6 @@
 	<property value="0.0"> fcs/x-ped </property>-->
     </system>
 
-    <system name="afcs_decl">
-	<property value="0.0"> ap/rudder-cmd </property>
-	<property value="0.0"> ap/aileron-cmd </property>
-	<property value="0.0"> ap/elevator-cmd </property>
-	<property value="0.0"> ap/collective-cmd </property>
-    </system>
 
     <flight_control name="al3_fcs">
     </flight_control>

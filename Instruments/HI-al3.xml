@@ -314,6 +314,14 @@
                     <wrap>1</wrap>
                 </binding>
             </action>
+	    <hovered>
+		 <binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>heading-bug</tooltip-id>
+		    <label>Heading bug: %s</label>
+		    <property>/instrumentation/heading-indicator/heading-bug-deg</property>
+		 </binding>
+	    </hovered>
         </animation>
 
         <animation>
@@ -332,6 +340,41 @@
                 <z>0</z>
             </axis>
 	</animation>
+
+ 	<!--<animation>
+		<type>knob</type>
+		<object-name>BoutonG</object-name>
+		<property>/instrumentation/heading-indicator/heading-bug-deg-cmd</property>
+		<factor>-5</factor>
+           	<axis>
+		        <x>1</x>
+		        <y>0</y>
+		        <z>0</z>
+             	</axis>
+            	<center>
+		        <x-m>0.0</x-m>
+		        <y-m>-0.035</y-m>
+		        <z-m>-0.035</z-m>
+            	</center>
+		<action>
+		    <binding>
+                    <command>property-adjust</command>
+		            <property>/instrumentation/heading-indicator/heading-bug-deg</property>
+		            <step>1</step>
+		            <min>0</min>
+		            <max>360</max>
+		            <wrap>true</wrap>
+		     </binding>
+		</action>
+		<hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>heading-bug</tooltip-id>
+		        <label>Heading bug: %s</label>
+		        <property>/instrumentation/heading-indicator/heading-bug-deg</property>
+		    </binding>
+		</hovered>
+    	</animation>-->
 
 
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+
+<PropertyList>
+
+<!-- Amelia config -->
+
+<pilot n="1">
+
+<character type="int">0</character>
+<equipment type="int">1</equipment>
+<outfit type="int">1</outfit>
+
+<pose>
+  <position>
+    <limb>	
+	<y-deg type="double">10.0</y-deg>
+    </limb>
+   <limb n="1">	
+	<y-deg type="double">10.0</y-deg>
+	<z-deg type="double">0.0</z-deg>
+	<breath type="double">1.0</breath>
+	<shrug type="double">1.0</shrug>
+    </limb>
+   <limb n="2">	
+	<y-deg type="double">-10.0</y-deg>
+	<z-deg type="double">0.0</z-deg>
+    </limb>
+   <limb n="3">	
+	<x-deg type="double">-90.0</x-deg>
+	<y-deg type="double">-30</y-deg>
+	<z-deg type="double">0.0</z-deg>
+    </limb>
+   <limb n="4">	
+	<y-deg type="double">0.0</y-deg>
+	<z-deg type="double">40.0</z-deg>
+    </limb>
+   <limb n="5">	
+	<hand-pose type="int">2</hand-pose>
+    </limb>
+   <limb n="6">	
+	<x-deg type="double">-90</x-deg>
+	<y-deg type="double">-30</y-deg>
+	<z-deg type="double">0.0</z-deg>
+    </limb>
+   <limb n="7">	
+	<z-deg type="double">30.0</z-deg>
+	<y-deg type="double">0.0</y-deg>
+    </limb>
+   <limb n="8">	
+	<hand-pose type="int">1</hand-pose>
+    </limb>
+   <limb n="9">	
+	<y-deg type="double">-90.0</y-deg>
+    </limb>
+   <limb n="10">	
+	<y-deg type="double">40.0</y-deg>
+    </limb>
+   <limb n="11">	
+	<y-deg type="double">0.0</y-deg>
+    </limb>
+   <limb n="12">	
+	<y-deg type="double">-85.0</y-deg>
+    </limb>
+   <limb n="13">	
+	<y-deg type="double">20.0</y-deg>
+    </limb>
+   <limb n="14">	
+	<y-deg type="double">0.0</y-deg>
+    </limb>
+  </position>
+</pose>
+
+</pilot>
+
+</PropertyList>

@@ -37,6 +37,19 @@
 		<property>fdm/jsbsim/electrical/switch/alternator</property>
             </binding>
         </action>
+	<hovered>
+	     <binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>alternator</tooltip-id>
+		    <label>Alternator: %s</label>
+		    <property>/fdm/jsbsim/electrical/switch/alternator</property>
+		    <mapping>nasal</mapping>
+		    <script>
+		         var modes = ['OFF', 'ON'];
+		         return modes[arg[0]];
+		     </script>
+	      </binding>
+	  </hovered>
     </animation>
     
      <animation>
@@ -75,6 +88,19 @@
 		<property>fdm/jsbsim/electrical/switch/battery</property>
             </binding>
         </action>
+	<hovered>
+	     <binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>battery</tooltip-id>
+		    <label>Battery: %s</label>
+		    <property>/fdm/jsbsim/electrical/switch/battery</property>
+		    <mapping>nasal</mapping>
+		    <script>
+		         var modes = ['OFF', 'ON'];
+		         return modes[arg[0]];
+		     </script>
+	      </binding>
+	  </hovered>
     </animation>
     
      <animation>
@@ -314,6 +340,19 @@
                 <property>fdm/jsbsim/animation/mission-switch</property>
             </binding>
         </action>
+	<hovered>
+	     <binding>
+		 <command>set-tooltip</command>
+		 <tooltip-id>winch</tooltip-id>
+		 <label>Winch: %s</label>
+		 <property>/fdm/jsbsim/animation/mission-switch</property>
+		 <mapping>nasal</mapping>
+		 <script>
+		         var modes = ['RETRACTED', 'DEPLOYED'];
+		         return modes[arg[0]];
+		  </script>
+	      </binding>
+	  </hovered>
     </animation>
 
     <animation>
@@ -369,45 +408,11 @@
     </animation>
     
     
-     <!-- ========================-->
+     <!-- ======== instrument lighting ================-->
 
-	<animation>
-            <type>pick</type>
-            <object-name>Eclairage_pupitre</object-name>
-            <action>
-                <button>0</button>
-                <binding>
-                    <command>property-adjust</command>
-                    <property>/sim/model/al3/instrument-lights</property>
-                    <step>0.05</step>
-                    <min>0</min>
-                    <max>1</max>
-                    <wrap>1</wrap>
-                </binding>
-            </action>
-        </animation>
-
-        <animation>
-            <type>pick</type>
-            <object-name>Eclairage_pupitre</object-name>
-            <action>
-                <button>1</button>
-                <binding>
-                    <command>property-adjust</command>
-                    <property>/sim/model/al3/instrument-lights</property>
-                    <step>-0.05</step>
-                    <min>0</min>
-                    <max>1</max>
-                    <wrap>1</wrap>
-                </binding>
-            </action>
-        </animation>
-
-
-	<animation>
-		<type>rotate</type>
+ 	<animation>
+		<type>knob</type>
 		<object-name>Eclairage_pupitre</object-name>
-		<object-name>Eclairage_pupitre_Fleche</object-name>
 		<property>/sim/model/al3/instrument-lights</property>
 		<factor>-280</factor>
 		<center>
@@ -420,7 +425,31 @@
 			<y>0</y>
 			<z>1</z>
 		</axis>
-	</animation>
+		<action>
+		    <binding>
+		        <command>property-adjust</command>
+		        <property>/sim/model/al3/instrument-lights</property>
+		        <factor>0.05</factor>
+		        <min>0.0</min>
+		        <max>1.0</max>
+		        <wrap>false</wrap>
+		    </binding>
+		</action>
+	    	<hovered>
+			<binding>
+			    <command>set-tooltip</command>
+			    <tooltip-id>instrument_lights</tooltip-id>
+			    <label>Instrument lights: %s</label>
+			    <property>/sim/model/al3/instrument-lights</property>
+			    <mapping>nasal</mapping>
+			    <script>
+				                     var modes = ['0%', '5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%', '85%', '90%', '95%', '100%'];
+		            return modes[int (arg[0] * 20.0)];
+			     </script>
+			 </binding>
+	      	</hovered>
+    	</animation>
+
 
         <animation>
             <type>pick</type>

@@ -6,6 +6,7 @@
 	<x>-10</x>
 	<y>-30</y>
 	<layout>vbox</layout>
+	<width>200</width>
 	<group>
 		    <layout>hbox</layout>
 		    <default-padding>1</default-padding>
@@ -13,7 +14,7 @@
 		    <stretch>true</stretch>
 		    </empty>
 		    <text>
-			<label>Main</label>
+			<label>Configuration</label>
 			<halign>center</halign>
 		    </text>
 		    <empty>
@@ -35,58 +36,19 @@
 		<group>
 	    <layout>vbox</layout>
 	    </group>
-	    <group>
-		 <layout>hbox</layout>
-		<text>
-		    <label>EQUIPMENT CONTROL</label>
-		    <halign>center</halign>
-		</text>
-	    </group>
-	     <hrule/>
+
+
 	    <group>
 		<layout>table</layout>
-		    <text>
-			<label>Brake-Parking Engage</label>
-			<halign>left</halign>
-			<row>1</row>
-			<col>0</col>
-		    </text>
-		    <checkbox>
-			<row>1</row>
-			<col>1</col>
-			<property>controls/gear/brake-parking</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>controls/gear/brake-parking</property>
-			</binding>
-		    </checkbox>
-		    <text>
-			<label>NWS Engaged</label>
-			<halign>left</halign>
-			<row>2</row>
-			<col>0</col>
-		    </text>
-		    <checkbox>
-			<row>2</row>
-			<col>1</col>
-			<property>fdm/jsbsim/gear/NWS/engaged</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>fdm/jsbsim/gear/NWS/engaged</property>
-			</binding>
-		    </checkbox>
+		    
 		    <text>
 			<label>Rotor-Blades Fold</label>
 			<halign>left</halign>
-			<row>3</row>
+			<row>0</row>
 		    <col>0</col>
 		    </text>
 		    <checkbox>
-			<row>3</row>
+			<row>0</row>
 			<col>1</col> 
 			<property>fdm/jsbsim/fcs/wing-fold-cmd</property>
 			<command>dialog-apply</command>
@@ -99,82 +61,15 @@
 			    <property>fdm/jsbsim/fcs/wing-fold-cmd</property>
 			</binding>
 		    </checkbox>
-		    <text>
-			<label>Landing-Light</label>
-			<halign>left</halign>
-			<row>4</row>
-		    <col>0</col>
-		    </text>
-		    <checkbox>
-			<row>4</row>
-			<col>1</col> 
-			<property>fdm/jsbsim/electrical/lighting/landing-lights</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>fdm/jsbsim/electrical/lighting/landing-lights</property>
-			</binding>
-		    </checkbox>
-		    <text>
-			<label>Rescue Mission</label>
-			<halign>left</halign>
-			<row>5</row>
-		    <col>0</col>
-		    </text>
-		    <checkbox>
-			<row>5</row>
-			<col>1</col>
-			<property>fdm/jsbsim/animation/mission-switch</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>fdm/jsbsim/animation/mission-switch</property>
-			</binding>
-		    </checkbox>
-		    <text>
-			<label>Open Left Cabin Door</label>
-			<halign>left</halign>
-			<row>6</row>
-		    <col>0</col>
-		    </text>
-		    <checkbox>
-			<row>6</row>
-			<col>1</col>
-			<property>fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
-			</binding>
-		    </checkbox>
-		    <text>
-			<label>Open Right Cabin Door</label>
-			<halign>left</halign>
-			<row>7</row>
-		    <col>0</col>
-		    </text>
-		    <checkbox>
-			<row>7</row>
-			<col>1</col>
-			<property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
-			<command>dialog-apply</command>
-			<live>true</live>
-			<binding>
-			    <command>property-toggle</command>
-			    <property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
-			</binding>
-		    </checkbox>
+		   
 		    <text>
 			<label>Ski landing gear</label>
 			<halign>left</halign>
-			<row>8</row>
+			<row>1</row>
 		    <col>0</col>
 		    </text>
 		     <checkbox>
-			<row>8</row>
+			<row>1</row>
 			<col>1</col>
 			<property>/sim/model/ski-equipment</property>
 			<command>dialog-apply</command>
@@ -184,11 +79,263 @@
 			    <property>/sim/model/ski-equipment</property>
 			</binding>
 		    </checkbox>
+
+		    <text>
+			<label>Rotor particles</label>
+			<halign>left</halign>
+			<row>2</row>
+		    <col>0</col>
+		    </text>
+		     <checkbox>
+			<row>2</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/rotor-particles</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-toggle</command>
+			    <property>/fdm/jsbsim/animation/rotor-particles</property>
+			</binding>
+		    </checkbox>
+
+		    <text>
+			<label>Rescue Mission</label>
+			<halign>left</halign>
+			<row>3</row>
+		    <col>0</col>
+		    </text>
+
+ 		    <text>
+			<label>Classic</label>
+			<halign>left</halign>
+			<row>4</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>4</row>
+			<col>1</col>
+			<property>/sim/model/rescue</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-flex</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-none</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<!--<script>rescue.rope_animation_run = 0;</script>-->
+			<script>rescue.rope_manager.stop();</script>
+			</binding>
+		    </radio>
+
+ 		    <text>
+			<label>Flexible rope</label>
+			<halign>left</halign>
+			<row>5</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>5</row>
+			<col>1</col>
+			<property>/sim/model/rescue-flex</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-flex</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-none</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<!--<script>
+					rescue.rope_animation_run = 1;
+					rescue.rope_animation(0);
+				</script>-->
+				<script>rescue.rope_manager.start();</script>
+			</binding>
+		    </radio>
+
+		    <text>
+			<label>none</label>
+			<halign>left</halign>
+			<row>6</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>6</row>
+			<col>1</col>
+			<property>/sim/model/rescue-none</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-flex</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/sim/model/rescue-none</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>rescue.rope_manager.stop();</script>
+				<!--<script>
+					rescue.rope_animation_run = 0;
+				</script>-->
+			</binding>
+		    </radio>
+
+
+		   <!-- <checkbox>
+			<row>3</row>
+			<col>1</col>
+			<property>/sim/model/rescue</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-toggle</command>
+			    <property>/sim/model/rescue</property>
+			</binding>
+		    </checkbox> -->
+
+		    <text>
+			<label>Crew</label>
+			<halign>center</halign>
+			<row>7</row>
+		    <col>0</col>
+		    </text>
+
+
+		    <text>
+			<label>Pilot/Copilot model</label>
+			<halign>left</halign>
+			<row>8</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>8</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/pilot-copilot</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/pilot-copilot</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/amelia</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/none</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>crew.amelia.stop();</script>
+			</binding>
+		    </radio>
+
+		    <text>
+			<label>Amelia</label>
+			<halign>left</halign>
+			<row>9</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>9</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/amelia</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/amelia</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/pilot-copilot</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/none</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>crew.amelia.start();</script>
+			</binding>
+		    </radio>
+
+		    <text>
+			<label>none</label>
+			<halign>left</halign>
+			<row>10</row>
+		    <col>0</col>
+		    </text>
+		     <radio>
+			<row>10</row>
+			<col>1</col>
+			<property>/fdm/jsbsim/animation/none</property>
+			<command>dialog-apply</command>
+			<live>true</live>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/amelia</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/pilot-copilot</property>
+			    <value>0</value>
+			</binding>
+			<binding>
+			    <command>property-assign</command>
+			    <property>/fdm/jsbsim/animation/none</property>
+			    <value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>crew.amelia.stop();</script>
+			</binding>
+		    </radio>
+
 		</group>
-	    <hrule/>
 	     <hrule/>
 	     
-	     <button>
+	     <!--<button>
                 <legend>Propulsion_Controls</legend>
 		<binding>
                     <command>nasal</command>
@@ -201,9 +348,9 @@
 		<binding>
 		    <command>dialog-close</command>
                 </binding>
-	    </button>
+	    </button>-->
 	     
-           <!-- <button>
+           <button>
                 <legend>Close</legend>
                 <default>true</default>
                 <key>Esc</key>
@@ -211,6 +358,6 @@
                 <binding>
 		    <command>dialog-close</command>
                 </binding>
-            </button>-->
+            </button>
 
 </PropertyList>

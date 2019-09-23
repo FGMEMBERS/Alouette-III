@@ -4,6 +4,7 @@
     Property of Gerard Robin (C) 2008-2010
     Copyright 
     Update David grthteam (eekpo)  2013
+    Update by Thorsten Renk 2017
 -->
 <PropertyList>
 
@@ -11,10 +12,40 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>-1.0</pitch-deg>
-            <z-m>0.115</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>-1.0</pitch-deg>
+    <z-m>0.115</z-m>
+    <x-m>0</x-m>
+  </offsets>
+
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Int-FuselageAVStruct3</object-name>
+    <object-name>Int-Fuselage-AVStruct1</object-name>
+    <object-name>Int-Fuselage-AVStruct2</object-name>
+    <object-name>Int-Fuselage</object-name>
+    <object-name>AVAntenne</object-name>
+    <object-name>AVExt-Struct</object-name>
+    <object-name>AR-DPorte-Dbl</object-name>
+    <object-name>AR-DPorte-Dbl-jT</object-name>
+    <object-name>AR-DPorte-Poignee</object-name>
+    <object-name>AR-GPorte-Dbl</object-name>
+    <object-name>AR-GPorte-Dbl-jT</object-name>
+    <object-name>AR-GPorte-Poignee</object-name>
+    <object-name>AV-DPorte-Poignee</object-name>
+    <object-name>AV-DPorte-Struct1</object-name>
+    <object-name>AV-DPorte-Struct1.001</object-name>
+    <object-name>AV-GPorte-Poignee</object-name>
+    <object-name>AV-GPorte-Struct1.002</object-name>
+    <object-name>AV-Porte-StructFuse</object-name>
+    <object-name>Ext-Fuselage-AVStruct</object-name>
+    <object-name>Int-Fuselage</object-name>
+    <object-name>L-Door_floor</object-name>
+    <object-name>box.002</object-name>
+    <object-name>box.003</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>cylinder.034</object-name>
+  </effect>
 	
 	<model>
 	    <name>Cockpit_Empty</name>
@@ -37,6 +68,24 @@
                     <pitch-deg>0</pitch-deg>
             </offsets>
         </model>
+
+	<model>
+	    <name>Cockpit</name>
+            <path>Aircraft/Alouette-III/Models/Crew/amelia.xml</path>
+            <offsets>
+                    <x-m>-1.5</x-m>
+                    <y-m>-0.15</y-m>
+                    <z-m>-1.1</z-m>
+                    <pitch-deg>0</pitch-deg>
+            </offsets>
+	  <condition>
+	   <equals>
+	    <property>/fdm/jsbsim/animation/amelia</property>
+	    <value>1</value>
+	   </equals>
+   	  </condition>
+        </model>
+
 	
 	<model>
 	    <name>Cockpit</name>
@@ -105,6 +154,75 @@
                 <z-m>0</z-m>
             </offsets>
         </model>
+
+	<model>
+            <path>Aircraft/Alouette-III/Models/alouetteIII-glass-inner.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+
+	<model>
+            <path>Aircraft/Alouette-III/Models/alouetteIII-windows.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+            </offsets>
+        </model>
+
+	<!-- heat blur -->
+	<model>
+	        <path>Aircraft/Alouette-III/Models/heat-blur.xml</path>
+            <offsets>
+                <x-m>2.33</x-m>
+                <y-m>0</y-m>
+                <z-m>0.73</z-m>
+				<pitch-deg>-7.0</pitch-deg>
+            </offsets>
+			<condition>	
+				<property>/sim/rendering/shaders/skydome</property>
+			</condition>
+	</model>
+
+      <!-- Flexible winch rope -->
+  	<model>
+		<name>rope</name>
+    		<path>Aircraft/Alouette-III/Models/Rope/long-line.xml</path>
+    		<offsets>
+        		<x-m>0.156</x-m>
+        		<y-m>-1.333</y-m>
+        		<z-m>2.100</z-m>
+    		</offsets>
+		<condition>	
+			<and>
+			<property>/sim/model/rescue-flex</property>
+			<equals>
+				<property>/fdm/jsbsim/animation/mission-winch-pos-norm</property>
+				<value>1.0</value>
+			</equals>
+			</and>
+		</condition>
+  	</model>
+
+	<animation>
+		<type>scale</type>
+		 <object-name>rope</object-name>
+	 	 <x-offset>0.7</x-offset>
+		 <y-offset>0.7</y-offset>
+		 <z-offset>0.7</z-offset>
+		 <center>
+		      <x-m>-1.22448</x-m>
+		      <y-m>-1.32749</y-m>
+		      <z-m>0.99333</z-m>
+		 </center>
+	</animation>
+
+
+
+
 	
 	<effect>
             <inherits-from>Aircraft/Alouette-III/Models/Effects/reflect_rb-al3</inherits-from>
@@ -189,7 +307,6 @@
             <shader>chrome</shader>
             <texture>Aircraft/Alouette-III/Models/Textures/shader.png</texture>
             <object-name>Vitrage</object-name>
-	   <!-- <object-name>rear-view mirror</object-name>-->
 	    <object-name>rear-view mirror-glass</object-name>
         </animation>
 	
@@ -288,6 +405,18 @@
         <!--=================DUST==========================-->
 
         <model>
+            <name>Rotor-Particles</name>
+            <path>Aircraft/Alouette-III/Models/Particles/rotor_particle.xml</path>
+            <offsets>
+                <x-m>0</x-m>
+                <y-m>0</y-m>
+                <z-m>0</z-m>
+                <pitch-deg>0</pitch-deg>
+                <heading-deg>0</heading-deg>
+            </offsets>
+        </model>
+
+        <!--<model>
             <name>Rotor-Poussiere1</name>
             <path>Aircraft/Alouette-III/Fx/Poussiere.xml</path>
             <offsets>
@@ -328,7 +457,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[2]</property><!--orientation/pitch-deg-->
+            <property>sim/multiplay/generic/float[2]</property>
             <axis>
                 <x>0</x>
                 <y>-1</y>
@@ -341,7 +470,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[3]</property><!--orientation/roll-deg-->
+            <property>sim/multiplay/generic/float[3]</property>
             <axis>
                 <x>1</x>
                 <y>0</y>
@@ -354,8 +483,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
-            <factor>0.6</factor>
+            <property>sim/multiplay/generic/float[4]</property>
             <axis>
                 <x>0</x>
                 <y>0</y>
@@ -368,7 +496,7 @@
             <object-name>Rotor-Poussiere1</object-name>
             <object-name>Rotor-Poussiere2</object-name>
             <object-name>Rotor-Poussiere3</object-name>
-            <property>sim/multiplay/generic/float[4]</property><!--position/gear-agl-m-->
+            <property>sim/multiplay/generic/float[4]</property>
             <offset>0</offset>
             <x-min>1</x-min>
             <y-min>1</y-min>
@@ -396,7 +524,7 @@
                 <y>0</y>
                 <z>-1</z>
             </axis>
-        </animation>
+        </animation>-->
        
 
 	 <model>
@@ -597,13 +725,7 @@
 	    <object-name>G-Ski</object-name>
 	    <object-name>D-Ski</object-name>
             <condition>
-		<or>
-		    <property>sim/model/ski-equipment</property>
-                <greater-than>
-		<property>fdm/jsbsim/position/h-sl-meters</property>
-		<property>environment/snow-level-m</property>
-		</greater-than>
-		</or>
+		<property>sim/model/ski-equipment</property>
 	    </condition>
 	</animation>
 		
@@ -1215,9 +1337,22 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>fdm/jsbsim/animation/left-door-pos-cmd</property>
+                <property>fdm/jsbsim/animation/cockpit-left-door-pos-cmd</property>
             </binding>
         </action>
+       <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cockpit_door_left</tooltip-id>
+		        <label>Left door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/cockpit-left-door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 	<animation>
@@ -1263,9 +1398,22 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>fdm/jsbsim/animation/right-door-pos-cmd</property>
+                <property>/fdm/jsbsim/animation/cockpit-right-door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cockpit_door_right</tooltip-id>
+		        <label>Right door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/cockpit-right-door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 	<animation>
@@ -1328,6 +1476,19 @@
                 <property>fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cabin_door_left</tooltip-id>
+		        <label>Left cabin door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/left-cabin_door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 	
 
@@ -1433,6 +1594,19 @@
                 <property>fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
             </binding>
         </action>
+        <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>cabin_door_right</tooltip-id>
+		        <label>Right cabin door: %s</label>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['CLOSED', 'OPEN'];
+		            return modes[arg[0]];
+		        </script>
+		        <property>/fdm/jsbsim/animation/right-cabin_door-pos-cmd</property>
+		    </binding>
+          </hovered>
     </animation>
 
         <animation>
@@ -1513,6 +1687,25 @@
                 <z-m>1.00995</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>upper_beacon_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red_nd.xml</path>
+            <offsets>
+                <x-m>-1.23927</x-m>
+                <y-m>-0</y-m>
+                <z-m>1.05995</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>
@@ -1524,6 +1717,25 @@
                 <z-m>-0.981655</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>lower_beacon_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red_nd.xml</path>
+            <offsets>
+                <x-m>1.03339</x-m>
+                <y-m>-0</y-m>
+                <z-m>-0.931655</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>
@@ -1535,9 +1747,26 @@
                 <z-m>0.312118</z-m>
                 <pitch-deg>0</pitch-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
         </model>
 	
-	
+        <model>
+            <name>rear_beacon</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_white.xml</path>
+            <offsets>
+                <x-m>6.4042</x-m>
+                <y-m>-0</y-m>
+                <z-m>0.312118</z-m>
+                <pitch-deg>0</pitch-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
+        </model>
 	
 	
 	<model>
@@ -1549,6 +1778,25 @@
                 <z-m>-0.486038</z-m>
                 <heading-deg>0</heading-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>flashlight_green</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_green.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 
         <model>
@@ -1571,8 +1819,26 @@
                 <z-m>-0.486038</z-m>
                 <heading-deg>0</heading-deg>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
         </model>
 
+        <model>
+            <name>flashlight_red</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_light_red.xml</path>
+            <offsets>
+                <x-m>-2.23006</x-m>
+                <y-m>-0.932108</y-m>
+                <z-m>-0.486038</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
+        </model>
 
         <model>
             <name>Al3-Rbdt_Red-side</name>
@@ -1592,6 +1858,25 @@
                 <y-m>0</y-m>
                 <z-m>0</z-m>
             </offsets>
+	    <condition>	
+		<not>
+			<property>/sim/rendering/shaders/skydome</property>
+		</not>
+	    </condition>
+        </model>
+
+        <model>
+            <name>landing_light_white</name>
+            <path>Aircraft/Alouette-III/Models/Lights/procedural_landing_light_white.xml</path>
+            <offsets>
+                <x-m>-3.0</x-m>
+                <y-m>0</y-m>
+                <z-m>-0.55</z-m>
+                <heading-deg>0</heading-deg>
+            </offsets>
+	    <condition>	
+		<property>/sim/rendering/shaders/skydome</property>
+	    </condition>
         </model>
 	
 	<model>

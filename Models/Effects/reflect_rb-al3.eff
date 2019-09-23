@@ -44,6 +44,7 @@
                 <ambient-correction>
                     <use>sim/model/shader/ambient-correction</use>
                 </ambient-correction>
+	        <rain-enabled>1</rain-enabled>
             </parameters>
 	    
 	    <generate>

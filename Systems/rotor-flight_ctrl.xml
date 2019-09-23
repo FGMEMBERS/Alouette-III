@@ -47,6 +47,7 @@
         <summer name="fcs/longitudinal-cmd-trim-sum">
             <input> fcs/elevator-cmd-norm-exmod </input>
             <input> fcs/pitch-trim-cmd-norm </input>
+	    <input>systems/amelia/pitch-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  2 </max>
@@ -68,7 +69,8 @@
 	
         <summer name="fcs/longitudinal-ctrl-rad">
             <input> fcs/x-lon </input>
-            <input> ap/elevator-cmd </input>
+            <!--<input> ap/elevator-cmd </input>-->
+	    <input>autopilot/ap-pitch-cmd</input>
 	    <!--<input>fcs/longitudinal-col-mix</input>-->
             <bias> -0.0620 </bias>
             <clipto>
@@ -84,6 +86,7 @@
         <summer name="fcs/lateral-cmd-trim-sum">
             <input> fcs/aileron-cmd-norm </input>
             <input> fcs/roll-trim-cmd-norm </input>
+	    <input>systems/amelia/roll-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  1.0 </max>
@@ -105,7 +108,7 @@
         <summer name="fcs/lateral-ctrl-rad">
             <input> fcs/x-lat </input>
             <!--<input> fcs/lateral-col-mix </input>-->
-            <input> ap/aileron-cmd </input>
+            <input> autopilot/ap-roll-cmd </input>
 	    <bias>  0.0165</bias>  
             <clipto>
                 <min> -0.7 </min>
@@ -121,6 +124,7 @@
         <summer name="fcs/pedal-cmd-trim-sum">
             <input> fcs/rudder-cmd-norm </input>
             <input> fcs/yaw-trim-cmd-norm </input>
+	    <input> systems/amelia/yaw-cmd</input>
             <clipto>
                 <min> -1.0 </min>
                 <max>  1.0 </max>
@@ -142,7 +146,7 @@
         <summer name="fcs/pedal-ctrl-rad">
             <input> fcs/x-ped </input>
            <!-- <input> fcs/pedal-col-mix </input>-->
-            <input> ap/rudder-cmd </input>
+            <input>autopilot/ap-yaw-cmd </input>
 	    <bias>  -0.131 </bias> 
             <clipto>
                 <min> -0.7 </min>

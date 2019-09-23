@@ -13,47 +13,23 @@
     <property>systems/rotor/pos-deg</property>    
     <property value="1">systems/rotor/blade-deployed</property>
     
+    <property value="0">animation/pilot-copilot</property>
+    <property value="0">animation/amelia</property>
+    <property value="1">animation/none</property>
+    <property value="1">animation/rotor-particles</property>
     <property value="1">animation/master-switch-lock-cmd</property>   
     <property value="0">animation/cutoff-switch-lock-cmd</property>    
-   <property value="0">animation/mission-switch</property>
+    <property value="0">animation/mission-switch</property>
     <property value="1">animation/mission-switch-lock</property>
+    <property value="1">animation/cockpit-left-door-pos-cmd</property>
+    <property value="1">animation/cockpit-right-door-pos-cmd</property>
 
     <channel name="Animation">
         <!--<documentation>Only for 3D model animation</documentation>-->
 	
 	
-	<switch name="animation/pilot-copilot">
-            <default value="0"/>
-            <test logic="AND" value="1">
-                electrical/switch/master  == 1
-            </test>
-	</switch>
-	
-	
-	<switch name="animation/cockpit-left-door-pos">
-            <default value="0"/>
-            <test logic="AND" value="animation/left-door-pos-cmd">
-                systems/rotor/collective-cmd-norm  == 0
-                gear/unit[0]/WOW == 1
-                gear/unit[1]/WOW == 1
-                gear/unit[2]/WOW == 1
-               propulsion/engine[0]/cutoff == 1
-            </test>
-        </switch>
-
-        <switch name="animation/cockpit-right-door-pos">
-            <default value="0"/>
-            <test logic="AND" value="animation/right-door-pos-cmd">
-                systems/rotor/collective-cmd-norm  == 0
-                gear/unit[0]/WOW == 1
-                gear/unit[1]/WOW == 1
-                gear/unit[2]/WOW == 1
-                propulsion/engine[0]/cutoff == 1
-            </test>
-        </switch>
-
         <kinematic name="LeftDoor Surface Position">
-            <input>animation/cockpit-left-door-pos</input>
+            <input>animation/cockpit-left-door-pos-cmd</input>
             <traverse>
                 <setting>
                     <position>0</position>
@@ -68,7 +44,7 @@
         </kinematic>
 
         <kinematic name="RightDoor Surface Position">
-            <input>animation/cockpit-right-door-pos</input>
+            <input>animation/cockpit-right-door-pos-cmd</input>
             <traverse>
                 <setting>
                     <position>0</position>
@@ -484,8 +460,10 @@
 		    <value>90</value>
 		<product>
                     <atan>
+			 <product>
 			 <property>animation/gear0strut_Ypos</property>
 			 <value>1.2020013</value>
+			</product>
                     </atan>
 		    <value>57.29578</value> 
 		</product>
@@ -671,7 +649,7 @@
 		<product>
                     <atan>
 			 <property>animation/gear1strut_Ypos</property>
-			 <value>1.2020013</value>
+			 <!--<value>1.2020013</value>-->
                     </atan>
 		    <value>57.29578</value> 
 		</product>
@@ -785,6 +763,44 @@
 		<value>0.135742</value>
 		 </product>
             </function>
+	</fcs_function>
+
+	<!-- deflection of controls, input from pilot and copilot merged -->
+
+	<fcs_function name="animation/lateral-stick-deflection-deg">
+	<function>
+		<product>
+			<sum>
+				<property>/controls/flight/aileron</property>
+				<property>systems/amelia/roll-cmd</property>
+			</sum>
+			<value>-10</value>
+		</product>
+	</function>
+	</fcs_function>
+
+	<fcs_function name="animation/longitudinal-stick-deflection-deg">
+	<function>
+		<product>
+			<sum>
+				<property>/controls/flight/elevator</property>
+				<property>systems/amelia/pitch-cmd</property>
+			</sum>
+			<value>-10</value>
+		</product>
+	</function>
+	</fcs_function>
+
+	<fcs_function name="animation/pedal-deflection-deg">
+	<function>
+		<product>
+			<sum>
+				<property>/controls/flight/rudder</property>
+				<property>systems/amelia/yaw-cmd</property>
+			</sum>
+			<value>27</value>
+		</product>
+	</function>
 	</fcs_function>
 	
     </channel>

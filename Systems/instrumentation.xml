@@ -51,9 +51,9 @@
 <property>/instrumentation/heading-indicator/heading-marker</property>
 <property>/instrumentation/heading-indicator/heading-bug-deg</property>
 
-<property>/autopilot/settings/true-heading-deg</property>
+<!--<property>/autopilot/settings/true-heading-deg</property>
 <property>/autopilot/settings/heading-bug-deg</property>
-<property>/autopilot/settings/target-altitude-ft</property>
+<property>/autopilot/settings/target-altitude-ft</property>-->
 
 <channel name="autopilot-switch">
 
@@ -74,26 +74,24 @@
      </switch>
 
     <switch name="instruments/autopilot-true-heading-indicator-switch">
-        <default value="/autopilot/settings/true-heading-deg"/>
-        <test logic="AND" value="/instrumentation/heading-indicator/heading-marker">
+        <default value="/instrumentation/heading-indicator/indicated-heading-deg"/>
+        <test  value="instruments/autopilot-true-heading-indicator-switch">
             instruments/autopilot-lock-true-heading == 1
         </test>
-        <output>instruments/autopilot-true-heading-indicator</output>
-        <output>/autopilot/settings/true-heading-deg</output>
+        <output>autopilot/settings/true-heading-deg</output>
      </switch>
 
      <switch name="instruments/autopilot-heading-bug-indicator-switch">
-         <default value="/autopilot/settings/heading-bug-deg"/>
+         <default value="0"/>
          <test logic="AND" value="/instrumentation/heading-indicator/heading-bug-deg">
              instruments/autopilot-lock-heading-bug == 1
          </test>
-         <output>instruments/autopilot-dg-heading-indicator</output>
-         <output>/autopilot/settings/heading-bug-deg</output>
+         <output>autopilot/settings/heading-bug-deg</output>
      </switch>
 
      <switch name="instruments/autopilot-altitude-indicator-switch">
-         <default value="/autopilot/settings/target-altitude-ft"/>
-         <test logic="AND" value="position/h-sl-ft">
+         <default value="0"/>
+         <test logic="AND" value="/instrumentation/altimeter/indicated-altitude-ft">
              instruments/autopilot-lock-altitude == 0
          </test>
          <test logic="AND" value="instruments/autopilot-altitude-indicator">
@@ -109,16 +107,19 @@
          <test logic="AND" value="1">
             instruments/autopilot-hold == 1
          </test>
+	 <output>autopilot/autopilot-engaged</output>
      </switch>
 
 
      <switch name="instruments/autopilot-target-altitude">
-         <default value="/autopilot/settings/target-altitude-ft"/>
+         <default value="0"/>
          <test logic="AND" value="instruments/autopilot-altitude-indicator">
              instruments/autopilot-engaged == 1
+             instruments/autopilot-lock-altitude == 1
          </test>
-         <output>/autopilot/settings/target-altitude-ft</output>
+         <output>autopilot/settings/target-altitude-ft</output>
      </switch>
+
 
 </channel>
 

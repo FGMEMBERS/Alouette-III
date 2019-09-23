@@ -127,6 +127,19 @@
                 <property>fdm/jsbsim/animation/master-switch-cmd</property>
             </binding>
         </action>
+	<hovered>
+	     <binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>starter</tooltip-id>
+		    <label>Starter: %s</label>
+		    <property>/fdm/jsbsim/animation/master-switch-cmd</property>
+		    <mapping>nasal</mapping>
+		    <script>
+		         var modes = ['OFF', 'ON'];
+		         return modes[arg[0]];
+		     </script>
+	      </binding>
+	  </hovered>
     </animation>
 
     <animation>
@@ -241,6 +254,19 @@
 		    <property>fdm/jsbsim/animation/rotor_clutch-switch-cmd</property>
 		</binding>
             </action>
+	    <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>rotor-brake</tooltip-id>
+		        <label>Rotor brake: %s</label>
+		        <property>/fdm/jsbsim/animation/rotor_brake-switch-cmd</property>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['RELEASED', 'ENGAGED'];
+		            return modes[arg[0]];
+		        </script>
+		    </binding>
+	    </hovered>
         </animation>
 	
 	<animation>
@@ -265,6 +291,19 @@
 		    <command>property-toggle</command>	    <property>fdm/jsbsim/gear/NWS/engaged</property>		
                 </binding>
             </action>
+	    <hovered>
+		<binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>nws-engage</tooltip-id>
+		    <label>Nose wheel steering: %s</label>
+		    <property>fdm/jsbsim/gear/NWS/engaged</property>
+		    <mapping>nasal</mapping>
+		    <script>
+		            var modes = ['OFF', 'ON'];
+		            return modes[arg[0]];
+		    </script>
+		</binding>
+	    </hovered>
         </animation>
     
 
@@ -297,6 +336,19 @@
                 <property>fdm/jsbsim/animation/cutoff-switch-lock-cmd</property>
             </binding>
         </action>
+	<hovered>
+		<binding>
+		    <command>set-tooltip</command>
+		    <tooltip-id>fuel-pump</tooltip-id>
+		    <label>Fuel pump: %s</label>
+		    <property>/controls/engines/engine[0]/cutoff</property>
+		    <mapping>nasal</mapping>
+		    <script>
+		            var modes = ['ON', 'OFF'];
+		            return modes[arg[0]];
+		    </script>
+		</binding>
+	</hovered>
     </animation>
     
     

@@ -10,26 +10,46 @@
 	<texture-path>Textures</texture-path>
 
 	<offsets>
-            <pitch-deg>0</pitch-deg>
-            <z-m>0.0</z-m>
-            <x-m>0</x-m>
-        </offsets>
+    <pitch-deg>0</pitch-deg>
+    <z-m>0.0</z-m>
+    <x-m>0</x-m>
+  </offsets>
 
+  <!-- ALS Interior Shadows -->
+  <effect>
+    <inherits-from>Models/Effects/cockpit-interior</inherits-from>
+    <object-name>Debit-Cde</object-name>
+    <object-name>LG-Light</object-name>
+    <object-name>ParkFreins-Cde</object-name>
+    <object-name>ParkFreins-base</object-name>
+    <object-name>ellipse.002</object-name>
+    <object-name>ellipse.003</object-name>
+    <object-name>ellipse.004</object-name>
+    <object-name>ellipse.005</object-name>
+    <object-name>cylinder</object-name>
+    <object-name>cylinder.001</object-name>
+    <object-name>cylinder.002</object-name>
+    <object-name>cylinder.003</object-name>
+    <object-name>off</object-name>
+    <object-name>sphere</object-name>
+    <object-name>sphere.001</object-name>
+    <object-name>sphere.002</object-name>
+    <object-name>sphere.003</object-name>
+    <object-name>sphere.004</object-name>
+    <object-name>sphere.005</object-name>
+    <object-name>sphere.006</object-name>
+  </effect>
 
-
-        
-
-
-        <model>
-            <name>VPanel</name>
-            <path>Aircraft/Alouette-III/Panels/Al3_VPanel.xml</path>
-            <offsets>
-                <x-m>-2.12641</x-m>
-                <y-m>0.200287</y-m>
-                <z-m>0.184616</z-m>
-                <pitch-deg>-5</pitch-deg>
-            </offsets>
-        </model>
+  <model>
+      <name>VPanel</name>
+      <path>Aircraft/Alouette-III/Panels/Al3_VPanel.xml</path>
+      <offsets>
+          <x-m>-2.12641</x-m>
+          <y-m>0.200287</y-m>
+          <z-m>0.184616</z-m>
+          <pitch-deg>-5</pitch-deg>
+      </offsets>
+  </model>
 	
 	<model>
             <name>VDPanel</name>
@@ -134,6 +154,19 @@
                     <property>controls/gear/brake-parking</property>
                 </binding>
             </action>
+            <hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>parking brake</tooltip-id>
+		        <label>Parking brake: %s</label>
+		    	<mapping>nasal</mapping>
+		    	<script>
+		            var modes = ['OFF', 'ENGAGED'];
+		            return modes[arg[0]];
+		     	</script>
+		        <property>controls/gear/brake-parking</property>
+		    </binding>
+            </hovered>
         </animation>
 	
 	<animation>
@@ -146,77 +179,49 @@
                 </equals>
             </condition>
 	</animation>
+
+ 	<animation>
+		<type>knob</type>
+		<object-name>Debit-Cde</object-name>
+		<property>/fdm/jsbsim/fcs/nominal-flow-cmd</property>
+		<factor>-40</factor>
+		<axis>
+		    <x>0.0  </x>
+		    <y>1.0  </y>
+		    <z>0.0</z>
+		</axis>
+            	<center>
+		        <x-m>-1.79069</x-m>
+		        <y-m>0</y-m>
+		        <z-m>-0.451846</z-m>
+            	</center>
+		<action>
+		    <binding>
+		        <command>property-adjust</command>
+		        <property>/fdm/jsbsim/fcs/nominal-flow-cmd</property>
+		        <factor>0.25</factor>
+		        <min>0.0</min>
+		        <max>1.0</max>
+		        <wrap>false</wrap>
+		    </binding>
+		</action>
+		<hovered>
+		    <binding>
+		        <command>set-tooltip</command>
+		        <tooltip-id>fuel-flow</tooltip-id>
+		        <label>Fuel flow: %s</label>
+		        <property>/fdm/jsbsim/fcs/nominal-flow-cmd</property>
+		        <mapping>nasal</mapping>
+		        <script>
+		            var modes = ['IDLE', 'CLUTCH', 'LOW', 'NORM', 'FCM'];
+		            return modes[int(arg[0] * 4.0)];
+		        </script>
+		    </binding>
+		</hovered>
+    	</animation>
 	
 	
-	<animation>
-            <type>pick</type>
-            <object-name>Debit-Cde</object-name>
-            <action>
-                <button>0</button>
-                <binding>
-                    <command>property-adjust</command>
-                    <property>fdm/jsbsim/fcs/nominal-flow-cmd</property>
-                    <step>0.25</step>
-                    <min>0</min>
-                    <max>1</max>
-                </binding>
-            </action>
-        </animation>
-	
-	<animation>
-            <type>pick</type>
-            <object-name>Debit-Cde</object-name>
-            <action>
-                <button>1</button>
-                <binding>
-                    <command>property-adjust</command>
-                    <property>fdm/jsbsim/fcs/nominal-flow-cmd</property>
-                    <step>-0.25</step>
-                    <min>0</min>
-                    <max>1</max>
-                </binding>
-            </action>
-        </animation>
-	
-	
-	
- <animation>
-            <type>rotate</type>
-            <object-name>Debit-Cde</object-name>
-            <property>fdm/jsbsim/fcs/fuel-flow-control</property>
-            <interpolation>
-                <entry>
-                    <ind>0.0</ind>
-                    <dep>-0</dep>
-                </entry>
-                <entry>
-                    <ind>0.25</ind>
-                    <dep>-10</dep>
-                </entry>
-                <entry>
-                    <ind>0.5</ind>
-                    <dep>-20</dep>
-                </entry>
-                <entry>
-                    <ind>0.75</ind>
-                    <dep>-30</dep>
-                </entry>
-		<entry>
-                    <ind>1</ind>
-                    <dep>-40</dep>
-                </entry>
-            </interpolation>
-            <center>
-                <x-m>-1.79069</x-m>
-                <y-m>0</y-m>
-                <z-m>-0.451846</z-m>
-            </center>
-            <axis>
-                <x>0</x>
-                <y>1</y>
-                <z>0</z>
-            </axis>
-        </animation>
+
         
 	
 
